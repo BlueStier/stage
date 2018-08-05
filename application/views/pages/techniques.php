@@ -1,24 +1,16 @@
-<<<<<<< HEAD
-  <header class="masthead">
-=======
 <header class="masthead">
->>>>>>> d69e39f873eaa0a86b43990feae23ac924fe2195
     <div class="technique">
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">
-<<<<<<< HEAD
             Les services techniques
-=======
           Les services techniques
->>>>>>> d69e39f873eaa0a86b43990feae23ac924fe2195
           </div>
         </div>
       </div>
     </div>
   </header>
   <div class="container">
-<<<<<<< HEAD
     <div class="row">
       <div class="col-lg-6 col-sm-12">
         <div class="carousel slide"
@@ -55,7 +47,6 @@ apportent leur appui technique aux grands événements.<br><br><br>
 </div>
   
 
-=======
       <div class="row">
       <div class="col-lg-6 col-sm-12 ">
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -86,4 +77,3 @@ apportent leur appui technique aux grands événements.<br><br><br>
 </div>
 </div></div>
 </div>
->>>>>>> d69e39f873eaa0a86b43990feae23ac924fe2195

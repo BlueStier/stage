@@ -49,18 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-<<<<<<< HEAD
 $route['cms/create'] = 'cms/create';
 $route['cms/(:any)'] = 'cms/view/$1';
 $route['cms'] = 'cms';
-=======
 $route['environnement/create'] = 'environnement/create';
 $route['environnement/(:any)'] = 'environnement/view/$1';
 $route['environnement'] = 'environnement';
 $route['histoire/create'] = 'histoire/create';
 $route['histoire/(:any)'] = 'histoire/view/$1';
 $route['histoire'] = 'histoire';
->>>>>>> d69e39f873eaa0a86b43990feae23ac924fe2195
 $route['ArretesMunicipaux/create'] = 'ArretesMunicipaux/create';
 $route['ArretesMunicipaux/(:any)'] = 'ArretesMunicipaux/view/$1';
 $route['ArretesMunicipaux'] = 'ArretesMunicipaux';

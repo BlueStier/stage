@@ -173,7 +173,7 @@ img::-moz-selection {
 header.masthead {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/chevaler.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/chevaler.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -718,7 +718,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .elus {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/elus.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/elus.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -730,7 +730,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .histoire {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/Histoire-locale.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/Histoire-locale.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -742,7 +742,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .urbanisme {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/Urbanisme-logement-plan.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/Urbanisme-logement-plan.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -754,7 +754,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .environnement {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/Environnement.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/Environnement.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -766,7 +766,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .deliberations {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/Délibérations-du-conseil-municipal.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/Délibérations-du-conseil-municipal.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -778,7 +778,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .arretes {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/Arrêtés-municipaux.jpg);
+	background-image: url(http://localhost/stage/assets/site/img/background/Arrêtés-municipaux.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -790,7 +790,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .technique {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/assets/img/background/Services-techniques.jpg);
+	background-image: url(http://localhost/stage/assets/img/background/Services-techniques.jpg);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
