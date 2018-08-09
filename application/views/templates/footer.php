@@ -34,37 +34,18 @@
       </div>
     </footer>
  <!-- Bootstrap core JavaScript -->
- <?php
-   $array=[];
-   $ville = "oignies";
-   $cp=62590;
-   $adresse = "avenue john kennedy";
-   $ville_url = str_replace(' ', '+', $ville); // remplace espace par +
-   $adresse_url = str_replace(' ', '+', $adresse); // remplace espace par +
-   $MapCoordsUrl = urlencode($cp.'+'.$ville_url.'+'.$adresse_url); //url_encode : encodage pour URL
-
-   $ville2 = "oignies";
-   $cp2=62590;
-   $adresse2 = "Place de la IVème République";
-   $ville_url2 = str_replace(' ', '+', $ville2); // remplace espace par +
-   $adresse_url2 = str_replace(' ', '+', $adresse2); // remplace espace par +
-   $MapCoordsUrl2 = urlencode($cp2.'+'.$ville_url2.'+'.$adresse_url2); //url_encode : encodage pour URL
-
-   $array[0]=$MapCoordsUrl;
-   $array[1]=$MapCoordsUrl2;
-   ?>
-   
- <script src="<?php echo base_url();?>/assets/site/vendor/jquery/jquery.min.js"></script>
-    <script src="<?php echo base_url();?>/assets/site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+ <script src="<?php echo base_url();?>assets/site/vendor/jquery/jquery.min.js"></script>
+    <script src="<?php echo base_url();?>assets/site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="<?php echo base_url();?>/assets/site/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<?php echo base_url();?>assets/site/vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <script src="<?php echo base_url();?>/assets/site/js/jqBootstrapValidation.js"></script>
-    <script src="<?php echo base_url();?>/assets/site/js/contact_me.js"></script>
+    <script src="<?php echo base_url();?>assets/site/js/jqBootstrapValidation.js"></script>
+    <script src="<?php echo base_url();?>assets/site/js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="<?php echo base_url();?>/assets/site/js/agency.min.js"></script>
+    <script src="<?php echo base_url();?>assets/site/js/agency.min.js"></script>
         </body>
 </html>

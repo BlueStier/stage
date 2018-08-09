@@ -42,5 +42,5 @@
    </header>
    
   
-   <body onload="initialize()" ><div id="map" style="height:90%;top:30px"></div></body> 
+    
  
