@@ -79,6 +79,20 @@ google.maps.event.addDomListener(window, 'load', initCarte);
 </script>
 </head>
 <body>
-
+<?php echo validation_errors();
+echo form_open('test/create'); 
+?>
+<h5>Adresse</h5>
+<input type="text" id="adresse" name='adresse' onkeyup="geolocalise()" placeholder="saisissez votre adresse " /><br>
+<input type="text" id="latitude" name="latitude" placeholder="latitude "/><br>
+<input type="text" id="longitude" name="longitude" placeholder="longitude "/><br>
+<input type="text" name="date_debut" placeholder="date de début des travaux "/><br>
+<input type="text" name="date_fin" placeholder="date de fin des travaux "/><br>
+<input type="text"  name="societe" placeholder="travaux réalisés par : "/><br>
+<input type="text"  name="commenditaire" placeholder="Travaux commandés par : "/><br>
+<input type="text"  name="contact" placeholder="tel "/><br>
+<input type="textarea"  name="commentaires" placeholder="commentaires "/><br>
+<input type="submit"  value="Enregistrer en bdd" />
+ </form> 
 </body>
 </html>

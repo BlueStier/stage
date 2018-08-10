@@ -1,11 +1,10 @@
 <style type="text/css">
 
 #div_carte{
-  margin:auto;
-  margin-top:2.0em;
-  width:757px;
-  height:757px;
-  border:1px solid #808080;
+  overflow:hidden;
+	padding-bottom:56.25%;
+	position:relative;
+	height:0;
 }
 </style>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDi_lJupA7cM3dEQkfT3KF588oEFjviJ34"></script>
@@ -17,11 +16,11 @@
  var contentString;
  /*Récupération des données via la bdd*/
  <?php
- foreach ($travaux as $travaux_item):
-    $i=$travaux_item['id_travaux']-1;    
+ $i=0;
+ foreach ($travaux as $travaux_item):        
     echo "data[".$i."]=[".$travaux_item['latitude'].",".$travaux_item['longitude'].",".$travaux_item['adresse'].",".$travaux_item['commentaires'].","
     .$travaux_item['date_debut'].",".$travaux_item['date_fin'].",".$travaux_item['commenditaires'].",".$travaux_item['société'].",".$travaux_item['contact']."];";
-
+  $i++;
  endforeach;?> 
 
  
@@ -30,7 +29,7 @@ function initCarte() {
   
   //creation de la carte
   var oMap = new google.maps.Map(document.getElementById('div_carte'),{
-      'center': new google.maps.LatLng( 50.46, 2.99),
+      'center': new google.maps.LatLng( 50.463742, 2.992829),
       'zoom': 14,
       'backgroundColor': '#fff',
       'mapTypeId': google.maps.MapTypeId.ROADMAP
@@ -40,9 +39,9 @@ function initCarte() {
   for( i=0; i < nb; i++){
       
       //creation du contenu de la fenetre d'info      
-      contentString = '<h6 id="firstHeading" class="firstHeading">'+data[i][2]+'</h6>'+ 
-      '<div id="bodyContent">'+data[i][3]+'</div><div>Du : '+data[i][4]+' au : '+data[i][5]+'</div><div>Travaux réalisés par : '+data[i][7]+'</div><div>Demandés par :' 
-      +data[i][6]+'</div><div>Pour plus de renseignements : '+data[i][8]+'</div>';
+      contentString = '<div class="text-center"><h6 id="firstHeading" class="firstHeading">'+data[i][2]+'</h6>'+ 
+      '<p>'+data[i][3]+'</p><div>Du : '+data[i][4]+' au : '+data[i][5]+'</div><div>Travaux réalisés par : '+data[i][7]+'</div><div>Demandés par :' 
+      +data[i][6]+'</div><div>Pour plus de renseignements : '+data[i][8]+'</div></div>';
 
         var oMarker = new google.maps.Marker({
         'map' : oMap,
@@ -68,16 +67,12 @@ google.maps.event.addDomListener(window, 'load', initCarte);
 </script>
 </head>
 <header class="masthead">
-    <div class="accueil">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">
-            Travaux en cours
-          </div>
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">
+          Travaux
         </div>
-      </div>
-    </div>
-    <form action="Search.php" method="post">
+        <form action="Search.php" method="post">
         <div class="row justify-content-md-center">        
           <div class="input-group col-lg-4">         
             <input class="form-control py-2"
@@ -108,6 +103,8 @@ google.maps.event.addDomListener(window, 'load', initCarte);
         </div>
       </div>
     </div>
-  </header>
-
-  <div id="div_carte"></div>
+   </header>
+   
+   <div class="row justify-content-md-center">
+  <div class="col-md-8" id="div_carte"></div>
+</div>

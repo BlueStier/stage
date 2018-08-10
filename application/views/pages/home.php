@@ -25,8 +25,21 @@
         </form> 
         <br>
         <br>
+        <button aria-controls="navbarResponsive"
+           aria-expanded="false"
+           aria-label="navbarSupportedContent"
+           class="btn btn-secondary btn-lg "
+           data-target="#menu_rapide"
+           data-toggle="collapse"
+           type="button">Menu rapide</button>
+           <div class="collapse navbar-collapse"
+           id="menu_rapide">
+      <ul class="navbar-nav mr-auto">
         <div class="row justify-content-md-center">
-          <a class="btn btn-secondary btn-lg col-md-3" href="">Parents</a><div class="col-md-1"></div>
+        <li class="nav-item">
+          <a class="btn btn-secondary btn-lg col-md-3" href="">Parents</a>
+</li>  
+        <div class="col-md-1"></div>
           <button class="btn btn-secondary btn-lg col-md-3">Professionnels</button><div class="col-md-1"></div>
           <button class="btn btn-secondary btn-lg col-md-3">Jeunes</button><div class="col-md-1"></div>
         </div>
@@ -37,8 +50,10 @@
           <button class="btn btn-secondary btn-lg col-md-3">test2</button><div class="col-md-1"></div>
           <button class="btn btn-secondary btn-lg col-md-3">test3</button><div class="col-md-1"></div>
         </div>
+</ul>
       </div>
     </div>
+</div>
    </header>
    
   
