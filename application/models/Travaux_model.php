@@ -35,6 +35,7 @@ class Travaux_model extends CI_Model {
                 'contact'=>"'".$this->input->post('contact')."'",
                 'commentaires'=> "'".$this->input->post('commentaires')."'"
                  );
+                
 
         return $this->db->insert('travaux', $data);
         }

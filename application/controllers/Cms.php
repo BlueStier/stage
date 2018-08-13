@@ -13,7 +13,8 @@ class Cms extends CI_Controller
     public function index()
     {
            
-        
+        $this->load->view('cms/header');
+        $this->load->view('cms/left_menu');
         $this->load->view('cms/index');
         
     }

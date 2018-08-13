@@ -44,14 +44,7 @@ html, body{
     societe = document.getElementById('societe').value;
     commenditaire = document.getElementById('commenditaire').value;
     contact = document.getElementById('contact').value;
-    /*Appel Ajax pour envoie en BDD*/
-   /* var sendAjax = $.ajax({
-     type: "POST",
-     url: 'insert-in-bdd.php',
-     data: 'lat='+latitude+'&lng='+longitude+'&adr='+addr+'&date_debut='+date_debut+'&date_fin='+date_fin+'&societe='+societe+'&commenditaire='+commenditaire+'&contact='+contact,     
-    });*/
-
-   }  
+     }  
   });
   
  }
@@ -87,7 +80,7 @@ echo form_open('test/create');
 <input type="text" id="latitude" name="latitude" placeholder="latitude "/><br>
 <input type="text" id="longitude" name="longitude" placeholder="longitude "/><br>
 <input type="text" name="date_debut" placeholder="date de début des travaux "/><br>
-<input type="text" name="date_fin" placeholder="date de fin des travaux "/><br>
+<input type="text" name="date_fin" placeholder="date de fin des travaux estimée"/><br>
 <input type="text"  name="societe" placeholder="travaux réalisés par : "/><br>
 <input type="text"  name="commenditaire" placeholder="Travaux commandés par : "/><br>
 <input type="text"  name="contact" placeholder="tel "/><br>
