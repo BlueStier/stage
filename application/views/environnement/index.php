@@ -1,13 +1,11 @@
-<header class="masthead">
-    <div class="environnement">
+<header id="entete" class="masthead">   
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in text-white">
-            Environnement
+            <?php echo $title; ?>
           </div>
         </div>
       </div>
-    </div>
   </header>
   <br>
   <div class="container">

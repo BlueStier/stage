@@ -1,5 +1,11 @@
 <?php
 class Pages extends CI_Controller {
+        public function __construct()
+        {
+            parent::__construct();
+            $this->load->model('Header_model');
+            $this->load->helper('url_helper');
+        }
 
         //construit la page home 
         public function view($page = 'home'){
@@ -8,10 +14,15 @@ class Pages extends CI_Controller {
                 // Whoops, we don't have a page for that!
                 show_404();
         }
-
-        
-        $this->load->view('templates/header');
-        $this->load->view('pages/'.$page);
+        $data['header_item'] = $this->Header_model->get_menu();
+        $data['sub_item'] = $this->Header_model->get_sousmenu();
+        $data['third_item'] = $this->Header_model->get_thirdmenu();
+        $data['background']= "http://localhost/stage/assets/site/img/background/chevaler.jpg";
+        $data['title']= "Bienvenue sur le nouveau site de la ville de Oignies !";
+        $data['subtitle']="Oignies : Dynamique avec vous";
+        $this->load->view('header/index',$data);
+        $this->load->view('pages/'.$page,$data);
         $this->load->view('templates/footer');
+        
 }
 }

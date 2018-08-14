@@ -12,7 +12,9 @@ class Deliberations extends CI_Controller
 
     //construit la page des délibérations
     public function index()
-        {        
+        {  
+        $data['background']= "http://localhost/stage/assets/site/img/background/Délibérations-du-conseil-municipal.jpg";
+        $data['title']="Comptes-rendus du conseil municipal";      
         $data['deliberations'] = $this->Deliberations_model->get_deliberations();        
         
         $this->load->view('templates/header', $data);

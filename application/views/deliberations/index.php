@@ -1,13 +1,11 @@
-<header class="masthead">
-    <div class="deliberations">
+<header id="entete" class="masthead">    
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">
-            Comptes-rendus du conseil municipal
+            <?php echo $title ?>
           </div>
         </div>
-      </div>
-    </div>
+      </div>    
   </header>
     <div class="container">
     <?php

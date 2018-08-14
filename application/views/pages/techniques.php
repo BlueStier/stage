@@ -1,14 +1,11 @@
-<header class="masthead">
-    <div class="technique">
+<header class="masthead">    
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">
-            Les services techniques
-          Les services techniques
+            Les services techniques          
           </div>
         </div>
-      </div>
-    </div>
+      </div>    
   </header>
   <div class="container">
     <div class="row">

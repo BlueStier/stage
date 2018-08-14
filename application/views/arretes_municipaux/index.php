@@ -1,13 +1,11 @@
-<header class="masthead">
-    <div class="arretes">
+<header id="entete" class="masthead">   
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">
-          Les arrêtés municipaux
+          <?php echo $title; ?>
           </div>
         </div>
-      </div>
-    </div>
+      </div>   
   </header>
   <div class="text-center">  
   <div class="container">

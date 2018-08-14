@@ -34,7 +34,9 @@
       </div>
     </footer>
  <!-- Bootstrap core JavaScript -->
-  
+ <script>
+document.getElementById("entete").style.backgroundImage = "url('<?php echo $background ?>')";
+</script>
  <script src="<?php echo base_url();?>assets/site/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url();?>assets/site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 

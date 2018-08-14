@@ -13,6 +13,8 @@ class ArretesMunicipaux extends CI_Controller
     //construit la page concernant les arretes municipaux
     public function index()
     {
+        $data['background']= "http://localhost/stage/assets/site/img/background/Arrêtés-municipaux.jpg";
+        $data['title']= "Les arrêtés municipaux";
         $data['arretes'] = $this->ArretesMunicipaux_model->get_arretes();        
 
         $this->load->view('templates/header', $data);

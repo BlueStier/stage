@@ -15,6 +15,7 @@ class Elus extends CI_Controller
     {
         $data['elus'] = $this->Elus_model->get_elus();
         $data['title'] = 'Vos Elus';
+        $data['background']= "http://localhost/stage/assets/site/img/background/elus.jpg";
 
         $this->load->view('templates/header');
         $this->load->view('elus/index', $data);

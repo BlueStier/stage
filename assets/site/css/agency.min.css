@@ -170,10 +170,18 @@ img::-moz-selection {
 	}
 }
 
+.dropdown-submenu{position:relative;}
+  .dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+  .dropdown-submenu:hover>.dropdown-menu{display:block;}
+  .dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+  .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+  .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+ 
+
 header.masthead {
 	text-align: center;
 	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/chevaler.jpg);
+	background-image: url();
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: center center;
@@ -704,42 +712,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 	background-color: #fed136
 }
 
-.accueil {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/assets/site/img/background/mairie.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
-.elus {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/elus.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
-.histoire {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/Histoire-locale.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
+
 .urbanisme {
 	text-align: center;
 	color: #fff;
@@ -752,42 +725,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 	-o-background-size: cover;
 	background-size: cover
 }
-.environnement {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/Environnement.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
-.deliberations {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/Délibérations-du-conseil-municipal.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
-.arretes {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/Arrêtés-municipaux.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
+
 .technique {
 	text-align: center;
 	color: #fff;

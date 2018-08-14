@@ -13,6 +13,8 @@ class Environnement extends CI_Controller
     //construit la page des elus
     public function index()
     {
+        $data['background']= "http://localhost/stage/assets/site/img/background/Environnement.jpg";
+        $data['title']= "Environnement";
         $data['environnement'] = $this->Environnement_model->get_environnement();
         
         $this->load->view('templates/header');

@@ -13,6 +13,8 @@ class Acceuil extends CI_Controller
     //construit la page d'Acceuil
     public function index()
     {
+        $data['background']= "http://localhost/stage/assets/site/img/background/mairie.jpg";
+        $data['title']="L'Acceuil";
         $data['acceuil'] = $this->Acceuil_model->get_acceuil();        
 
         $this->load->view('templates/header', $data);

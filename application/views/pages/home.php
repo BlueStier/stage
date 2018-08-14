@@ -1,12 +1,13 @@
 
-  <header class="masthead">
+  <header id="entete" class="masthead">
     <div class="container">
       <div class="intro-text">
         <div class="intro-lead-in">
-          Bienvenue sur le nouveau site de la ville de Oignies !
+        <?php echo $title; ?>
+          
         </div>
         <div class="intro-heading text-uppercase">
-          Oignies : Dynamique avec vous
+        <?php if(isset($subtitle)){echo $subtitle;} ?>
         </div>
         <form action="Search.php" method="post">
         <div class="row justify-content-md-center">        

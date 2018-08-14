@@ -1,13 +1,11 @@
-<header class="masthead">
-    <div class="elus">
+<header id="entete" class="masthead">    
       <div class="container">
         <div class="intro-text">
           <div class="intro-lead-in">
-            Les Elus
+          <?php echo $title; ?>
           </div>
         </div>
-      </div>
-    </div>
+      </div>    
   </header>
   <div class="container">
     <div class="row">

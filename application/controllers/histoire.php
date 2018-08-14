@@ -14,6 +14,8 @@ class Histoire extends CI_Controller
     public function index()
     {
         $data['histoire'] = $this->Histoire_model->get_histoire();
+        $data['background']= "http://localhost/stage/assets/site/img/background/Histoire-locale.jpg";
+        $data['title']= "L'histoire locale";
         
         $this->load->view('templates/header');
         $this->load->view('histoire/index', $data);
