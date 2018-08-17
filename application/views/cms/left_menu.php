@@ -25,16 +25,16 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Navigation pricipale</li>
+        <li class="header">Gestion du site</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Utilisateurs </span>
+            <i class="fa fa-dashboard"></i> <span>Apparence </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Creer</a></li>
+            <li class="active"><a href="<?php echo base_url()?>index.php/cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
           </ul>
         </li>
@@ -103,6 +103,19 @@
             <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
             <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
             <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+          </ul>
+        </li>
+        <li class="header">Gestion des utilisateurs</li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Utilisateurs </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Creer</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
           </ul>
         </li>
         <li class="treeview">

@@ -52,62 +52,56 @@
         <ul class="navbar-nav nav-dropdown"
             data-app-modern-menu="true">
 <?php
+//pour chaque menu de la bdd
 foreach($header_item as $header):
+     //vérifie si le menu doit être affiché
     if($header['visible']){ 
 
 ?>
-          <li class="nav-item dropdown">
-            <a aria-expanded="false"
+         <li class="nav-item dropdown">
+         <a aria-expanded="false"
                 class="nav-link display-4"
                 data-toggle="dropdown"
-                href="#services"><?php echo $header['nom']; ?></a>
-            <div class="dropdown-menu dropright">
-            <?php foreach($sub_item as $sub):
-            $compare = strcmp($sub['menu'],$header['nom']);
-
-                if($sub['visible'] && ($compare == 0)){?>
-
-              <a class=aria-expanded="false"
-                     class="nav-link dropdown-item dropdown-toggle display-4"
-                     data-toggle="dropdown"
-                     href="#services"
-                   ><?php echo $sub['nom']; ?></a>
-                   <div class="dropdown-menu">
-                    <?php foreach($third_item as $thi):
-                        $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
-                        if($thi['visible'] && ($compare2 == 0)){?>
-                            <a class="dropdown-item" href="<?php echo base_url().$thi['path'];?>"><?php echo $thi['nom']; ?></a>
-                        <?php }  endforeach;?>
-                        </div>
-                   <?php }  endforeach;?>
-                        
-              <div class="dropdown-submenu">
-                <a aria-expanded="false"
-                     class="nav-link dropdown-item dropdown-toggle display-4"
-                     data-toggle="dropdown"
-                     href="#services">Démocratie locale</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/elus/">Vos élus</a> <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/ArretesMunicipaux/">Les arrêtés municipaux</a> <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/deliberations/">Les délibérations du conseil municipal</a>
+                href="#services"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
+                <div class="dropdown-menu dropright">
+                <?php //pour chaque sous menu
+            foreach($sub_item as $sub):                  
+                  $compare = strcmp($sub['menu'],$header['nom']);            
+                  //on vérifie que le sous menu doit être affiché et qu'il correspond au menu parent
+                  if($sub['visible'] && ($compare == 0)){                        
+                      //Si le sous menu ne contient pas de 3eme niveau on affiche :
+                   if($sub['no3level']){     
+                        ?><a class="nav-link dropdown-item"
+                   href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php /* affiche le nom du sous menu */ echo $sub['nom'] ?></a>
+                 <?php }
+                 //sinon on affiche :
+                 else{?>
+                  <div class="dropdown-submenu">
+                  <a aria-expanded="false"
+                       class="nav-link dropdown-item dropdown-toggle display-4"
+                       data-toggle="dropdown"
+                       href="#services"><?php /* affiche le nom du sous menu */ echo $sub['nom'] ?></a>
+                  <div class="dropdown-menu"><?php
+                  //pour chaque sous menu de 3eme niveau :
+                        foreach($third_item as $thi):
+                              //on vérifie que le 3eme niveau doit être affiché et qu'il correspond au sousmenu parent
+                              $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
+                              if($thi['visible'] && ($compare2 == 0)){?>
+                    <a class="dropdown-item"
+                         href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$thi['path'];?>"><?php /* affiche le nom du 3eme menu */ echo $thi['nom'] ?></a> 
+                         <?php } endforeach;?>                         
+                  </div>
+                </div><?php
+                 }
+                
+            }
+            endforeach;
+            ?>
                 </div>
-              </div>
-              <div class="dropdown-submenu">
-                <a aria-expanded="false"
-                     class="nav-link dropdown-item dropdown-toggle display-4"
-                     data-toggle="dropdown"
-                     href="#service">Vivre à Oignies</a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/histoire/">Histoire locale</a> <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/environnement/">Environnement</a> <a class="dropdown-item"
-                       href="<?php echo base_url();?>index.php/urbanisme-et-logement/">Urbanisme et logement</a>
-                </div>
-              </div>
-            </div>
-          </li>
-       <?php }endforeach;?> 
+         </li>
+       <?php }
+      $i = 1;
+      endforeach;?> 
         </ul>
       </div>
     </div>
