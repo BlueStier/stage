@@ -49,4 +49,9 @@ class Test extends CI_Controller
         $this->load->view('travaux/index');
     }
 }
+
+if (isset($POST['id'])){
+    echo $POST['id'];
+    die;
+}
 }

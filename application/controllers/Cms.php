@@ -42,4 +42,13 @@ class Cms extends CI_Controller
         $this->Header_model->delete_menu($i);      
         Cms::view(1);       
     }
+    
+    public function ordre($sens, $id)
+    {        
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('idmenu', 'Nom du menu', 'required');
+        $this->Header_model->upOrDown($sens, $id);      
+        Cms::view(1);       
+    }
 }

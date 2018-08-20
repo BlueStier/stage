@@ -92,15 +92,14 @@ foreach($header_item as $header):
                          <?php } endforeach;?>                         
                   </div>
                 </div><?php
-                 }
-                
+                 }                
             }
             endforeach;
             ?>
                 </div>
          </li>
        <?php }
-      $i = 1;
+     
       endforeach;?> 
         </ul>
       </div>

@@ -60,6 +60,7 @@ $route['test'] = 'test';
 $route['seniors/create'] = 'seniors/create';
 $route['seniors/(:any)'] = 'seniors/view/$1';
 $route['seniors'] = 'seniors';
+$route['cms/ordre/(:any)/(:num)'] = 'cms/ordre/$1/$2';
 $route['cms/delete/(:any)'] = 'cms/delete/$1';
 $route['cms/delete'] = 'cms/delete';
 $route['cms/create'] = 'cms/create';
