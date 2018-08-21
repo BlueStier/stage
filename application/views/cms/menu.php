@@ -1,29 +1,43 @@
 <script>
-function allowDrop(ev) {
+var recep;
+function allowDrop(ev) {  
     ev.preventDefault();
 }
 
 function drag(ev) {
+  //récupération de l'id que l'on déplace    
     ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function drop(ev) {
     ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    alert(data);
-   /* $.ajax({
-       url : 'more_com.php', // La ressource ciblée
+    //récupération de la cible
+    recep = ev.target.id;
+    var id = ev.dataTransfer.getData("text");
+    //récupération du csrf codeigniter pour la sécurité
+    var csrf = "<?php echo $this->security->get_csrf_hash(); ?>";
+    console.log('id = '+id+' <?php echo $this->security->get_csrf_token_name(); ?> = '+csrf+' recep ='+recep );
+    //Méthode post via ajax et envoie des données au controlleur
+    $.ajax({
+       url : '<?php echo base_url();?>index.php/cms/test', // La ressource ciblée
        type :'POST',
-       data : "id ="+data
-       success : function(code_html, statut){
-           
-          },
-   
-          error : function(resultat, statut, erreur){
-   
-          },
-    });*/
-    ev.target.appendChild(document.getElementById(data));
+       dataType: "json",     
+       data : {'id': id,
+              'menu': recep,
+        '<?php echo $this->security->get_csrf_token_name(); ?>': csrf
+      },
+       
+       success: function(){
+         //recharge la page quand le changement est fait         
+        //window.location.reload();
+        console.log('id = '+id+' <?php echo $this->security->get_csrf_token_name(); ?> = '+csrf+' recep ='+recep );
+      }, 
+      error: function(){
+        //changement hs
+        alert('modification impossible');
+               }
+    });
+    
 }
 </script>
 
@@ -60,7 +74,7 @@ foreach($header_item as $key=>$header):
       <div class="col-md-4">
           <div class="box box-default collapsed-box">
             <div class="box-header with-border" style="background-color:<?php /* affiche le nom du menu */ echo $header['couleur'] ?>">
-              <h3 id="<?php /* affiche le nom du menu */ echo $header['nom'] ?>" ondrop="drop(event)" ondragover="allowDrop(event)" class="box-title"><?php /* affiche le nom du menu */ echo $header['nom'] ?></h3>
+              <h3 ><?php /* affiche le nom du menu */ echo $header['nom'] ?></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -154,7 +168,7 @@ endforeach;
 <?php
 foreach($header_item as $header):
   $tabRecup=[];?>
-    <h4><?php echo $header['nom'] ?></h4>
+    <h4 id="<?php /* affiche le nom du menu */ echo $header['nom'] ?>" ondrop="drop(event)" ondragover="allowDrop(event)" class="box-title"><?php echo $header['nom'] ?></h4>
     <div class="row"><?php
 //pour chaque sous menu de la bdd
     foreach($sub_item as $i =>$sub):
@@ -168,7 +182,7 @@ foreach($header_item as $header):
     <div class="col-md-4">
           <div class="box box-default collapsed-box">
             <div class="box-header with-border" style="background-color:<?php /* affiche le nom du menu */ echo $header['couleur'] ?>">
-              <h3 id="<?php echo $tab['id_sousmenu'] ?>" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
+              <h3 id="<?php echo $tab['id_sousmenu'] ?>sousmenu" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>

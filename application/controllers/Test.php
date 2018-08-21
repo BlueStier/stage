@@ -49,9 +49,12 @@ class Test extends CI_Controller
         $this->load->view('travaux/index');
     }
 }
-
-if (isset($POST['id'])){
-    echo $POST['id'];
-    die;
+public function test(){
+   
+    $this->form_validation->set_rules('id', 'id', 'required');
+    if($this->form_validation->run()){
+        echo $this->input->post('id');
+        die;
+    }
 }
 }

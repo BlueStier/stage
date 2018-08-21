@@ -7,7 +7,7 @@ class Header_model extends CI_Model {
                 $this->load->database();
         }
 
-        //méthode qui extrait les données de la table acceuil
+        //méthode qui extrait les données de la table menu
         public function get_menu($id = FALSE)
 {
         if ($id === FALSE)
@@ -21,6 +21,7 @@ class Header_model extends CI_Model {
         $query = $this->db->get_where('menu', array('id_menu' => $id));
         return $query->row_array();
 }
+         //méthode qui extrait les données de la table sousmenu
         public function get_sousmenu($id = FALSE)
 {
         if ($id === FALSE)
@@ -34,6 +35,7 @@ class Header_model extends CI_Model {
         $query = $this->db->get_where('sousmenu', array('id_sousmenu' => $id));
         return $query->row_array();
 }
+         //méthode qui extrait les données de la table third_level
         public function get_thirdmenu($id = FALSE)
 {
         if ($id === FALSE)
@@ -47,7 +49,7 @@ class Header_model extends CI_Model {
         $query = $this->db->get_where('third_level', array('id_third' => $id));
         return $query->row_array();
 }
-        //suppression d'un menu
+        //suppression d'un menu, sous-menu ou 3eme niveau
         public function delete_menu($i)
 {       
         switch ($i){
@@ -71,6 +73,8 @@ class Header_model extends CI_Model {
                         break;
         }                
 }
+
+//fonction permettant de changer l'ordre des menus, sousmenus et 3eme niveau
         public function upOrDown($sens, $id)
 {
         switch ($id){
@@ -169,5 +173,40 @@ class Header_model extends CI_Model {
                 }
 
 }
+        //fonction de déplacement de sousmenu vers un autre menu
+        public function dragNdrop(){
+                //récupère l'id du sous menu à modif et le nouveau menu concerné
+                $idAModif = $this->input->post('id');
+                $menu1 = $this->input->post('menu');
 
+                if(stristr($menu1, 'sousmenu') == TRUE) {
+                        $menu = stristr($menu1, 'sousmenu',true);                        
+                //extraction de la base de donnée du sousmenu concerné
+                $result = $this->db->get_where('sousmenu', array('id_sousmenu' => $idAModif))->result_array();
+
+                //met l'ordre et le menu enlevé en attente
+                $ordre = $result[0]['ordre'];
+                $menu_depart = $result[0]['menu'];
+                //extraction du dernier ordre de la base concernant ce menu
+                $this->db->select('count(*) as lastOrdre');
+                $result1 = $this->db->get_where('sousmenu', array('menu' => $menu))->result_array();
+                //change le menu concerné et remplace dans la bdd               
+                $result[0]['menu'] = $menu;
+                $result[0]['ordre'] = $result1[0]['lastOrdre']+1;
+                $this->db->replace('sousmenu',$result[0]);
+
+                //comble le trou dans les ordre du menu de départ
+                $where = ['menu' => $menu_depart, 'ordre >' => $ordre];
+                $this->db->where($where);
+                $result2 = $this->db->get('sousmenu')->result_array();
+                $size = sizeof($result2);
+                if($size > 0){
+                        for($i = 0; $i < $size ; $i++){
+                                $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
+                                $this->db->replace('sousmenu',$result2[$i]);    
+                        }
+                }
+
+        }
+    }
 }
