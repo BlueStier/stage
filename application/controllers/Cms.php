@@ -51,16 +51,14 @@ class Cms extends CI_Controller
         $this->Header_model->upOrDown($sens, $id);      
         Cms::view(1);       
     }
-    public function test(){
+    public function dragNdrop(){
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('id', 'id', 'required');
         $this->form_validation->set_rules('menu', 'menu', 'required');
         if($this->form_validation->run()){
-            $idSMenu = $this->input->post('id');
-            $menu = $this->input->post('menu');             
-            if($this->input->is_ajax_request()){
-                $this->Header_model->dragNdrop();             
+            $this->Header_model->dragNdrop();
+            if($this->input->is_ajax_request()){                             
                 echo json_encode(true);
             }
         }

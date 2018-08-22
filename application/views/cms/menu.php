@@ -12,26 +12,26 @@ function drag(ev) {
 function drop(ev) {
     ev.preventDefault();
     //récupération de la cible
-    recep = ev.target.id;
+    sousmenu = ev.currentTarget.innerHTML;
+    recep = ev.currentTarget.id;
     var id = ev.dataTransfer.getData("text");
     //récupération du csrf codeigniter pour la sécurité
-    var csrf = "<?php echo $this->security->get_csrf_hash(); ?>";
-    console.log('id = '+id+' <?php echo $this->security->get_csrf_token_name(); ?> = '+csrf+' recep ='+recep );
+    var csrf = "<?php echo $this->security->get_csrf_hash(); ?>";    
     //Méthode post via ajax et envoie des données au controlleur
     $.ajax({
-       url : '<?php echo base_url();?>index.php/cms/test', // La ressource ciblée
+       url : '<?php echo base_url();?>index.php/cms/dragNdrop', // La ressource ciblée
        type :'POST',
        dataType: "json",     
        data : {'id': id,
               'menu': recep,
+              'sousmenu':sousmenu,
         '<?php echo $this->security->get_csrf_token_name(); ?>': csrf
       },
        
        success: function(){
          //recharge la page quand le changement est fait         
         //window.location.reload();
-        console.log('id = '+id+' <?php echo $this->security->get_csrf_token_name(); ?> = '+csrf+' recep ='+recep );
-      }, 
+        }, 
       error: function(){
         //changement hs
         alert('modification impossible');
@@ -69,7 +69,8 @@ function drop(ev) {
 <?php
 $tailleMenu = sizeof($header_item)-1;
 //pour chaque menu de la bdd
-foreach($header_item as $key=>$header):     
+foreach($header_item as $key=>$header):
+      
 ?>
       <div class="col-md-4">
           <div class="box box-default collapsed-box">
@@ -86,7 +87,7 @@ foreach($header_item as $key=>$header):
             <div class="box-body">            
               <div class="row">
               <?php //si l'ordre est different de 1 on affiche le bouton à gauche
-                if($key != 1) {?>
+                if($key != 0) {?>
               <div class="col-md-1">
               <?php //récupération de l'id du menu et appel de la fonction qui modifie l'ordre en moins 
               echo validation_errors(); 
@@ -182,7 +183,7 @@ foreach($header_item as $header):
     <div class="col-md-4">
           <div class="box box-default collapsed-box">
             <div class="box-header with-border" style="background-color:<?php /* affiche le nom du menu */ echo $header['couleur'] ?>">
-              <h3 id="<?php echo $tab['id_sousmenu'] ?>sousmenu" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
+              <h3 id="<?php echo $tab['id_sousmenu'] //donne id du sous menu et concatene 'sousmenu' pour le drag'n'drop ?>sousmenu" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -287,7 +288,7 @@ foreach($header_item as $header):
       $compare = strcmp($sub['menu'],$header['nom']);
       if($compare==0){
       ?>
-      <h5><small>>> Sous-menu :&nbsp <?php echo $sub['nom'] ?></small></h5>
+      <h5 id="<?php /* affiche le nom du sousmenu */ echo $sub['nom'] ?>" ondrop="drop(event)" ondragover="allowDrop(event)" class="box-title"><small>>> <?php echo $header['nom'] ?> :&nbsp <?php echo $sub['nom'] ?></small></h5>
     <div class="row"><?php
     $tabRecup2=[]; 
     //si le 3eme niveau est bien dans le sous menu qui est dans le menu on affiche
@@ -304,7 +305,7 @@ foreach($header_item as $header):
 <div class="col-md-6">
           <div class="box box-default collapsed-box">
             <div class="box-header with-border" style="background-color:<?php /* affiche le nom du menu */ echo $header['couleur'] ?>">
-              <h3 class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
+              <h3 id="<?php echo $tab['id_third'] //donne id du 3eme niveau pour le drag'n'drop ?>" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>

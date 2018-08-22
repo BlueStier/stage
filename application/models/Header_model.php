@@ -176,11 +176,13 @@ class Header_model extends CI_Model {
         //fonction de déplacement de sousmenu vers un autre menu
         public function dragNdrop(){
                 //récupère l'id du sous menu à modif et le nouveau menu concerné
-                $idAModif = $this->input->post('id');
-                $menu1 = $this->input->post('menu');
+                $idAModif1 = $this->input->post('id');
+                $menu = $this->input->post('menu');
 
-                if(stristr($menu1, 'sousmenu') == TRUE) {
-                        $menu = stristr($menu1, 'sousmenu',true);                        
+                //si l'element déplacé est un sous menu
+                if(stristr($idAModif1, 'sousmenu') == TRUE) {
+                        $idAModif = stristr($idAModif1, 'sousmenu',true);
+                        $idAModif = intval($idAModif);                       
                 //extraction de la base de donnée du sousmenu concerné
                 $result = $this->db->get_where('sousmenu', array('id_sousmenu' => $idAModif))->result_array();
 
@@ -205,8 +207,52 @@ class Header_model extends CI_Model {
                                 $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
                                 $this->db->replace('sousmenu',$result2[$i]);    
                         }
+                //in ne reste plus qu'a déplacer les 3eme niveau affiliés au sous menu pour qu'ils suivent
+                $result3 = $this->db->get_where('third_level', array('sousmenu' => $result[0]['nom']))->result_array();               
+                $size2 = sizeof($result3);
+                
+                if($size2 > 0){
+                        for($i = 0; $i < $size2 ; $i++){                                
+                                $result3[$i]['menu'] = $menu;
+                                $this->db->replace('third_level',$result3[$i]);    
+                        }
+                  }
                 }
+                //sinon l'élément déplacé est un 3eme niveau
+                }else{
+                //récupère l'id du 3eme niveau à modif
+                $idAModif1 = intval($idAModif1);
+                $sousmenu = $this->input->post('sousmenu');
+                //le menu se présentant sous cette forme :"<small>...nom du menu...nom du sousmenu...</small>" on enlève ce qui ne nous interesse pas
+                //et on récupère le nom du menu
+                $sousmenu = substr(stristr($sousmenu, '; '),2);
+                $sousmenu = stristr($sousmenu,' :',true);
+                //extraction de la base de donnée du 3eme niveau concerné
+                $result = $this->db->get_where('third_level', array('id_third' => $idAModif1))->result_array();
+                
+                 //met l'ordre et le sousmenu enlevé en attente
+                 $ordre = $result[0]['ordre'];
+                 $Smenu_depart = $result[0]['sousmenu'];
+                 //extraction du dernier ordre de la base concernant ce sousmenu
+                 $this->db->select('count(*) as lastOrdre');
+                 $result1 = $this->db->get_where('third_level', array('sousmenu' => $menu))->result_array();
+                 //change le menu et sousmenu concerné et remplace dans la bdd
+                 $result[0]['menu'] = $sousmenu;             
+                 $result[0]['sousmenu'] = $menu;
+                 $result[0]['ordre'] = $result1[0]['lastOrdre']+1;
+                 $this->db->replace('third_level',$result[0]);
 
+                 //comble le trou dans les ordre du sousmenu de départ
+                 $where = ['sousmenu' => $Smenu_depart, 'ordre >' => $ordre];
+                 $this->db->where($where);
+                 $result2 = $this->db->get('third_level')->result_array();
+                 $size = sizeof($result2);
+                 if($size > 0){
+                        for($i = 0; $i < $size ; $i++){
+                                $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
+                                $this->db->replace('third_level',$result2[$i]);    
+                        }
+                }
         }
     }
 }
