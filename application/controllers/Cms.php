@@ -20,6 +20,7 @@ class Cms extends CI_Controller
         
     }
 
+    //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
         if($id == 1){            
@@ -34,6 +35,7 @@ class Cms extends CI_Controller
         }
     }
 
+    //appel la fonction du model de suppression 
     public function delete($i)
     {
         $this->load->helper('form');
@@ -43,6 +45,7 @@ class Cms extends CI_Controller
         Cms::view(1);       
     }
     
+    //appel la fonction du model gerant l'ordre
     public function ordre($sens, $id)
     {        
         $this->load->helper('form');
@@ -51,6 +54,18 @@ class Cms extends CI_Controller
         $this->Header_model->upOrDown($sens, $id);      
         Cms::view(1);       
     }
+
+    //appel la fonction du model gerant la visibilité
+    public function visibleOrNot($type)
+    {        
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('idmenu', 'Nom du menu', 'required');
+        $this->Header_model->visibleOrNot($type);      
+        Cms::view(1);       
+    }
+
+    //appel la fonction du model gerant le drag'n'drop
     public function dragNdrop(){
         $this->load->helper('form');
         $this->load->library('form_validation');

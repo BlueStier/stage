@@ -55,8 +55,23 @@ class Header_model extends CI_Model {
         switch ($i){
                 case 1 :
                         //récupère l'id du menu à sup 
-                        $data = array('id_menu' => $this->input->post('idmenu'));
-                        return $this->db->delete('menu', $data);
+                        $id = $this->input->post('idmenu');
+                        //extraction du nom du menu de la bdd
+                        $result = $this->db->get_where('menu', array('id_menu' => $id))->result_array();
+                        $menu = $result[0]['nom'];
+                        //extraction de la bdd de tous les sousmenu affilié à ce menu
+                        $result1 = $this->db->get_where('sousmenu', array('menu' => $menu))->result_array();
+                        //vérifie la taille du tableau de réponse
+                        $tailleTab = sizeof($result1);
+                        if($tailleTab > 0){
+                                for($i = 0;$i < $tailleTab;$i++){
+                                        //on passe tous les sous-menu en sans menus d'affiliation
+                                        $result1[$i]['menu']='sans';
+                                        $this->db->replace('sousmenu',$result1[$i]);
+                                }
+                        }
+                       //on fini par supprimer le menu
+                        return $this->db->delete('menu', array('id_menu' => $id));                        
                         break;
                 case 2 :
                         //récupère l'id du sous-menu à sup 
@@ -173,6 +188,40 @@ class Header_model extends CI_Model {
                 }
 
 }
+
+        //fonction permettant de rendre visible ou non un menu,sousmenu...
+        public function visibleOrNot($type){
+                $idAModif = $this->input->post('idmenu');
+                switch ($type){
+                        case 1://concerne un menu
+                                //passe l'id en paramètre et récupère les infos de la bdd 
+                                $result = $this->db->get_where('menu', array('id_menu' => $idAModif))->result_array();
+                                //petit ternaire qui va bien pour changer visible ou non
+                                $result[0]['visible'] = ($result[0]['visible']) ? false : true;
+                                //réinjection en bdd du changement
+                                $this->db->replace('menu',$result[0]); 
+                                break;
+                        case 2://concerne un sousmenu
+                                //passe l'id en paramètre et récupère les infos de la bdd 
+                                $result1 = $this->db->get_where('sousmenu', array('id_sousmenu' => $idAModif))->result_array();
+                                //petit ternaire qui va bien pour changer visible ou non
+                                $result1[0]['visible'] = ($result1[0]['visible']) ? false : true;
+                                //réinjection en bdd du changement
+                                $this->db->replace('sousmenu',$result1[0]); 
+                                break;
+                        case 3://concerne un 3eme niveau
+                                //passe l'id en paramètre et récupère les infos de la bdd 
+                                $result2 = $this->db->get_where('third_level', array('id_third' => $idAModif))->result_array();
+                                //petit ternaire qui va bien pour changer visible ou non
+                                $result2[0]['visible'] = ($result2[0]['visible']) ? false : true;
+                                //réinjection en bdd du changement
+                                $this->db->replace('third_level',$result2[0]); 
+                                break;
+                default:
+                        show_404();
+                        break;
+                }
+        }
         //fonction de déplacement de sousmenu vers un autre menu
         public function dragNdrop(){
                 //récupère l'id du sous menu à modif et le nouveau menu concerné
@@ -207,17 +256,17 @@ class Header_model extends CI_Model {
                                 $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
                                 $this->db->replace('sousmenu',$result2[$i]);    
                         }
+                }
                 //in ne reste plus qu'a déplacer les 3eme niveau affiliés au sous menu pour qu'ils suivent
                 $result3 = $this->db->get_where('third_level', array('sousmenu' => $result[0]['nom']))->result_array();               
-                $size2 = sizeof($result3);
-                
-                if($size2 > 0){
+                $size2 = sizeof($result3);                
+                if($size2 > 0){                        
                         for($i = 0; $i < $size2 ; $i++){                                
-                                $result3[$i]['menu'] = $menu;
+                                $result3[$i]['menu'] = $result[0]['menu'];
                                 $this->db->replace('third_level',$result3[$i]);    
                         }
                   }
-                }
+                
                 //sinon l'élément déplacé est un 3eme niveau
                 }else{
                 //récupère l'id du 3eme niveau à modif
