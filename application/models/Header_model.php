@@ -74,9 +74,24 @@ class Header_model extends CI_Model {
                         return $this->db->delete('menu', array('id_menu' => $id));                        
                         break;
                 case 2 :
-                        //récupère l'id du sous-menu à sup 
-                        $data = array('id_sousmenu' => $this->input->post('idmenu'));
-                        return $this->db->delete('sousmenu', $data);
+                        //récupère l'id du sous-menu à sup
+                        $id = $this->input->post('idmenu');
+                        //extraction du nom du menu de la bdd
+                        $result2 = $this->db->get_where('sousmenu', array('id_sousmenu' => $id))->result_array();
+                        $sousmenu = $result2[0]['nom'];
+                        //extraction de la bdd de tous les 3eme niveau affilié à ce menu
+                        $result3 = $this->db->get_where('third_level', array('sousmenu' => $sousmenu))->result_array();
+                        //vérifie la taille du tableau de réponse
+                        $tailleTab = sizeof($result3);
+                        if($tailleTab > 0){
+                                for($i = 0;$i < $tailleTab;$i++){
+                                        //on passe tous les 3eme niveau en sans sousmenus d'affiliation
+                                        $result3[$i]['sousmenu']='sans';
+                                        $this->db->replace('third_level',$result3[$i]);
+                                }
+                        } 
+                        //on fini par supprimer le sousmenu
+                        return $this->db->delete('sousmenu', array('id_sousmenu' => $id));
                         break;
                 case 3 :
                         //récupère l'id du 3eme niveau à sup 
@@ -222,7 +237,7 @@ class Header_model extends CI_Model {
                         break;
                 }
         }
-        //fonction de déplacement de sousmenu vers un autre menu
+        //fonction de déplacement d'un sousmenu vers un autre menu ou d'un 3eme niveau vers un autre sous-menu
         public function dragNdrop(){
                 //récupère l'id du sous menu à modif et le nouveau menu concerné
                 $idAModif1 = $this->input->post('id');
@@ -250,7 +265,7 @@ class Header_model extends CI_Model {
                 $where = ['menu' => $menu_depart, 'ordre >' => $ordre];
                 $this->db->where($where);
                 $result2 = $this->db->get('sousmenu')->result_array();
-                $size = sizeof($result2);
+                $size = sizeof($result2);             
                 if($size > 0){
                         for($i = 0; $i < $size ; $i++){
                                 $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
@@ -291,17 +306,54 @@ class Header_model extends CI_Model {
                  $result[0]['ordre'] = $result1[0]['lastOrdre']+1;
                  $this->db->replace('third_level',$result[0]);
 
-                 //comble le trou dans les ordre du sousmenu de départ
+                 //comble le trou dans les ordre du sousmenu de départ 
                  $where = ['sousmenu' => $Smenu_depart, 'ordre >' => $ordre];
                  $this->db->where($where);
                  $result2 = $this->db->get('third_level')->result_array();
-                 $size = sizeof($result2);
-                 if($size > 0){
+                 $size = sizeof($result2);                 
+                 if($size > 0){                        
                         for($i = 0; $i < $size ; $i++){
                                 $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
                                 $this->db->replace('third_level',$result2[$i]);    
-                        }
+                        }                
                 }
+                //met la colonne "no3level" du sousmenu d'origine à jour
+                $extract = $this->db->get_where('third_level', array('sousmenu' => $Smenu_depart))->result_array();
+                $sizeO = sizeof($result2);
+                if($sizeO == 0){
+                        $no3level = true;
+                }else{
+                        $no3level = false;
+                }
+                $verif = strcmp($Smenu_depart,'sans');
+                if($verif != 0){
+                $put3level = $this->db->get_where('sousmenu', array('nom' => $Smenu_depart))->result_array();
+                $put3level[0]["no3level"] = $no3level;
+                $this->db->replace('sousmenu',$put3level[0]);} 
         }
+    }
+
+    public function validateMenu($type){
+            switch($type){
+                case 1://concerne un menu
+                        //récupère le nom et la couleur
+                        $nom = $this->input->post('nom');
+                        $couleur = $this->input->post('couleur');
+                        //extraction de la bdd du plus grand ordre
+                        $this->db->select('max(ordre) as max');
+                        $max = $this->db->get('menu')->result_array();
+                        $ordre = $max[0]['max']+1;
+                        //enregistrement en bdd                        
+                        $this->db->insert('menu', array('nom' => $nom , 'couleur' => $couleur, 'ordre' =>$ordre,'visible' => false));                
+                        break;
+                case 2://concerne un sousmenu 
+                        break;
+                case 3://concerne un 3eme niveau
+                        break;
+                default:
+                        show_404();
+                        break;
+            }
+
     }
 }

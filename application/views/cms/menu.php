@@ -61,7 +61,7 @@ function drop(ev) {
         Menu principal :
       </h1> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="#"><i class="fa fa-plus"></i> Ajouter un menu</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/1"><i class="fa fa-plus"></i> Ajouter un menu</a></li>
     </ol>           
     </section>
     <br>    
@@ -174,7 +174,7 @@ endforeach;
         Sous-menus :
       </h3> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="#"><i class="fa fa-plus"></i> Ajouter un sous-menu</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/2"><i class="fa fa-plus"></i> Ajouter un sous-menu</a></li>
     </ol>           
     </section>
     <br>
@@ -523,14 +523,18 @@ endforeach;
 <h4 id="sans" ondrop="drop(event)" ondragover="allowDrop(event)" class="box-title">Sans sous-menu défini</h4>
 <div class="row">
 <?php 
-foreach($noClass as $c=>$tab):?>
+foreach($third_item as $thi):
+  //on vérifie si le 3eme niveau n'est pas affilié à un sous-menu
+  $comp = strcmp($thi['sousmenu'],'sans');
+  if($comp == 0){
+  ?>
 
   <div class="col-md-4">
   <div class="box box-default collapsed-box">
     <div class="box-header with-border" >
     <div class="row justify-content-md-center">
     </div><br>
-              <h3 id="<?php echo $tab['id_third'] //donne id du sous menu et concatene 'sousmenu' pour le drag'n'drop ?>" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du menu */ echo $tab['nom'] ?></h3>
+              <h3 id="<?php echo $thi['id_third'] //donne id du sous menu et concatene 'sousmenu' pour le drag'n'drop ?>" draggable="true" ondragstart="drag(event)" class="box-title"><?php /* affiche le nom du 3eme niveau */ echo $thi['nom'] ?></h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
@@ -541,14 +545,14 @@ foreach($noClass as $c=>$tab):?>
             <!-- /.box-header -->
             <div class="box-body">      
               <button type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $thi['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
             </div>
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
         </div>
          <!-- Modal pour la suppression d'un sousmenu -->
-         <div class="modal modal-danger fade" id="modal-danger<?php echo $tab['id_third']+125 ?>">
+         <div class="modal modal-danger fade" id="modal-danger<?php echo $thi['id_third']+125 ?>">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -557,14 +561,14 @@ foreach($noClass as $c=>$tab):?>
                 <h4 class="modal-title">Suppression</h4>
               </div>
               <div class="modal-body">
-                <p><i class="fa  fa-warning"></i> La suppression de '<?php echo $tab['nom'] ?>' sera définitive </p>
+                <p><i class="fa  fa-warning"></i> La suppression de '<?php echo $thi['nom'] ?>' sera définitive </p>
                 <p>Confirmez-vous le suppression ? </p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
                 <?php echo validation_errors(); 
                       echo form_open('cms/delete/2');?>
-                      <input type="hidden" name="idmenu" value='<?php echo $tab['id_third'] ?>'/>
+                      <input type="hidden" name="idmenu" value='<?php echo $thi['id_third'] ?>'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </form>
               </div>
@@ -575,6 +579,7 @@ foreach($noClass as $c=>$tab):?>
           </div>   
       
     <?php
+  }
 endforeach;
 ?>
 </section>
