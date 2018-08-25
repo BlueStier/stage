@@ -56,9 +56,13 @@
 foreach($header_item as $header):
      //vérifie si le menu doit être affiché
     if($header['visible']){ 
-
+      if($header['no2level']){?>
+<li class="nav-item dropdown">
+<a class="nav-link display-4" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
+</li>
+      <?php }else {
 ?>
-         <li class="nav-item dropdown">
+         <li class="nav-item dropdown">         
          <a aria-expanded="false"
                 class="nav-link display-4"
                 data-toggle="dropdown"
@@ -99,7 +103,7 @@ foreach($header_item as $header):
                 </div>
          </li>
        <?php }
-     
+    }
       endforeach;?> 
         </ul>
       </div>
