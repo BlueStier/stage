@@ -1,5 +1,5 @@
 <script>
-  
+ //script concernant le drag'n'drop 
 var recep;
 function allowDrop(ev) {  
     ev.preventDefault();

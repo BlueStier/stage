@@ -271,6 +271,7 @@ class Header_model extends CI_Model {
                                 $result2[$i]['ordre'] = $result2[$i]['ordre']-1;
                                 $this->db->replace('sousmenu',$result2[$i]);    
                         }
+                
                 }
                 //in ne reste plus qu'a déplacer les 3eme niveau affiliés au sous menu pour qu'ils suivent
                 $result3 = $this->db->get_where('third_level', array('sousmenu' => $result[0]['nom']))->result_array();               

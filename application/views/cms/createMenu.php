@@ -54,7 +54,7 @@ ancien=""+ thiscolor + "";
                 <div class="form-group">
                 <label for="inputnom" class="col-sm-2 control-label">Choisissez la couleur du <?php echo $type;?></label>
                 <div class=" col-sm-10 ">
-                <table id="refresh">
+                <table>
 	<tr>
 <script language="JavaScript">
 //affiche le nuancier des couleurs
@@ -95,12 +95,12 @@ if($case == 2){?>
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Créer un test à la con <?php echo $type;?> :</h3>
+              <h3 class="box-title">Créer un <?php echo $type;?> :</h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
             <?php echo validation_errors(); 
-                  echo form_open('cms/validateMenu/1');?>
+                  echo form_open('cms/validateMenu/2');?>
             <div class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
@@ -111,33 +111,18 @@ if($case == 2){?>
                   </div>
                 </div>
                 <div class="form-group">
-                <label for="inputnom" class="col-sm-2 control-label">Choisissez la couleur du <?php echo $type;?></label>
-                <div class=" col-sm-10 ">
-                <table id="refresh">
-	<tr>
-<script language="JavaScript">
-//affiche le nuancier des couleurs
-for(i=1 ; i <= 6 ; i++){
+                <label class="col-sm-2 control-label">Joindre au menu :</label>
+                <div class="col-sm-10">
+                <select class="form-control select2" >
+                <option selected="selected">sans</option>
+                <?php foreach($header_item as $key=>$header): ?>
+                <option><?php echo $header['nom'] ?></option>
+<?php endforeach; ?>
+                </select>
+                </div>
+              </div>
 
-for(j=1 ; j <= 6 ; j++){
 
-for(k=1 ; k <= 6; k++){
-
-var thiscolor = Colors[i] + Colors[j] + Colors[k];
-
-document.writeln("<td id=\"#" + thiscolor + "\" bgcolor = \"#" + thiscolor + "\" align = center><a href= javascript:copyref(" + "\"#" + thiscolor + "\")");
-
-document.writeln("style='color: transparent'>" + '___' + "</a></td>");
-
-}}document.writeln("<TR>");}
-</script>
-<table >
-	<tr>
-		<td></td>
-	</tr>
-</table>  
-</div>
-<input type='hidden' name="couleur" id="couleur"></div>
 </div>             
               </div>
               <!-- /.box-body -->

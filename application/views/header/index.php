@@ -34,6 +34,15 @@
  
   
 </head>
+<?php
+//récupère tous les nom de menu présent dans les sous menus
+$yAv = [];
+foreach($sub_item as $sub):
+if(!in_array($sub['menu'],$yAv)){
+      $yAv[]=$sub['menu'];
+      }
+endforeach;
+?>
 <body id="page-top" >
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark fixed-top"
@@ -55,12 +64,14 @@
 //pour chaque menu de la bdd
 foreach($header_item as $header):
      //vérifie si le menu doit être affiché
-    if($header['visible']){ 
-      if($header['no2level']){?>
+    if($header['visible']){
+            //si le menu n'a pas de sous menu oon affiche un lien  
+          $no2level = in_array($header['nom'],$yAv); 
+      if(!$no2level){?>
 <li class="nav-item dropdown">
 <a class="nav-link display-4" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
 </li>
-      <?php }else {
+      <?php }/*sinon on affiche un menu*/else {
 ?>
          <li class="nav-item dropdown">         
          <a aria-expanded="false"

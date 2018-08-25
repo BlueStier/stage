@@ -91,7 +91,8 @@ class Cms extends CI_Controller
         }
         if($type == 2){
             $data['case'] = 2;           
-            $data['type'] = "Sousmenu";           
+            $data['type'] = "Sousmenu";
+            $data['header_item'] = $this->Header_model->get_menu();           
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
             $this->load->view('cms/createMenu',$data);
