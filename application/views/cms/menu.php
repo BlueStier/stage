@@ -359,7 +359,7 @@ endforeach;
         Sous-menus de 3ème niveau :
       </h3> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="#"><i class="fa fa-plus"></i> Ajouter un 3ème niveau</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/3"><i class="fa fa-plus"></i> Ajouter un 3ème niveau</a></li>
     </ol>           
     </section>
     <br>

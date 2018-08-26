@@ -119,6 +119,64 @@ foreach($header_item as $header):
         </ul>
       </div>
     </div>
-  </nav>  
+  </nav>
+  <header id="entete" class="masthead">
+    <div class="container">
+      <div class="intro-text">
+        <div class="intro-lead-in">
+        <?php echo $title; ?>
+          
+        </div>
+        <div class="intro-heading text-uppercase">
+        <?php if(isset($subtitle)){echo $subtitle;} ?>
+        </div>
+        <form action="Search.php" method="post">
+        <div class="row justify-content-md-center">        
+          <div class="input-group col-lg-4">         
+            <input class="form-control py-2"
+                 id="example-search-input"
+                 type="search"
+                 placeholder="Rechercher">
+                 <span class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="submit">
+                      <i class="fa fa-search"></i>
+                    </button>
+                  </span>                 
+          </div>          
+        </div>
+        </form> 
+        <br>
+        <br>
+        <div class='container'>
+        <button aria-controls="navbarResponsive"
+           aria-expanded="false"
+           aria-label="navbarSupportedContent" 
+           class="btn btn-secondary btn-lg "
+           data-target="#menu_rapide"
+           data-toggle="collapse"
+           type="button">Menu rapide</button>
+           <div class="collapse navbar-collapse"
+           id="menu_rapide"><br><br>
+      <ul class="navbar-nav mr-auto">
+        <div class="row justify-content-md-center ">
+        <?php $sizeRapide = sizeof($rapide_item);
+        foreach($rapide_item as $rapide):
+            if($rapide['visible']){
+        ?>
+          <li class="nav-item">
+          <a class="btn btn-secondary btn-lg" href=""><?php /* affiche le nom du sous menu */ echo $rapide['nom'] ?></a>
+</li><div class="col-md-1"></div><br><br><br><br>
+<?php } endforeach; ?>  
+        </ul>
+      </div>
+    </div>
+</div>
+</div>
+   </header>
+   
+  
+    
+ 
+
 
 

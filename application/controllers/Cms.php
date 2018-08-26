@@ -32,6 +32,13 @@ class Cms extends CI_Controller
             $this->load->view('cms/menu',$data);
             $this->load->view('cms/footer');
             
+        } if($id = 2){            
+            $data['rapide_item'] = $this->Rapide_model->get_rapide();
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu');
+            $this->load->view('cms/menuRapide',$data);
+            $this->load->view('cms/footer');
+            
         }
     }
 
@@ -98,6 +105,15 @@ class Cms extends CI_Controller
             $this->load->view('cms/createMenu',$data);
             $this->load->view('cms/footer');            
         }
+        if($type == 3){
+            $data['case'] = 3;           
+            $data['type'] = "3ème nivau";
+            $data['sub_item'] = $this->Header_model->get_sousmenu();           
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu');
+            $this->load->view('cms/createMenu',$data);
+            $this->load->view('cms/footer');            
+        }
     }
 
     //permet la validation d'enregistrement d'un menu/sousmenu...
@@ -105,7 +121,16 @@ class Cms extends CI_Controller
         $this->load->helper('form');
         $this->load->library('form_validation');
         $this->form_validation->set_rules('nom', 'nom', 'required');
-        $this->form_validation->set_rules('couleur', 'couleur', 'required');
+        if($type == 1){
+            $this->form_validation->set_rules('couleur', 'couleur', 'required');
+        }
+        if($type == 2){
+            $this->form_validation->set_rules('select', 'le Menu', 'required');    
+        }
+        if($type == 3)
+        {
+            $this->form_validation->set_rules('select1', 'le Sousmenu', 'required');    
+        }
         $this->Header_model->validateMenu($type);      
         header('Location:'.base_url().'index.php/cms/1'); 
     }

@@ -4,6 +4,7 @@ class Pages extends CI_Controller {
         {
             parent::__construct();
             $this->load->model('Header_model');
+            $this->load->model('Rapide_model');
             $this->load->helper('url_helper');
         }
 
@@ -17,6 +18,7 @@ class Pages extends CI_Controller {
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu();
+        $data['rapide_item'] = $this->Rapide_model->get_rapide();
         $data['background']= "http://localhost/stage/assets/site/img/background/chevaler.jpg";
         $data['title']= "Bienvenue sur le nouveau site de la ville de Oignies !";
         $data['subtitle']="Oignies : Dynamique avec vous";

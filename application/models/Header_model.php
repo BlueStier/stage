@@ -64,10 +64,22 @@ class Header_model extends CI_Model {
                         //vérifie la taille du tableau de réponse
                         $tailleTab = sizeof($result1);
                         if($tailleTab > 0){
-                                for($i = 0;$i < $tailleTab;$i++){
+                                for($i = 0;$i < $tailleTab;$i++){                                        
                                         //on passe tous les sous-menu en sans menus d'affiliation
                                         $result1[$i]['menu']='sans';
                                         $this->db->replace('sousmenu',$result1[$i]);
+                                }
+                        }
+                        //extraction de la bdd de tous les 3ème niveau affilié à ce menu
+                        $third = $this->db->get_where('third_level', array('menu' => $menu))->result_array();
+                        //vérifie la taille du tableau de réponse
+                        $tailleThi = sizeof($third);
+                        if($tailleThi > 0){
+                                for($i = 0;$i < $tailleThi;$i++){                                        
+                                        //on passe tous les sous-menu en sans menus d'affiliation
+                                        $third[$i]['menu']='sans';
+                                        $third[$i]['sousmenu']='sans';
+                                        $this->db->replace('third_level',$third[$i]);
                                 }
                         }
                        //on fini par supprimer le menu
@@ -87,6 +99,7 @@ class Header_model extends CI_Model {
                                 for($i = 0;$i < $tailleTab;$i++){
                                         //on passe tous les 3eme niveau en sans sousmenus d'affiliation
                                         $result3[$i]['sousmenu']='sans';
+                                        $result3[$i]['menu']='sans';
                                         $this->db->replace('third_level',$result3[$i]);
                                 }
                         } 
@@ -347,9 +360,30 @@ class Header_model extends CI_Model {
                         //enregistrement en bdd                        
                         $this->db->insert('menu', array('nom' => $nom , 'couleur' => $couleur, 'ordre' =>$ordre,'visible' => false));                
                         break;
-                case 2://concerne un sousmenu 
+                case 2://concerne un sousmenu
+                        //récupère le nom et le menu
+                        $nom = $this->input->post('nom');
+                        $menu = $this->input->post('select');
+                        //extraction de la bdd du plus grand ordre
+                        $this->db->select('max(ordre) as max');
+                        $max1 = $this->db->get_where('sousmenu', array('menu' => $menu))->result_array();
+                        $ordre1 = $max1[0]['max']+1;
+                        //enregistrement en bdd                        
+                        $this->db->insert('sousmenu', array('nom' => $nom , 'menu' => $menu, 'ordre' =>$ordre1,'visible' => false,'no3level' => true));
                         break;
                 case 3://concerne un 3eme niveau
+                        //récupère le nom et le sousmenu
+                        $nom = $this->input->post('nom');
+                        $sousmenu = $this->input->post('select1');
+                        //récupère le menu du sous menu
+                        $tabMenu = $this->db->get_where('sousmenu', array('nom' => $sousmenu))->result_array();
+                        $menu = $tabMenu[0]['menu'];
+                        //extraction de la bdd du plus grand ordre
+                        $this->db->select('max(ordre) as max');
+                        $max2 = $this->db->get_where('third_level', array('sousmenu' => $sousmenu))->result_array();
+                        $ordre2 = $max2[0]['max']+1;
+                        //enregistrement en bdd 
+                        $this->db->insert('third_level', array('nom' => $nom , 'menu' => $menu, 'sousmenu' => $sousmenu, 'ordre' =>$ordre2,'visible' => false));       
                         break;
                 default:
                         show_404();

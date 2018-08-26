@@ -113,7 +113,7 @@ if($case == 2){?>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Joindre au menu :</label>
                 <div class="col-sm-10">
-                <select class="form-control select2" >
+                <select name="select" class="form-control select2" >
                 <option selected="selected">sans</option>
                 <?php foreach($header_item as $key=>$header): ?>
                 <option><?php echo $header['nom'] ?></option>
@@ -134,7 +134,52 @@ if($case == 2){?>
               <!-- /.box-footer -->
             </form>
           </div>
-<?php }?>          
+ 
+<?php }
+if($case == 3){?>
+<div class="content-wrapper">
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Créer un <?php echo $type;?> :</h3>
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <?php echo validation_errors(); 
+                  echo form_open('cms/validateMenu/3');?>
+            <div class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
+
+                  <div class="col-sm-10">
+                    <input class="form-control" name="nom" placeholder="Nom">
+                  </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Joindre au sousmenu </label>
+                <div class="col-sm-10">
+                <select name="select1" class="form-control select2" >
+                <option selected="selected">sans</option>
+                <?php foreach($sub_item as $sub): ?>                
+                <option><?php echo $sub['nom'] ?></option>
+<?php endforeach; ?>
+                </select>
+                </div>
+              </div>
+
+
+</div>             
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a class="btn btn-default" href="<?php echo base_url()?>index.php/cms/1">Annuler</a>
+                <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
+              </div>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+<?php }?>         
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">

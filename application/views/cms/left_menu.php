@@ -35,7 +35,7 @@
           </a>
           <ul class="treeview-menu">
             <li class="active"><a href="<?php echo base_url()?>index.php/cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
+            <li><a href="<?php echo base_url()?>index.php/cms/2"><i class="fa fa-circle-o"></i> Menu rapide</a></li>
           </ul>
         </li>
         <li class="treeview">
