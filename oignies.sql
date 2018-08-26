@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
+-- version 4.5.4.1
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 24 Août 2018 à 14:25
--- Version du serveur :  5.6.20-log
--- Version de PHP :  5.4.31
+-- Généré le :  Dim 26 Août 2018 à 19:22
+-- Version du serveur :  5.7.11
+-- Version de PHP :  5.6.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Base de données :  `oignies`
@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 -- Structure de la table `acceuil`
 --
 
-CREATE TABLE IF NOT EXISTS `acceuil` (
-`id_acceuil` int(11) NOT NULL,
+CREATE TABLE `acceuil` (
+  `id_acceuil` int(11) NOT NULL,
   `titre` varchar(256) NOT NULL,
   `soustitre` text NOT NULL,
   `path_photo` varchar(256) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `acceuil` (
   `horaires` text NOT NULL,
   `visible` tinyint(1) NOT NULL,
   `commentaires` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `acceuil`
@@ -52,11 +52,11 @@ INSERT INTO `acceuil` (`id_acceuil`, `titre`, `soustitre`, `path_photo`, `tel`, 
 -- Structure de la table `arretes_municipaux`
 --
 
-CREATE TABLE IF NOT EXISTS `arretes_municipaux` (
-`id_muni` int(11) NOT NULL,
+CREATE TABLE `arretes_municipaux` (
+  `id_muni` int(11) NOT NULL,
   `path` varchar(256) NOT NULL,
   `annee` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `arretes_municipaux`
@@ -86,13 +86,13 @@ INSERT INTO `arretes_municipaux` (`id_muni`, `path`, `annee`) VALUES
 -- Structure de la table `deliberations`
 --
 
-CREATE TABLE IF NOT EXISTS `deliberations` (
-`id_deliberations` int(11) NOT NULL,
+CREATE TABLE `deliberations` (
+  `id_deliberations` int(11) NOT NULL,
   `date` varchar(60) NOT NULL,
   `path_photo` varchar(256) NOT NULL,
   `path_cr` varchar(256) NOT NULL,
   `annee` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `deliberations`
@@ -122,15 +122,15 @@ INSERT INTO `deliberations` (`id_deliberations`, `date`, `path_photo`, `path_cr`
 -- Structure de la table `elus`
 --
 
-CREATE TABLE IF NOT EXISTS `elus` (
-`id_elus` int(11) NOT NULL,
+CREATE TABLE `elus` (
+  `id_elus` int(11) NOT NULL,
   `nom` varchar(50) NOT NULL,
   `prenom` varchar(50) NOT NULL,
   `path_photo` varchar(256) NOT NULL,
   `fonction` text NOT NULL,
   `delegue` tinyint(1) NOT NULL,
   `municipaux` tinyint(1) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `elus`
@@ -172,12 +172,12 @@ INSERT INTO `elus` (`id_elus`, `nom`, `prenom`, `path_photo`, `fonction`, `deleg
 -- Structure de la table `environnement`
 --
 
-CREATE TABLE IF NOT EXISTS `environnement` (
-`id_environnement` int(11) NOT NULL,
+CREATE TABLE `environnement` (
+  `id_environnement` int(11) NOT NULL,
   `titre` varchar(256) NOT NULL,
   `article` text NOT NULL,
   `ordre` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `environnement`
@@ -195,12 +195,12 @@ INSERT INTO `environnement` (`id_environnement`, `titre`, `article`, `ordre`) VA
 -- Structure de la table `histoire`
 --
 
-CREATE TABLE IF NOT EXISTS `histoire` (
-`id_histoire` int(11) NOT NULL,
+CREATE TABLE `histoire` (
+  `id_histoire` int(11) NOT NULL,
   `titre` varchar(256) NOT NULL,
   `article` text NOT NULL,
   `ordre` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `histoire`
@@ -219,26 +219,51 @@ INSERT INTO `histoire` (`id_histoire`, `titre`, `article`, `ordre`) VALUES
 -- Structure de la table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
-`id_menu` int(11) NOT NULL,
+CREATE TABLE `menu` (
+  `id_menu` int(11) NOT NULL,
   `nom` varchar(100) NOT NULL,
   `ordre` int(11) NOT NULL,
   `visible` tinyint(1) NOT NULL,
+  `path` varchar(100) NOT NULL,
   `couleur` varchar(10) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `menu`
 --
 
-INSERT INTO `menu` (`id_menu`, `nom`, `ordre`, `visible`, `couleur`) VALUES
-(1, 'Votre Mairie', 2, 1, '#00E000'),
-(2, 'Vos Services', 5, 1, '#0060D0'),
-(6, 'Nous contacter', 6, 1, 'grey'),
-(4, 'Vie locale', 4, 1, '#C000E0'),
-(3, 'Actualités', 1, 1, '#E00010'),
-(5, 'Infos pratiques', 3, 1, '#E06000'),
-(21, 'test', 7, 1, '#999966');
+INSERT INTO `menu` (`id_menu`, `nom`, `ordre`, `visible`, `path`, `couleur`) VALUES
+(1, 'Votre Mairie', 2, 1, '', '#00E000'),
+(2, 'Vos Services', 5, 1, '', '#0060D0'),
+(6, 'Nous contacter', 6, 1, '', 'grey'),
+(4, 'Vie locale', 4, 1, '', '#C000E0'),
+(3, 'Actualités', 1, 1, '', '#E00010'),
+(5, 'Infos pratiques', 3, 1, '', '#E06000');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `rapide`
+--
+
+CREATE TABLE `rapide` (
+  `id_rapide` int(11) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `path` varchar(100) NOT NULL,
+  `ordre` int(11) NOT NULL,
+  `visible` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `rapide`
+--
+
+INSERT INTO `rapide` (`id_rapide`, `nom`, `path`, `ordre`, `visible`) VALUES
+(3, 'Parents', '', 1, 1),
+(4, 'Bel-âge', '', 2, 1),
+(5, 'Professionnels', '', 3, 1),
+(6, 'Jeunes', '', 4, 1),
+(7, 'Nouveaux arrivants', '', 5, 1);
 
 -- --------------------------------------------------------
 
@@ -246,22 +271,22 @@ INSERT INTO `menu` (`id_menu`, `nom`, `ordre`, `visible`, `couleur`) VALUES
 -- Structure de la table `sousmenu`
 --
 
-CREATE TABLE IF NOT EXISTS `sousmenu` (
-`id_sousmenu` int(11) NOT NULL,
+CREATE TABLE `sousmenu` (
+  `id_sousmenu` int(11) NOT NULL,
   `nom` varchar(100) NOT NULL,
   `menu` varchar(100) NOT NULL,
   `ordre` int(11) NOT NULL,
   `visible` tinyint(1) NOT NULL,
   `path` varchar(100) NOT NULL,
   `no3level` tinyint(1) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=34 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `sousmenu`
 --
 
 INSERT INTO `sousmenu` (`id_sousmenu`, `nom`, `menu`, `ordre`, `visible`, `path`, `no3level`) VALUES
-(1, 'L''Acceuil de la Mairie', 'Votre Mairie', 1, 1, 'index.php/acceuil/', 1),
+(1, 'L\'Acceuil de la Mairie', 'Votre Mairie', 1, 1, 'index.php/acceuil/', 1),
 (2, 'Démocratie Locale', 'Votre Mairie', 2, 1, '', 0),
 (3, 'Vivre à Oignies', 'Votre Mairie', 3, 1, '', 0),
 (5, 'Les services techniques', 'Vos Services', 2, 1, '', 1),
@@ -278,10 +303,12 @@ INSERT INTO `sousmenu` (`id_sousmenu`, `nom`, `menu`, `ordre`, `visible`, `path`
 (16, 'Transport en commun et scolaires', 'Infos pratiques', 2, 1, '', 1),
 (17, 'Collecte des déchets', 'Infos pratiques', 4, 1, '', 1),
 (18, 'Location de salle', 'Infos pratiques', 1, 1, '', 1),
-(19, 'En cas d''urgence...', 'Infos pratiques', 3, 0, '', 1),
+(19, 'En cas d\'urgence...', 'Infos pratiques', 3, 0, '', 1),
 (20, 'Sécurité, secours et santé', 'Infos pratiques', 5, 1, '', 0),
 (4, 'Etat civil', 'Vos Services', 1, 1, '', 1),
-(31, 'test', 'test', 1, 1, '', 1);
+(31, 'test', 'sans', 1, 0, '', 1),
+(34, 'essai', 'Infos pratiques', 6, 0, '', 0),
+(35, 'Roussel', 'Actualités', 4, 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -289,45 +316,45 @@ INSERT INTO `sousmenu` (`id_sousmenu`, `nom`, `menu`, `ordre`, `visible`, `path`
 -- Structure de la table `third_level`
 --
 
-CREATE TABLE IF NOT EXISTS `third_level` (
-`id_third` int(11) NOT NULL,
+CREATE TABLE `third_level` (
+  `id_third` int(11) NOT NULL,
   `nom` varchar(100) NOT NULL,
   `menu` varchar(100) NOT NULL,
   `sousmenu` varchar(100) NOT NULL,
   `ordre` int(11) NOT NULL,
   `visible` tinyint(1) NOT NULL,
-  `path` varchar(256) NOT NULL,
-  `couleur` varchar(10) NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
+  `path` varchar(256) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `third_level`
 --
 
-INSERT INTO `third_level` (`id_third`, `nom`, `menu`, `sousmenu`, `ordre`, `visible`, `path`, `couleur`) VALUES
-(1, 'Vos Elus', 'Votre Mairie', 'Démocratie Locale', 1, 1, 'index.php/elus/', '#00E000'),
-(2, 'Les arrêtés municipaux', 'Votre Mairie', 'Démocratie Locale', 2, 1, 'index.php/ArretesMunicipaux/', '#00E000'),
-(3, 'Les délibérations du conseil municipal', 'Votre Mairie', 'Démocratie Locale', 3, 1, 'index.php/deliberations/', '#00E000'),
-(5, 'La maison d''acceuil et d''aide à l''insertion (MAI)', 'Vos Services', 'Social et santé', 2, 1, '', ''),
-(6, 'La Roseraie foyer de personnes agées', 'Vos Services', 'Social et santé', 3, 1, '', ''),
-(7, 'Le béguinage Camille Delabre', 'Vos Services', 'Social et santé', 4, 1, '', ''),
-(8, 'Les locaux de quartier', 'Vos Services', 'Social et santé', 5, 1, '', ''),
-(9, 'Histoire locale', 'Votre Mairie', 'Vivre à Oignies', 3, 1, 'index.php/histoire/', '#00E000'),
-(10, 'Environnement', 'Votre Mairie', 'Vivre à Oignies', 1, 1, 'index.php/environnement/', '#00E000'),
-(11, 'Urbanisme et logement', 'Votre Mairie', 'Vivre à Oignies', 2, 1, 'index.php/urbanisme-et-logement/', '#00E000'),
-(12, 'Le centre Mozart (école de musique)', 'Vos Services', 'Culture', 4, 1, '', '#0060D0'),
-(13, 'La bibliothèque municipale', 'Vos Services', 'Culture', 3, 1, '', '#0060D0'),
-(14, 'Le centre Denis Papin', 'Vos Services', 'Culture', 1, 1, '', '#0060D0'),
-(15, 'Le Métaphone', 'Vos Services', 'Culture', 2, 1, '', '#0060D0'),
-(16, 'Associations culturelles', 'Vie locale', 'Vie associative', 2, 1, '', ''),
-(17, 'Associations sportives', 'Vie locale', 'Vie associative', 1, 1, '', ''),
-(18, 'Associations loisirs et autres', 'Vie locale', 'Vie associative', 3, 1, '', ''),
-(19, 'Les commerçants', 'Vie locale', 'Vie économique', 2, 1, '', ''),
-(20, 'Professions médicales et paramédicales', 'Vie locale', 'Vie économique', 1, 1, '', ''),
-(21, 'L''opération tranquilité vacances', 'Infos pratiques', 'Sécurité, secours et santé', 1, 1, '', ''),
-(22, 'Le centre des Hautois', 'Infos pratiques', 'Sécurité, secours et santé', 2, 1, '', ''),
-(4, 'Le centre social d''action communale (CCAS)', 'Vos Services', 'Social et santé', 1, 1, '', ''),
-(41, 'test', 'test', 'test', 1, 1, '', '');
+INSERT INTO `third_level` (`id_third`, `nom`, `menu`, `sousmenu`, `ordre`, `visible`, `path`) VALUES
+(1, 'Vos Elus', 'Votre Mairie', 'Démocratie Locale', 1, 1, 'index.php/elus/'),
+(2, 'Les arrêtés municipaux', 'Votre Mairie', 'Démocratie Locale', 2, 1, 'index.php/ArretesMunicipaux/'),
+(3, 'Les délibérations du conseil municipal', 'Votre Mairie', 'Démocratie Locale', 3, 1, 'index.php/deliberations/'),
+(5, 'La maison d\'acceuil et d\'aide à l\'insertion (MAI)', 'Vos Services', 'Social et santé', 2, 1, ''),
+(6, 'La Roseraie foyer de personnes agées', 'Vos Services', 'Social et santé', 3, 1, ''),
+(7, 'Le béguinage Camille Delabre', 'Vos Services', 'Social et santé', 4, 1, ''),
+(8, 'Les locaux de quartier', 'Vos Services', 'Social et santé', 5, 1, ''),
+(9, 'Histoire locale', 'Votre Mairie', 'Vivre à Oignies', 3, 1, 'index.php/histoire/'),
+(10, 'Environnement', 'Votre Mairie', 'Vivre à Oignies', 1, 1, 'index.php/environnement/'),
+(11, 'Urbanisme et logement', 'Votre Mairie', 'Vivre à Oignies', 2, 1, 'index.php/urbanisme-et-logement/'),
+(12, 'Le centre Mozart (école de musique)', 'Vos Services', 'Culture', 4, 1, ''),
+(13, 'La bibliothèque municipale', 'Vos Services', 'Culture', 3, 1, ''),
+(14, 'Le centre Denis Papin', 'Vos Services', 'Culture', 1, 1, ''),
+(15, 'Le Métaphone', 'Vos Services', 'Culture', 2, 1, ''),
+(16, 'Associations culturelles', 'Vie locale', 'Vie associative', 2, 1, ''),
+(17, 'Associations sportives', 'Vie locale', 'Vie associative', 1, 1, ''),
+(18, 'Associations loisirs et autres', 'Vie locale', 'Vie associative', 3, 1, ''),
+(19, 'Les commerçants', 'Vie locale', 'Vie économique', 2, 1, ''),
+(20, 'Professions médicales et paramédicales', 'Vie locale', 'Vie économique', 1, 1, ''),
+(21, 'L\'opération tranquilité vacances', 'Infos pratiques', 'Sécurité, secours et santé', 1, 1, ''),
+(22, 'Le centre des Hautois', 'Infos pratiques', 'Sécurité, secours et santé', 2, 1, ''),
+(4, 'Le centre social d\'action communale (CCAS)', 'Vos Services', 'Social et santé', 1, 1, ''),
+(41, 'test', 'sans', 'sans', 1, 1, ''),
+(45, 'test d\'enregistrement', 'sans', 'sans', 2, 0, '');
 
 -- --------------------------------------------------------
 
@@ -335,8 +362,8 @@ INSERT INTO `third_level` (`id_third`, `nom`, `menu`, `sousmenu`, `ordre`, `visi
 -- Structure de la table `travaux`
 --
 
-CREATE TABLE IF NOT EXISTS `travaux` (
-`id_travaux` int(10) NOT NULL,
+CREATE TABLE `travaux` (
+  `id_travaux` int(10) NOT NULL,
   `adresse` varchar(100) NOT NULL,
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
@@ -347,19 +374,19 @@ CREATE TABLE IF NOT EXISTS `travaux` (
   `commenditaires` varchar(100) NOT NULL,
   `contact` varchar(256) DEFAULT NULL,
   `commentaires` text NOT NULL
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `travaux`
 --
 
 INSERT INTO `travaux` (`id_travaux`, `adresse`, `latitude`, `longitude`, `date_enregistrement`, `date_debut`, `date_fin`, `société`, `commenditaires`, `contact`, `commentaires`) VALUES
-(1, '''Rue du Docteur René BROUSSES''', 50.47, 3.01417, '2018-07-01', ''' 9 juillet 2018''', ''' 17 août 2018''', '''ENEDIS''', '''ERDF''', '''03.00.00.00.00''', '''Coupure de courant pour les logements du 4 au 9 de la rue entre 8h00 et 16h30'' '),
-(2, '''Rue Emile Zola''', 50.4681, 2.99423, '2018-08-05', ''' 8 août 2018''', ''' 14 septembre 2018''', '''Veolia''', '''Mairie de Oignies''', '''03.00.00.00.00''', '''Travaux du croisement de la rue Pasteur au rond point rue du 1er mai. Voie fermée à la circulation.'''),
-(6, '''rue andre ampere''', 50.4576, 3.00043, '0000-00-00', '''25 septembre 2018''', '''30 septembre 2018''', '''moi''', '''test''', '''0300020508''', '''bla bla bla '''),
-(7, '''rue lamendin''', 50.4664, 2.99146, '0000-00-00', '''Lundi 13 Août''', '''Vendredi 31 Août (selon aléas)''', '''Goupe Colas''', '''La mairie''', '"<a href=''https://www.facebook.com/GroupeColas/'' onclick=''window.open(this.href); return false;''> facebook Colas</a>"', '''Pour faciliter l’exécution des travaux, la circulation et le stationnement seront interdits sur le parking de 7h00 à 18h00. '''),
-(8, '''mairie''', 50.4685, 2.9918, '0000-00-00', '''25 septembre 2018''', '''30 septembre 2018''', '''moi''', '''test''', '''0300020508''', '''bla bla bla '''),
-(9, '''18 rue ferdinand pantigny''', 50.4651, 2.99197, '0000-00-00', '''Lundi 13 Août''', '''Vendredi 31 Août (selon aléas)''', '''Goupe Colas''', '''test''', '''0300020508''', '''pour voir''');
+(1, '\'Rue du Docteur René BROUSSES\'', 50.47, 3.01417, '2018-07-01', '\' 9 juillet 2018\'', '\' 17 août 2018\'', '\'ENEDIS\'', '\'ERDF\'', '\'03.00.00.00.00\'', '\'Coupure de courant pour les logements du 4 au 9 de la rue entre 8h00 et 16h30\' '),
+(2, '\'Rue Emile Zola\'', 50.4681, 2.99423, '2018-08-05', '\' 8 août 2018\'', '\' 14 septembre 2018\'', '\'Veolia\'', '\'Mairie de Oignies\'', '\'03.00.00.00.00\'', '\'Travaux du croisement de la rue Pasteur au rond point rue du 1er mai. Voie fermée à la circulation.\''),
+(6, '\'rue andre ampere\'', 50.4576, 3.00043, '0000-00-00', '\'25 septembre 2018\'', '\'30 septembre 2018\'', '\'moi\'', '\'test\'', '\'0300020508\'', '\'bla bla bla \''),
+(7, '\'rue lamendin\'', 50.4664, 2.99146, '0000-00-00', '\'Lundi 13 Août\'', '\'Vendredi 31 Août (selon aléas)\'', '\'Goupe Colas\'', '\'La mairie\'', '"<a href=\'https://www.facebook.com/GroupeColas/\' onclick=\'window.open(this.href); return false;\'> facebook Colas</a>"', '\'Pour faciliter l’exécution des travaux, la circulation et le stationnement seront interdits sur le parking de 7h00 à 18h00. \''),
+(8, '\'mairie\'', 50.4685, 2.9918, '0000-00-00', '\'25 septembre 2018\'', '\'30 septembre 2018\'', '\'moi\'', '\'test\'', '\'0300020508\'', '\'bla bla bla \''),
+(9, '\'18 rue ferdinand pantigny\'', 50.4651, 2.99197, '0000-00-00', '\'Lundi 13 Août\'', '\'Vendredi 31 Août (selon aléas)\'', '\'Goupe Colas\'', '\'test\'', '\'0300020508\'', '\'pour voir\'');
 
 --
 -- Index pour les tables exportées
@@ -369,61 +396,71 @@ INSERT INTO `travaux` (`id_travaux`, `adresse`, `latitude`, `longitude`, `date_e
 -- Index pour la table `acceuil`
 --
 ALTER TABLE `acceuil`
- ADD PRIMARY KEY (`id_acceuil`);
+  ADD PRIMARY KEY (`id_acceuil`);
 
 --
 -- Index pour la table `arretes_municipaux`
 --
 ALTER TABLE `arretes_municipaux`
- ADD PRIMARY KEY (`id_muni`);
+  ADD PRIMARY KEY (`id_muni`);
 
 --
 -- Index pour la table `deliberations`
 --
 ALTER TABLE `deliberations`
- ADD PRIMARY KEY (`id_deliberations`);
+  ADD PRIMARY KEY (`id_deliberations`);
 
 --
 -- Index pour la table `elus`
 --
 ALTER TABLE `elus`
- ADD PRIMARY KEY (`id_elus`);
+  ADD PRIMARY KEY (`id_elus`);
 
 --
 -- Index pour la table `environnement`
 --
 ALTER TABLE `environnement`
- ADD PRIMARY KEY (`id_environnement`), ADD UNIQUE KEY `ordre` (`ordre`);
+  ADD PRIMARY KEY (`id_environnement`),
+  ADD UNIQUE KEY `ordre` (`ordre`);
 
 --
 -- Index pour la table `histoire`
 --
 ALTER TABLE `histoire`
- ADD PRIMARY KEY (`id_histoire`), ADD UNIQUE KEY `ordre` (`ordre`);
+  ADD PRIMARY KEY (`id_histoire`),
+  ADD UNIQUE KEY `ordre` (`ordre`);
 
 --
 -- Index pour la table `menu`
 --
 ALTER TABLE `menu`
- ADD PRIMARY KEY (`id_menu`), ADD UNIQUE KEY `ordre` (`ordre`);
+  ADD PRIMARY KEY (`id_menu`),
+  ADD UNIQUE KEY `ordre` (`ordre`);
+
+--
+-- Index pour la table `rapide`
+--
+ALTER TABLE `rapide`
+  ADD PRIMARY KEY (`id_rapide`),
+  ADD UNIQUE KEY `ordre` (`ordre`);
 
 --
 -- Index pour la table `sousmenu`
 --
 ALTER TABLE `sousmenu`
- ADD PRIMARY KEY (`id_sousmenu`);
+  ADD PRIMARY KEY (`id_sousmenu`);
 
 --
 -- Index pour la table `third_level`
 --
 ALTER TABLE `third_level`
- ADD PRIMARY KEY (`id_third`);
+  ADD PRIMARY KEY (`id_third`);
 
 --
 -- Index pour la table `travaux`
 --
 ALTER TABLE `travaux`
- ADD PRIMARY KEY (`id_travaux`);
+  ADD PRIMARY KEY (`id_travaux`);
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -433,52 +470,57 @@ ALTER TABLE `travaux`
 -- AUTO_INCREMENT pour la table `acceuil`
 --
 ALTER TABLE `acceuil`
-MODIFY `id_acceuil` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_acceuil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `arretes_municipaux`
 --
 ALTER TABLE `arretes_municipaux`
-MODIFY `id_muni` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id_muni` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT pour la table `deliberations`
 --
 ALTER TABLE `deliberations`
-MODIFY `id_deliberations` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=18;
+  MODIFY `id_deliberations` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 --
 -- AUTO_INCREMENT pour la table `elus`
 --
 ALTER TABLE `elus`
-MODIFY `id_elus` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=29;
+  MODIFY `id_elus` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 --
 -- AUTO_INCREMENT pour la table `environnement`
 --
 ALTER TABLE `environnement`
-MODIFY `id_environnement` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_environnement` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `histoire`
 --
 ALTER TABLE `histoire`
-MODIFY `id_histoire` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_histoire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT pour la table `menu`
 --
 ALTER TABLE `menu`
-MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=22;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+--
+-- AUTO_INCREMENT pour la table `rapide`
+--
+ALTER TABLE `rapide`
+  MODIFY `id_rapide` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT pour la table `sousmenu`
 --
 ALTER TABLE `sousmenu`
-MODIFY `id_sousmenu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
+  MODIFY `id_sousmenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT pour la table `third_level`
 --
 ALTER TABLE `third_level`
-MODIFY `id_third` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=43;
+  MODIFY `id_third` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT pour la table `travaux`
 --
 ALTER TABLE `travaux`
-MODIFY `id_travaux` int(10) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=10;
+  MODIFY `id_travaux` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
