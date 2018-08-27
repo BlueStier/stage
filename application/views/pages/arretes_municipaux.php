@@ -1,13 +1,4 @@
-<header id="entete" class="masthead">   
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">
-          <?php echo $title; ?>
-          </div>
-        </div>
-      </div>   
-  </header>
-  <div class="text-center">  
+<div class="text-center">  
   <div class="container">
   <nav class="navbar navbar-expand-lg navbar-dark" >        
   <ul class="navbar-nav nav-dropdown">

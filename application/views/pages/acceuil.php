@@ -1,13 +1,3 @@
-
-<header id="entete" class="masthead">    
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">
-          <?php echo $title; ?>
-          </div>
-        </div>
-      </div>    
-  </header>
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">

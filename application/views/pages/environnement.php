@@ -1,13 +1,4 @@
-<header id="entete" class="masthead">   
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in text-white">
-            <?php echo $title; ?>
-          </div>
-        </div>
-      </div>
-  </header>
-  <br>
+<br>
   <div class="container">
   <?php
   //réorganize les données de la table environnement en fonction de l'ordre des articles

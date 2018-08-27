@@ -1,14 +1,4 @@
-<header class="masthead">
-    <div class="urbanisme">
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">
-          Urbanisme et logement
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+
   <div class="text-center">
     <h3>Urbanisme :</h3>
   </div><br>

@@ -1,13 +1,4 @@
-<header id="entete" class="masthead">    
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in">
-            <?php echo $title ?>
-          </div>
-        </div>
-      </div>    
-  </header>
-    <div class="container">
+div class="container">
     <?php
 //récupère dans un array les année présente dans la liste de délibérations sans accepter de doublon
 $array = [];

@@ -1,13 +1,4 @@
-<header id="entete" class="masthead">    
-      <div class="container">
-        <div class="intro-text">
-          <div class="intro-lead-in text-white">
-          <?php echo $title; ?>
-          </div>
-        </div>
-      </div>
-  </header>
-  <div class="container">  
+<div class="container">  
   <?php
   //réorganize les données de la table histoire en fonction de l'ordre des articles
   $array=[];
@@ -32,5 +23,3 @@
     <br>
   <?php }
   ?></div>
- 
- 

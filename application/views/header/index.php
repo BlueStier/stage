@@ -103,7 +103,7 @@ foreach($header_item as $header):
                               $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
                               if($thi['visible'] && ($compare2 == 0)){?>
                     <a class="dropdown-item"
-                         href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$thi['path'];?>"><?php /* affiche le nom du 3eme menu */ echo $thi['nom'] ?></a> 
+                         href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().index_page().$thi['path'];?>"><?php /* affiche le nom du 3eme menu */ echo $thi['nom'] ?></a> 
                          <?php } endforeach;?>                         
                   </div>
                 </div><?php
@@ -164,7 +164,7 @@ foreach($header_item as $header):
             if($rapide['visible']){
         ?>
           <li class="nav-item">
-          <a class="btn btn-secondary btn-lg" href=""><?php /* affiche le nom du sous menu */ echo $rapide['nom'] ?></a>
+          <a class="btn btn-secondary btn-lg" href="<?php /* affiche le chemin de la page */ echo $rapide['path'] ?>"><?php /* affiche le nom du sous menu */ echo $rapide['nom'] ?></a>
 </li><div class="col-md-1"></div><br><br><br><br>
 <?php } endforeach; ?>  
         </ul>

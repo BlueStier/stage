@@ -712,20 +712,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 	background-color: #fed136
 }
 
-
-.urbanisme {
-	text-align: center;
-	color: #fff;
-	background-image: url(http://localhost/stage/assets/site/img/background/Urbanisme-logement-plan.jpg);
-	background-repeat: no-repeat;
-	background-attachment: scroll;
-	background-position: center center;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover
-}
-
 .technique {
 	text-align: center;
 	color: #fff;
