@@ -12,13 +12,9 @@ class Pages extends CI_Controller {
         public function index(){
                 Pages::view('home');
         }
-        //construit la page home 
-        public function view($page){
-        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
-        {
-                // Whoops, we don't have a page for that!
-                show_404();
-        }
+        //construit la page demandée 
+        public function view($page){       
+        //récupère les infos pour le header (menu, sousmenu...)
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu();
@@ -28,14 +24,18 @@ class Pages extends CI_Controller {
         $data['title'] = $pagestab['titre'];
         $data['subtitle'] = $pagestab['soustitre'];
 
-        if($page == 'acceuil'){
-                $this->load->model('Acceuil_model');
-                $data['acceuil'] = $this->Acceuil_model->get_acceuil();  
+        //récupère les infos du type de page
+        if($pagestab['type'] == 'bulle'){
+                $this->load->model('Bulles_model');
+                $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
+                $page = 'bulle';  
         }
-        if($page == 'elus'){
-                $this->load->model('Elus_model');
-                $data['elus'] = $this->Elus_model->get_elus();  
+        if($pagestab['type'] == 'text'){
+                $this->load->model('Text_model');
+                $data['text_item'] = $this->Text_model->get_text($pagestab['id_pages']);
+                $page = 'text';  
         }
+        
         if($page == 'arretes_municipaux'){
                 $this->load->model('ArretesMunicipaux_model');
                 $data['arretes'] = $this->ArretesMunicipaux_model->get_arretes();  
@@ -44,14 +44,13 @@ class Pages extends CI_Controller {
                 $this->load->model('Deliberations_model');
                 $data['deliberations'] = $this->Deliberations_model->get_deliberations();
         }
-        if($page == 'environnement'){
-                $this->load->model('Environnement_model');
-                $data['environnement'] = $this->Environnement_model->get_environnement();
+       
+        if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
+        {
+                //oops y'a pas ce fichier !!!
+                show_404();
         }
-        if($page == 'histoire'){
-                $this->load->model('Histoire_model');
-                $data['histoire'] = $this->Histoire_model->get_histoire();
-        }
+
         $this->load->view('header/index',$data);
         $this->load->view('pages/'.$page,$data);
         $this->load->view('templates/footer');

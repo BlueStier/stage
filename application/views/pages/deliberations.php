@@ -1,4 +1,4 @@
-div class="container">
+<div class="container">
     <?php
 //récupère dans un array les année présente dans la liste de délibérations sans accepter de doublon
 $array = [];

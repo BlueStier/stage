@@ -56,12 +56,11 @@ function drop(ev) {
     </section>
 
 <section class="content-header">
-<div id="test"></div>
       <h1>        
         Menu principal :
       </h1> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/1"><i class="fa fa-plus"></i> Ajouter un menu</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createMenu/1"><i class="fa fa-plus"></i> Ajouter un menu</a></li>
     </ol>           
     </section>
     <br>    
@@ -174,7 +173,7 @@ endforeach;
         Sous-menus :
       </h3> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/2"><i class="fa fa-plus"></i> Ajouter un sous-menu</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createMenu/2"><i class="fa fa-plus"></i> Ajouter un sous-menu</a></li>
     </ol>           
     </section>
     <br>
@@ -359,7 +358,7 @@ endforeach;
         Sous-menus de 3ème niveau :
       </h3> 
       <ol class="breadcrumb">
-        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>index.php/cms/createMenu/3"><i class="fa fa-plus"></i> Ajouter un 3ème niveau</a></li>
+        <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createMenu/3"><i class="fa fa-plus"></i> Ajouter un 3ème niveau</a></li>
     </ol>           
     </section>
     <br>

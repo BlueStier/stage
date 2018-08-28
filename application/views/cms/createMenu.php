@@ -83,7 +83,7 @@ document.writeln("style='color: transparent'>" + '___' + "</a></td>");
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a class="btn btn-default" href="<?php echo base_url()?>index.php/cms/1">Annuler</a>
+                <a class="btn btn-default" href="<?php echo base_url()?>cms/1">Annuler</a>
                 <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
               </div>
               </div>

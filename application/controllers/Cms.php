@@ -7,6 +7,7 @@ class Cms extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Header_model');
+        $this->load->model('Rapide_model');
         $this->load->helper('url_helper');
     }
 
@@ -23,7 +24,7 @@ class Cms extends CI_Controller
     //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
-        if($id = 1){            
+        if($id == 1){            
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
@@ -32,11 +33,19 @@ class Cms extends CI_Controller
             $this->load->view('cms/menu',$data);
             $this->load->view('cms/footer');
             
-        } if($id = 2){            
+        } if($id == 2){            
             $data['rapide_item'] = $this->Rapide_model->get_rapide();
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
             $this->load->view('cms/menuRapide',$data);
+            $this->load->view('cms/footer');
+            
+        }
+        if($id == 3){            
+            $data['rapide_item'] = $this->Rapide_model->get_rapide();
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu');
+            $this->load->view('cms/pages',$data);
             $this->load->view('cms/footer');
             
         }
@@ -133,5 +142,12 @@ class Cms extends CI_Controller
         }
         $this->Header_model->validateMenu($type);      
         header('Location:'.base_url().'index.php/cms/1'); 
+    }
+
+    public function createPages(){
+        $this->load->view('cms/header');
+        $this->load->view('cms/left_menu');
+        $this->load->view('cms/createPages');
+        $this->load->view('cms/footer');
     }
 }
