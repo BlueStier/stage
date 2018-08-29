@@ -14,15 +14,10 @@ class Pages_model extends CI_Model {
 }
         
 
-        public function get_elus($id = FALSE)
-{
-        if ($id === FALSE)
-        {
-                $query = $this->db->get('elus');
-                return $query->result_array();
-        }
+        public function get_type(){
 
-        $query = $this->db->get_where('elus', array('id_elus' => $id));
-        return $query->row_array();
+        $this->db->select('type');
+        $this->db->distinct();
+        return $this->db->get('pages')->result_array();
 }
 }

@@ -5,9 +5,7 @@ class Cms extends CI_Controller
     //constructeur charge la classe Acceuil_model et le helper de gestion des url
     public function __construct()
     {
-        parent::__construct();
-        $this->load->model('Header_model');
-        $this->load->model('Rapide_model');
+        parent::__construct();   
         $this->load->helper('url_helper');
     }
 
@@ -24,7 +22,8 @@ class Cms extends CI_Controller
     //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
-        if($id == 1){            
+        if($id == 1){ 
+            $this->load->model('Header_model');           
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
@@ -33,7 +32,8 @@ class Cms extends CI_Controller
             $this->load->view('cms/menu',$data);
             $this->load->view('cms/footer');
             
-        } if($id == 2){            
+        } if($id == 2){
+            $this->load->model('Rapide_model');            
             $data['rapide_item'] = $this->Rapide_model->get_rapide();
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
@@ -42,7 +42,6 @@ class Cms extends CI_Controller
             
         }
         if($id == 3){            
-            $data['rapide_item'] = $this->Rapide_model->get_rapide();
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
             $this->load->view('cms/pages',$data);
@@ -145,9 +144,11 @@ class Cms extends CI_Controller
     }
 
     public function createPages(){
+        $this->load->model('Pages_model');            
+        $data['type_item'] = $this->Pages_model->get_type();
         $this->load->view('cms/header');
         $this->load->view('cms/left_menu');
-        $this->load->view('cms/createPages');
+        $this->load->view('cms/createPages', $data);
         $this->load->view('cms/footer');
     }
 }

@@ -27,6 +27,7 @@
 <script src="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url();?>/assets/cms/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="<?php echo base_url();?>/assets/cms/plugins/ckeditor/ckeditor.js"></script>
 <!-- Slimscroll -->
 <script src="<?php echo base_url();?>/assets/cms/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
