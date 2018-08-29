@@ -44,7 +44,7 @@ class Cms extends CI_Controller
         if($id == 3){            
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
-            $this->load->view('cms/pages',$data);
+            $this->load->view('cms/pages');
             $this->load->view('cms/footer');
             
         }

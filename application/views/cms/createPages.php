@@ -44,8 +44,26 @@
                 </div>                
                 </div>
                 <div id='text'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Nombre de paragraphe :</label>
+                <div class="col-sm-10">                
+                <select id="selectTxt" onchange='addElement();' class="form-control select2" >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                </select>
+                </div>
+                </div>
+                <div id="txt1">
                   <div class="form-group">
-                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du paragraphe</label>
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 1er paragraphe</label>
                   <div class="col-sm-10">
                   <input class="form-control" placeholder="Entrez le titre du paragraphe">
                   </div>
@@ -57,11 +75,144 @@
               </form>
             </div>
           </div>
-              
+          <div id="txt2">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 2ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt3">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 3ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt4">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 4ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt5">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 5ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt6">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 6ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt7">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 7ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt8">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 8ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt9">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 9ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          <div id="txt10">
+                  <div class="form-group">
+                  <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 10ème paragraphe</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  </div>
+                  </div>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+              </form>
+            </div>
+          </div>
+          </div>    
                
                 <div id='carroussel'>ca</div>
                 <div id='bulle'>bu</div>
-                <div id='sans'>sa</div>
+                <div id='sans'>
+                <label class="center">Veuillez tapper votre texte</label>
+                  <div class="box-body pad">
+              <form>
+                    <textarea id="editor" name="editeur" class="ckeditor" rows="100" cols="80">                                            
+                    </textarea>
+              </form>
+            </div></div>
                 </div>
                
               
@@ -99,6 +250,13 @@ document.getElementById("carroussel").style.display ='none';
 document.getElementById("bulle").style.display ='none';
 document.getElementById("sans").style.display ='block';
 
+document.body.onload = invisible;
+
+function invisible(){
+  for(var i=2;i<=10;i++){
+     document.getElementById("txt"+i).style.display ='none';    
+  }
+}
 function choix() {
   var x = document.getElementById("select").selectedIndex;
   var y = document.getElementById("select").options;
@@ -135,9 +293,17 @@ function choix() {
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='block';
     break;   
+  }  
+    
+}
+function addElement () { 
+  var x = document.getElementById("selectTxt").selectedIndex;
+  var y = document.getElementById("selectTxt").options;
+  var choix = y[x].text;
+  invisible();
+  for(var a = 2;a<=choix;a++){
+    document.getElementById("txt"+a).style.display ='block';
   }
-    
-    
 }
 
 
