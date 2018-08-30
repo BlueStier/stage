@@ -79,6 +79,6 @@ google.maps.event.addDomListener(window, 'load', initCarte);
 </script>
 </head>
 <body>
-
+<?php var_dump($this->input->post('backgroundImg'));?>
 </body>
 </html>

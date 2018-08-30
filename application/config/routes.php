@@ -60,6 +60,7 @@ $route['test'] = 'test';
 $route['seniors/create'] = 'seniors/create';
 $route['seniors/(:any)'] = 'seniors/view/$1';
 $route['seniors'] = 'seniors';
+$route['cms/validatePage'] = 'cms/validatePage/';
 $route['cms/createPages'] = 'cms/createPages/';
 $route['cms/createMenu/(:any)'] = 'cms/createMenu/$1';
 $route['cms/dragNdrop'] = 'cms/dragNdrop';

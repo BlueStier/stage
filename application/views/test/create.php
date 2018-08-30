@@ -86,6 +86,7 @@ echo form_open('test/create');
 <input type="text"  name="contact" placeholder="tel "/><br>
 <input type="textarea"  name="commentaires" placeholder="commentaires "/><br>
 <input type="submit"  value="Enregistrer en bdd" />
- </form> 
+ </form>
+ <?php echo $nom; ?> 
 </body>
 </html>

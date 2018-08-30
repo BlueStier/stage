@@ -20,4 +20,12 @@ class Pages_model extends CI_Model {
         $this->db->distinct();
         return $this->db->get('pages')->result_array();
 }
+
+        public function validatePage($nomphoto){
+                $type = $this->input->post('selectType');
+                $nom = $this->input->post('nomPage');
+                $titre = $this->input->post('titrePage');
+                $soustitre = $this->input->post('soustitrePage');
+                $this->db->insert('pages', array('nom' => $nom , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));
+        }
 }

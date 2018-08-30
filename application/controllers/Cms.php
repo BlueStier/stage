@@ -144,11 +144,41 @@ class Cms extends CI_Controller
     }
 
     public function createPages(){
-        $this->load->model('Pages_model');            
+        $this->load->model('Pages_model');
+        $this->load->model('Header_model');        
+        $data['header_item'] = $this->Header_model->get_menu();
+        $data['sub_item'] = $this->Header_model->get_sousmenu();
+        $data['third_item'] = $this->Header_model->get_thirdmenu();            
         $data['type_item'] = $this->Pages_model->get_type();
         $this->load->view('cms/header');
         $this->load->view('cms/left_menu');
         $this->load->view('cms/createPages', $data);
         $this->load->view('cms/footer');
+    }
+
+    public function validatePage(){
+        //récupère et copie la photo choisie
+        $config['upload_path']= "./assets/site/img/background/";
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config ['max_size'] = 100000 ;
+        $config ['max_width'] = 1024 ;
+        $config ['max_height'] = 768 ;
+        
+        $this->load->library('upload', $config);
+        if(! $this->upload->do_upload('backgroundImg'))
+        {
+                $error = array('error'=> $this->upload->display_errors());
+
+                $this->load->view ( 'cms/createPages',$error);
+        }
+        else
+        {    
+            $this->load->model('Pages_model');        
+            $data = array('upload_data'=>$this->upload->data());
+            $nom = 'asset/site/img/background/'.$data['upload_data']['orig_name'];
+            $this->Pages_model->validatePage($nom);
+            
+    }      
+       
     }
 }

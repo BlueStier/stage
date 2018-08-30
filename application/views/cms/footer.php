@@ -24,6 +24,9 @@
 <script src="<?php echo base_url();?>/assets/cms/bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
 <!-- datepicker -->
+<!-- DataTables -->
+<script src="<?php echo base_url();?>/assets/cms/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url();?>/assets/cms/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 <script src="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- Bootstrap WYSIHTML5 -->
 <script src="<?php echo base_url();?>/assets/cms/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
@@ -38,5 +41,11 @@
 <script src="<?php echo base_url();?>/assets/cms/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="<?php echo base_url();?>/assets/cms/dist/js/demo.js"></script>
+<script>
+//fonction de pagination et de recherche dans une table
+  $(function () {
+    $('#example1').DataTable()    
+  })
+</script>
 </body>
 </html>
