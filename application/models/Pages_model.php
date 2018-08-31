@@ -12,6 +12,12 @@ class Pages_model extends CI_Model {
 {
         return $this->db->get_where('pages', array('nom' => $id))->row_array();
 }
+
+        public function get_idpage($id = FALSE)
+{
+        $result = $this->db->get_where('pages', array('nom' => $id))->result_array();
+        return $result[0]['id_pages'];
+}
         
 
         public function get_type(){
@@ -21,11 +27,15 @@ class Pages_model extends CI_Model {
         return $this->db->get('pages')->result_array();
 }
 
-        public function validatePage($nomphoto){
-                $type = $this->input->post('selectType');
+        public function validatePage($nomphoto, $type){
+                /*enregistre la page (nom, background,type...) dans la table page pour tous type*/
+                
                 $nom = $this->input->post('nomPage');
+                $nom1 = str_replace(array(' ','/','\\'),'-',$nom);
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
-                $this->db->insert('pages', array('nom' => $nom , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));
+                $this->db->insert('pages', array('nom' => $nom1 , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));
+
+               
         }
 }

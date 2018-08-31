@@ -18,8 +18,8 @@ class Header_model extends CI_Model {
                 return $query->result_array();
         }
 
-        $query = $this->db->get_where('menu', array('id_menu' => $id));
-        return $query->row_array();
+        $query = $this->db->get_where('menu', array('nom' => $id));
+        return $query->result_array();
 }
          //méthode qui extrait les données de la table sousmenu
         public function get_sousmenu($id = FALSE)
@@ -32,8 +32,8 @@ class Header_model extends CI_Model {
                 return $query->result_array();
         }
 
-        $query = $this->db->get_where('sousmenu', array('id_sousmenu' => $id));
-        return $query->row_array();
+        $query = $this->db->get_where('sousmenu', array('nom' => $id));
+        return $query->result_array();
 }
          //méthode qui extrait les données de la table third_level
         public function get_thirdmenu($id = FALSE)
@@ -46,8 +46,8 @@ class Header_model extends CI_Model {
                 return $query->result_array();
         }
 
-        $query = $this->db->get_where('third_level', array('id_third' => $id));
-        return $query->row_array();
+        $query = $this->db->get_where('third_level', array('nom' => $id));
+        return $query->result_array();
 }
         //suppression d'un menu, sous-menu ou 3eme niveau
         public function delete_menu($i)
@@ -390,5 +390,37 @@ class Header_model extends CI_Model {
                         break;
             }
 
+    }
+
+    public function updateMenuByPage($array,$type){
+            $nom = $this->input->post('nomPage');
+            $nom1 = str_replace(array(' ','/','\\'),'-',$nom);
+            $path = "pages/".$nom1."/";
+        switch($type){
+                case 1://concerne un menu                        
+                        foreach($array as $nom):                              
+                        $menu_to_update = Header_model::get_menu($nom);
+                        $menu_to_update[0]['path'] = $path;                        
+                        $this->db->replace('menu',$menu_to_update[0]);
+                        endforeach;        
+                        break;
+                case 2://concerne un sousmenu
+                        foreach($array as $nom):                              
+                        $menu_to_update = Header_model::get_sousmenu($nom);
+                        $menu_to_update[0]['path'] = $path;                        
+                        $this->db->replace('sousmenu',$menu_to_update[0]);
+                        endforeach;
+                        break;
+                case 3://concerne un 3eme niveau
+                        foreach($array as $nom):                              
+                        $menu_to_update = Header_model::get_thirdmenu($nom);
+                        $menu_to_update[0]['path'] = $path;                        
+                        $this->db->replace('third_level',$menu_to_update[0]);
+                        endforeach;
+                        break;
+                default:
+                        show_404();
+                        break;
+                }
     }
 }

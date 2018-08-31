@@ -7,7 +7,8 @@
 <!-- Pour tous type de pages définition de la photo de background, titre et soustitre (facultatif) -->
 <div class="form-horizontal">
 <div class="box-body">
-<?php if(isset($error)){echo $error;}; 
+<?php if(isset($error)){echo $error;};
+             echo validation_errors();
                   echo form_open_multipart('cms/validatePage');?>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nom de la page</label>
@@ -52,7 +53,7 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Nombre de paragraphe :</label>
                 <div class="col-sm-10">                
-                <select id="selectTxt" onchange='addElement();' class="form-control select2" >
+                <select id="selectTxt" name ="selectparaf" onchange='addElement();' class="form-control select2" >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -70,12 +71,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 1er paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t1' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg1" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
             
             </div>
@@ -84,12 +85,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 2ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t2' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg2" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -98,12 +99,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 3ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t3' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg3" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -112,12 +113,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 4ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t4' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg4" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -126,12 +127,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 5ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t5' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg5" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -140,12 +141,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 6ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t6' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg6" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -154,12 +155,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 7ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t7' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
              
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg7" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -168,12 +169,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 8ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t8' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg8" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -182,12 +183,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 9ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t9' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg9" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
               
             </div>
@@ -196,12 +197,12 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 10ème paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t10' placeholder="Entrez le titre du paragraphe">
                   </div>
                   </div>
                   <div class="box-body pad">
              
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="pg10" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
              
             </div>
@@ -239,7 +240,7 @@
                 <tbody>
                 <tr>                
                 <?php foreach($header_item as $header): ?>
-                <td><input type='checkbox'><?php /* affiche le nom du menu */ echo "  ".$header['nom'] ?></td>
+                <td><input type='checkbox' name="menu[]" value="<?php /* affiche le nom du menu */ echo $header['nom'] ?>"><?php /* affiche le nom du menu */ echo "  ".$header['nom'] ?></td>
               <?php endforeach; ?>                                  
                 </tr>
                 </tbody>                
@@ -266,7 +267,7 @@
                                    
                     if($k == $b){
                 ?>                
-                <td><input type='checkbox'><?php /* affiche le nom du sous-menu */ echo "  ".$sub['nom'] ?></td>
+                <td><input type='checkbox' name="sousmenu[]" value="<?php /* affiche le nom du sous-menu */ echo $sub['nom'] ?>"><?php /* affiche le nom du sous-menu */ echo "  ".$sub['nom'] ?></td>
                     <?php }          
               
                 endforeach;
@@ -298,7 +299,7 @@
                                    
                     if($k1 == $b1){
                 ?>                
-                <td><input type='checkbox'><?php /* affiche le nom du 3ème niveau */ echo "  ".$thi['nom'] ?></td>
+                <td><input type='checkbox' name="third[]" value="<?php /* affiche le nom du 3ème niveau */ echo $thi['nom'] ?>"><?php /* affiche le nom du 3ème niveau */ echo "  ".$thi['nom'] ?></td>
                     <?php }          
               
                 endforeach;
@@ -314,8 +315,7 @@
           </div>
           <!-- /.box -->
         </div>
-        <!-- /.col -->
-     
+        <!-- /.col -->    
             
               
 
@@ -339,13 +339,13 @@
     reserved.
   </footer>
   
-  
  
   <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>
 </div>
+
 
 <!-- ./wrapper -->
 <script>

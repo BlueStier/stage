@@ -77,7 +77,7 @@ foreach($header_item as $header):
          <a aria-expanded="false"
                 class="nav-link display-4"
                 data-toggle="dropdown"
-                href="#services"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
+                href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
                 <div class="dropdown-menu dropright">
                 <?php //pour chaque sous menu
             foreach($sub_item as $sub):                  
@@ -95,7 +95,7 @@ foreach($header_item as $header):
                   <a aria-expanded="false"
                        class="nav-link dropdown-item dropdown-toggle display-4"
                        data-toggle="dropdown"
-                       href="#services"><?php /* affiche le nom du sous menu */ echo $sub['nom'] ?></a>
+                       href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php /* affiche le nom du sous menu */ echo $sub['nom'] ?></a>
                   <div class="dropdown-menu"><?php
                   //pour chaque sous menu de 3eme niveau :
                         foreach($third_item as $thi):

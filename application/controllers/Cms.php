@@ -157,28 +157,89 @@ class Cms extends CI_Controller
     }
 
     public function validatePage(){
-        //récupère et copie la photo choisie
+        //on définie les critères obligatoires
+        $this->load->helper('form');
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('nomPage', '"Nom de la page"', 'required');
+        $this->form_validation->set_rules('titrePage', '"Titre"', 'required');        
+
+        if($this->form_validation->run()==FALSE)
+        {
+            $this->load->model('Pages_model');
+            $this->load->model('Header_model');        
+            $data['header_item'] = $this->Header_model->get_menu();
+            $data['sub_item'] = $this->Header_model->get_sousmenu();
+            $data['third_item'] = $this->Header_model->get_thirdmenu();            
+            $data['type_item'] = $this->Pages_model->get_type();
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu');
+            $this->load->view('cms/createPages', $data);
+            $this->load->view('cms/footer');
+        }else{
+
+        //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
         $config['upload_path']= "./assets/site/img/background/";
         $config['allowed_types'] = 'gif|jpg|png';
         $config ['max_size'] = 100000 ;
         $config ['max_width'] = 1024 ;
         $config ['max_height'] = 768 ;
-        
+
+        //upload la photo vers le serveur
         $this->load->library('upload', $config);
         if(! $this->upload->do_upload('backgroundImg'))
         {
+            //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
                 $error = array('error'=> $this->upload->display_errors());
 
-                $this->load->view ( 'cms/createPages',$error);
+                $this->load->view('cms/header');
+                $this->load->view('cms/left_menu');
+                $this->load->view('cms/createPages', $error);
+                $this->load->view('cms/footer');
         }
         else
-        {    
-            $this->load->model('Pages_model');        
+        {   //on charge les models nécessaires
+            $this->load->model('Header_model');        
+            $this->load->model('Pages_model');
+            //on envoie les info vers Pages_model pour création dans la table de la bdd        
             $data = array('upload_data'=>$this->upload->data());
-            $nom = 'asset/site/img/background/'.$data['upload_data']['orig_name'];
-            $this->Pages_model->validatePage($nom);
+            $nom = 'assets/site/img/background/'.$data['upload_data']['orig_name'];
+            $type = $this->input->post('selectType');
+            $this->Pages_model->validatePage($nom,$type);
+
+            //on vérifie le type de page à enregistrer
+            switch($type){
+                case "text":
+                $this->load->model('Text_model');
+                $nomPage = str_replace(array(' ','/','\\'),'-',$this->input->post('nomPage'));                
+                $id_pages = $this->Pages_model->get_idpage($nomPage);
+                $this->Text_model->create($id_pages);
+                break;
+            }
+
+            //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
+            $arrayMenu = $this->input->post('menu[]');             
+            $sizeofmenu = sizeof($arrayMenu);
+            $arraySMenu = $this->input->post('sousmenu[]');             
+            $sizeofSmenu = sizeof($arraySMenu);
+            $array3Menu = $this->input->post('third[]');             
+            $sizeof3menu = sizeof($array3Menu);
             
+            //selon le cas on appel le header_model pour faire le update
+            if($sizeofmenu > 0){
+                $this->Header_model->updateMenuByPage($arrayMenu,1); 
+            }
+            if($sizeofSmenu > 0){
+                $this->Header_model->updateMenuByPage($arraySMenu,2); 
+            }
+            if($sizeof3menu > 0){
+                $this->Header_model->updateMenuByPage($array3Menu,3); 
+            }
+            
+            $data['menu']= $arrayMenu;
+            $data["id"]= $id_pages;            
+            $this->load->view('upload_success',$data);
     }      
        
     }
+}
 }
