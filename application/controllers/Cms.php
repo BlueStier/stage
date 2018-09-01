@@ -210,9 +210,15 @@ class Cms extends CI_Controller
             switch($type){
                 case "text":
                 $this->load->model('Text_model');
-                $nomPage = str_replace(array(' ','/','\\'),'-',$this->input->post('nomPage'));                
+                $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
                 $id_pages = $this->Pages_model->get_idpage($nomPage);
                 $this->Text_model->create($id_pages);
+                break;
+                case "sans":
+                $this->load->model('Sans_model');
+                $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                $id_pages = $this->Pages_model->get_idpage($nomPage);
+                $this->Sans_model->create($id_pages);
                 break;
             }
 

@@ -31,7 +31,7 @@ class Pages_model extends CI_Model {
                 /*enregistre la page (nom, background,type...) dans la table page pour tous type*/
                 
                 $nom = $this->input->post('nomPage');
-                $nom1 = str_replace(array(' ','/','\\'),'-',$nom);
+                $nom1 = str_replace(array(' ','/','\\'),'',$nom);
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
                 $this->db->insert('pages', array('nom' => $nom1 , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));

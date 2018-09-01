@@ -38,8 +38,7 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Choisissez un type de page :</label>
                 <div class="col-sm-10">
-                <select id="select" onchange='choix();' name='selectType' class="form-control select2" >
-                <option selected="selected">sans</option>
+                <select id="select" onchange='choix();' name='selectType' class="form-control select2" >                
                 <?php foreach($type_item as $type):?>
                 <option><?php echo $type['type']?></option>
                 <?php
@@ -210,13 +209,85 @@
           </div>    
                <!-- fin Div text -->
                 <div id='carroussel'>ca</div>
-                <div id='bulle'>bu</div>
+                 <!-- Div pour création d'un page sans type -->
+                <div id='bulle'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Nombre de bulles :</label>
+                <div class="col-sm-10">                
+                <select id="selectBulle" name ="selectparaf" onchange='addElement();' class="form-control select2" >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                </select>
+                </div>
+                </div>
+                <div id="bulle1">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Texte d'intro</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='titrebulle' placeholder="Entrez un texte d'introduction (facultatif)">
+                  </div>
+                  </div>
+                  <div class="form-group">
+                  <label  class="col-sm-2 control-label">Sous-texte d'intro</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='soustitrebulle' placeholder="Entrez un sous-texte d'introduction (facultatif)">
+                  </div>
+                </div>
+                  <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir la 1ère image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo1" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 1er texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx1" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          
+          <div id="bulle3">
+                 <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir la 3ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo3" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 3ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          
+          </div>
+                <!-- fin Div -->
                 <!-- Div pour création d'un page sans type -->
                 <div id='sans'>
                 <label class="center">Veuillez tapper votre texte</label>
                   <div class="box-body pad">
               
-                    <textarea id="editor" name="editeur" class="ckeditor" rows="100" cols="80">                                            
+                    <textarea id="editor" name="sans" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>
              
             </div></div>
@@ -400,13 +471,23 @@ function choix() {
   }  
     
 }
-function addElement () { 
+function addElement () {
+  //pour le nombre de paragraphe d'une page type text 
   var x = document.getElementById("selectTxt").selectedIndex;
   var y = document.getElementById("selectTxt").options;
   var choix = y[x].text;
   invisible();
   for(var a = 2;a<=choix;a++){
     document.getElementById("txt"+a).style.display ='block';
+  }
+
+  //pour le nombre de paragraphe d'une page type bulle 
+  var w = document.getElementById("selectBulle").selectedIndex;
+  var z = document.getElementById("selectBulle").options;
+  var choix1 = z[w].text;
+  invisible();
+  for(var a = 2;a<=choix1;a++){
+    document.getElementById("bulle"+a).style.display ='block';
   }
 }
 
