@@ -41,10 +41,16 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
             
         }
-        if($id == 3){            
+        if($id == 3){
+            $this->load->model('Pages_model');
+            $this->load->model('Header_model');           
+            $data['header_item'] = $this->Header_model->get_menu();
+            $data['sub_item'] = $this->Header_model->get_sousmenu();
+            $data['third_item'] = $this->Header_model->get_thirdmenu();            
+            $data['page_item'] = $this->Pages_model->get_page();            
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
-            $this->load->view('cms/pages');
+            $this->load->view('cms/pages',$data);
             $this->load->view('cms/footer');
             
         }
@@ -209,16 +215,22 @@ class Cms extends CI_Controller
             //on vérifie le type de page à enregistrer
             switch($type){
                 case "text":
-                $this->load->model('Text_model');
-                $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                $id_pages = $this->Pages_model->get_idpage($nomPage);
-                $this->Text_model->create($id_pages);
+                    $this->load->model('Text_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Text_model->create($id_pages);
                 break;
                 case "sans":
-                $this->load->model('Sans_model');
-                $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                $id_pages = $this->Pages_model->get_idpage($nomPage);
-                $this->Sans_model->create($id_pages);
+                    $this->load->model('Sans_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Sans_model->create($id_pages);
+                break;
+                case "bulle":
+                    $this->load->model('Bulles_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Bulles_model->create($id_pages);
                 break;
             }
 
@@ -241,8 +253,7 @@ class Cms extends CI_Controller
                 $this->Header_model->updateMenuByPage($array3Menu,3); 
             }
             
-            $data['menu']= $arrayMenu;
-            $data["id"]= $id_pages;            
+                        
             $this->load->view('upload_success',$data);
     }      
        

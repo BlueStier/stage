@@ -214,7 +214,7 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Nombre de bulles :</label>
                 <div class="col-sm-10">                
-                <select id="selectBulle" name ="selectparaf" onchange='addElement();' class="form-control select2" >
+                <select id="selectBulle" name ="selectbulle" onchange='addElement();' class="form-control select2" >
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -260,8 +260,27 @@
           </div>
           </div>
           
+          <div id="bulle2">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 2ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir la 2ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo2" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
           <div id="bulle3">
-                 <div class="form-group">
+          <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 3ème image </label>
                   <br>
@@ -279,6 +298,146 @@
             </div>
           </div>
           </div>
+          <div id="bulle4">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 4ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx4" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir la 4ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo4" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle5">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir la 5ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo5" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 5ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx5" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle6">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 6ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx6" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir la 6ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo6" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle7">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir la 7ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo7" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 7ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx7" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle8">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 8ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx8" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir la 8ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo8" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle9">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir la 9ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo9" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 9ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx9" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle10">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 10ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx10" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir la 10ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo10" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div class="form-group">
+          <label class="col-sm-5 control-label">Saisissez le texte supplémentaire (facultatif) </label>
+          <br>          
+          <div class="col-sm-12 box-body pad">            
+                    <textarea id="editor" name="sup" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
           
           </div>
                 <!-- fin Div -->
@@ -425,11 +584,12 @@ document.getElementById("carroussel").style.display ='none';
 document.getElementById("bulle").style.display ='none';
 document.getElementById("sans").style.display ='block';
 
-document.body.onload = invisible;
+document.body.onload = invisible('txt');
+document.body.onload = invisible('bulle');
 
-function invisible(){
+function invisible(txt){
   for(var i=2;i<=10;i++){
-     document.getElementById("txt"+i).style.display ='none';    
+     document.getElementById(txt+i).style.display ='none';    
   }
 }
 function choix() {
@@ -476,7 +636,7 @@ function addElement () {
   var x = document.getElementById("selectTxt").selectedIndex;
   var y = document.getElementById("selectTxt").options;
   var choix = y[x].text;
-  invisible();
+  invisible('txt');
   for(var a = 2;a<=choix;a++){
     document.getElementById("txt"+a).style.display ='block';
   }
@@ -485,7 +645,7 @@ function addElement () {
   var w = document.getElementById("selectBulle").selectedIndex;
   var z = document.getElementById("selectBulle").options;
   var choix1 = z[w].text;
-  invisible();
+  invisible('bulle');
   for(var a = 2;a<=choix1;a++){
     document.getElementById("bulle"+a).style.display ='block';
   }

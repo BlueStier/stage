@@ -10,6 +10,12 @@ class Pages_model extends CI_Model {
         //méthode qui extrait les données de la table menu
         public function get_page($id = FALSE)
 {
+        if ($id === FALSE)
+        {
+                //récupération des éléments                 
+                $query = $this->db->get('pages');                
+                return $query->result_array();
+        }
         return $this->db->get_where('pages', array('nom' => $id))->row_array();
 }
 
