@@ -423,4 +423,41 @@ class Header_model extends CI_Model {
                         break;
                 }
     }
+        //fonction permettant de rompre les liens des pages avec les differents menus
+        public function cutLink($type){
+                //on récupère l'id à modif 
+                $id = $this->input->post('cut');       
+                switch($type){
+                        case 1://concerne un menu                        
+                                $menu = $this->db->get_where('menu',array('id_menu' => $id))->result_array();
+                                $menu[0]['path'] = '';
+                                 //on vérifie si le menu à des sousmenus
+                                 $verifsmenu = sizeof($this->db->get_where('sousmenu',array("menu"=>$menu[0]['nom']))->result_array());
+                                 //si le menus n'a pas de sousmenu on le rend invisible pour éviter d'avoir un lien qui ne fonctionne pas
+                                 if($verifsmenu == 0){
+                                         $menu[0]['visible'] = false;
+                                 }
+                                 $this->db->replace('menu',$menu[0]);
+                                break;
+                        case 2://concerne un sousmenu
+                                $Smenu = $this->db->get_where('sousmenu',array('id_sousmenu' => $id))->result_array();
+                                $Smenu[0]['path'] = '';
+                                //on vérifie si le sousmenu à des 3ème niveau                                
+                                //si ce n'est pas le cas on le rend invisible pour éviter d'avoir un lien qui ne fonctionne pas
+                                if($Smenu[0]['no3level']){
+                                        $Smenu[0]['visible'] = false;
+                                }
+                                $this->db->replace('sousmenu',$Smenu[0]);
+                                break;
+                        case 3://concerne un 3eme niveau
+                                $S3menu = $this->db->get_where('third_level',array('id_third' => $id))->result_array();
+                                $S3menu[0]['path'] = '';
+                                $S3menu[0]['visible'] = false;
+                                $this->db->replace('third_level',$S3menu[0]);
+                                break;
+                        default:
+                                show_404();
+                                break;
+            }
+}
 }

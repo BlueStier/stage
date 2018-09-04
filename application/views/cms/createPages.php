@@ -7,7 +7,7 @@
 <!-- Pour tous type de pages définition de la photo de background, titre et soustitre (facultatif) -->
 <div class="form-horizontal">
 <div class="box-body">
-<?php if(isset($error)){echo $error;};
+<?php if(isset($error)){echo $error['error'];};
              echo validation_errors();
                   echo form_open_multipart('cms/validatePage');?>
                 <div class="form-group">

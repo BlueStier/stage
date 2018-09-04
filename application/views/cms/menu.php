@@ -129,7 +129,10 @@ foreach($header_item as $key=>$header):
             </div>
             <!-- /.box-header -->
             <div class="box-body">                  
-              <button type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>
+            <?php  echo validation_errors(); 
+                  echo form_open('cms/updateMenu/1');?>
+              <input type="hidden" name = 'menuUpdate' value='<?php echo $header['nom'] ?>'>
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button></form> 
               <button type="button" class="marge btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $header['id_menu'] ?>"><i class="fa  fa-warning"></i> Supprimer</button>         
             </div>
             <!-- /.box-body -->
@@ -254,8 +257,10 @@ foreach($header_item as $header):
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">      
-              <button type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
+            <div class="box-body">
+            <?php  echo validation_errors(); 
+                  echo form_open('cms/updateMenu/2');?>      
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button></form>              
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
             </div>
             <!-- /.box-body -->

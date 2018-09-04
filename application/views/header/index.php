@@ -65,7 +65,7 @@ endforeach;
 foreach($header_item as $header):
      //vérifie si le menu doit être affiché
     if($header['visible']){
-            //si le menu n'a pas de sous menu oon affiche un lien  
+            //si le menu n'a pas de sous menu on affiche un lien  
           $no2level = in_array($header['nom'],$yAv); 
       if(!$no2level){?>
 <li class="nav-item dropdown">
