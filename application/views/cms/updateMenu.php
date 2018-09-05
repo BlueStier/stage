@@ -1,9 +1,5 @@
 <script >
-
-var ancien  <?php/* foreach ($header_item as $header):
-echo $header['couleur'];
-endforeach;*/?>;
-//copyref(ancien);
+var ancien;  
 //fonction remplissant la table de couleur
 function makeArray(q){
 
@@ -35,11 +31,19 @@ ancien=""+ thiscolor + "";
 
 
 </script>
-<?php if($case == 1){?>
+<?php if($case == 1){
+
+  //récupère les données du menu
+  foreach ($header_item as $header):  
+    $nom = $header["nom"];  
+    $couleur = $header["couleur"];
+  endforeach;
+
+  ?>
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Créer un  <?php echo $type;?> :</h3>
+              <h3 class="box-title">Modifier le <?php echo $type." : ".$nom;?> </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -51,7 +55,8 @@ ancien=""+ thiscolor + "";
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                    <input type="hidden" name='ancienNom' value ="<?php echo $nom;?>">
+                    <input class="form-control" name="nom" placeholder="<?php echo $nom;?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -93,12 +98,23 @@ document.writeln("style='color: transparent'>" + '___' + "</a></td>");
               <!-- /.box-footer -->
             </form>
           </div>
+<script>
+//on met une croix dans la couleur actuelle du menu
+document.getElementById("<?php echo $couleur ?>").innerHTML="X";
+ancien = "<?php echo $couleur ?>";
+</script>          
 <?php }
-if($case == 2){?>
+if($case == 2){  
+  //récupère les données du sousmenu
+foreach ($sub_item as $sub): 
+  $Snom = $sub["nom"];  
+  $menu = $sub["menu"];
+endforeach;
+  ?>
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Créer un <?php echo $type;?> :</h3>
+              <h3 class="box-title">Modifier le sousmenu : <?php echo $Snom;?> </h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -110,17 +126,25 @@ if($case == 2){?>
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                  <input type="hidden" name='ancienNom' value ="<?php echo $Snom;?>">
+                    <input class="form-control" name="nom" placeholder="<?php echo $Snom;?>">
                   </div>
                 </div>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Joindre au menu :</label>
                 <div class="col-sm-10">
-                <select name="select" class="form-control select2" >
-                <option selected="selected">sans</option>
-                <?php foreach($header_item as $key=>$header): ?>
+                <select name="select" class="form-control select2" >                
+                <?php foreach($header_item as $header): 
+                   $menuselect = strcmp($header['nom'],$menu);
+                   if($menuselect == 0){
+                    ?>               
+                <option selected ><?php echo $header['nom'] ?></option>
+                <?php 
+                   }else{
+                  ?>
+               
                 <option><?php echo $header['nom'] ?></option>
-<?php endforeach; ?>
+<?php } endforeach; ?>
                 </select>
                 </div>
               </div>
@@ -130,7 +154,7 @@ if($case == 2){?>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a class="btn btn-default" href="<?php echo base_url()?>index.php/cms/1">Annuler</a>
+                <a class="btn btn-default" href="<?php echo base_url()?>cms/1">Annuler</a>
                 <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
               </div>
               </div>
@@ -139,11 +163,17 @@ if($case == 2){?>
           </div>
  
 <?php }
-if($case == 3){?>
+if($case == 3){  
+   //récupère les données du 3ème niveau
+foreach ($third_item as $thi): 
+  $S3nom = $thi["nom"];  
+  $Smenu = $thi["sousmenu"];
+endforeach;
+  ?>
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Créer un <?php echo $type;?> :</h3>
+              <h3 class="box-title">Modifier le 3ème niveau : <?php echo $S3nom;?></h3>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -155,17 +185,23 @@ if($case == 3){?>
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                  <input type="hidden" name='ancienNom' value ="<?php echo $S3nom;?>">
+                    <input class="form-control" name="nom" placeholder="<?php echo $S3nom;?>">
                   </div>
                 </div>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Joindre au sousmenu </label>
                 <div class="col-sm-10">
-                <select name="select1" class="form-control select2" >
-                <option selected="selected">sans</option>
-                <?php foreach($sub_item as $sub): ?>                
+                <select name="select1" class="form-control select2" >               
+                <?php foreach($sub_item as $sub): 
+                  $menuselect = strcmp($sub['nom'],$Smenu);
+                  if($menuselect == 0){
+                   ?>               
+               <option selected ><?php echo $sub['nom'] ?></option>
+               <?php 
+                  }else{?>                
                 <option><?php echo $sub['nom'] ?></option>
-<?php endforeach; ?>
+<?php } endforeach; ?>
                 </select>
                 </div>
               </div>
@@ -175,7 +211,7 @@ if($case == 3){?>
               </div>
               <!-- /.box-body -->
               <div class="box-footer">
-                <a class="btn btn-default" href="<?php echo base_url()?>index.php/cms/1">Annuler</a>
+                <a class="btn btn-default" href="<?php echo base_url()?>cms/1">Annuler</a>
                 <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
               </div>
               </div>

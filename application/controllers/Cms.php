@@ -155,19 +155,21 @@ class Cms extends CI_Controller
         if($type == 2){
             $data['case'] = 2;           
             $data['type'] = "Sousmenu";
-            $data['header_item'] = $this->Header_model->get_menu();           
+            $data['header_item'] = $this->Header_model->get_menu();
+            $data['sub_item'] = $this->Header_model->get_sousmenu($amodif);           
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
-            $this->load->view('cms/createMenu',$data);
+            $this->load->view('cms/updateMenu',$data);
             $this->load->view('cms/footer');            
         }
         if($type == 3){
             $data['case'] = 3;           
             $data['type'] = "3ème niveau";
-            $data['sub_item'] = $this->Header_model->get_sousmenu();           
+            $data['sub_item'] = $this->Header_model->get_sousmenu();
+            $data['third_item'] = $this->Header_model->get_thirdmenu($amodif);           
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu');
-            $this->load->view('cms/createMenu',$data);
+            $this->load->view('cms/updateMenu',$data);
             $this->load->view('cms/footer');            
         }
     }

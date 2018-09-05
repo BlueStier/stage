@@ -352,29 +352,62 @@ class Header_model extends CI_Model {
                 case 1://concerne un menu
                         //récupère le nom et la couleur
                         $nom = $this->input->post('nom');
-                        $couleur = $this->input->post('couleur');
+                        $couleur = $this->input->post('couleur');                        
+                        //on vérifie si on souhaite update un menu déjà en base si oui on l'extrait et on fait les modifs
+                        if($this->input->post('ancienNom')!== null){
+                                $ancienNom = $this->input->post('ancienNom');
+                                $menu = Header_model::get_menu($ancienNom);
+                                if(!empty($nom)){
+                                $menu[0]['nom'] = $nom;}
+                                if(!empty($couleur)){
+                                $menu[0]['couleur'] = $couleur;}
+                                $this->db->replace('menu',$menu[0]);
+                        }else{
+                         //sinon on créer un nouveau menu en bdd                      
                         //extraction de la bdd du plus grand ordre
                         $this->db->select('max(ordre) as max');
                         $max = $this->db->get('menu')->result_array();
                         $ordre = $max[0]['max']+1;
                         //enregistrement en bdd                        
-                        $this->db->insert('menu', array('nom' => $nom , 'couleur' => $couleur, 'ordre' =>$ordre,'visible' => false));                
+                        $this->db->insert('menu', array('nom' => $nom , 'couleur' => $couleur, 'ordre' =>$ordre,'visible' => false));
+                        }                                       
                         break;
                 case 2://concerne un sousmenu
                         //récupère le nom et le menu
                         $nom = $this->input->post('nom');
                         $menu = $this->input->post('select');
+                        //on vérifie si on souhaite update un sousmenu déjà en base si oui on l'extrait et on fait les modifs
+                        if($this->input->post('ancienNom')!== null){
+                                $ancienNom = $this->input->post('ancienNom');
+                                $Smenu = Header_model::get_sousmenu($ancienNom);
+                                if(!empty($nom)){
+                                $Smenu[0]['nom'] = $nom;}                                
+                                $Smenu[0]['menu'] = $menu;
+                                $this->db->replace('sousmenu',$Smenu[0]);
+                        }else{
+                         //sinon on créer un nouveau sousmenu en bdd
                         //extraction de la bdd du plus grand ordre
                         $this->db->select('max(ordre) as max');
                         $max1 = $this->db->get_where('sousmenu', array('menu' => $menu))->result_array();
                         $ordre1 = $max1[0]['max']+1;
                         //enregistrement en bdd                        
                         $this->db->insert('sousmenu', array('nom' => $nom , 'menu' => $menu, 'ordre' =>$ordre1,'visible' => false,'no3level' => true));
+                        }
                         break;
                 case 3://concerne un 3eme niveau
                         //récupère le nom et le sousmenu
                         $nom = $this->input->post('nom');
                         $sousmenu = $this->input->post('select1');
+                        //on vérifie si on souhaite update un 3ème niveau déjà en base si oui on l'extrait et on fait les modifs
+                        if($this->input->post('ancienNom')!== null){
+                                $ancienNom = $this->input->post('ancienNom');
+                                $S3menu = Header_model::get_thirdmenu($ancienNom);
+                                if(!empty($nom)){
+                                $S3menu[0]['nom'] = $nom;}                                
+                                $S3menu[0]['sousmenu'] = $sousmenu;
+                                $this->db->replace('third_level',$S3menu[0]);
+                        }else{
+                         //sinon on créer un nouveau 3ème niveau en bdd
                         //récupère le menu du sous menu
                         $tabMenu = $this->db->get_where('sousmenu', array('nom' => $sousmenu))->result_array();
                         $menu = $tabMenu[0]['menu'];
@@ -383,7 +416,8 @@ class Header_model extends CI_Model {
                         $max2 = $this->db->get_where('third_level', array('sousmenu' => $sousmenu))->result_array();
                         $ordre2 = $max2[0]['max']+1;
                         //enregistrement en bdd 
-                        $this->db->insert('third_level', array('nom' => $nom , 'menu' => $menu, 'sousmenu' => $sousmenu, 'ordre' =>$ordre2,'visible' => false));       
+                        $this->db->insert('third_level', array('nom' => $nom , 'menu' => $menu, 'sousmenu' => $sousmenu, 'ordre' =>$ordre2,'visible' => false));
+                        }       
                         break;
                 default:
                         show_404();

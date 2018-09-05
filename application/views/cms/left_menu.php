@@ -28,7 +28,7 @@
         <li class="header">Gestion du site</li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Apparence </span>
+            <i class="glyphicon glyphicon-th"></i> <span>Apparence </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>

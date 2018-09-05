@@ -39,9 +39,16 @@
                 <label class="col-sm-2 control-label">Choisissez un type de page :</label>
                 <div class="col-sm-10">
                 <select id="select" onchange='choix();' name='selectType' class="form-control select2" >                
-                <?php foreach($type_item as $type):?>
+                <?php foreach($type_item as $type):
+                $selected = strcmp($type['type'],'sans');
+                if($selected == 0 ){
+                  ?>
+                  <option selected><?php echo $type['type']?></option>
+                  <?php
+                }else{
+                ?>
                 <option><?php echo $type['type']?></option>
-                <?php
+                <?php }
                 endforeach;
                 ?>
                 </select>                
@@ -208,8 +215,34 @@
           </div>
           </div>    
                <!-- fin Div text -->
-                <div id='carroussel'>ca</div>
-                 <!-- Div pour création d'un page sans type -->
+                <div id='carroussel'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Nombre de photos :</label>
+                <div class="col-sm-10">                
+                <select id="selectcar" name ="selectcar" onchange='addElement();' class="form-control select2" >
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                </select>
+                </div>
+                </div>
+                <div id="car1">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir une image </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="photocar1" id="exampleInputFile" value='Choisissez une image'>
+                </div>
+                </div>
+                </div>
+                </div>
+                 <!-- Div pour création d'un page du type bulle -->
                 <div id='bulle'>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Nombre de bulles :</label>
@@ -432,7 +465,7 @@
           </div>
           </div>
           <div class="form-group">
-          <label class="col-sm-5 control-label">Saisissez le texte supplémentaire (facultatif) </label>
+          <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
           <br>          
           <div class="col-sm-12 box-body pad">            
                     <textarea id="editor" name="sup" class="ckeditor" rows="10" cols="80">                                            
@@ -440,20 +473,21 @@
                     </div>
           
           </div>
+          </div>
                 <!-- fin Div -->
                 <!-- Div pour création d'un page sans type -->
-                <div id='sans'>
+                <div id="sans">
                 <label class="center">Veuillez tapper votre texte</label>
-                  <div class="box-body pad">
-              
+                  <div class="box-body pad">              
                     <textarea id="editor" name="sans" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>
              
-            </div></div>
+            </div>
                 </div>
                <!-- fin Div -->
                <!-- table des menus -->
-              <!-- box-header --> 
+              <!-- box-header -->
+              <div id="table"> 
                <div class="box">
             <div class="box-header">
               <h3 class="box-title">Choisissez le(s) menu(s) à liéer</h3>
@@ -546,7 +580,7 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->    
-            
+        </div>   
               
 
                <!-- /.box-body -->
@@ -595,7 +629,7 @@ function invisible(txt){
 function choix() {
   var x = document.getElementById("select").selectedIndex;
   var y = document.getElementById("select").options;
-  var choix = y[x].text;
+  var choix = y[x].text;  
  
   switch(choix){
     case "text":
@@ -603,30 +637,35 @@ function choix() {
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("table").style.display ='block';
     break;
     case "carroussel":
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='block';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("table").style.display ='none';
     break;
     case "bulle":
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='block';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("table").style.display ='block';
     break;
-    case "sans":
+    case "sans":    
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='block';
+      document.getElementById("table").style.display ='block';
     break;
     default:
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='block';
+      document.getElementById("table").style.display ='block';
     break;   
   }  
     

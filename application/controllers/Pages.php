@@ -40,6 +40,11 @@ class Pages extends CI_Controller {
                 $data['text_item'] = $this->Sans_model->get_Sans($pagestab['id_pages']);
                 $page = 'text';  
         }
+        if($pagestab['type'] == 'carroussel'){
+                /*$this->load->model('Sans_model');
+                $data['text_item'] = $this->Sans_model->get_Sans($pagestab['id_pages']);*/
+                $page = 'carroussel';  
+        }
         
         if($page == 'arretes_municipaux'){
                 $this->load->model('ArretesMunicipaux_model');

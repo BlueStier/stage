@@ -50,7 +50,7 @@ function drop(ev) {
         <small>Gestion des menus et sous menus</small>
       </h2>
       <ol class="breadcrumb">
-        <li><a  href="#"><i class="fa fa-dashboard"></i> Apparence</a></li>
+        <li><i class="glyphicon glyphicon-th"></i> Apparence</li>
         <li class="active">Menus</li>
       </ol>      
     </section>
@@ -132,8 +132,8 @@ foreach($header_item as $key=>$header):
             <?php  echo validation_errors(); 
                   echo form_open('cms/updateMenu/1');?>
               <input type="hidden" name = 'menuUpdate' value='<?php echo $header['nom'] ?>'>
-              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button></form> 
-              <button type="button" class="marge btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $header['id_menu'] ?>"><i class="fa  fa-warning"></i> Supprimer</button>         
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button> 
+              <button type="button" class="marge btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $header['id_menu'] ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>         
             </div>
             <!-- /.box-body -->
           </div>
@@ -259,9 +259,10 @@ foreach($header_item as $header):
             <!-- /.box-header -->
             <div class="box-body">
             <?php  echo validation_errors(); 
-                  echo form_open('cms/updateMenu/2');?>      
-              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button></form>              
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
+                  echo form_open('cms/updateMenu/2');?>
+                  <input type="hidden" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>      
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>            
             </div>
             <!-- /.box-body -->
           </div>
@@ -320,8 +321,11 @@ foreach($tabNoClass as $c=>$tab):?>
             </div>
             <!-- /.box-header -->
             <div class="box-body">      
-              <button type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
+            <?php  echo validation_errors(); 
+                  echo form_open('cms/updateMenu/2');?>
+                  <input type="hidden" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>      
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>            
             </div>
             <!-- /.box-body -->
           </div>
@@ -450,41 +454,12 @@ foreach($header_item as $header):
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">            
-              <div class="row">
-              <?php //si l'ordre est different de 1 on affiche le bouton à gauche
-                if($k != 0) {?>
-              <div class="col-md-1">
-              <?php //récupération de l'id du 3eme niveau et appel de la fonction qui modifie l'ordre en moins 
-              echo validation_errors(); 
-                      echo form_open('cms/ordre/1/3');?>
-                      <input type="hidden" name="idmenu" value='<?php echo $tab['id_third'] ?>'/>
-              <button type="submit" class="btn btn-primary" href="#"><i class="fa fa-caret-square-o-left"></i></button>
-              </form>
-              </div><?php
-                }
-                ?>
-              <div class="col-md-4">
-              <a type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</a>
-              </div>
-              <div class="col-md-4">
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button>
-              </div>
-              <?php //si l'ordre est different de la taille du tabRecup2 on affiche le bouton à droite
-              if($k != $tailleSmenu2) {
-                ?>
-              <div class="col-md-1">
-              <?php //récupération de l'id du 3eme niveau et appel de la fonction qui modifie l'ordre en plus 
-              echo validation_errors(); 
-                      echo form_open('cms/ordre/0/3');?>
-                      <input type="hidden" name="idmenu" value='<?php echo $tab['id_third'] ?>'/>
-              <button type="submit" class="btn btn-primary" href="#"><i class="fa fa-caret-square-o-right"></i></button>
-              </form>
-              </div>
-              <?php
-                }
-              ?>
-              </div>              
+            <div class="box-body">         
+              <?php  echo validation_errors(); 
+                  echo form_open('cms/updateMenu/3');?>
+                  <input type="hidden" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>
+              <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>              
             </div>
             <!-- /.box-body -->
           </div>
@@ -547,9 +522,12 @@ foreach($third_item as $thi):
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
-            <div class="box-body">      
+            <div class="box-body">
+            <?php  echo validation_errors(); 
+                  echo form_open('cms/updateMenu/3');?>
+                  <input type="hidden" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>      
               <button type="button" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
-              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $thi['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button>            
+              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $thi['id_third']+125 ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>            
             </div>
             <!-- /.box-body -->
           </div>
@@ -571,7 +549,7 @@ foreach($third_item as $thi):
               <div class="modal-footer">
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
                 <?php echo validation_errors(); 
-                      echo form_open('cms/delete/2');?>
+                      echo form_open('cms/delete/3');?>
                       <input type="hidden" name="idmenu" value='<?php echo $thi['id_third'] ?>'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </form>

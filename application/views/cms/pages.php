@@ -7,7 +7,7 @@
         <small>Gestion des pages</small>
       </h2>
       <ol class="breadcrumb">
-        <li><a  href="#"><i class="fa fa-dashboard"></i> Apparence</a></li>
+        <li><i class="glyphicon glyphicon-th"></i> Apparence</li>
         <li class="active">Pages</li>
         <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createPages/"><i class="fa fa-plus"></i> Creer une nouvelle page</a></li>
       </ol>       
@@ -28,7 +28,7 @@ foreach($page_item as $page):
               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $page["id_pages"]?>" title="Supprimer"><i class="fa fa-trash"></i></button>              
               </div>
               <div class='col-md-4'>
-                <button type="button" class="btn btn-primary" title="Voir les liens vers les menus" data-widget="collapse"><i class="fa fa-link"></i>
+                <button type="button" class="btn btn-primary" title="Voir les liens vers les menus" onclick="unvisutable();" data-widget="collapse"><i class="fa fa-link"></i>
                 </button>
               </div>
               </div><br>             
@@ -72,7 +72,7 @@ foreach($page_item as $page):
               }
             endforeach;      
               ?>
-              <button type="button" class="btn btn-box-tool" onclick="visutable('<?php echo $page['nom'] ?>');" title="Lier"><i class="fa fa-link"></i></button>
+              <button type="button" class="btn btn-box-tool" onclick="visutable('<?php echo $page['nom'] ?>');" ondblclick="unvisutable();" title="Lier"><i class="fa fa-link"></i></button>
               Lier
             </div>
             <!-- /.box-body -->
@@ -237,5 +237,8 @@ function visutable(txt){
   document.getElementById('choice2').value = txt;
   document.getElementById('choice').innerHTML ='Choisissez le(s) menu(s) à liéer à la page : '+txt;
   document.getElementById("table").style.display ='block';
+}
+function unvisutable(){
+  document.getElementById("table").style.display ='none';
 }
 </script>
