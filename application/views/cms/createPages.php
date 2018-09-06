@@ -484,6 +484,23 @@
              
             </div>
                 </div>
+                 <!-- Div pour création d'un page sans type -->
+                 <div id="article">
+                 <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir une image pour l'article</label>
+                  <div class="col-sm-10">
+                  <input type="file" name="backgroundImg" id="exampleInputFile" value='Choisissez une image'>
+                </div>
+                </div>
+                <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
+          <br>          
+          <div class="col-sm-12 box-body pad">            
+                    <textarea id="editor" name="sup" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+                </div>
+                </div>
+               <!-- fin Div -->
                <!-- fin Div -->
                <!-- table des menus -->
               <!-- box-header -->

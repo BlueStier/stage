@@ -62,6 +62,7 @@ $route['seniors/(:any)'] = 'seniors/view/$1';
 $route['seniors'] = 'seniors';
 $route['cms/validatePage'] = 'cms/validatePage/';
 $route['cms/createPages'] = 'cms/createPages/';
+$route['cms/homePage'] = 'cms/homePage/';
 $route['cms/cutLink/(:any)'] = 'cms/cutLink/$1';
 $route['cms/updateLink'] = 'cms/updateLink';
 $route['cms/createMenu/(:any)'] = 'cms/createMenu/$1';

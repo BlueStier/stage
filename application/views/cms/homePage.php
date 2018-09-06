@@ -1,3 +1,4 @@
+<div class="content-wrapper">
 <?php
 $tab =[];
 foreach($home_item as $home):
@@ -72,3 +73,12 @@ $size = sizeof($tab);
   
     
  
+</div>
+<!-- /.content-wrapper -->
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 1
+    </div>
+    <strong>Copyright &copy; 2018-BlueStier</strong> All rights
+    reserved.
+  </footer>

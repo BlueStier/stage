@@ -37,13 +37,13 @@ class Pages extends CI_Controller {
         }
         if($pagestab['type'] == 'sans'){
                 $this->load->model('Sans_model');
-                $data['text_item'] = $this->Sans_model->get_Sans($pagestab['id_pages']);
+                $data['text_item'] = $this->Sans_model->get_sans($pagestab['id_pages']);
                 $page = 'text';  
         }
-        if($pagestab['type'] == 'carroussel'){
-                /*$this->load->model('Sans_model');
-                $data['text_item'] = $this->Sans_model->get_Sans($pagestab['id_pages']);*/
-                $page = 'carroussel';  
+        if($pagestab['type'] == 'home'){
+                $this->load->model('Home_model');
+                $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
+                $page = 'home';  
         }
         
         if($page == 'arretes_municipaux'){

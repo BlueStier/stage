@@ -26,7 +26,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Gestion du site</li>
-        <li class="active treeview">
+        <li class="active treeview menu-open">
           <a href="#">
             <i class="glyphicon glyphicon-th"></i> <span>Apparence </span>
             <span class="pull-right-container">
@@ -36,7 +36,8 @@
           <ul class="treeview-menu">
             <li class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
             <li><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o"></i> Menu rapide</a></li>
-            <li><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o"></i> Pages</a></li>
+            <li><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o"></i> Home page</a></li>
+            <li><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o"></i> Pages</a></li>
           </ul>
         </li>
         <li class="treeview">

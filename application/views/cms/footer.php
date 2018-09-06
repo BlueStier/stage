@@ -37,10 +37,7 @@
 <script src="<?php echo base_url();?>/assets/cms/bower_components/fastclick/lib/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="<?php echo base_url();?>/assets/cms/dist/js/adminlte.min.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url();?>/assets/cms/dist/js/pages/dashboard.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url();?>/assets/cms/dist/js/demo.js"></script>
+
 <script>
 //fonction de pagination et de recherche dans une table
   $(function () {

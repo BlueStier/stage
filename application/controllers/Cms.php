@@ -41,8 +41,16 @@ class Cms extends CI_Controller
             $this->load->view('cms/menuRapide',$data);
             $this->load->view('cms/footer');
             
+        }if($id == 3){
+            $this->load->model('Home_model');            
+            $data['home_item'] = $this->Home_model->get_home(1);
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu');
+            $this->load->view('cms/homePage',$data);
+            $this->load->view('cms/footer');
+            
         }
-        if($id == 3){
+        if($id == 4){
             $this->load->model('Pages_model');                      
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
