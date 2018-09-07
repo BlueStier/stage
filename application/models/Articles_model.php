@@ -56,8 +56,9 @@ class Articles_model extends CI_Model {
                                 $photo = 'assets/site/img/articles/'.$array['orig_name'];
                                 
                         }
-
-                        $données = [ 'photo'=>$photo,
+                        $this->db->set('jour','NOW()',false);
+                        $données = [ 'id_articlespage'=>54,
+                                     'photo'=> $photo,
                                      'text' => $this->input->post('text'),
                                     ]; 
                                     
