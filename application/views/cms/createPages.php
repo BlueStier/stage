@@ -41,6 +41,8 @@
                 <select id="select" onchange='choix();' name='selectType' class="form-control select2" >                
                 <?php foreach($type_item as $type):
                 $selected = strcmp($type['type'],'sans');
+                $eject = strcmp($type['type'],'home');
+                if($eject != 0){
                 if($selected == 0 ){
                   ?>
                   <option selected><?php echo $type['type']?></option>
@@ -49,6 +51,7 @@
                 ?>
                 <option><?php echo $type['type']?></option>
                 <?php }
+                }
                 endforeach;
                 ?>
                 </select>                
@@ -484,21 +487,14 @@
              
             </div>
                 </div>
-                 <!-- Div pour création d'un page sans type -->
+                 <!-- Div pour création d'un page d'articles -->
                  <div id="article">
-                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Choisir une image pour l'article</label>
-                  <div class="col-sm-10">
-                  <input type="file" name="backgroundImg" id="exampleInputFile" value='Choisissez une image'>
-                </div>
-                </div>
-                <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
-          <br>          
-          <div class="col-sm-12 box-body pad">            
-                    <textarea id="editor" name="sup" class="ckeditor" rows="10" cols="80">                                            
+                 <label class="center">Veuillez tapper votre texte (facultatif)</label>
+                  <div class="box-body pad">              
+                    <textarea id="editor" name="article" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>
-                    </div>
-                </div>
+             
+            </div>
                 </div>
                <!-- fin Div -->
                <!-- fin Div -->
@@ -633,6 +629,7 @@
 document.getElementById("text").style.display ='none';
 document.getElementById("carroussel").style.display ='none';
 document.getElementById("bulle").style.display ='none';
+document.getElementById("article").style.display ='none';
 document.getElementById("sans").style.display ='block';
 
 document.body.onload = invisible('txt');
@@ -654,6 +651,7 @@ function choix() {
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("article").style.display ='none';
       document.getElementById("table").style.display ='block';
     break;
     case "carroussel":
@@ -661,6 +659,7 @@ function choix() {
       document.getElementById("carroussel").style.display ='block';
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("article").style.display ='none';
       document.getElementById("table").style.display ='none';
     break;
     case "bulle":
@@ -668,19 +667,30 @@ function choix() {
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='block';
       document.getElementById("sans").style.display ='none';
+      document.getElementById("article").style.display ='none';
       document.getElementById("table").style.display ='block';
     break;
     case "sans":    
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
+      document.getElementById("article").style.display ='none';
       document.getElementById("sans").style.display ='block';
+      document.getElementById("table").style.display ='block';
+    break;
+    case "article":    
+      document.getElementById("text").style.display ='none';
+      document.getElementById("carroussel").style.display ='none';
+      document.getElementById("bulle").style.display ='none';
+      document.getElementById("sans").style.display ='none';
+      document.getElementById("article").style.display ='block';
       document.getElementById("table").style.display ='block';
     break;
     default:
       document.getElementById("text").style.display ='none';
       document.getElementById("carroussel").style.display ='none';
       document.getElementById("bulle").style.display ='none';
+      document.getElementById("article").style.display ='none';
       document.getElementById("sans").style.display ='block';
       document.getElementById("table").style.display ='block';
     break;   

@@ -45,6 +45,14 @@ class Pages extends CI_Controller {
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
                 $page = 'home';  
         }
+        if($pagestab['type'] == 'article'){
+                $this->load->model('Articles_model');
+                $recup = $this->Articles_model->get_article($pagestab['id_pages']);
+                $id = $recup[0]['id_articlespage'];
+                $data['intro']=$recup[0]['text'];
+                $data['article_item'] = $this->Articles_model->get_article_by_page($id);                
+                $page = 'article';  
+        }
         
         if($page == 'arretes_municipaux'){
                 $this->load->model('ArretesMunicipaux_model');

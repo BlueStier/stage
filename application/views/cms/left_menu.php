@@ -26,7 +26,7 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">Gestion du site</li>
-        <li class="active treeview menu-open">
+        <li id='a1' class="active treeview menu-open">
           <a href="#">
             <i class="glyphicon glyphicon-th"></i> <span>Apparence </span>
             <span class="pull-right-container">
@@ -34,13 +34,13 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
-            <li><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o"></i> Menu rapide</a></li>
-            <li><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o"></i> Home page</a></li>
-            <li><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o"></i> Pages</a></li>
+            <li id='1'class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
+            <li id='2'><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o"></i> Menu rapide</a></li>
+            <li id='3'><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o"></i> Home page</a></li>
+            <li id='4'><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o"></i> Pages</a></li>
           </ul>
         </li>
-        <li class="treeview">
+        <li id='a2' class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
             <span>Gestions des Articles</span>
@@ -49,7 +49,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Créer un article</a></li>
+            <li id='5'><a href="<?php echo base_url()?>cms/5"><i class="fa fa-circle-o"></i> Créer un article</a></li>
             <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
             <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Gérer la visibilité</a></li>
             <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Gérer les commentaires</a></li>
@@ -108,7 +108,7 @@
           </ul>
         </li>
         <li class="header">Gestion des utilisateurs</li>
-        <li class="active treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Utilisateurs </span>
             <span class="pull-right-container">
@@ -136,3 +136,16 @@
     </section>
     <!-- /.sidebar -->
   </aside>
+  <script>
+  window.onload = active(<?php echo $nb;?>);
+  function active(nb){
+    for(var i=1;i<6;i++){
+      document.getElementById(i).className = '';
+    }
+    if(nb>4){
+      document.getElementById('a1').className = 'treeview';
+      document.getElementById('a2').className = 'active treeview menu-open';
+    }
+    document.getElementById(nb).className = 'active';
+  }
+  </script>

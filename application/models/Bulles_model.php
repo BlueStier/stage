@@ -20,8 +20,7 @@ class Bulles_model extends CI_Model {
         return $query->result_array();
 }
         public function create($id_pages){
-                //définition des paramètres de config pour la récupèration des photosd
-                $config1['upload_path']= "./assets/site/img/about/";
+                //définition des paramètres de config pour la récupèration des photos
                 $this->upload->set_upload_path("./assets/site/img/about/");    
 
                 //tableau de récupération de path photo pour l'injection en bdd
@@ -52,7 +51,7 @@ class Bulles_model extends CI_Model {
                 }
                 
                               
-                $données =array('id_pages'=>$id_pages, 
+                $données = ['id_pages'=>$id_pages, 
                                 'titre'=>$this->input->post('titrebulle'),
                                 'soustitre'=>$this->input->post('soustitrebulle'),
                                 'tx1'=>$this->input->post('tx1'),
@@ -74,7 +73,7 @@ class Bulles_model extends CI_Model {
                                 'tx10'=>$this->input->post('tx10'),
                                 'photo10' =>$photo[10],
                                 'sup'=> $this->input->post('sup')
-                        );
+                                ];
                                
                 $this->db->insert('bulle',$données);
 

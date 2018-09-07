@@ -15,7 +15,10 @@
     <div class="row">
     <?php
 //pour chaque page de la bdd
-foreach($page_item as $page):      
+foreach($page_item as $page):
+  //on n'affiche pas la page home
+  $eject = strcmp($page['type'],'home');
+  if($eject != 0){      
 ?>
     <div class="col-md-3">
           <div class="box box-default collapsed-box box-solid">
@@ -96,7 +99,7 @@ foreach($page_item as $page):
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
                 <?php echo validation_errors(); 
                       echo form_open('cms/deletePage/');?>
-                      <input type="hidden" name="id_pages" value='<?php echo $page['id_pages'] ?>'/>
+                      <input type="hidden" name="id_pages" value='<?php echo $page["id_pages"] ?>'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </form>
               </div>
@@ -106,7 +109,7 @@ foreach($page_item as $page):
           <!-- /.modal-dialog -->        
           </div>  
         
-        <?php
+          <?php }
     endforeach;
     ?> 
     </div>

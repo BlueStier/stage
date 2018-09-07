@@ -24,41 +24,58 @@ class Cms extends CI_Controller
     //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
-        if($id == 1){                        
+        if($id == 1){
+            $data['nb'] = 1;                                   
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
             $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/menu',$data);
             $this->load->view('cms/footer');
             
         } if($id == 2){
+            $data['nb'] = 2;
             $this->load->model('Rapide_model');            
             $data['rapide_item'] = $this->Rapide_model->get_rapide();
             $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/menuRapide',$data);
             $this->load->view('cms/footer');
             
         }if($id == 3){
+            $data['nb'] = 3;
             $this->load->model('Home_model');            
             $data['home_item'] = $this->Home_model->get_home(1);
             $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/homePage',$data);
             $this->load->view('cms/footer');
             
         }
         if($id == 4){
+            $data['nb'] = 4;
             $this->load->model('Pages_model');                      
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();            
             $data['page_item'] = $this->Pages_model->get_page();            
             $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/pages',$data);
+            $this->load->view('cms/footer');
+            
+        }
+        if($id == 5){
+            $data['nb'] = 5;
+            $this->load->model('Pages_model');                      
+            $data['header_item'] = $this->Header_model->get_menu();
+            $data['sub_item'] = $this->Header_model->get_sousmenu();
+            $data['third_item'] = $this->Header_model->get_thirdmenu();            
+            $data['page_item'] = $this->Pages_model->get_page();            
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/createArticle',$data);
             $this->load->view('cms/footer');
             
         }
@@ -263,6 +280,11 @@ class Cms extends CI_Controller
                     $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Bulles_model->create($id_pages);
+                case "article":
+                    $this->load->model('Articles_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Articles_model->create($id_pages);    
                 break;
             }
 
@@ -285,7 +307,7 @@ class Cms extends CI_Controller
                 $this->Header_model->updateMenuByPage($array3Menu,3); 
             }            
                         
-            header('Location:'.base_url().'cms/3');
+            header('Location:'.base_url().'cms/4');
     }      
        
     }
@@ -293,6 +315,7 @@ class Cms extends CI_Controller
     //fonction de suppression de pages
     public function deletePage()
 {       
+        $this->load->model('Pages_model'); 
         $this->form_validation->set_rules('id_pages', 'Nom du menu', 'required');
         $this->Pages_model->delete();      
         header('Location:'.base_url().'cms/3');       
@@ -303,7 +326,7 @@ class Cms extends CI_Controller
         $this->load->model('Pages_model');       
         $this->form_validation->set_rules('cut', 'Lien à couper', 'required');
         $this->Header_model->cutLink($type);      
-        header('Location:'.base_url().'cms/3');       
+        header('Location:'.base_url().'cms/4');       
 }
 
     public function updateLink(){       
@@ -326,6 +349,19 @@ class Cms extends CI_Controller
             $this->Header_model->updateMenuByPage($array3Menu,3); 
         }            
                     
-        header('Location:'.base_url().'cms/3');
+        header('Location:'.base_url().'cms/4');
+    }
+
+    public function validateArticle(){
+         //on définie les critères obligatoires  
+         $this->form_validation->set_rules('titreArticle', "'Titre de l'article'", 'required');
+         
+         if($this->form_validation->run()==FALSE)
+         {
+             Cms::view(5);
+         }else{
+         $this->load->model('Articles_model');
+         $this->Articles_model->createArticle();
+         header('Location:'.base_url().'cms/4');}
     }
 }
