@@ -30,11 +30,10 @@ img {
           <article>         
           <div class="img-txt">                     
               <img class="impression"alt="Paris"
-                   id="<?php echo $article['id_articles'] ?>"
-                   src="<?php echo base_url().$article['photo']?>"/>                   
+                    src="<?php echo base_url().$article['photo']?>"/>                   
                    <div class='titre'>  
               <h4 class="center"><?php echo $article['titre']?></h4>
-              <?php echo date('L',mktime($article['jour']))?></div>
+              <?php echo $article['jour']?></div>
               <br>
               <br>
               <br>

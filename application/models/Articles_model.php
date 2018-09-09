@@ -5,6 +5,7 @@ class Articles_model extends CI_Model {
         public function __construct()
         {
                 $this->load->database();
+                
         }
 
         //méthode qui extrait les données de la table acceuil
@@ -28,7 +29,7 @@ class Articles_model extends CI_Model {
 
         }
 
-        public function createArticle(){
+        public function createArticle($id){
             //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
             $config['upload_path']= "./assets/site/img/articles/";
             $config['allowed_types'] = 'gif|jpg|png';
@@ -38,9 +39,7 @@ class Articles_model extends CI_Model {
 
             //upload la photo vers le serveur
             $this->load->library('upload', $config);
-            //définition des paramètres de config pour la récupèration des photos
-            //$this->upload->set_upload_path("./assets/site/img/about/");
-            
+                       
             //upload la photo 
             if(! $this->upload->do_upload('article'))
                         {
@@ -57,7 +56,7 @@ class Articles_model extends CI_Model {
                                 
                         }
                         $this->db->set('jour','NOW()',false);
-                        $données = [ 'id_articlespage'=>54,
+                        $données = [ 'id_articlespage'=> $id,
                                      'photo'=> $photo,
                                      'text' => $this->input->post('text'),
                                     ]; 
@@ -69,14 +68,24 @@ class Articles_model extends CI_Model {
 
         public function get_article_by_page($id = FALSE)
         {
+                $this->load->helper('date');
                 if ($id === FALSE)
                 {
                         $query = $this->db->get('articles');
                         return $query->result_array();
                 }
-        
+                /*on met les date en français et on fait la requete en formattant la date pour avoir
+                jour mois année on organise les résultats pour que les arrticles s'affiche du plus récent au plus vieux
+                en prenant que les articles des 3derniers mois
+                */
+                $this->db->set('jour','NOW()',false);
+                $this->db->query("SET lc_time_names = 'fr_FR'");                
+                $this->db->select('date_format(jour,"%W %d %M %Y") as jour,photo,titre,text');                         
+                $this->db->order_by('jour','desc');
+                $this->db->where('jour > DATE_SUB(NOW(), INTERVAL 3 MONTH)');
                 $query = $this->db->get_where('articles', array('id_articlespage' => $id));
-                return $query->result_array();
+                $result = $query->result_array();                            
+                return $result;
         }
 
 }

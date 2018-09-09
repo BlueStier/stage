@@ -32,6 +32,41 @@
                  value='Choisissez une image'>
           </div>
         </div>
+         <!-- Choix de la page à lier -->               
+    <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez à quelle page lier cet article :</label>
+                <div class="col-sm-10">
+                <select  name='selectArt' class="form-control select2" >
+                <?php foreach($page_item as $p):
+                  $verif = strcmp($p['type'],'article'); 
+                  if($verif == 0){?>
+                <option><?php echo $p['nom']?></option>
+                  <?php }
+                  endforeach; ?>
+                </select>                
+                </div>                
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Souhaitez vous creer un alerte ?</label>
+                <div class="col-sm-5">
+                <input type="radio" name='test' onClick='visible(false);' checked>Non     
+                </div>
+                <div class="col-sm-5">
+                <input type="radio" name='test' onClick='visible(true);'>Oui     
+                </div>                                
+                </div>
+                <div id="periode" class="form-group">
+                <label class="col-sm-2 control-label">Choisissez une périodicité :</label>
+                <div class="col-sm-10">
+                <select  name='selectPeriode' class="form-control select2" >
+                <option>Tous les 3 mois</option>
+                <option>Tous les 6 mois</option>
+                <option>Tous les ans</option>
+                <option>Tous les 18 mois</option>
+                <option>Tous les 2 ans</option>
+                </select>                
+                </div>                
+                </div>
       </div>
     </div>
     <div class="box-body pad">
@@ -41,6 +76,7 @@
            name="text"
            rows="10"></textarea>
     </div>
+   
     <div class="box-footer">
       <a class="btn btn-default"
            href="<?php echo base_url()?>/cms/1">Annuler</a> <button class="btn btn-info pull-right"
@@ -59,3 +95,10 @@
   <div class="control-sidebar-bg"></div>
 </body>
 </html>
+<script>
+document.getElementById('periode').style.display='none';
+
+function visible($choix){
+  ($choix ? document.getElementById('periode').style.display='block' : document.getElementById('periode').style.display='none'); 
+}
+</script>

@@ -360,8 +360,11 @@ class Cms extends CI_Controller
          {
              Cms::view(5);
          }else{
+         $this->load->model('Pages_model');
+         $nom = $this->input->post('selectArt');
+         $id = $this->Pages_model->get_idpage($nom);
          $this->load->model('Articles_model');
-         $this->Articles_model->createArticle();
+         $this->Articles_model->createArticle($id);
          header('Location:'.base_url().'cms/4');}
     }
 }
