@@ -137,8 +137,8 @@
           </li>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-bell-o"></i>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Alertes">
+              <i class="fa fa-bell-o" ></i>
               <span class="label label-warning">10</span>
             </a>
             <ul class="dropdown-menu">

@@ -28,31 +28,31 @@
         <li class="header">Gestion du site</li>
         <li id='a1' class="active treeview menu-open">
           <a href="#">
-            <i class="glyphicon glyphicon-th"></i> <span>Apparence </span>
+            <i class="glyphicon glyphicon-th text-red"></i> <span>Apparence </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='1'class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o"></i> Menus</a></li>
-            <li id='2'><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o"></i> Menu rapide</a></li>
-            <li id='3'><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o"></i> Home page</a></li>
-            <li id='4'><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o"></i> Pages</a></li>
+            <li id='1'class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o text-red"></i> Menus</a></li>
+            <li id='2'><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o text-red"></i> Menu rapide</a></li>
+            <li id='3'><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o text-red"></i> Home page</a></li>
+            <li id='4'><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o text-red"></i> Pages</a></li>
           </ul>
         </li>
         <li id='a2' class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
+            <i class="fa fa-newspaper-o text-yellow"></i>
             <span>Gestions des Articles</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='5'><a href="<?php echo base_url()?>cms/5"><i class="fa fa-circle-o"></i> Créer un article</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Gérer la visibilité</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Gérer les commentaires</a></li>
+            <li id='5' ><a href="<?php echo base_url()?>cms/5"><i class="fa fa-circle-o text-yellow"></i> Créer un article</a></li>
+            <li id='6'><a href="<?php echo base_url()?>cms/6"><i class="fa fa-circle-o text-yellow"></i> Voir tous</a></li>
+            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o text-yellow"></i> Gérer la visibilité</a></li>
+            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o text-yellow"></i> Gérer les commentaires</a></li>
          </ul>
         </li>
         <li class="treeview">

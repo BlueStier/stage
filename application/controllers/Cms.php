@@ -79,6 +79,24 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
             
         }
+        if($id == 6){
+            $data['nb'] = 6;
+            $this->load->model('Pages_model');
+            $this->load->model('Articles_model');                       
+            $data['header_item'] = $this->Header_model->get_menu();
+            $data['sub_item'] = $this->Header_model->get_sousmenu();
+            $data['third_item'] = $this->Header_model->get_thirdmenu();            
+            $data['page_item'] = $this->Pages_model->get_page_by_type('article');
+            foreach($data['page_item'] as $p):
+                $data['past_item'] = $this->Articles_model->get_article_by_page($p['id_pages'],TRUE);
+                $data['current_item'] = $this->Articles_model->get_article_by_page($p['id_pages'],FALSE);
+            endforeach;                       
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/articles',$data);
+            $this->load->view('cms/footer');
+            
+        }
     }
 
     //appel la fonction du model de suppression 
@@ -316,7 +334,7 @@ class Cms extends CI_Controller
     public function deletePage()
 {       
         $this->load->model('Pages_model'); 
-        $this->form_validation->set_rules('id_pages', 'Nom du menu', 'required');
+        $this->form_validation->set_rules('id_pages', 'id de la page', 'required');
         $this->Pages_model->delete();      
         header('Location:'.base_url().'cms/3');       
 }
@@ -366,5 +384,21 @@ class Cms extends CI_Controller
          $this->load->model('Articles_model');
          $this->Articles_model->createArticle($id);
          header('Location:'.base_url().'cms/4');}
+    }
+
+    public function deleteArticle(){
+        $this->load->model('Articles_model');
+        $this->form_validation->set_rules('id_pages', 'id de l article', 'required');
+        $this->Articles_model->delete();      
+        header('Location:'.base_url().'cms/6');
+    }
+
+    //fonction pour creer une alerte sur un article déjà exisant
+    public function configAlert(){        
+        $this->load->model('Articles_model');
+        $this->form_validation->set_rules('id_pages', 'id de l article', 'required');       
+        $this->Articles_model->configAlert();             
+        header('Location:'.base_url().'cms/6');
+    
     }
 }

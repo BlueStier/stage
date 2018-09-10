@@ -7,8 +7,8 @@
         <small>Gestion des pages</small>
       </h2>
       <ol class="breadcrumb">
-        <li><i class="glyphicon glyphicon-th"></i> Apparence</li>
-        <li class="active">Pages</li>
+        <li><i class="glyphicon glyphicon-th text-red"></i> Apparence</li>
+        <li class="active ">Pages</li>
         <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createPages/"><i class="fa fa-plus"></i> Creer une nouvelle page</a></li>
       </ol>       
     </section>
@@ -82,7 +82,7 @@ foreach($page_item as $page):
           </div>
           <!-- /.box -->
         </div>        
-         <!-- Modal pour la suppression d'un sousmenu -->
+         <!-- Modal pour la suppression d'une page -->
          <div class="modal modal-danger fade" id="modal-danger<?php echo $page["id_pages"]?>">
           <div class="modal-dialog">
             <div class="modal-content">

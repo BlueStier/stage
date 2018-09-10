@@ -24,6 +24,12 @@ class Pages_model extends CI_Model {
         $result = $this->db->get_where('pages', array('nom' => $id))->result_array();
         return $result[0]['id_pages'];
 }
+
+        public function get_page_by_type($id)
+{
+        $result = $this->db->get_where('pages', array('type' => $id))->result_array();
+        return $result;
+}
         
 
         public function get_type(){

@@ -49,21 +49,22 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Souhaitez vous creer un alerte ?</label>
                 <div class="col-sm-5">
-                <input type="radio" name='test' onClick='visible(false);' checked>Non     
+                <input type="radio" name='radio' onClick='visible(false);' value="Non" checked>Non     
                 </div>
                 <div class="col-sm-5">
-                <input type="radio" name='test' onClick='visible(true);'>Oui     
+                <input type="radio" name='radio' onClick='visible(true);' value="Oui">Oui     
                 </div>                                
                 </div>
+           
                 <div id="periode" class="form-group">
                 <label class="col-sm-2 control-label">Choisissez une périodicité :</label>
                 <div class="col-sm-10">
                 <select  name='selectPeriode' class="form-control select2" >
-                <option>Tous les 3 mois</option>
-                <option>Tous les 6 mois</option>
-                <option>Tous les ans</option>
-                <option>Tous les 18 mois</option>
-                <option>Tous les 2 ans</option>
+                <option value='1'>Tous les 3 mois</option>
+                <option value='2'>Tous les 6 mois</option>
+                <option value='3'>Tous les ans</option>
+                <option value='4'>Tous les 18 mois</option>
+                <option value='5'>Tous les 2 ans</option>
                 </select>                
                 </div>                
                 </div>
@@ -102,3 +103,4 @@ function visible($choix){
   ($choix ? document.getElementById('periode').style.display='block' : document.getElementById('periode').style.display='none'); 
 }
 </script>
+

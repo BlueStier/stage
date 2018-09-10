@@ -26,7 +26,8 @@ img {
  </div>    
      
           <?php    
-                        foreach($article_item as $article): ?>                        
+                        foreach($article_item as $article): 
+                        if($article['visible']){?>                        
           <article>         
           <div class="img-txt">                     
               <img class="impression"alt="Paris"
@@ -44,7 +45,9 @@ img {
           </article>
           <br>
           
-                    <?php endforeach; ?>
+                    <?php
+                  } 
+                  endforeach; ?>
           <br>
           </div>
         </div>

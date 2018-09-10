@@ -23,7 +23,8 @@
 <!-- daterangepicker -->
 <script src="<?php echo base_url();?>/assets/cms/bower_components/moment/min/moment.min.js"></script>
 <script src="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- datepicker -->
+<!-- bootstrap datepicker -->
+<script src="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 <!-- DataTables -->
 <script src="<?php echo base_url();?>/assets/cms/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo base_url();?>/assets/cms/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
