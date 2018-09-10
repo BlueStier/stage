@@ -24,17 +24,34 @@
       foreach($current_item as $k=>$c):
         if($c['id_articlespage'] == $p['id_pages']){
             ?>
-        <div class="col-md-3">
+        <div class="col-md-4">
           <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
               <div class="row justify-content-md-center">
-              <div class='col-md-4'>              
+              <div class='col-md-3'>              
               <button type="submit" class="btn btn-success" title="Modifier"><i class="fa fa-pencil"></i></button>
               </div> 
-              <div class='col-md-4'>            
+              <div class='col-md-3'>            
               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $c["id_articles"]?>" title="Supprimer"><i class="fa fa-trash"></i></button>              
+              </div>              
+              <div class='col-md-3'>
+              <?php if($c['visible']){
+                echo validation_errors(); 
+                echo form_open('cms/visibleOrNot/4');
+              ?>
+              <input type="hidden" name="id_articles" value='<?php echo $c['id_articles'] ?>'/>
+                <button type="button" class="btn btn-warning" title="Voir les alertes"  data-widget="collapse"><i class="fa fa-eye"></i>
+                </button></form>
+              <?php } else { 
+                echo validation_errors(); 
+                echo form_open('cms/visibleOrNot/4');
+              ?>
+              <input type="hidden" name="id_articles" value='<?php echo $c['id_articles'] ?>'/>
+                <button type="button" class="btn btn-warning" title="Voir les alertes"  data-widget="collapse"><i class="fa fa-eye-slash"></i>
+                </button></form>
+              <?php } ?>
               </div>
-              <div class='col-md-4'>
+              <div class='col-md-3'>              
                 <button type="button" class="btn btn-primary" title="Voir les alertes"  data-widget="collapse"><i class="fa fa-bell-o"></i>
                 </button>
               </div>
@@ -45,11 +62,17 @@
             <!-- /.box-header -->
             <div class="box-body">
             <?php if( $c['alerte'] != NULL){
-                echo "alerte";
-            }else{ ?>
+                      echo validation_errors(); 
+                      echo form_open('cms/supAlert/'.$c['id_articles']);?>
+              <input type="hidden" name="cut" value='<?php echo $c['id_articles'] ?>'/>                 
+              <button type="submit" class="btn btn-box-tool" title="Couper l'alerte"><i class="fa fa-bell-slash-o"></i></button>
+              <?php echo "Alerte prévue le : ".$c['alerte'];"<br></form>"; 
+             }else{ ?>
             Pas d'alerte sur cet article<br>
             <button onClick='visuselect(<?php echo $k; ?>);' class="btn btn-box-tool" title="Creer une alerte à partir de la date"><i class="fa fa-bell-o"></i>Créer un alerte</button>
-            <div id="periode<?php echo $k; ?>">            
+            <?php echo validation_errors(); 
+                      echo form_open('cms/configAlert/'.$c['id_articles']);?>
+                      <div id="periode<?php echo $k; ?>">            
             <div class="form-group">               
                 <select  name='selectPeriode1' class="form-control select2" >
                 <option value='1'>Dans 3 mois</option>
@@ -60,9 +83,7 @@
                 </select>                
                 </div>                
                 <div class='row justify-content-md-center' >
-                <div class="col-lg-1"></div>
-                <?php echo validation_errors(); 
-                      echo form_open('cms/configAlert/');?>
+                <div class="col-lg-1"></div>                
                       <input type="hidden" name="id_articles" value='<?php echo $c["id_articles"] ?>'/>
                 <input type="submit" class="col-lg-4 btn btn-primary" value="Confirmer"/>
                 </form>
@@ -138,19 +159,14 @@ var taille = <?php echo $taille ?>;
 window.onload = all_invisible();
 
 function all_invisible(){
-for(nb = 0; nb < taille; nb++){
+for(nb = 0; nb <= taille; nb++){
 document.getElementById('periode'+nb).style.display='none';}
 }
- var bool = true;
+ //var bool = true;
 function visuselect(nb){    
-    if(bool){
+    //if(bool){
     document.getElementById('periode'+nb).style.display='block';
-    bool = false;
-    }
-    else{        
-        document.getElementById('periode'+nb).style.display='none';        
-        bool = true;
-           
-    }
+    //bool = false;
+   
 }
 </script>

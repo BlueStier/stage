@@ -112,7 +112,8 @@ class Articles_model extends CI_Model {
                 */
                 $this->db->set('jour','NOW()',false);
                 $this->db->query("SET lc_time_names = 'fr_FR'");                
-                $this->db->select('date_format(jour,"%W %d %M %Y") as jour,photo,titre,text,visible,id_articlespage,alerte,id_articles');                         
+                $this->db->select('date_format(jour,"%W %d %M %Y") as jour,photo,titre,text,visible,
+                                  date_format(alerte,"%W %d %M %Y") as alerte,id_articlespage,id_articles');                         
                 $this->db->order_by('jour','desc');
                 if($past){
                         $this->db->where('jour < DATE_SUB(NOW(), INTERVAL 3 MONTH)');    
@@ -131,9 +132,10 @@ class Articles_model extends CI_Model {
 
        }
 
-       public function configAlert(){
+       //fonction de programmation d'alerte
+       public function configAlert($i){
               //récupération de l'id de l'article à sup et suppression
-              $id = $this->input->post('id_articles');                            
+              $id = $this->input->post('id_articles'.$i);                            
               //on set le jour d'alerte en fonction de la période choisie
               $response = $this->input->post("selectPeriode1");
                      switch($response){
@@ -156,8 +158,26 @@ class Articles_model extends CI_Model {
                             $nb = 0;
                             break;               
                      }               
-                $str='UPDATE articles set jour=NOW(), alerte= DATE_ADD(NOW(), INTERVAL' .$nb.'MONTH) where id_articles='.$id;
+                $str='UPDATE articles set jour=NOW(), alerte= DATE_ADD(NOW(), INTERVAL ' .$nb.' MONTH) where id_articles='.$i;
                 $this->db->query($str);    
-       }        
+       }
+       
+       //fonction de suppression d'alerte
+    public function supAlert($id){
+        $alert = $this->db->get_where('articles',array('id_articles'=>$id))->result_array();
+        $alert[0]['alerte'] = NULL;
+        $this->db->replace('articles',$alert[0]);
+        
+    }
+
+    //fonction pour rendre visible ou non l'article
+    public function visibleOrNot($id){
+            //passe l'id en paramètre et récupère les infos de la bdd 
+            $result = $this->db->get_where('articles', array('id_articles' => $id))->result_array();
+            //petit ternaire qui va bien pour changer visible ou non
+            $result[0]['visible'] = ($result[0]['visible']) ? false : true;
+            //réinjection en bdd du changement
+            $this->db->replace('articles',$result[0]);
+    }
 
 }

@@ -102,25 +102,30 @@ class Cms extends CI_Controller
     //appel la fonction du model de suppression 
     public function delete($i)
     {
-        $this->form_validation->set_rules('idmenu', 'Nom du menu', 'required');
         $this->Header_model->delete_menu($i);      
-        header('Location:'.base_url().'index.php/cms/1');       
+        header('Location:'.base_url().'cms/1');       
     }
     
     //appel la fonction du model gerant l'ordre
     public function ordre($sens, $id)
     {        
-        $this->form_validation->set_rules('idmenu', 'Nom du menu', 'required');
         $this->Header_model->upOrDown($sens, $id);      
-        header('Location:'.base_url().'index.php/cms/1');       
+        header('Location:'.base_url().'cms/1');       
     }
 
     //appel la fonction du model gerant la visibilité
     public function visibleOrNot($type)
-    {      
-        $this->form_validation->set_rules('idmenu', 'Nom du menu', 'required');
-        $this->Header_model->visibleOrNot($type);      
-        header('Location:'.base_url().'index.php/cms/1');       
+    {   
+        if($type < 4){   
+            $this->Header_model->visibleOrNot($type);      
+            header('Location:'.base_url().'cms/1');
+        }
+        if($type == 4){
+            $this->load->model('Articles_model');
+            $id = $this->input->post('id_articles');
+            $this->Articles_model->visibleOrNot($id);      
+            header('Location:'.base_url().'cms/6');   
+        }       
     }
 
     //appel la fonction du model gerant le drag'n'drop
@@ -394,11 +399,18 @@ class Cms extends CI_Controller
     }
 
     //fonction pour creer une alerte sur un article déjà exisant
-    public function configAlert(){        
-        $this->load->model('Articles_model');
-        $this->form_validation->set_rules('id_pages', 'id de l article', 'required');       
-        $this->Articles_model->configAlert();             
+    public function configAlert($id){        
+        $this->load->model('Articles_model');    
+        $this->Articles_model->configAlert($id);             
         header('Location:'.base_url().'cms/6');
     
+    }
+
+    //fonction de suppression d'alerte
+    public function supAlert($id){
+       
+        $this->load->model('Articles_model');   
+        $this->Articles_model->supAlert($id);             
+        header('Location:'.base_url().'cms/6');
     }
 }
