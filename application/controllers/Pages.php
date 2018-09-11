@@ -47,7 +47,7 @@ class Pages extends CI_Controller {
         }
         if($pagestab['type'] == 'article'){
                 $this->load->model('Articles_model');
-                $recup = $this->Articles_model->get_article($pagestab['id_pages']);
+                $recup = $this->Articles_model->get_article($pagestab['id_pages'],TRUE);
                 $id = $recup[0]['id_articlespage'];
                 $data['intro']=$recup[0]['text'];
                 $data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);                

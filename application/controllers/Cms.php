@@ -87,10 +87,8 @@ class Cms extends CI_Controller
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();            
             $data['page_item'] = $this->Pages_model->get_page_by_type('article');
-            foreach($data['page_item'] as $p):
-                $data['past_item'] = $this->Articles_model->get_article_by_page($p['id_pages'],TRUE);
-                $data['current_item'] = $this->Articles_model->get_article_by_page($p['id_pages'],FALSE);
-            endforeach;                       
+            $data['past_item'] = $this->Articles_model->get_article_by_page(FALSE,TRUE);
+            $data['current_item'] = $this->Articles_model->get_article_by_page(FALSE,FALSE);                                 
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/articles',$data);
@@ -382,13 +380,15 @@ class Cms extends CI_Controller
          if($this->form_validation->run()==FALSE)
          {
              Cms::view(5);
-         }else{
-         $this->load->model('Pages_model');
-         $nom = $this->input->post('selectArt');
-         $id = $this->Pages_model->get_idpage($nom);
-         $this->load->model('Articles_model');
-         $this->Articles_model->createArticle($id);
-         header('Location:'.base_url().'cms/4');}
+         }else{           
+         
+                $this->load->model('Pages_model');        
+                $this->load->model('Articles_model');
+                $nom = $this->input->post('selectArt');
+                $id = $this->Pages_model->get_idpage($nom);
+                $this->Articles_model->createArticle($id);
+                header('Location:'.base_url().'cms/6');
+              }
     }
 
     public function deleteArticle(){
@@ -412,5 +412,29 @@ class Cms extends CI_Controller
         $this->load->model('Articles_model');   
         $this->Articles_model->supAlert($id);             
         header('Location:'.base_url().'cms/6');
+    }
+
+    //appel la page de mise à jour d'un article
+    public function updateArticle($id){
+        $this->load->model('Articles_model');
+        $this->load->model('Pages_model');
+        $data['nb'] = 6;                              
+        $data['page_item'] = $this->Pages_model->get_page(); 
+        $data['Article_item'] = $this->Articles_model->get_article($id,FALSE);         
+        $this->load->view('cms/header');
+        $this->load->view('cms/left_menu',$data);
+        $this->load->view('cms/updateArticle',$data);
+        $this->load->view('cms/footer'); 
+    }
+
+    //valide la maj d'un article
+    public function validUpArticle(){
+                
+                $this->load->model('Pages_model');        
+                $this->load->model('Articles_model');
+                $nom = $this->input->post('selectArt2');
+                $id = $this->Pages_model->get_idpage($nom);                
+                $this->Articles_model->updateArticle($id);
+                header('Location:'.base_url().'cms/6');
     }
 }

@@ -50,9 +50,7 @@
           </a>
           <ul class="treeview-menu">
             <li id='5' ><a href="<?php echo base_url()?>cms/5"><i class="fa fa-circle-o text-yellow"></i> Créer un article</a></li>
-            <li id='6'><a href="<?php echo base_url()?>cms/6"><i class="fa fa-circle-o text-yellow"></i> Voir tous</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o text-yellow"></i> Gérer la visibilité</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o text-yellow"></i> Gérer les commentaires</a></li>
+            <li id='6'><a href="<?php echo base_url()?>cms/6"><i class="fa fa-circle-o text-yellow"></i> Voir tous</a></li>            
          </ul>
         </li>
         <li class="treeview">

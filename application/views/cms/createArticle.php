@@ -14,7 +14,7 @@
       <div class="box-body">
         <?php if(isset($error)){echo $error['error'];};
                              echo validation_errors();
-                                  echo form_open_multipart('cms/validateArticle');?>
+                                  echo form_open_multipart('cms/validateArticle/0');?>
         <div class="form-group">
           <label class="col-sm-2 control-label">Titre de l'article</label>
           <div class="col-sm-10">
@@ -57,14 +57,14 @@
                 </div>
            
                 <div id="periode" class="form-group">
-                <label class="col-sm-2 control-label">Choisissez une périodicité :</label>
+                <label class="col-sm-2 control-label">Choisissez le délai :</label>
                 <div class="col-sm-10">
                 <select  name='selectPeriode' class="form-control select2" >
-                <option value='1'>Tous les 3 mois</option>
-                <option value='2'>Tous les 6 mois</option>
-                <option value='3'>Tous les ans</option>
-                <option value='4'>Tous les 18 mois</option>
-                <option value='5'>Tous les 2 ans</option>
+                <option value='1'>Dans 3 mois</option>
+                <option value='2'>Dans 6 mois</option>
+                <option value='3'>Dans 1 ans</option>
+                <option value='4'>Dans 18 mois</option>
+                <option value='5'>Dans 2 ans</option>
                 </select>                
                 </div>                
                 </div>
