@@ -56,7 +56,7 @@ endforeach;
           <label class="col-sm-2 control-label">Choisir une autre image</label>
           <div class="col-sm-10">
             <input id="exampleInputFile"
-                 name="article2"
+                 name="back2"
                  type="file"
                  value='Choisissez une image'>
           </div>
@@ -286,7 +286,7 @@ endforeach;
                 <tbody>
                 <tr>                
                 <?php foreach($header_item as $header): ?>
-                <td><input type='checkbox' name="menu[]" value="<?php /* affiche le nom du menu */ echo $header['nom'] ?>"
+                <td><input type='checkbox' name="menu2[]" value="<?php /* affiche le nom du menu */ echo $header['nom'] ?>"
                 <?php /* si menu lier à cette page on check */ if($header['path'] == $path){ echo "checked";} ?>>
                 <?php /* affiche le nom du menu */ echo "  ".$header['nom'] ?></td>
               <?php endforeach; ?>                                  
@@ -315,7 +315,7 @@ endforeach;
                                    
                     if($k == $b){
                 ?>                
-                <td><input type='checkbox' name="sousmenu[]" value="<?php /* affiche le nom du sous-menu */ echo $sub['nom'] ?>"
+                <td><input type='checkbox' name="sousmenu2[]" value="<?php /* affiche le nom du sous-menu */ echo $sub['nom'] ?>"
                 <?php /* si menu lier à cette page on check */ if($sub['path'] == $path){ echo "checked";} ?>>
                 <?php /* affiche le nom du sous-menu */ echo "  ".$sub['nom'] ?></td>
                     <?php }          
@@ -349,7 +349,7 @@ endforeach;
                                    
                     if($k1 == $b1){
                 ?>                
-                <td><input type='checkbox' name="third[]" value="<?php /* affiche le nom du 3ème niveau */ echo $thi['nom'] ?>" 
+                <td><input type='checkbox' name="third2[]" value="<?php /* affiche le nom du 3ème niveau */ echo $thi['nom'] ?>" 
                 <?php /* si menu lier à cette page on check */ if($thi['path'] == $path){ echo "checked";} ?>>
                 <?php /* affiche le nom du 3ème niveau */ echo "  ".$thi['nom'] ?></td>
                     <?php }          

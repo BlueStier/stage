@@ -130,6 +130,8 @@ class Pages_model extends CI_Model {
                 $nom = $this->input->post('nomPage');
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
+                $sel = $this->input->post("radioP");
+                $select = strcmp($sel,"Non");
 
                 //on vérifie qu'il y a un changement sur ces 3 items et on modifie
                 if(!empty($nom)){
@@ -141,6 +143,38 @@ class Pages_model extends CI_Model {
                 if(!empty($soustitre)){
                         $page[0]['soustitre'] = $soustitre;
                 }
+                if($select == 0){
+                        //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
+                        $config['upload_path']= "./assets/site/img/background/";
+                        $config['allowed_types'] = 'gif|jpg|png';
+                        $config ['max_size'] = 100000 ;
+                        $config ['max_width'] = 1024 ;
+                        $config ['max_height'] = 768 ;
+                        $config ['overwrite'] = true;
+
+                        //upload la photo vers le serveur
+                        $this->load->library('upload', $config);
+        if(! $this->upload->do_upload('back2'))
+        {
+            //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
+                $data['error'] = array('error'=> $this->upload->display_errors());
+                $this->load->model('Pages_model');                      
+                $data['header_item'] = $this->Header_model->get_menu();
+                $data['sub_item'] = $this->Header_model->get_sousmenu();
+                $data['third_item'] = $this->Header_model->get_thirdmenu();            
+                $data['type_item'] = $this->Pages_model->get_type();
+                $this->load->view('cms/header');
+                $this->load->view('cms/left_menu');
+                $this->load->view('cms/updatePage'.$id, $data);
+                $this->load->view('cms/footer');
+        }
+        else
+        {   
+                $data = array('upload_data'=>$this->upload->data());
+                $nom = 'assets/site/img/background/'.$data['upload_data']['orig_name'];
+                $page[0]['background'] = $nom;                    
+                }
+        }
 
                 $this->db->replace('pages',$page[0]);
         }

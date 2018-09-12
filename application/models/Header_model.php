@@ -458,9 +458,11 @@ class Header_model extends CI_Model {
                 }
     }
         //fonction permettant de rompre les liens des pages avec les differents menus
-        public function cutLink($type){
+        public function cutLink($type, $id=FALSE ){
+                if($id === FALSE){
                 //on récupère l'id à modif 
-                $id = $this->input->post('cut');       
+                $id = $this->input->post('cut');
+                }       
                 switch($type){
                         case 1://concerne un menu                        
                                 $menu = $this->db->get_where('menu',array('id_menu' => $id))->result_array();

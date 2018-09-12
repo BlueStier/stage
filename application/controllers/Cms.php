@@ -260,6 +260,7 @@ class Cms extends CI_Controller
         $config ['max_size'] = 100000 ;
         $config ['max_width'] = 1024 ;
         $config ['max_height'] = 768 ;
+        $config ['overwrite'] = true;
 
         //upload la photo vers le serveur
         $this->load->library('upload', $config);
@@ -382,85 +383,40 @@ class Cms extends CI_Controller
 
     //fonction permettant d'enregistrer un page 
     public function validUpPage($id){
-        $this->load->model('Pages_model');
-        $this->Pages_model->updatePage($id);        
-
-        /*récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
-        $config['upload_path']= "./assets/site/img/background/";
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config ['max_size'] = 100000 ;
-        $config ['max_width'] = 1024 ;
-        $config ['max_height'] = 768 ;
-
-        //upload la photo vers le serveur
-        $this->load->library('upload', $config);
-        if(! $this->upload->do_upload('backgroundImg'))
-        {
-            //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
-            Cms::updatePage($id);
-        }
-        else
-        {   
-            
-            //on charge les models nécessaires                    
             $this->load->model('Pages_model');
-            //on envoie les info vers Pages_model pour création dans la table de la bdd        
-            $data = array('upload_data'=>$this->upload->data());
-            $nom = 'assets/site/img/background/'.$data['upload_data']['orig_name'];
-            $type = $this->input->post('selty');
-            $this->Pages_model->validatePage($nom,$type);
-
-            //on vérifie le type de page à enregistrer
-            switch($type){
-                case "text":
-                    $this->load->model('Text_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                    $id_pages = $this->Pages_model->get_idpage($nomPage);
-                    $this->Text_model->create($id_pages);
-                break;
-                case "sans":
-                    $this->load->model('Sans_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                    $id_pages = $this->Pages_model->get_idpage($nomPage);
-                    $this->Sans_model->create($id_pages);
-                break;
-                case "bulle":
-                    $this->load->model('Bulles_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                    $id_pages = $this->Pages_model->get_idpage($nomPage);
-                    $this->Bulles_model->create($id_pages);
-                case "article":
-                    $this->load->model('Articles_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
-                    $id_pages = $this->Pages_model->get_idpage($nomPage);
-                    $this->Articles_model->create($id_pages);    
-                break;
-            }
-
-            //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
-            $arrayMenu = $this->input->post('menu[]');             
-            $sizeofmenu = sizeof($arrayMenu);
-            $arraySMenu = $this->input->post('sousmenu[]');             
-            $sizeofSmenu = sizeof($arraySMenu);
-            $array3Menu = $this->input->post('third[]');             
-            $sizeof3menu = sizeof($array3Menu);
+            $this->Pages_model->updatePage($id);
             
-            //selon le cas on appel le header_model pour faire le update
-            if($sizeofmenu > 0){
-                $this->Header_model->updateMenuByPage($arrayMenu,1); 
-            }
-            if($sizeofSmenu > 0){
-                $this->Header_model->updateMenuByPage($arraySMenu,2); 
-            }
-            if($sizeof3menu > 0){
-                $this->Header_model->updateMenuByPage($array3Menu,3); 
-            }*/            
-                        
-            header('Location:'.base_url().'cms/4');
-          
-       
-    
-}
+            //on extrait tous les chemins dans les menus et sous menus...et remise à vide
+            $nom_page = $this->Pages_model->get_page_by_id($id);
+            $path = 'pages/'.$nom_page[0]['nom'].'/';
+            $menu =  $this->Header_model->get_menu();
+            foreach($menu as $m):
+                $compM = strcmp($m['path'],$path);
+                if($compM){
+                    //$this->Header_model->cutLink(1,$m['id_menu']);  
+                }
+            endforeach;
+            //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
+        $arrayMenu = $this->input->post('menu2[]');             
+        $sizeofmenu = sizeof($arrayMenu);
+        $arraySMenu = $this->input->post('sousmenu2[]');             
+        $sizeofSmenu = sizeof($arraySMenu);
+        $array3Menu = $this->input->post('third2[]');             
+        $sizeof3menu = sizeof($array3Menu);
+        
+        //selon le cas on appel le header_model pour faire le update
+        if($sizeofmenu > 0){
+            $this->Header_model->updateMenuByPage($arrayMenu,1); 
+        }
+        if($sizeofSmenu > 0){
+            $this->Header_model->updateMenuByPage($arraySMenu,2); 
+        }
+        if($sizeof3menu > 0){
+            $this->Header_model->updateMenuByPage($array3Menu,3); 
+        }            
+                    
+        header('Location:'.base_url().'cms/4');
+    }
 
     public function supBulle($n){
         $this->load->model('Bulles_model');
@@ -477,13 +433,13 @@ class Cms extends CI_Controller
         header('Location:'.base_url().'cms/4');       
 }
 
-    public function updateLink(){       
+    public function updateLink($nb){       
         //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
-        $arrayMenu = $this->input->post('menu1[]');             
+        $arrayMenu = $this->input->post('menu'.$nb.'[]');             
         $sizeofmenu = sizeof($arrayMenu);
-        $arraySMenu = $this->input->post('sousmenu1[]');             
+        $arraySMenu = $this->input->post('sousmenu'.$nb.'[]');             
         $sizeofSmenu = sizeof($arraySMenu);
-        $array3Menu = $this->input->post('third1[]');             
+        $array3Menu = $this->input->post('third'.$nb.'[]');             
         $sizeof3menu = sizeof($array3Menu);
         
         //selon le cas on appel le header_model pour faire le update

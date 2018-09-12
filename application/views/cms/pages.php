@@ -118,7 +118,7 @@ foreach($page_item as $page):
     <div id="table">
     <?php
               echo validation_errors();
-              echo form_open_multipart('cms/updateLink/');?>
+              echo form_open_multipart('cms/updateLink/1');?>
                    <!-- table des menus -->
               <!-- box-header --> 
               <div class="box">
@@ -210,7 +210,7 @@ foreach($page_item as $page):
             </div>
             </div>
             <div class="box-footer">           
-              <input type='hidden' id='choice2' name='nomPage'>
+              <input type='hidden' id='choice2' name='nomPage'/>
                 <a class="btn btn-default" href="<?php echo base_url()?>cms/3">Annuler</a>
                 <button type="submit" class="btn btn-info pull-right">Valider</button>
                 </form>
