@@ -598,7 +598,7 @@
 
                <!-- /.box-body -->
                <div class="box-footer">
-                <a class="btn btn-default" href="<?php echo base_url()?>cms/3">Annuler</a>
+                <a class="btn btn-default" href="<?php echo base_url()?>cms/4">Annuler</a>
                 <button type="submit" class="btn btn-info pull-right">Enregistrer</button>
                 </form>
               </div>

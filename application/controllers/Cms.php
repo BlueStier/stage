@@ -187,6 +187,7 @@ class Cms extends CI_Controller
         header('Location:'.base_url().'/cms/1'); 
     }
 
+    //creer la page updateMenu en fonction du menu,sousmenu... choisi
     public function updateMenu($type){
         $amodif = $this->input->post('menuUpdate'); 
         if($type == 1){
@@ -220,18 +221,21 @@ class Cms extends CI_Controller
         }
     }
 
+    //appel la page createPage
     public function createPages(){
-        $this->load->model('Pages_model');                
+        $this->load->model('Pages_model');
+        $data['nb'] = 4;                
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu();            
         $data['type_item'] = $this->Pages_model->get_type();
         $this->load->view('cms/header');
-        $this->load->view('cms/left_menu');
+        $this->load->view('cms/left_menu',$data);
         $this->load->view('cms/createPages', $data);
         $this->load->view('cms/footer');
     }
 
+    //fonction permettant d'enregistrer un page 
     public function validatePage(){
         //on définie les critères obligatoires       
         $this->form_validation->set_rules('nomPage', '"Nom de la page"', 'required');
@@ -341,6 +345,129 @@ class Cms extends CI_Controller
         $this->Pages_model->delete();      
         header('Location:'.base_url().'cms/3');       
 }
+
+    //ouvre la page de mise à jour d'une page
+    public function updatePage($id){       
+        $this->load->model('Pages_model');
+        $data['nb'] = 4;
+        $data['page_item'] = $this->Pages_model->get_page_by_id($id);                
+        $data['header_item'] = $this->Header_model->get_menu();
+        $data['sub_item'] = $this->Header_model->get_sousmenu();
+        $data['third_item'] = $this->Header_model->get_thirdmenu();        
+        $typePage = $data['page_item'][0]['type'];
+
+        //selon le type de la page à update
+        if($typePage == 'text'){
+            $this->load->model('Text_model');
+            $data['text_item'] = $this->Text_model->get_text($id);
+        }
+        if($typePage == 'bulle'){
+            $this->load->model('Bulles_model');
+            $data['bulle_item'] = $this->Bulles_model->get_bulle($id);
+        }
+        if($typePage == 'sans'){
+            $this->load->model('Sans_model');
+            $data['sans_item'] = $this->Sans_model->get_Sans($id);
+        }
+        if($typePage == 'article'){
+            $this->load->model('Articles_model');
+            $data['art_item'] = $this->Articles_model->get_article($id,TRUE);
+        }           
+       
+        $this->load->view('cms/header');
+        $this->load->view('cms/left_menu',$data);
+        $this->load->view('cms/updatePage', $data);
+        $this->load->view('cms/footer');
+    }
+
+    //fonction permettant d'enregistrer un page 
+    public function validUpPage($id){
+        $this->load->model('Pages_model');
+        $this->Pages_model->updatePage($id);        
+
+        /*récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
+        $config['upload_path']= "./assets/site/img/background/";
+        $config['allowed_types'] = 'gif|jpg|png';
+        $config ['max_size'] = 100000 ;
+        $config ['max_width'] = 1024 ;
+        $config ['max_height'] = 768 ;
+
+        //upload la photo vers le serveur
+        $this->load->library('upload', $config);
+        if(! $this->upload->do_upload('backgroundImg'))
+        {
+            //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
+            Cms::updatePage($id);
+        }
+        else
+        {   
+            
+            //on charge les models nécessaires                    
+            $this->load->model('Pages_model');
+            //on envoie les info vers Pages_model pour création dans la table de la bdd        
+            $data = array('upload_data'=>$this->upload->data());
+            $nom = 'assets/site/img/background/'.$data['upload_data']['orig_name'];
+            $type = $this->input->post('selty');
+            $this->Pages_model->validatePage($nom,$type);
+
+            //on vérifie le type de page à enregistrer
+            switch($type){
+                case "text":
+                    $this->load->model('Text_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Text_model->create($id_pages);
+                break;
+                case "sans":
+                    $this->load->model('Sans_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Sans_model->create($id_pages);
+                break;
+                case "bulle":
+                    $this->load->model('Bulles_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Bulles_model->create($id_pages);
+                case "article":
+                    $this->load->model('Articles_model');
+                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Articles_model->create($id_pages);    
+                break;
+            }
+
+            //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
+            $arrayMenu = $this->input->post('menu[]');             
+            $sizeofmenu = sizeof($arrayMenu);
+            $arraySMenu = $this->input->post('sousmenu[]');             
+            $sizeofSmenu = sizeof($arraySMenu);
+            $array3Menu = $this->input->post('third[]');             
+            $sizeof3menu = sizeof($array3Menu);
+            
+            //selon le cas on appel le header_model pour faire le update
+            if($sizeofmenu > 0){
+                $this->Header_model->updateMenuByPage($arrayMenu,1); 
+            }
+            if($sizeofSmenu > 0){
+                $this->Header_model->updateMenuByPage($arraySMenu,2); 
+            }
+            if($sizeof3menu > 0){
+                $this->Header_model->updateMenuByPage($array3Menu,3); 
+            }*/            
+                        
+            header('Location:'.base_url().'cms/4');
+          
+       
+    
+}
+
+    public function supBulle($n){
+        $this->load->model('Bulles_model');
+        $id_a_modif = $this->input->post('bulleASup');
+        $this->Bulles_model->supBulle($id_a_modif,$n);
+        Cms::updatePage($id_a_modif);
+    }
 
     public function cutLink($type)
 {

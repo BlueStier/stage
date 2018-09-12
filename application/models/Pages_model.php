@@ -30,6 +30,11 @@ class Pages_model extends CI_Model {
         $result = $this->db->get_where('pages', array('type' => $id))->result_array();
         return $result;
 }
+        public function get_page_by_id($id)
+{
+        $result = $this->db->get_where('pages', array('id_pages' => $id))->result_array();
+        return $result;
+}
         
 
         public function get_type(){
@@ -116,5 +121,27 @@ class Pages_model extends CI_Model {
                         endforeach;        
                 }
                 
+        }
+
+        public function updatePage($id){
+                //extraction des données de la bdd
+                $page = Pages_model::get_page_by_id($id);
+
+                $nom = $this->input->post('nomPage');
+                $titre = $this->input->post('titrePage');
+                $soustitre = $this->input->post('soustitrePage');
+
+                //on vérifie qu'il y a un changement sur ces 3 items et on modifie
+                if(!empty($nom)){
+                        $page[0]['nom'] = $nom;
+                }
+                if(!empty($titre)){
+                        $page[0]['titre'] = $titre;
+                }
+                if(!empty($soustitre)){
+                        $page[0]['soustitre'] = $soustitre;
+                }
+
+                $this->db->replace('pages',$page[0]);
         }
 }

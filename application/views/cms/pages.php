@@ -24,9 +24,11 @@ foreach($page_item as $page):
           <div class="box box-default collapsed-box box-solid">
             <div class="box-header with-border">
               <div class="row justify-content-md-center">
-              <div class='col-md-4'>              
+              <div class='col-md-4'>
+              <?php echo validation_errors(); 
+                echo form_open('cms/updatePage/'.$page['id_pages']);?>                              
               <button type="submit" class="btn btn-success" title="Modifier"><i class="fa fa-pencil"></i></button>
-              </div> 
+              </div></form> 
               <div class='col-md-4'>            
               <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $page["id_pages"]?>" title="Supprimer"><i class="fa fa-trash"></i></button>              
               </div>

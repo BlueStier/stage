@@ -78,4 +78,13 @@ class Bulles_model extends CI_Model {
                 $this->db->insert('bulle',$données);
 
 }
+
+        public function supBulle($id_a_modif,$n){
+                $bulle = Bulles_model::get_bulle($id_a_modif);
+                for($i = $n; $i<10; $i++){
+                        $bulle[0]['tx'.$i] = $bulle[0]['tx'.($i+1)];
+                        $bulle[0]['photo'.$i] = $bulle[0]['photo'.($i+1)];  
+                }
+                $this->db->replace('bulle',$bulle[0]);
+        }
 }
