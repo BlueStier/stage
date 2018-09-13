@@ -237,6 +237,11 @@
                 </div>
                 </div>
                 <div id="car1">
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Photo 1 : </h3>
+            </div>
+            </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Choisir une image </label>
                   <div class="col-sm-10">

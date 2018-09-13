@@ -46,11 +46,11 @@ class Cms extends CI_Controller
             
         }if($id == 3){
             $data['nb'] = 3;
-            $this->load->model('Home_model');            
+            $this->load->model('Home_model');                       
             $data['home_item'] = $this->Home_model->get_home(1);
             $this->load->view('cms/header');
-            $this->load->view('cms/left_menu',$data);
-            $this->load->view('cms/homePage',$data);
+            $this->load->view('cms/left_menu',$data);       
+            $this->load->view('pages/home',$data);
             $this->load->view('cms/footer');
             
         }

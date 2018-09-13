@@ -67,10 +67,7 @@ $size = sizeof($tab);
 </div>
 </div>
 </div>
-<br>
-  
-   
-  
+<br> 
     
  
 </div>
@@ -82,3 +79,5 @@ $size = sizeof($tab);
     <strong>Copyright &copy; 2018-BlueStier</strong> All rights
     reserved.
   </footer>
+  
+   
