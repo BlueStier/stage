@@ -48,7 +48,7 @@ class Pages_model extends CI_Model {
                 /*enregistre la page (nom, background,type...) dans la table page pour tous type*/
                 
                 $nom = $this->input->post('nomPage');
-                $nom1 = str_replace(array(' ','/','\\'),'',$nom);
+                $nom1 = str_replace(' ','-',$nom);
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
                 $this->db->insert('pages', array('nom' => $nom1 , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));
@@ -127,7 +127,8 @@ class Pages_model extends CI_Model {
                 //extraction des données de la bdd
                 $page = Pages_model::get_page_by_id($id);
 
-                $nom = $this->input->post('nomPage');
+                $nom = $this->input->post('nomPage1');
+                $nom1 = str_replace(' ','-',$nom);
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
                 $sel = $this->input->post("radioP");
@@ -135,7 +136,7 @@ class Pages_model extends CI_Model {
 
                 //on vérifie qu'il y a un changement sur ces 3 items et on modifie
                 if(!empty($nom)){
-                        $page[0]['nom'] = $nom;
+                        $page[0]['nom'] = $nom1;
                 }
                 if(!empty($titre)){
                         $page[0]['titre'] = $titre;

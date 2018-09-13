@@ -43,6 +43,13 @@ class Articles_model extends CI_Model {
 
         }
 
+        public function update($id_pages){               
+                $article = Articles_model::get_article($id_pages,TRUE);
+                $article[0]['text'] = $this->input->post('article');                       
+                $this->db->replace('articlespage',$article[0]);
+
+        }
+
         public function createArticle($id){
             //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
             $config['upload_path']= "./assets/site/img/articles/";

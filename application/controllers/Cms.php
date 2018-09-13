@@ -9,6 +9,7 @@ class Cms extends CI_Controller
         $this->load->helper('form','url_helper');
         $this->load->model('Header_model');
         $this->load->library('form_validation','session');
+        
     }
 
     //construit la page d'Acceuil
@@ -297,18 +298,18 @@ class Cms extends CI_Controller
                 break;
                 case "sans":
                     $this->load->model('Sans_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Sans_model->create($id_pages);
                 break;
                 case "bulle":
                     $this->load->model('Bulles_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Bulles_model->create($id_pages);
                 case "article":
                     $this->load->model('Articles_model');
-                    $nomPage = str_replace(array(' ','/','\\'),'',$this->input->post('nomPage'));                
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Articles_model->create($id_pages);    
                 break;
@@ -344,7 +345,7 @@ class Cms extends CI_Controller
         $this->load->model('Pages_model'); 
         $this->form_validation->set_rules('id_pages', 'id de la page', 'required');
         $this->Pages_model->delete();      
-        header('Location:'.base_url().'cms/3');       
+        header('Location:'.base_url().'cms/4');       
 }
 
     //ouvre la page de mise à jour d'une page
@@ -385,42 +386,57 @@ class Cms extends CI_Controller
     public function validUpPage($id){
             $this->load->model('Pages_model');
             $this->Pages_model->updatePage($id);
+            $nom_page = $this->Pages_model->get_page_by_id($id);
+
+            //on enregistre les changements en fonction du type de page
+            if($nom_page[0]['type']=='text'){
+                $this->load->model('Text_model');
+                $this->Text_model->update($id); 
+            }
+            if($nom_page[0]['type']=='bulle'){
+                $this->load->model('Bulles_model');
+                $this->Bulles_model->update($id); 
+            }
+            if($nom_page[0]['type']=='sans'){
+                $this->load->model('Sans_model');
+                $this->Sans_model->update($id); 
+            }
+            if($nom_page[0]['type']=='article'){
+                $this->load->model('Articles_model');
+                $this->Articles_model->update($id); 
+            }
             
             //on extrait tous les chemins dans les menus et sous menus...et remise à vide
-            $nom_page = $this->Pages_model->get_page_by_id($id);
+            
             $path = 'pages/'.$nom_page[0]['nom'].'/';
             $menu =  $this->Header_model->get_menu();
             foreach($menu as $m):
                 $compM = strcmp($m['path'],$path);
-                if($compM){
-                    //$this->Header_model->cutLink(1,$m['id_menu']);  
+                if($compM == 0){
+                    $this->Header_model->cutLink(1,$m['id_menu']);  
                 }
             endforeach;
-            //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
-        $arrayMenu = $this->input->post('menu2[]');             
-        $sizeofmenu = sizeof($arrayMenu);
-        $arraySMenu = $this->input->post('sousmenu2[]');             
-        $sizeofSmenu = sizeof($arraySMenu);
-        $array3Menu = $this->input->post('third2[]');             
-        $sizeof3menu = sizeof($array3Menu);
-        
-        //selon le cas on appel le header_model pour faire le update
-        if($sizeofmenu > 0){
-            $this->Header_model->updateMenuByPage($arrayMenu,1); 
-        }
-        if($sizeofSmenu > 0){
-            $this->Header_model->updateMenuByPage($arraySMenu,2); 
-        }
-        if($sizeof3menu > 0){
-            $this->Header_model->updateMenuByPage($array3Menu,3); 
-        }            
-                    
-        header('Location:'.base_url().'cms/4');
+            $Smenu =  $this->Header_model->get_sousmenu();
+            foreach($Smenu as $s):
+                $compS = strcmp($s['path'],$path);
+                if($compS == 0){
+                    $this->Header_model->cutLink(2,$s['id_sousmenu']);  
+                }
+            endforeach;
+            $S3menu =  $this->Header_model->get_thirdmenu();
+            foreach($S3menu as $s3):
+                $compS3 = strcmp($s3['path'],$path);
+                if($compS3 == 0){
+                    $this->Header_model->cutLink(3,$s3['id_third']);  
+                }
+            endforeach;
+            
+            //on remet les chemins dans les menus sélectionnés
+            Cms::updateLink(2);
     }
 
-    public function supBulle($n){
-        $this->load->model('Bulles_model');
-        $id_a_modif = $this->input->post('bulleASup');
+    public function supBulle($n,$id_a_modif){
+        $this->load->model('Bulles_model');        
         $this->Bulles_model->supBulle($id_a_modif,$n);
         Cms::updatePage($id_a_modif);
     }

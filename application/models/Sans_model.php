@@ -28,4 +28,11 @@ class Sans_model extends CI_Model {
 
         }
 
+        public function update($id_pages){               
+                $sans = Sans_model::get_sans($id_pages);
+                $sans[0]['pg1'] = $this->input->post('sans');                       
+                $this->db->replace('sans',$sans[0]);
+
+        }
+
 }

@@ -428,7 +428,7 @@ class Header_model extends CI_Model {
 
     public function updateMenuByPage($array,$type){
             $nom = $this->input->post('nomPage');
-            $nom1 = str_replace(array(' ','/','\\'),'',$nom);
+            $nom1 = str_replace(' ','-',$nom);
             $path = "pages/".$nom1."/";
         switch($type){
                 case 1://concerne un menu                        

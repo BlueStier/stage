@@ -87,4 +87,62 @@ class Bulles_model extends CI_Model {
                 }
                 $this->db->replace('bulle',$bulle[0]);
         }
+
+        public function update($id_pages){
+                //extraction BDD des info de cette page
+                $bulle = Bulles_model::get_bulle($id_pages);
+               //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
+                $config['upload_path']= "./assets/site/img/about/";
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config ['max_size'] = 100000 ;
+                $config ['max_width'] = 1024 ;
+                $config ['max_height'] = 768 ;
+                $config ['overwrite'] = true;
+
+                //upload la photo vers le serveur
+                $this->load->library('upload', $config);                
+                
+                //on récupère le nombre de bulle
+                $nbBu = $this->input->post('nbBu');
+
+                //pour chaque bulle on vérifie si il faut changer le photo
+                for($i = 1 ;$i <= $nbBu; $i++){
+                        $radio = $this->input->post('radio'.$i);
+                        //si il faut changer la photo
+                        if($radio == 'Non'){
+                                //on upload la photo et on modif la valeur dans le tableau de récup de la bdd
+                                if(! $this->upload->do_upload('photo'.$i))
+                                {
+                                        //si upload hs retour vers la page de update de page avec info sur l'echec du transfert
+                                        $error = array('error'=> $this->upload->display_errors());
+                                        $this->load->view('cms/header');
+                                        $this->load->view('cms/left_menu');
+                                        $this->load->view('cms/updatePage', $error);
+                                        $this->load->view('cms/footer');
+                                }else{
+                                        //si upload ok, on récupère le nom de la photo et on met le chemin dans l'array                                     
+                                        $array = $this->upload->data();
+                                        $bulle[0]['photo'.$i] = 'assets/site/img/about/'.$array['orig_name'];
+                                        
+                                }
+                        }
+
+                        //et on enregistre les textes associés
+                        $bulle[0]['tx'.$i] = $this->input->post('tx'.$i);
+                }
+
+               //on récupère les autres données
+               $titre = $this->input->post('titrebulle'); 
+               $soustitre = $this->input->post('soustitrebulle');
+
+               if( !empty($titre)){
+                $bulle[0]['titre'] = $titre;    
+               }
+               if( !empty($soustitre)){
+                $bulle[0]['sostitre'] = $soustitre;    
+               }
+               $bulle[0]['sup'] = $this->input->post('sup');
+               //il ne reste plus qu'à faire le changement en BDD
+               $this->db->replace('bulle',$bulle[0]);
+}
 }

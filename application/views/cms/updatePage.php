@@ -27,7 +27,8 @@ endforeach;
                   <label class="col-sm-2 control-label">Nom de la page</label>
                   <div class="col-sm-10">
                   <input type='hidden' name='selty' value="<?php echo $type_page; ?>"/>
-                  <input class="form-control" name="nomPage" placeholder="<?php echo $nom_page; ?>">
+                  <input type='hidden' name="nomPage" value="<?php echo $nom_page; ?>"/>
+                  <input class="form-control" name="nomPage1" placeholder="<?php echo $nom_page; ?>">
                   </div>
                 </div>
                 <div class="form-group">
@@ -163,26 +164,27 @@ endforeach;
             </div>
             </div>                          
                 <div class="form-group">
+                <input type="hidden" value="<?php echo $nbBu ?>" name="nbBu"/>
                   <label class="col-sm-2 control-label">Texte d'intro</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='titrebulle' placeholder="Entrez un texte d'introduction (facultatif)">
+                  <input class="form-control" name='titrebulle' placeholder="<?php if($bulle_item[0]['titre'] != ''){ echo $bulle_item[0]['titre'];}else{ ?>Entrez le texte d'intro (facultatif)<?php } ?>">
                   </div>
                   </div>
                   <div class="form-group">
                   <label  class="col-sm-2 control-label">Sous-texte d'intro</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='soustitrebulle' placeholder="Entrez un sous-texte d'introduction (facultatif)">
+                  <input class="form-control" name='soustitrebulle' placeholder="<?php if($bulle_item[0]['soustitre'] != ''){ echo $bulle_item[0]['soustitre'];}else{ ?>Entrez le sous-texte d'intro (facultatif)<?php } ?>">
                   </div>
-                </div></form>
+                </div>
                 <?php  for($d = 1; $d <= $nbBu; $d++){
-                    echo validation_errors();
-                    echo form_open_multipart('cms/supBulle/'.$d);?>
-                    <input type="hidden" value="<?php echo $id_page ?>" name="bulleASup"/>               
-                    <h4>bulle n° <?php  echo $d; ?>     <input type="submit" class="btn btn-danger" value="Supprimer la bulle"/>  <i class="fa fa-exclamation-triangle text-red"></i> Cette opération sera irréversible !</h4></form> 
-                  <?php  echo validation_errors();
-                    echo form_open_multipart('cms/validUpPage/'.$id_page);?>
+                  //si la bulle n'est pas la première on permet de la sup^
+                    if($d != 1){
+                    ?>               
+                    <h4>bulle n° <?php  echo $d; ?>     <a type="button" class="marge btn btn-danger"  href="<?php echo base_url()?>cms/supBulle/<?php echo $d."/".$id_page?>"><i class="fa  fa-warning"></i> Supprimer</a>
+                    <i class="fa fa-exclamation-triangle text-red"></i> Cette opération sera irréversible !</h4>
+                    <?php } ?>
                   <div class="form-group">
-                  <div class="col-sm-3">                  
+                  <div class="col-sm-3">                                    
                 <label>Souhaitez concervez cette photo ?</label>
                 <div class="form-group">
                 <div class='col-sm-2'></div>
@@ -198,7 +200,7 @@ endforeach;
           <label class="col-sm-12 control-label">Choisir une autre image</label>
           <div class="col-sm-12">
             <input id="exampleInputFile"
-                 name="article2"
+                 name="photo<?php  echo $d; ?>"
                  type="file"
                  value='Choisissez une image'>
           </div>
@@ -213,7 +215,7 @@ endforeach;
                     </textarea>
                     </div>
             </div>
-          </div>
+          </div>         
           <script>
           document.getElementById('photo<?php  echo $d; ?>').style.display='none';
           function visible<?php  echo $d; ?>($choix){
