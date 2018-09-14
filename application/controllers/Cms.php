@@ -257,10 +257,10 @@ class Cms extends CI_Controller
 
         //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
         $config['upload_path']= "./assets/site/img/background/";
-        $config['allowed_types'] = 'gif|jpg|png';
-        $config ['max_size'] = 100000 ;
-        $config ['max_width'] = 1024 ;
-        $config ['max_height'] = 768 ;
+        $config['allowed_types'] = 'gif|jpg|png|jpeg';
+        $config ['max_size'] = 10000000 ;
+        $config ['max_width'] = 7000 ;
+        $config ['max_height'] = 5000 ;
         $config ['overwrite'] = true;
 
         //upload la photo vers le serveur
@@ -301,6 +301,12 @@ class Cms extends CI_Controller
                     $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Sans_model->create($id_pages);
+                break;
+                case "carroussel":
+                    $this->load->model('Carroussel_model');
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Carroussel_model->create($id_pages,$nomPage);                   
                 break;
                 case "bulle":
                     $this->load->model('Bulles_model');

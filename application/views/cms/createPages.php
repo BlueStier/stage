@@ -220,36 +220,19 @@
                <!-- fin Div text -->
                 <div id='carroussel'>
                 <div class="form-group">
-                <label class="col-sm-2 control-label">Nombre de photos :</label>
-                <div class="col-sm-10">                
-                <select id="selectcar" name ="selectcar" onchange='addElement();' class="form-control select2" >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                </select>
-                </div>
-                </div>
-                <div id="car1">
-                <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Photo 1 : </h3>
-            </div>
-            </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Choisir une image </label>
+                <label class="col-sm-2 control-label">Texte d'intro</label>
                   <div class="col-sm-10">
-                  <input type="file" name="photocar1" id="exampleInputFile" value='Choisissez une image'>
+                  <input class="form-control" name='textcar' placeholder="Entrez un texte d'introduction (facultatif)">
+                  </div>
+                </div>              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos images </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="car[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
                 </div>
                 </div>
                 </div>
-                </div>
+                
                  <!-- Div pour création d'un page du type bulle -->
                 <div id='bulle'>
                 <div class="form-group">

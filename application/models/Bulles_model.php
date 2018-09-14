@@ -95,8 +95,8 @@ class Bulles_model extends CI_Model {
                 $config['upload_path']= "./assets/site/img/about/";
                 $config['allowed_types'] = 'gif|jpg|png';
                 $config ['max_size'] = 100000 ;
-                $config ['max_width'] = 1024 ;
-                $config ['max_height'] = 768 ;
+                $config ['max_width'] = 7000 ;
+                $config ['max_height'] = 5000 ;
                 $config ['overwrite'] = true;
 
                 //upload la photo vers le serveur
