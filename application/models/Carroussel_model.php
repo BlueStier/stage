@@ -47,26 +47,17 @@ class Carroussel_model extends CI_Model {
             */         
                         
             $uploaded_files = $_FILES['car'];            
-            $fil = array();
+            $_FILES = array();
             $nb = sizeof($uploaded_files['name']);
             foreach ($uploaded_files as $k=>$file):
                 for($a = 0; $a<$nb; $a++){
-                $fil['file'.$a][$k] = $file[$a];}                  
+                $_FILES['file'.$a][$k] = $file[$a];}                  
             endforeach;
  
-        // Charge la lib upload avec notre config        
-        $config['upload_path'] = $pathname;
-        $config['allowed_types'] = 'gif|jpg|png|jpeg';
-        $config ['max_size'] = 1000000000 ;
-        $config ['max_width'] = 10000 ;
-        $config ['max_height'] = 8000 ;
-        $config ['overwrite'] = true;
-        $this->load->library('upload', $config);
- 
-        // boucle pour upload tous les fichiers
-        $taille = sizeof($fil);
-        var_dump($fil);
-        foreach($fil as $f):
+        // on défini le chemin du dossier où mettre les photos
+        $this->upload->set_upload_path($pathname);
+                
+        foreach($_FILES as $f=>$value):
             if ( ! $this->upload->do_upload($f)){
     	        //Si erreur on l'ajoute dans l'array error
                 $error[$f] = array('error' => $this->upload->display_errors());
@@ -84,4 +75,27 @@ class Carroussel_model extends CI_Model {
 
         }*/
 
+        function delete_dir($pathname){
+                //on récupère la liste de tous les fichiers du répertoire
+                $liste = Carroussel_model::read_all_files($pathname);
+                foreach($liste as $l):
+                        $sup = $pathname.'/'.$l;
+                        unlink($sup);
+                endforeach;
+                rmdir($pathname);         
+        }
+        
+        
+        function read_all_files($pathname){
+                $tab = [];
+                if($dossier = opendir($pathname)){
+                        while(false !== ($fichier = readdir($dossier))){
+                                if($fichier != '.' && $fichier != '..' && $fichier != 'index.php'){
+                                        $tab[] = $fichier;
+                                }     
+                        }
+                             
+                }
+                return $tab;
+        }
 }

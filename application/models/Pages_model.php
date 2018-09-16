@@ -120,6 +120,11 @@ class Pages_model extends CI_Model {
                                 $this->db->replace('third_level',$S3item);
                         endforeach;        
                 }
+                //si la page est du type carroussel on supprime le dossier contenant les photos
+                $nom = utf8_decode($array[0]['nom']);
+                $pathname = './assets/site/img/carroussel/'.$nom;
+                $this->load->model('Carroussel_model');           
+                $this->Carroussel_model->delete_dir($pathname);
                 
         }
 
