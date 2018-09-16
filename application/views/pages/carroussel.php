@@ -1,21 +1,27 @@
+<?php
+foreach($car_item as $car):
+  $text = $car["text"];
+endforeach;
+$size = sizeof($photo_item);
+$tab = [];
+
+?>
+
 <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-      <h2 class="section-heading text-uppercase">Nos Actualités </h2>
-        <h3 class="section-subheading text-muted">Les photos de Loïc</h3>
-      </div>
-      </div>
+<?php echo($text.'<br>'.$path) ; ?> 
 <div class="row justify-content-center">
       <div class="col-lg-6 col-sm-12 ">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  <?php for($a = 0; $a < $size; $a++){?>
+    
+  <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $a ?>" <?php if($a == 0) { ?>class="active" <?php } ?>></li>
+    
+  <?php } ?>
   </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <a href="<?php echo base_url(); ?>pages/acceuil/"><img class="d-block w-100" src="<?php echo base_url();?>assets/site/img/carroussel/haaa.jpg" alt="First slide"></a>
+      <img class="d-block w-100" src="<?php echo base_url();?>assets/site/img/carroussel/test-sans-ttype/pont.jpg" alt="First slide">
       <div class="carousel-caption d-none d-md-block">
       <h5>Loïc se prend la tête</h5>
       <p>le dev c vraiment enervant quand ce que l'on veut ne fonctionne pas !!! </p>

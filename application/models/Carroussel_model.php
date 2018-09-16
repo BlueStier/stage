@@ -75,7 +75,8 @@ class Carroussel_model extends CI_Model {
 
         }*/
 
-        function delete_dir($pathname){
+        function delete_dir($path){
+                $pathname = './'.$path;
                 //on récupère la liste de tous les fichiers du répertoire
                 $liste = Carroussel_model::read_all_files($pathname);
                 foreach($liste as $l):

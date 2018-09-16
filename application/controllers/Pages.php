@@ -45,6 +45,13 @@ class Pages extends CI_Controller {
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
                 $page = 'home';  
         }
+        if($pagestab['type'] == 'carroussel'){
+                $this->load->model('Carroussel_model');
+                $data['car_item'] = $this->Carroussel_model->get_car($pagestab['id_pages']);
+                $data['photo_item'] = $this->Carroussel_model-> read_all_files($data['car_item'][0]['path']);
+                $data['path'] = $data['car_item'][0]['path'];
+                $page = 'carroussel';  
+        }
         if($pagestab['type'] == 'article'){
                 $this->load->model('Articles_model');
                 $recup = $this->Articles_model->get_article($pagestab['id_pages'],TRUE);
