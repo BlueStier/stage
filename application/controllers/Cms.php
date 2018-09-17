@@ -380,7 +380,13 @@ class Cms extends CI_Controller
         if($typePage == 'article'){
             $this->load->model('Articles_model');
             $data['art_item'] = $this->Articles_model->get_article($id,TRUE);
-        }           
+        }
+       if($typePage == "carroussel"){
+            $this->load->model('Carroussel_model');                         
+            $data['car_item'] = $this->Carroussel_model->get_car($id); 
+            $pathname = './'.$data['car_item'][0]['path'];
+            $data['photo'] = $this->Carroussel_model->read_all_files($pathname);                  
+       }           
        
         $this->load->view('cms/header');
         $this->load->view('cms/left_menu',$data);
@@ -445,6 +451,14 @@ class Cms extends CI_Controller
         $this->load->model('Bulles_model');        
         $this->Bulles_model->supBulle($id_a_modif,$n);
         Cms::updatePage($id_a_modif);
+    }
+
+    public function supPhoto($id,$n){
+        $this->load->model('Carroussel_model');
+        $array = $this->Carroussel_model->get_car($id); 
+        $pathname = './'.$array[0]['path'];        
+        $this->Carroussel_model->supPhoto($pathname,$n);
+        Cms::updatePage($id);
     }
 
     public function cutLink($type)

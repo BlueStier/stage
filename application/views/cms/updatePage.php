@@ -115,35 +115,58 @@ endforeach;
           <?php } ?>
              
                <!-- fin Div text -->
-               <?php /*Si la page est du type carroussel*/if($type_page == 'carroussel'){ ?>       
-            <label class="col-sm-5 control-label">Page du type carroussel </label><br><br>
-                
-                <div class="form-group">
-                <label class="col-sm-2 control-label">Nombre de photos :</label>
-                <div class="col-sm-10">                
-                <select id="selectcar" name ="selectcar" onchange='addElement();' class="form-control select2" >
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-                <option>6</option>
-                <option>7</option>
-                <option>8</option>
-                <option>9</option>
-                <option>10</option>
-                </select>
-                </div>
-                </div>
-                <div id="car1">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Choisir une image </label>
+               <?php /*Si la page est du type carroussel*/if($type_page == 'carroussel'){ 
+                 //récupération des infos
+                 foreach($car_item as $car):
+                  $intro = $car['text'];
+                  $path = $car['path'].'/';                  
+                 endforeach;
+                 $size = sizeof($photo);
+                 ?>       
+            <label class="col-sm-5 control-label">Page du type carroussel </label><br><br>                
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
                   <div class="col-sm-10">
-                  <input type="file" name="photocar1" id="exampleInputFile" value='Choisissez une image'>
+                  <textarea id="editor" name="textcar" class="ckeditor" rows="10" cols="80">
+                    <?php echo $intro; ?>                                            
+                    </textarea>
+                  </div>
                 </div>
+                  <br>
+                  <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Photos présentent dans le carroussel</h3>              
+            </div>
                 </div>
+                  <?php foreach($photo as $p):?>
+                  <div class='col-sm-3'>
+                   <img style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:200px;" src='<?php echo base_url().$path.$p ?>'/><br>
+                    <?php if($size > 1){ ?>
+                   <a type="button" class="text-center btn btn-danger"  href="<?php echo base_url()?>cms/supPhoto/<?php echo $id_page.'/'.$p?>"><i class="fa  fa-warning"></i> Supprimer</a>
+                    <?php } ?>
+                </div> 
+                  <?php endforeach; ?>
+                </div>                
                 </div>
+                <br>
+                <div class="form-group">
+                <label class="col-sm-4 control-label">Souhaitez ajouter des photos ?</label>                
+                <div class="col-sm-4">
+                <input type="radio" name='radioC' onClick='visibleC(false);' value="Non" checked>Non     
                 </div>
+                <div class="col-sm-4">
+                <input type="radio" name='radioC' onClick='visibleC(true);' value="Oui">Oui     
+                </div>                                
+                </div>                
+                <br>
+                <!--<div id='ajoutCar'>-->
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos images </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="car[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
+                </div>
+                </div> 
+                              
                 <?php } ?>
                  <!-- Div pour création d'un page du type bulle -->
                  <?php /*Si la page est du type bulle*/
@@ -404,7 +427,7 @@ endforeach;
 <!-- ./wrapper -->
 <script>
 document.getElementById("choixPhoto").style.display ='none';
-
+document.getElementById("ajoutCar").style.display ='none';
 
 function addElement () {
  // crée un nouvel élément div 
@@ -424,6 +447,12 @@ function addElement () {
 function visibleP($choix){
   ($choix ? document.getElementById('choixPhoto').style.display='block' : document.getElementById('choixPhoto').style.display='none'); 
 }
+
+function visibleC($choix){
+  ($choix ? document.getElementById('ajoutCar').style.display='block' : document.getElementById('ajoutCar').style.display='none'); 
+}
+
+
 
 
 </script>

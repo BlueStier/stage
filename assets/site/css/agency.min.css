@@ -724,3 +724,9 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 	-o-background-size: cover;
 	background-size: cover
 }
+.bordure{
+	border: 1px solid rgba(14, 13, 13, 0.616);
+	border-radius: 4px;
+	padding: 1px;
+	vertical-align: top;	
+}

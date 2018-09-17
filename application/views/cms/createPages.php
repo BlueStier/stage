@@ -220,9 +220,10 @@
                <!-- fin Div text -->
                 <div id='carroussel'>
                 <div class="form-group">
-                <label class="col-sm-2 control-label">Texte d'intro</label>
+                <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='textcar' placeholder="Entrez un texte d'introduction (facultatif)">
+                  <textarea id="editor" name="textcar" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
                   </div>
                 </div>              
                 <div class="form-group">
@@ -648,7 +649,7 @@ function choix() {
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
       document.getElementById("article").style.display ='none';
-      document.getElementById("table").style.display ='none';
+      document.getElementById("table").style.display ='block';
     break;
     case "bulle":
       document.getElementById("text").style.display ='none';

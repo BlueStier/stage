@@ -23,7 +23,7 @@ class Carroussel_model extends CI_Model {
         public function create($id_pages,$nom_page){
             //creation du répertoire de destination des photos               
             $nom = utf8_decode($nom_page);
-            $pathname = './assets/site/img/carroussel/'.$nom;            
+            $pathname = 'assets/site/img/carroussel/'.$nom;            
             mkdir($pathname,0700,TRUE);
 
             //upload les photos
@@ -86,7 +86,7 @@ class Carroussel_model extends CI_Model {
                 rmdir($pathname);         
         }
         
-        
+        //retourne le nom de toutes les photos présente deans le dossier spécifier par la variable $pathname
         function read_all_files($pathname){
                 $tab = [];
                 if($dossier = opendir($pathname)){
@@ -98,5 +98,18 @@ class Carroussel_model extends CI_Model {
                              
                 }
                 return $tab;
+        }
+
+        //supprime la photo du dossier $pathname dont le nom est $n
+        function supPhoto($pathname,$n){
+                $verif = Carroussel_model::read_all_files($pathname);
+                foreach($verif as $v):
+                        if($v == $n){
+                                $sup = $pathname.'/'.$v;
+                                unlink($sup);
+                        }
+                
+                endforeach;        
+
         }
 }
