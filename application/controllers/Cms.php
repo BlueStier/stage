@@ -259,8 +259,8 @@ class Cms extends CI_Controller
         $config['upload_path']= "./assets/site/img/background/";
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
         $config ['max_size'] = 10000000 ;
-        $config ['max_width'] = 7000 ;
-        $config ['max_height'] = 5000 ;
+        $config ['max_width'] = 10000 ;
+        $config ['max_height'] = 10000 ;
         $config ['overwrite'] = true;
 
         //upload la photo vers le serveur
@@ -302,7 +302,7 @@ class Cms extends CI_Controller
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Sans_model->create($id_pages);
                 break;
-                case "carroussel":
+                case "carroussel":               
                     $this->load->model('Carroussel_model');
                     $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
@@ -416,6 +416,16 @@ class Cms extends CI_Controller
             if($nom_page[0]['type']=='article'){
                 $this->load->model('Articles_model');
                 $this->Articles_model->update($id); 
+            }
+            if($nom_page[0]['type']=='carroussel'){
+                $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                $config ['max_size'] = 10000000 ;
+                $config ['max_width'] = 10000 ;
+                $config ['max_height'] = 10000 ;
+                $config ['overwrite'] = true;
+                $this->load->library('upload', $config);
+                $this->load->model('Carroussel_model');
+                $this->Carroussel_model->update($id,$nom_page[0]['nom']); 
             }
             
             //on extrait tous les chemins dans les menus et sous menus...et remise à vide

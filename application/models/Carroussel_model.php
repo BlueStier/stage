@@ -27,7 +27,7 @@ class Carroussel_model extends CI_Model {
             mkdir($pathname,0700,TRUE);
 
             //upload les photos
-            Carroussel_model::upload_all_files($pathname);
+            Carroussel_model::upload_all_files($pathname,1);
             
             //injection des données en bdd
             $données = ['id_pages'=> $id_pages,
@@ -39,14 +39,14 @@ class Carroussel_model extends CI_Model {
         }
 
         //fonction d'upload de plusieurs fichiers 
-        public function upload_all_files($pathname){
+        public function upload_all_files($pathname,$i){
             /* 
            Tout d'abord, nous créons un tableau structuré pour les fichiers à télécharger
             nous nettoyons le tableau $ _FILES car nous en avons besoin plus tard
             la bibliothèque de téléchargement l'utilise 	
             */         
                         
-            $uploaded_files = $_FILES['car'];            
+            $uploaded_files = $_FILES['car'.$i];            
             $_FILES = array();
             $nb = sizeof($uploaded_files['name']);
             foreach ($uploaded_files as $k=>$file):
@@ -55,34 +55,68 @@ class Carroussel_model extends CI_Model {
             endforeach;
  
         // on défini le chemin du dossier où mettre les photos
-        $this->upload->set_upload_path($pathname);
+        $this->upload->set_upload_path($pathname);        
                 
         foreach($_FILES as $f=>$value):
             if ( ! $this->upload->do_upload($f)){
     	        //Si erreur on l'ajoute dans l'array error
                 $error[$f] = array('error' => $this->upload->display_errors());
-            } else {
+            } else {                                                
     	        // sauve le resultat de l'upload dans upload_data array
                 $upload_data[$f] = $this->upload->data();
+                $config['image_library'] = 'gd2';
+                $config['y_axis'] = 1728;
+                $config['source_image'] = $upload_data[$f]['full_path'];
+                 //on charge la librairie de redimmensionnement de photo
+                $this->load->library('image_lib',$config);
+                               
+                $this->image_lib->crop();
+
             }
-        endforeach;
+        endforeach;        
+        //le téléchargement finit on redimensionne toutes les photos
+        //Carroussel_model::resize_folder($pathname);
 
         }
-        /*public function update($id_pages){               
-                $sans = Sans_model::get_sans($id_pages);
-                $sans[0]['pg1'] = $this->input->post('sans');                       
-                $this->db->replace('sans',$sans[0]);
 
-        }*/
+        public function resize_folder($path){
+                $pathname = './'.$path;
+                //on récupère la liste de tous les fichiers du répertoire
+                $liste = Carroussel_model::read_all_files($pathname);
+                //pour toutes les photos du dossier on redimensionne                
+                foreach($liste as $l):
+                        $source = $path.'/'.$l;
+                        Carroussel_model::resize($source);
+                endforeach;
 
+        }
+
+        //permet de redimensionner une photo dont le chemin est passer en paramètre
+        public function resize($source){
+                 //on définit les critères de redimensionnement
+                 $config['image_library'] = 'GD';
+                 /*$config['maintain_ratio'] = FALSE;
+                 $config['width'] = 5184;
+                 $config['height'] = 3456;*/
+                 $config['y_axis'] = 1728;
+                 $config['source_image'] = $source;
+                 //on charge la librairie de redimmensionnement de photo
+                 $this->load->library('image_lib',$config);
+                               
+                $this->image_lib->crop();
+
+        }
+        
         function delete_dir($path){
                 $pathname = './'.$path;
                 //on récupère la liste de tous les fichiers du répertoire
                 $liste = Carroussel_model::read_all_files($pathname);
+                //on supprime tous les fichiers
                 foreach($liste as $l):
                         $sup = $pathname.'/'.$l;
                         unlink($sup);
                 endforeach;
+                //on finit en supprimant le dossier
                 rmdir($pathname);         
         }
         
@@ -110,6 +144,33 @@ class Carroussel_model extends CI_Model {
                         }
                 
                 endforeach;        
+
+        }
+
+        //fonction pour update les photos d'une page carroussel
+        public function update($id,$nom_page){
+                //on récupère le nouveau nom de la page pour changer le nom du dossier
+                $nom = utf8_decode($nom_page);
+                $pathname = 'assets/site/img/carroussel/'.$nom;
+
+                //on récupère les infos pour faire le changement dans la table carroussel
+                $car = Carroussel_model::get_car($id);
+                $car[0]['path'] = $pathname;
+                $car[0]['text'] = $this->input->post('textcar');
+                $this->db->replace('carroussel',$car[0]);
+
+                $pathname2 = './'.$pathname;
+                $oldpath = './'.$this->input->post('oldPath');
+                //on change le nom du dossier                
+                rename($oldpath,$pathname2);
+
+                //on vérifie si on doit upload d'autres photos
+                $sel = $this->input->post("radioC");
+                $select = strcmp($sel,"Oui");
+
+                if($select == 0){
+                        Carroussel_model::upload_all_files($pathname,2);    
+                }
 
         }
 }

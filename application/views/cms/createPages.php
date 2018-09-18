@@ -229,7 +229,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Choisissez vos images </label>
                   <div class="col-sm-10">                  
-                  <input type="file" name="car[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
+                  <input type="file" name="car1[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
                 </div>
                 </div>
                 </div>

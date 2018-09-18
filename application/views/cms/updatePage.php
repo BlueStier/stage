@@ -119,12 +119,14 @@ endforeach;
                  //récupération des infos
                  foreach($car_item as $car):
                   $intro = $car['text'];
-                  $path = $car['path'].'/';                  
+                  $path = $car['path'].'/';
+                  $path0 = $car['path'];                  
                  endforeach;
                  $size = sizeof($photo);
                  ?>       
             <label class="col-sm-5 control-label">Page du type carroussel </label><br><br>                
             <div class="form-group">
+            <input type=hidden name='oldPath' value='<?php echo $path0 ?>'/>
                 <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
                   <div class="col-sm-10">
                   <textarea id="editor" name="textcar" class="ckeditor" rows="10" cols="80">
@@ -146,8 +148,7 @@ endforeach;
                     <?php } ?>
                 </div> 
                   <?php endforeach; ?>
-                </div>                
-                </div>
+                </div>              
                 <br>
                 <div class="form-group">
                 <label class="col-sm-4 control-label">Souhaitez ajouter des photos ?</label>                
@@ -159,14 +160,14 @@ endforeach;
                 </div>                                
                 </div>                
                 <br>
-                <!--<div id='ajoutCar'>-->
-                <div class="form-group">
+                <div id='ajoutCar'>
+                  <div class="form-group">
                   <label class="col-sm-2 control-label">Choisissez vos images </label>
                   <div class="col-sm-10">                  
-                  <input type="file" name="car[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
+                  <input type="file" name="car2[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
                 </div>
-                </div> 
-                              
+                </div>  
+                </div>          
                 <?php } ?>
                  <!-- Div pour création d'un page du type bulle -->
                  <?php /*Si la page est du type bulle*/
