@@ -61,9 +61,10 @@ class Pages extends CI_Controller {
                 $page = 'article';  
         }
         
-        if($page == 'arretes_municipaux'){
+        if($page == 'arretes-municipaux'){
                 $this->load->model('ArretesMunicipaux_model');
-                $data['arretes'] = $this->ArretesMunicipaux_model->get_arretes();  
+                $data['arretes'] = $this->ArretesMunicipaux_model->get_arretes();
+                $page = 'arretes-municipaux';  
         }
         if($page == 'deliberations'){
                 $this->load->model('Deliberations_model');

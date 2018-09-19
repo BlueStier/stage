@@ -121,10 +121,19 @@ class Pages_model extends CI_Model {
                         endforeach;        
                 }
                 //si la page est du type carroussel on supprime le dossier contenant les photos
-                $nom = utf8_decode($array[0]['nom']);
-                $pathname = 'assets/site/img/carroussel/'.$nom;
-                $this->load->model('Carroussel_model');           
-                $this->Carroussel_model->delete_dir($pathname);
+                if($array[0]['type'] == "carroussel"){
+                        $nom = utf8_decode($array[0]['nom']);
+                        $pathname = 'assets/site/img/carroussel/'.$nom;
+                        $this->load->model('Carroussel_model');           
+                        $this->Carroussel_model->delete_dir($pathname);
+                }
+                //si la page est du type document on supprime le dossier contenant les fichiers
+                if($array[0]['type'] == "document"){
+                        $nom = utf8_decode($array[0]['nom']);
+                        $pathname = 'assets/uploads/'.$nom;
+                        $this->load->model('Document_model');           
+                        $this->Document_model->delete_alldir($pathname);
+                }
                 
         }
 

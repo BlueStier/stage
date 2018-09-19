@@ -37,7 +37,7 @@ foreach($page_item as $page):
                 </button>
               </div>
               </div><br>             
-              <h5><?php echo $page['nom'] ?></h5>              
+              <h5><?php echo "Page : '".$page['nom']."' du type : '".$page['type']."'" ?></h5>              
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->

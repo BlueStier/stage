@@ -319,6 +319,12 @@ class Cms extends CI_Controller
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Articles_model->create($id_pages);    
                 break;
+                case "document":
+                    $this->load->model('Document_model');
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Document_model->create($id_pages,$nomPage);    
+                break;
             }
 
             //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
