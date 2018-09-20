@@ -392,7 +392,16 @@ class Cms extends CI_Controller
             $data['car_item'] = $this->Carroussel_model->get_car($id); 
             $pathname = './'.$data['car_item'][0]['path'];
             $data['photo'] = $this->Carroussel_model->read_all_files($pathname);                  
-       }           
+       }
+       if($typePage == "document"){
+        $this->load->model('Document_model');                         
+        $data['doc_item'] = $this->Document_model->get_document($id); 
+        $pathname = './'.$data['doc_item'][0]['path'];
+        $data['folder'] = $this->Document_model->read_all_files($pathname);
+        foreach($data['folder']as $k=>$f):
+            $data['file'] = $this->Document_model->read_all_files($pathname.'/'.$f);
+        endforeach;                  
+   }           
        
         $this->load->view('cms/header');
         $this->load->view('cms/left_menu',$data);

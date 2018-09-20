@@ -8,6 +8,7 @@ $back = $p['background'];
 $type_page = $p['type'];
 $path = 'pages/'.$p['nom'].'/';
 endforeach;
+$year = date('Y');
 ?>
 <div class="content-wrapper">
 <div class="box box-info">
@@ -169,7 +170,7 @@ endforeach;
                 </div>  
                 </div>          
                 <?php } ?>
-                 <!-- Div pour création d'un page du type bulle -->
+                 <!-- Div pour update d'un page du type bulle -->
                  <?php /*Si la page est du type bulle*/
                  if($type_page == 'bulle'){ 
                     /* on récupère le nb de bulles*/
@@ -261,7 +262,7 @@ endforeach;
           
           <?php } ?>
                 <!-- fin Div -->
-                <!-- Div pour création d'un page sans type -->
+                <!-- Div pour update d'un page sans type -->
                 <?php /*Si la page est sans type */if($type_page == 'sans'){ ?>       
                 <div class="box box-info">
             <div class="box-header with-border">
@@ -276,7 +277,7 @@ endforeach;
              
             </div>
             <?php } ?>
-                 <!-- Div pour création d'un page d'articles -->
+                 <!-- Div pour update d'un page d'articles -->
                  <?php /*Si la page est du type article*/if($type_page == 'article'){ ?>       
                     <div class="box box-info">
             <div class="box-header with-border">
@@ -293,6 +294,43 @@ endforeach;
             <?php } ?>
                <!-- fin Div -->
                <!-- fin Div -->
+               <?php if($type_page == 'document'){
+                 foreach($folder as $k=>$f):
+                  foreach($file as $n):
+                    echo $n;
+                  endforeach;
+                 endforeach;?>
+                <div id='document'>                
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
+                  <div class="col-sm-10">
+                  <textarea id="editor" name="textdoc" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                  </div>
+                </div>
+                <input id="nbY" type='hidden' value="1" name='nbY'/>                                
+                <div id='doc1'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear1" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc1[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div> <?php } ?>
                <!-- table des menus -->
               <!-- box-header -->
               <div id="table"> 
