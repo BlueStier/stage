@@ -68,11 +68,7 @@ class Document_model extends CI_Model {
             $nb = sizeof($uploaded_files['name']);          
             foreach ($uploaded_files as $k=>$file):
                 for($a = 0; $a<$nb; $a++){
-                    if($k == 'name'){
-                        $_FILES['file'.$a][$k] = utf8_decode($file[$a]);
-                    }else{
-                        $_FILES['file'.$a][$k] = $file[$a];
-                    }
+                    $_FILES['file'.$a][$k] = $file[$a];
                 }                  
             endforeach;
  
@@ -93,6 +89,27 @@ class Document_model extends CI_Model {
         //le téléchargement finit on réinitialise $_FILES avec les valeurs initiales
         $_FILES = $temp;
 
+        //enlève tous les charactères spéciaux des nom des fichiers
+        Document_model::supShitCaracters($pathname);
+
+        }
+
+        public function supShitCaracters($pathname){
+            $path = './'.$pathname;
+            $liste = Document_model::read_all_files($path);           
+            
+            foreach($liste as $name):
+            $a = str_replace(['é','è','ê'],'e',$name);
+            $b = str_replace(' ','-',$a);
+            $c = str_replace(['ù','û'],'u',$b);
+            $d = str_replace('ç','c',$c);
+            $e = str_replace('â','a',$d);
+            $f = str_replace('ô','o',$e);
+
+            $oldname = $path.'/'.$name;
+            $newname = $path.'/'.$f;
+            rename($oldname,$newname);
+            endforeach;
         }
 
         /*liste tous les dossier présent dans le dossier spécifier par $path
@@ -140,5 +157,40 @@ class Document_model extends CI_Model {
                          
             }
             return $tab;
+    }
+
+    public function supDoc($path){       
+        unlink($path);
+    }
+
+    public function update($id,$nom_page){
+            //on récupère le nouveau nom de la page pour changer le nom du dossier
+            $nom = utf8_decode($nom_page);
+            $pathname = 'assets/uploads/'.$nom;
+
+            //on récupère les infos pour faire le changement dans la table carroussel
+            $doc = Document_model::get_document($id);
+            $doc[0]['path'] = $pathname;
+            $doc[0]['text'] = $this->input->post('textdoc');
+            $this->db->replace('document',$doc[0]);
+
+            $pathname2 = './'.$pathname;
+            $oldpath = './'.$this->input->post('oldPath');
+            //on change le nom du dossier                
+            rename($oldpath,$pathname2);
+
+            //on récupère tous les fichiers avec leur n° d'année
+            $liste = Document_model::read_all_files($pathname2);
+
+            foreach($liste as $li):
+                //on vérifie si on doit upload des fichiers pour cette année
+                $choix = strcmp($this->input->post("radio".$li),'Oui');
+
+                //si oui on upload
+                if($choix == 0){
+                    $name = $pathname.'/'.$li;
+                    Document_model::upload_all_files($name,$li); 
+                }
+            endforeach;    
     }
 }

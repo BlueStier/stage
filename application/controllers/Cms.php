@@ -398,8 +398,9 @@ class Cms extends CI_Controller
         $data['doc_item'] = $this->Document_model->get_document($id); 
         $pathname = './'.$data['doc_item'][0]['path'];
         $data['folder'] = $this->Document_model->read_all_files($pathname);
-        foreach($data['folder']as $k=>$f):
-            $data['file'] = $this->Document_model->read_all_files($pathname.'/'.$f);
+        $data['file'] = [];
+        foreach($data['folder']as $f):
+            $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
         endforeach;                  
    }           
        
@@ -441,6 +442,15 @@ class Cms extends CI_Controller
                 $this->load->library('upload', $config);
                 $this->load->model('Carroussel_model');
                 $this->Carroussel_model->update($id,$nom_page[0]['nom']); 
+            }
+            if($nom_page[0]['type']=='document'){               
+                $config ['max_size'] = 10000000 ;
+                $config ['max_width'] = 10000 ;
+                $config ['max_height'] = 10000 ;
+                $config ['overwrite'] = true;
+                $this->load->library('upload', $config);
+                $this->load->model('Document_model');
+                $this->Document_model->update($id,$nom_page[0]['nom']); 
             }
             
             //on extrait tous les chemins dans les menus et sous menus...et remise à vide
@@ -484,6 +494,19 @@ class Cms extends CI_Controller
         $pathname = './'.$array[0]['path'];        
         $this->Carroussel_model->supPhoto($pathname,$n);
         Cms::updatePage($id);
+    }
+
+    public function supDoc($id_a_modif,$an,$doc = false){               
+        $this->load->model('Document_model');
+        $array = $this->Document_model->get_document($id_a_modif);
+        if($doc === false){
+            $pathname = './'.$array[0]['path'].'/'.$an;
+            $this->Document_model->delete_dir($pathname);
+        }else{
+        $pathname = './'.$array[0]['path'].'/'.$an.'/'.$doc;        
+        $this->Document_model->supDoc($pathname);
+        }
+        Cms::updatePage($id_a_modif);
     }
 
     public function cutLink($type)

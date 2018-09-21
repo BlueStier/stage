@@ -145,7 +145,7 @@ $year = date('Y');
                   <div class='col-sm-3'>
                    <img style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:200px;" src='<?php echo base_url().$path.$p ?>'/><br>
                     <?php if($size > 1){ ?>
-                   <a type="button" class="text-center btn btn-danger"  href="<?php echo base_url()?>cms/supPhoto/<?php echo $id_page.'/'.$p?>"><i class="fa  fa-warning"></i> Supprimer</a>
+                   <a type="button" class="text-center btn btn-danger"  href="<?php echo base_url()?>cms/supPhoto/<?php echo $id_page.'/'.$p?>"><i class="fa  fa-warning"></i> Supprimer la photo</a>
                     <?php } ?>
                 </div> 
                   <?php endforeach; ?>
@@ -168,8 +168,12 @@ $year = date('Y');
                   <input type="file" name="car2[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
                 </div>
                 </div>  
-                </div>          
-                <?php } ?>
+                </div>
+                <script>
+                document.getElementById("ajoutCar").style.display ='none';
+                </script>          
+                <?php } 
+                ?>
                  <!-- Div pour update d'un page du type bulle -->
                  <?php /*Si la page est du type bulle*/
                  if($type_page == 'bulle'){ 
@@ -295,25 +299,86 @@ $year = date('Y');
                <!-- fin Div -->
                <!-- fin Div -->
                <?php if($type_page == 'document'){
-                 foreach($folder as $k=>$f):
-                  foreach($file as $n):
-                    echo $n;
-                  endforeach;
-                 endforeach;?>
-                <div id='document'>                
+                  foreach($doc_item as $doc):
+                    $intro = $doc['text'];
+                    $path = $doc['path'].'/';
+                    $path0 = $doc['path'];                  
+                   endforeach;
+                   $nbY = sizeof($folder);
+                ?>                                
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
                   <div class="col-sm-10">
-                  <textarea id="editor" name="textdoc" class="ckeditor" rows="10" cols="80">                                            
+                  <textarea id="editor" name="textdoc" class="ckeditor" rows="10" cols="80">
+                  <?php echo $intro.$nbY; ?>                                            
                     </textarea>
                   </div>
                 </div>
-                <input id="nbY" type='hidden' value="1" name='nbY'/>                                
-                <div id='doc1'>
+                <?php foreach($folder as $f):?>
+                <div class="box box-info">
+            <div class="box-header with-border">
+            <div class='container'><div class='form-group'>
+                   <div class="col-sm-6"><h3 class='box-title'>Année : <?php echo $f ?></h3></div><a type="button" class="col-sm-6 btn btn-danger"  href="<?php echo base_url()?>cms/supDoc/<?php echo $id_page.'/'.$f ?>"><i class="fa  fa-warning"></i> Supprimer l'année et tous ses documents</a>
+                  </div></div>              
+            </div>
+            </div>
+            <div class='container'>
+            <?php foreach($file[$f] as $n):
+              $nom = utf8_encode($n);?>
+                   <div class='form-group'>
+                   <div class="col-sm-6">
+                  <?php echo $nom;?>
+                  </div>
+                  <input type=hidden name='oldPath' value='<?php echo $path0 ?>'/>
+                  <div class="col-sm-2"></div>
+                  <a type="button" class="col-sm-2 btn btn-danger"  href="<?php echo base_url()?>cms/supDoc/<?php echo $id_page.'/'.$f.'/'.$n?>"><i class="fa  fa-warning"></i> Supprimer le document</a>
+                  </div>                  
+                 <?php endforeach;?>
+                 <div class="row"> 
+                 <label class="col-sm-6">Souhaitez vous rajouter des documents à cette année ?</label>
+                 <div class="col-sm-3">
+                <input type="radio" name='radio<?php echo $f; ?>' onClick='visible<?php echo $f; ?>(false);' value="Non" checked>Non     
+                </div>
+                <div class="col-sm-3">
+                <input type="radio" name='radio<?php echo $f; ?>' onClick='visible<?php echo $f; ?>(true);' value="Oui">Oui     
+                </div>
+                </div>
+                <br>                
+                <div class="row"  id="file<?php echo $f; ?>"> 
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc<?php echo $f; ?>[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                  </div>
+                </div> 
+                </div>                                            
+                 <br>
+                 <script>
+                      document.getElementById('file<?php echo $f; ?>').style.display='none';
+                      function visible<?php echo $f; ?>($choix){
+                        ($choix ? document.getElementById('file<?php  echo $f; ?>').style.display='block' : document.getElementById('file<?php  echo $f; ?>').style.display='none'); 
+            }
+          </script>
+             <?php endforeach; ?>
+             <div class="box box-info">
+            <div class="box-header with-border">
+            <div class='container'><div class='form-group'>
+                   <div class="col-sm-6"><h3 class='box-title'>Souhaitez-vous ajouter des années ?</h3></div>
+                   <div class="col-sm-3">
+                <input type="radio" name='radio' onClick='visibleAn(false);' value="Non" checked>Non     
+                </div>
+                <div class="col-sm">
+                <input type="radio" name='radio' onClick='visibleAn(true);' value="Oui">Oui     
+                </div> 
+                  </div></div>              
+            </div>
+            </div>
+            <div id="an">
+             <input id="nbY" type='hidden' value="<?php echo $nbY+1 ?>" name='nbY'/>                           
+                <div id='doc2'>
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Choisissez l'année :</label>
                 <div class="col-sm-10">                
-                <select name ="selectyear1" class="form-control select2" >
+                <select name ="selectyear2" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
                   if($e == $year){?>
@@ -327,10 +392,194 @@ $year = date('Y');
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
                   <div class="col-sm-10">                  
-                  <input type="file" name="doc1[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                  <input type="file" name="doc2[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
                 </div>
                 </div>
-                </div> <?php } ?>
+                </div>
+                <div id='doc3'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear3" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc3[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc4'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear4" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc4[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc5'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear5" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc5[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc6'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear6" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc6[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc7'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear7" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc7[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc8'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear8" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc8[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc9'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear9" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc9[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>
+                <div id='doc10'>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Choisissez l'année :</label>
+                <div class="col-sm-10">                
+                <select name ="selectyear10" class="form-control select2" >
+                <?php 
+                 for($e = 2000; $e <= 2050; $e++){
+                  if($e == $year){?>
+                <option selected><?php echo $e; ?></option>
+                <?php } else { ?>
+                  <option><?php echo $e; ?></option>
+                <?php } } ?>
+                </select>
+                </div>
+                </div>                              
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisissez vos fichiers </label>
+                  <div class="col-sm-10">                  
+                  <input type="file" name="doc10[]" id="exampleInputFile" value='Choisissez des fichiers' multiple='multiple'>
+                </div>
+                </div>
+                </div>                
+                <div id='plusAn' type="button" class="btn btn-default" onClick="addYear(true);">Ajouter une année</div>
+                <div id='moinsAn' type="button" class="btn btn-default" onClick="addYear(false);">Enlever une année</div>
+                </div>
+                </div>
+                <script>
+                document.getElementById("an").style.display ='none';                
+                </script>
+                <?php } ?>
                <!-- table des menus -->
               <!-- box-header -->
               <div id="table"> 
@@ -466,22 +715,16 @@ $year = date('Y');
 <!-- ./wrapper -->
 <script>
 document.getElementById("choixPhoto").style.display ='none';
-document.getElementById("ajoutCar").style.display ='none';
 
-function addElement () {
- // crée un nouvel élément div 
- var newDiv = document.createElement("div"); 
-  // et lui donne un peu de contenu 
-  var newContent = document.createTextNode("Hi there and greetings!"); 
-  // ajoute le noeud texte au nouveau div créé
-  newDiv.appendChild(newContent);  
+<?php if($type_page == 'document'){
+  echo "document.body.onload = invisible('doc');";
+}?>
 
-  // ajoute le nouvel élément créé et son contenu dans le DOM 
-  var currentDiv = document.getElementById("div1"); 
-  document.body.insertBefore(newDiv, currentDiv); 
+function invisible(txt){
+  for(var i=2;i<=10;i++){
+     document.getElementById(txt+i).style.display ='none';    
+  }
 }
-
-
 
 function visibleP($choix){
   ($choix ? document.getElementById('choixPhoto').style.display='block' : document.getElementById('choixPhoto').style.display='none'); 
@@ -491,7 +734,41 @@ function visibleC($choix){
   ($choix ? document.getElementById('ajoutCar').style.display='block' : document.getElementById('ajoutCar').style.display='none'); 
 }
 
+var nbY = parseInt(document.getElementById("nbY").value,10);
+var initial = nbY;
+var An = nbY+1;
 
+function visibleAn($choix){
+  if($choix){    
+     document.getElementById('an').style.display='block';
+     document.getElementById("doc"+nbY).style.display ='block';
+     document.getElementById("moinsAn").style.display ='none';
+  }else{
+   document.getElementById('an').style.display='none';
+  invisible('doc'); 
+}
+}
 
-
+function addYear(bool){
+  alert(An); 
+  if(document.getElementById("nbY").value >= 9){
+    document.getElementById("plusAn").style.display ='none';
+  }else{
+    document.getElementById("plusAn").style.display ='inline';
+  }
+  if(bool){    
+    document.getElementById("nbY").value = An ;
+  document.getElementById("doc"+An).style.display ='block';
+  An++;
+  } else {
+    An--;
+    document.getElementById("doc"+An).style.display ='none';
+    document.getElementById("nbY").value = An-1 ;        
+  }
+  if(document.getElementById("nbY").value > initial){
+    document.getElementById("moinsAn").style.display ='inline';
+  }else{
+    document.getElementById("moinsAn").style.display ='none';
+  }
+}
 </script>
