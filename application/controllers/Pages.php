@@ -60,6 +60,19 @@ class Pages extends CI_Controller {
                 $data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);                
                 $page = 'article';  
         }
+        if($pagestab['type'] == 'document'){
+                $this->load->model('Document_model');
+                $data['doc_item'] = $this->Document_model->get_document($pagestab['id_pages']);
+                $pathname = './'.$data['doc_item'][0]['path'];
+                $data['folder'] = $this->Document_model->read_all_files($pathname);
+                $data['file'] = [];
+                foreach($data['folder']as $f):
+                    $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
+                endforeach;
+                $page = 'document';  
+        }
+
+        
         
         if($page == 'arretes-municipaux'){
                 $this->load->model('ArretesMunicipaux_model');

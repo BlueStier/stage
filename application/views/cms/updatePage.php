@@ -310,10 +310,11 @@ $year = date('Y');
                 <label class="col-sm-2 control-label">Texte d'intro (facultatif)</label>
                   <div class="col-sm-10">
                   <textarea id="editor" name="textdoc" class="ckeditor" rows="10" cols="80">
-                  <?php echo $intro.$nbY; ?>                                            
+                  <?php echo $intro; ?>                                            
                     </textarea>
                   </div>
                 </div>
+                <input type='hidden' name='sizeinitiale' value='<?php echo $nbY ?>'/>
                 <?php foreach($folder as $f):?>
                 <div class="box box-info">
             <div class="box-header with-border">
@@ -364,10 +365,10 @@ $year = date('Y');
             <div class='container'><div class='form-group'>
                    <div class="col-sm-6"><h3 class='box-title'>Souhaitez-vous ajouter des années ?</h3></div>
                    <div class="col-sm-3">
-                <input type="radio" name='radio' onClick='visibleAn(false);' value="Non" checked>Non     
+                <input type="radio" name='radioPlusAn' onClick='visibleAn(false);' value="Non" checked>Non     
                 </div>
                 <div class="col-sm">
-                <input type="radio" name='radio' onClick='visibleAn(true);' value="Oui">Oui     
+                <input type="radio" name='radioPlusAn' onClick='visibleAn(true);' value="Oui">Oui     
                 </div> 
                   </div></div>              
             </div>
@@ -381,9 +382,7 @@ $year = date('Y');
                 <select name ="selectyear2" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -403,9 +402,7 @@ $year = date('Y');
                 <select name ="selectyear3" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -425,9 +422,7 @@ $year = date('Y');
                 <select name ="selectyear4" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -447,9 +442,7 @@ $year = date('Y');
                 <select name ="selectyear5" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -468,12 +461,10 @@ $year = date('Y');
                 <div class="col-sm-10">                
                 <select name ="selectyear6" class="form-control select2" >
                 <?php 
-                 for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
-                  <option><?php echo $e; ?></option>
-                <?php } } ?>
+                  for($e = 2000; $e <= 2050; $e++){
+                    if(in_array($e,$folder)){?>                
+                    <option><?php echo $e; ?></option>
+                  <?php } } ?>
                 </select>
                 </div>
                 </div>                              
@@ -491,9 +482,7 @@ $year = date('Y');
                 <select name ="selectyear7" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -512,12 +501,10 @@ $year = date('Y');
                 <div class="col-sm-10">                
                 <select name ="selectyear8" class="form-control select2" >
                 <?php 
-                 for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
-                  <option><?php echo $e; ?></option>
-                <?php } } ?>
+                  for($e = 2000; $e <= 2050; $e++){
+                    if(in_array($e,$folder)){?>                
+                    <option><?php echo $e; ?></option>
+                  <?php } } ?>
                 </select>
                 </div>
                 </div>                              
@@ -535,9 +522,7 @@ $year = date('Y');
                 <select name ="selectyear9" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
+                  if(in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -556,12 +541,10 @@ $year = date('Y');
                 <div class="col-sm-10">                
                 <select name ="selectyear10" class="form-control select2" >
                 <?php 
-                 for($e = 2000; $e <= 2050; $e++){
-                  if($e == $year){?>
-                <option selected><?php echo $e; ?></option>
-                <?php } else { ?>
-                  <option><?php echo $e; ?></option>
-                <?php } } ?>
+                  for($e = 2000; $e <= 2050; $e++){
+                    if(in_array($e,$folder)){?>                
+                    <option><?php echo $e; ?></option>
+                  <?php } } ?>
                 </select>
                 </div>
                 </div>                              

@@ -191,6 +191,36 @@ class Document_model extends CI_Model {
                     $name = $pathname.'/'.$li;
                     Document_model::upload_all_files($name,$li); 
                 }
-            endforeach;    
+            endforeach;
+            
+            //vérifie s'il faut rajouter des années
+            $choix2 = strcmp($this->input->post('radioPlusAn'),'Oui');
+
+            //si oui on creer le dossier et on upload
+           if($choix2 == 0){
+
+            //récupère le nombre de dossiers à créer
+            $nbY = $this->input->post('nbY');
+
+            //récupère le nbre de dossier déjà existant
+            $sizeinitiale = $this->input->post('sizeinitiale');
+
+            //boucle du nombre de dossier présent au nombre de dossier à creer 
+            for($z = $sizeinitiale; $z <= $nbY; $z++){
+                //récupère l'année pour faire le nom du dossier
+                $an = $this->input->post('selectyear'.$z);
+                //création du chemin ou créer le dossier
+                $name = $pathname2.'/'.$an;
+
+                //si le dossier n'existe pas on le créé
+                if(!file_exists($name)) {
+                    mkdir($name,0700,TRUE);
+                }
+
+                //on upload tous les fichiers choisi dans le dossier ainsi créer
+                Document_model::upload_all_files($name,$z); 
+            }
+
+            }
     }
 }
