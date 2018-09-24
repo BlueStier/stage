@@ -1,74 +1,51 @@
-<div class="content-wrapper">
 <?php
-$tab =[];
-foreach($home_item as $home):
-$titre = $home['titre'];
-$soustitre = $home['soustitre'];
+$nbCarroussel = 0; 
+foreach($home_item as $h):
+  for($e = 1; $e <= 5; $e++){    
+  if(!empty($h['photo'.$e])){
+    $nbCarroussel++;
+  }
+  }
+endforeach;?>
+<div class="content-wrapper">
+<section class="content-header">
+      <h2>
+      Home Page        
+      </h2>
+      <ol class="breadcrumb">
+        <li><i class="glyphicon glyphicon-th text-red"></i>Apparence</li>
+        <li class="active">Home page</li>
+      </ol>      
+    </section>
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">La Home page permet d'afficher un titre, un soustitre (tous deux facultatifs) suivi d'un carroussel de 5 photos maximum (une au minimum).<br> En cliquant sur une photo de ce dernier, l'internaute pourra accéder à une page particulière du site.<br> Vous pouvez donc choisir 5 articles (ou page) à lier au carroussel.</h3>              
+            </div>
+            </div>
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h2 class="box-title">Il y a actuellement <?php echo $nbCarroussel; ?> lien(s) présent(s) dans le carroussel de la Home page </h3>              
+            </div>
+            </div>            
+            <?php
+            foreach($home_item as $h):
+              for($e = 1; $e <= 5; $e++){ ?>
+              <div class="box box-info">
+            <div class="box-header with-border">
+              <h2 class="box-title">Lien numéro : <?php echo $e; ?></h3>              
+            </div>
+            </div> 
+              <?php    
+              if(empty($h['path'.$e])){
+                ?>
+               <h4>Choisir une page : </h4>
+               <?php
+              } else { ?>
 
-for($i = 1;$i<=5;$i++){
-    if(!empty($home['photo'.$i])){
-    $tab['slide'.$i] = [
-                        'photo' => $home['photo'.$i],
-                        'path' => $home['path'.$i],
-                        'title' => $home['title'.$i],
-                        'p' => $home['p'.$i]
-                    ];
-
-}
-};
-endforeach;
-$size = sizeof($tab);
-?>
-<div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-      <h2 class="section-heading text-uppercase"><?php echo $titre ?></h2>
-        <h3><?php echo $soustitre ?></h3>
-      </div>
-      </div>
-<div class="row justify-content-center">
-<div class="col-lg-6 col-sm-12 ">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">  
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <?php /*on affiche le nombre de slide*/ 
-    for($a = 1; $a < $size; $a++){?>
-    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $a; ?>"></li>
-    <?php } ?>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <a href="<?php echo base_url().$tab['slide1']['path']; ?>"><img class="d-block w-100" src="<?php echo base_url().$tab['slide1']['photo']; ?>" alt="First slide"></a>
-      <div class="carousel-caption d-none d-md-block">
-      <h5><?php echo $tab['slide1']['title']; ?></h5>
-      <p><?php echo $tab['slide1']['p']; ?></p>
-  </div>
-    </div>
-    <?php /*on affiche les autres slides*/ 
-    for($b = 2; $b <= $size; $b++){?>
-    <div class="carousel-item">
-        <a href="<?php echo base_url().$tab['slide'.$b]['path']; ?>"><img class="d-block w-100" src="<?php echo base_url().$tab['slide'.$b]['photo']; ?>" alt="First slide"></a>
-        <div class="carousel-caption d-none d-md-block">
-        <h5><?php echo $tab['slide'.$b]['title']; ?></h5>
-        <p><?php echo $tab['slide'.$b]['p']; ?></p>
-  </div>
-    </div>
-    <?php } ?>   
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> 
-</div>
-</div>
-</div>
-<br> 
-    
+<?php
+              }
+              }
+            endforeach;?>
  
 </div>
 <!-- /.content-wrapper -->
@@ -80,4 +57,4 @@ $size = sizeof($tab);
     reserved.
   </footer>
   
-   
+  
