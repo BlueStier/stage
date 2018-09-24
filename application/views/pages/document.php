@@ -1,9 +1,11 @@
 <?php
 foreach($doc_item as $doc):
-$path = $doc_item['path'];
+$path = $doc['path'];
+$text = $doc['text'];
 endforeach;
 ?>
 <div class=container>
+<?php echo $text;?>
 <nav class="navbar">
     <div class="container">
     <?php foreach($folder as $f): ?>            
@@ -17,7 +19,7 @@ endforeach;
    <?php
    foreach($file[$f] as $n):
         ?><a class=" dropdown-item"
-                   href="<?php echo base_url().$path.'/'.$n;?>"><?php echo $n ?></a><?php
+                   href="<?php echo base_url().$path.'/'.$f.'/'.$n;?>" target=_blank><?php echo $n ?></a><?php
     
    endforeach;
    ?></div></div></div>

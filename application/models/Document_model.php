@@ -74,7 +74,7 @@ class Document_model extends CI_Model {
  
         // on défini le chemin du dossier où mettre les photos
         $this->upload->set_upload_path($pathname);
-        $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf|doc|docx');        
+        $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf');        
                 
         foreach($_FILES as $f=>$value):
             if ( ! $this->upload->do_upload($f)){

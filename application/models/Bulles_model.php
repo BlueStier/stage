@@ -131,6 +131,33 @@ class Bulles_model extends CI_Model {
                         $bulle[0]['tx'.$i] = $this->input->post('tx'.$i);
                 }
 
+                //on vérifie s'il faut ajouter des bulles
+                $radiobul = $this->input->post('radioPlusBulle');
+                //si oui
+                if($radiobul == 'Oui'){
+                        $nbafaire = $this->input->post('nbBui'); 
+                        //entre le nbre de bulle existante et le nombre de bulle totale on boucle
+                        for($j = $nbBu; $j <= $nbafaire; $j++){
+                                //on upload la photo et on modif la valeur dans le tableau de récup de la bdd
+                                if(! $this->upload->do_upload('photo'.$j))
+                                {
+                                        //si upload hs retour vers la page de update de page avec info sur l'echec du transfert
+                                        $error = array('error'=> $this->upload->display_errors());
+                                        $this->load->view('cms/header');
+                                        $this->load->view('cms/left_menu');
+                                        $this->load->view('cms/updatePage', $error);
+                                        $this->load->view('cms/footer');
+                                }else{
+                                        //si upload ok, on récupère le nom de la photo et on met le chemin dans l'array                                     
+                                        $array = $this->upload->data();
+                                        $bulle[0]['photo'.$j] = 'assets/site/img/about/'.$array['orig_name'];
+                                        
+                                }
+                                //et on enregistre les textes associés
+                        $bulle[0]['tx'.$j] = $this->input->post('tx'.$j);
+                        }
+                }
+
                //on récupère les autres données
                $titre = $this->input->post('titrebulle'); 
                $soustitre = $this->input->post('soustitrebulle');

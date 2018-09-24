@@ -193,7 +193,7 @@ $year = date('Y');
             </div>
             </div>                          
                 <div class="form-group">
-                <input type="hidden" value="<?php echo $nbBu ?>" name="nbBu"/>
+                <input type="hidden" value="<?php echo $nbBu ?>" name="nbBu" />
                   <label class="col-sm-2 control-label">Texte d'intro</label>
                   <div class="col-sm-10">
                   <input class="form-control" name='titrebulle' placeholder="<?php if($bulle_item[0]['titre'] != ''){ echo $bulle_item[0]['titre'];}else{ ?>Entrez le texte d'intro (facultatif)<?php } ?>">
@@ -211,7 +211,9 @@ $year = date('Y');
                     ?>               
                     <h4>bulle n° <?php  echo $d; ?>     <a type="button" class="marge btn btn-danger"  href="<?php echo base_url()?>cms/supBulle/<?php echo $d."/".$id_page?>"><i class="fa  fa-warning"></i> Supprimer</a>
                     <i class="fa fa-exclamation-triangle text-red"></i> Cette opération sera irréversible !</h4>
-                    <?php } ?>
+                    <?php } else {?>
+                      <h4>bulle n° <?php  echo $d; ?></h4>
+                      <?php } ?>
                   <div class="form-group">
                   <div class="col-sm-3">                                    
                 <label>Souhaitez concervez cette photo ?</label>
@@ -252,7 +254,195 @@ $year = date('Y');
             }
           </script>
           <?php } ?>
-          
+          <div class="box box-info">
+            <div class="box-header with-border">
+            <div class='container'><div class='form-group'>
+                   <div class="col-sm-6"><h3 class='box-title'>Souhaitez-vous ajouter des bulles ?</h3></div>
+                   <div class="col-sm-3">
+                <input type="radio" name='radioPlusBulle' onClick='visibleBulle(false);' value="Non" checked>Non     
+                </div>
+                <div class="col-sm">
+                <input type="radio" name='radioPlusBulle' onClick='visibleBulle(true);' value="Oui">Oui     
+                </div> 
+                  </div></div>              
+            </div>
+            </div>
+            <div id='plusbulle'>
+            <input id="nbBu" type='hidden' value="<?php echo $nbBu+1; ?>" name='nbBui'/> 
+            <div id="bulle2">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 2 </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 2 </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo2" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle3">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 3</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo3" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 3 </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle4">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 4</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx4" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 4</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo4" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle5">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 5</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo5" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 5</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx5" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle6">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 6</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx6" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 6</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo6" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle7">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 7</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo7" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 7</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx7" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle8">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 8</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx8" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 8</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo8" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id="bulle9">
+          <div class="form-group">
+                  <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 9</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo9" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 9</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx9" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+          </div>
+          </div>
+          <div id="bulle10">
+                 <div class="form-group">                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le texte 10</label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx10" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>
+            <div class="col-sm-3">
+                  <label class="control-label">Choisir l'image 10</label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo10" id="exampleInputFile" value='Choisissez une image'>
+                  </div>
+          </div>
+          </div>
+          <div id='plusBu' type="button" class="btn btn-default" onClick="addBulle(true);">Ajouter une bulle</div>
+                <div id='moinsBu' type="button" class="btn btn-default" onClick="addBulle(false);">Enlever une bulle</div>
+            </div>            
           <div class="form-group">
           <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
           <br>          
@@ -263,7 +453,9 @@ $year = date('Y');
                     </div>
           
           </div>
-          
+          <script>
+                document.getElementById("plusbulle").style.display ='none';                
+                </script>
           <?php } ?>
                 <!-- fin Div -->
                 <!-- Div pour update d'un page sans type -->
@@ -560,7 +752,10 @@ $year = date('Y');
                 </div>
                 </div>
                 <script>
-                document.getElementById("an").style.display ='none';                
+                document.getElementById("an").style.display ='none';
+                var nbY = parseInt(document.getElementById("nbY").value,10);
+                var initial = nbY;
+                var An = nbY+1;                
                 </script>
                 <?php } ?>
                <!-- table des menus -->
@@ -702,6 +897,9 @@ document.getElementById("choixPhoto").style.display ='none';
 <?php if($type_page == 'document'){
   echo "document.body.onload = invisible('doc');";
 }?>
+<?php if($type_page == 'bulle'){
+  echo "document.body.onload = invisible('bulle');";
+}?>
 
 function invisible(txt){
   for(var i=2;i<=10;i++){
@@ -709,20 +907,17 @@ function invisible(txt){
   }
 }
 
-function visibleP($choix){
-  ($choix ? document.getElementById('choixPhoto').style.display='block' : document.getElementById('choixPhoto').style.display='none'); 
+function visibleP(choix){
+  (choix ? document.getElementById('choixPhoto').style.display='block' : document.getElementById('choixPhoto').style.display='none'); 
 }
 
-function visibleC($choix){
-  ($choix ? document.getElementById('ajoutCar').style.display='block' : document.getElementById('ajoutCar').style.display='none'); 
+function visibleC(choix){
+  (choix ? document.getElementById('ajoutCar').style.display='block' : document.getElementById('ajoutCar').style.display='none'); 
 }
 
-var nbY = parseInt(document.getElementById("nbY").value,10);
-var initial = nbY;
-var An = nbY+1;
 
-function visibleAn($choix){
-  if($choix){    
+function visibleAn(choix){
+  if(choix){    
      document.getElementById('an').style.display='block';
      document.getElementById("doc"+nbY).style.display ='block';
      document.getElementById("moinsAn").style.display ='none';
@@ -732,8 +927,7 @@ function visibleAn($choix){
 }
 }
 
-function addYear(bool){
-  alert(An); 
+function addYear(bool){ 
   if(document.getElementById("nbY").value >= 9){
     document.getElementById("plusAn").style.display ='none';
   }else{
@@ -752,6 +946,42 @@ function addYear(bool){
     document.getElementById("moinsAn").style.display ='inline';
   }else{
     document.getElementById("moinsAn").style.display ='none';
+  }
+}
+
+var nbBu = parseInt(document.getElementById("nbBu").value,10);
+var initialb = nbBu;
+var Pbu = nbBu+1;
+
+function visibleBulle(choix){
+  if(choix){
+    document.getElementById("plusbulle").style.display ='block';
+    document.getElementById("bulle"+nbBu).style.display ='block';
+  }else{
+    document.getElementById("plusbulle").style.display ='none';
+    invisible('bulle');
+  }
+}
+
+function addBulle(bool){ 
+  if(document.getElementById("nbBu").value >= 9){
+    document.getElementById("plusBu").style.display ='none';
+  }else{
+    document.getElementById("plusBu").style.display ='inline';
+  }
+  if(bool){    
+    document.getElementById("nbBu").value = Pbu ;
+  document.getElementById("bulle"+Pbu).style.display ='block';
+  Pbu++;
+  } else {
+    Pbu--;
+    document.getElementById("bulle"+Pbu).style.display ='none';
+    document.getElementById("nbBu").value = Pbu-1 ;        
+  }
+  if(document.getElementById("nbBu").value > initialb){
+    document.getElementById("moinsBu").style.display ='inline';
+  }else{
+    document.getElementById("moinsBu").style.display ='none';
   }
 }
 </script>
