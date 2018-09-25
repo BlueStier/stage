@@ -1,6 +1,7 @@
 <?php
 $nbCarroussel = 0; 
 foreach($home_item as $h):
+  $intro = $h['intro'];
   for($e = 1; $e <= 5; $e++){    
   if(!empty($h['photo'.$e])){
     $nbCarroussel++;
@@ -24,22 +25,22 @@ endforeach;
               <br>Chaque photo peu avoir un titre et un sous-titre.</h3>              
             </div>
             </div>
+            <?php if(isset($error)){echo $error['error'];};
+             echo validation_errors();
+                  echo form_open_multipart('cms/updateIntroHome');?>
             <div class="form-horizontal">
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Titre de la Home page :</label>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Texte d'intro de la Home page (facultatif)</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le texte">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-sm-2 control-label">Sous-titre de la Home page:</label>
-                  <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le texte">
+                  <textarea id="editor" name='textintro' class="ckeditor" rows="10" cols="80">
+                  <?php echo $intro ?>                                            
+                    </textarea>
                   </div>
                 </div>
                 <div class='row'>               
-                <a class="col-md-12 btn btn-warning">Valider le changement de titre et de sous-titre</a>                                
+                <button type='submit' class="col-md-12 btn btn-warning">Valider le changement du texte d'introduction</button>                                
                 </div>
+                </form>
                 <br>
                 </div>
             <div class="box box-info">
@@ -52,31 +53,64 @@ endforeach;
               for($e = 1; $e <= 5; $e++){ ?>
               <div class="box box-info">
             <div class="box-header with-border">
+            <?php if(isset($error)){echo $error['error'];};
+             echo validation_errors();
+                  echo form_open_multipart('cms/updateLienHome/'. $e);?>
               <h2 class="box-title">Lien numéro : <?php echo $e; ?></h3>              
             </div>
             </div> 
            
-              <?php    
-              if(empty($h['path'.$e])){
-                ?>
+             
                 <div class="form-horizontal">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Titre :</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le texte">
+                  <input class="form-control" name="title<?php echo $e; ?>" <?php 
+                  if(!empty($h['title'.$e])){
+                    echo 'value="'.$h['title'.$e].'"';
+                    }else{
+                      echo 'placeholder="Entrez le texte"';} ?>>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Sous-titre :</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le texte">
+                  <input class="form-control" name="p<?php echo $e; ?>" <?php 
+                  if(!empty($h['p'.$e])){
+                    echo 'value="'.$h['p'.$e].'"';
+                    }else{
+                      echo 'placeholder="Entrez le texte"';} ?>>
                   </div>
                 </div>
                 </div>
-               <h4>Choisir une page : </h4>               
-              <div class='row'>
+                <?php
+                if(!empty($h['path'.$e])){ 
+                  $str = substr($h['path'.$e],6);
+                  $aff = substr($str,0,-1);?>                
+                <div class="form-horizontal">
+                   <div class="form-group">
+                <label class="col-sm-2 control-label">Page en cour : </label>
+                <label class="col-sm-2 control-label"><?php echo $aff; ?></label>
+                <label class="col-sm-2 control-label">Photo :</label>
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$h['photo'.$e] ?>'/>                           
+                </div>
+                </div>
+                <?php
+                }
+                ?>
+                <div class="form-horizontal">
+                <div class="form-group">
+               <h4 class="col-sm-2">Choisir : </h4>
+                <div class="col-sm-4 btn btn-success" onClick='pageOrArticle(true,<?php echo $e; ?>)'>une page</div>
+                <div class="col-sm-1"></div>
+                <div class="col-sm-4 btn btn-success" onClick='pageOrArticle(false,<?php echo $e; ?>)'>un article</div>
+                <div class="col-sm-1"></div>
+               </div> 
+               </div>              
+              <div id='page<?php echo $e?>' class='row'>
                <?php
-               foreach($pages_item as $page):
+               $size = sizeof($pages_item);               
+               foreach($pages_item as $nu=>$page):
                 $compare = strcmp($page['nom'],'home');
                 if($compare != 0){ ?>               
 <div class='col-md-4'>
@@ -94,7 +128,12 @@ endforeach;
               <div class="row">
                 <div class="col-sm-12 border-right">
                   <div class="description-block">
-                    <h5 class="description-header"><button type='' class='btn btn-primary'>Choisir</button></h5>                    
+                  <div id='achoisir<?php echo $e.$nu;?>'>
+                    <h5 class="description-header"><div onClick='select(<?php echo $e.$nu;?>,<?php echo $page['id_pages'];?>);'  class='btn btn-primary'>Choisir<?php echo $e.$nu;?></div></h5>                    
+                  </div>
+                  <div id='choisi<?php echo $e.$nu;?>'>
+                    <h1 class="description-header"><i class="fa fa-check text-green"></i></h1>                    
+                  </div>
                   </div>
                   <!-- /.description-block -->
                 </div>
@@ -103,16 +142,24 @@ endforeach;
               <!-- /.row -->
             </div>
           </div>
-</div>
+          </div>
+          
+    <?php
+            }           
+              endforeach;            
+              ?>
+              </div>
+              <?php foreach($Articles_item as $art):
+              var_dump($art);  
+            endforeach;   ?>
+                <div class='row'>
+                <input type='hidden' name='pageselected<?php echo $e; ?>' id='pageselected<?php echo $e; ?>' value=''/>                               
+                <button type='submit' class="col-md-12 btn btn-warning">Valider le changement du lien numéro : <?php echo $e; ?> </button>                                
+                </div>
+                </form>
+                <br>
+                
              <?php
-            }
-              endforeach; ?>
-</div>
-             <?php
-              } else { ?>
-
-<?php
-              }
               }
             endforeach;?>
  
@@ -126,5 +173,56 @@ endforeach;
     <strong>Copyright &copy; 2018-BlueStier</strong> All rights
     reserved.
   </footer>
+
+<script>
+document.body.onload = invisible();
+function invisible(){
+  for(a = 1; a <= 5; a++){
+ document.getElementById("page"+a).style.display ='none';
+  }
+}
+
+var size = <?php echo $size; ?>;
+
+function choisiInvisible(choix,boolean){
+  if(boolean){
+  for(r = 1; r < size; r++){
+    document.getElementById(choix+r).style.display ='none';
+  }
+}else{
+  for(r = 1; r < size; r++){
+    document.getElementById(choix+r).style.display ='block';
+  }
+}
+}
+var choix;
+var achoix;
+var selected;
+function pageOrArticle(bool,b){
+  if(bool){
+    for(c = 1; c <= 5; c++){
+      if(c != b){
+        document.getElementById("page"+c).style.display ='none';        
+      } else {
+        document.getElementById("page"+c).style.display ='block';
+        choix = 'choisi'+c;
+        achoix = 'achoisir'+c;
+        selected = 'pageselected'+c;
+        choisiInvisible(choix,true);
+      }
+    }
+  }
   
+}
+
+function select(choice,id){
+  alert(id);
+  choisiInvisible(choix,true);
+  choisiInvisible(achoix,false);
+  document.getElementById('choisi'+choice).style.display ='block';
+  document.getElementById('achoisir'+choice).style.display ='none';
+  document.getElementById(selected).value = id;
+}
+
+</script> 
   

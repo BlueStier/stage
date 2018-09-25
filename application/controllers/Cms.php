@@ -48,6 +48,8 @@ class Cms extends CI_Controller
             $data['nb'] = 3;
             $this->load->model('Home_model');
             $this->load->model('Pages_model');
+            $this->load->model('Articles_model');
+            $data['Articles_item'] = $this->Articles_model->get_article(FALSE,TRUE);
             $data['pages_item'] = $this->Pages_model->get_page();                       
             $data['home_item'] = $this->Home_model->get_home(1);
             $this->load->view('cms/header');
@@ -605,5 +607,22 @@ class Cms extends CI_Controller
                 $id = $this->Pages_model->get_idpage($nom);                
                 $this->Articles_model->updateArticle($id);
                 header('Location:'.base_url().'cms/6');
+    }
+
+    //fonction de update du texte d'intro de la home page
+    public function updateIntroHome(){
+        $this->load->model('Home_model');
+        $intro = $this->input->post('textintro');
+        $this->Home_model-> updateIntroHome($intro);
+        header('Location:'.base_url().'cms/3');
+    }
+
+    //fonction de update du lien pour les photo du carroussel
+    public function updateLienHome($nb){
+        $title = $this->input->post('title'.$nb);
+        $p = $this->input->post('p'.$nb);
+        $this->load->model('Home_model');
+        $this->Home_model-> updateTitleAndPByLien($nb,$title,$p);
+        header('Location:'.base_url().'cms/3');
     }
 }

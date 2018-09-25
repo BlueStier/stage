@@ -1,8 +1,7 @@
 <?php
 $tab =[];
 foreach($home_item as $home):
-$titre = $home['titre'];
-$soustitre = $home['soustitre'];
+$intro = $home['intro'];
 
 for($i = 1;$i<=5;$i++){
     if(!empty($home['photo'.$i])){
@@ -21,8 +20,7 @@ $size = sizeof($tab);
 <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-      <h2 class="section-heading text-uppercase"><?php echo $titre ?></h2>
-        <h3><?php echo $soustitre ?></h3>
+      <?php echo $intro ?>
       </div>
       </div>
 <div class="row justify-content-center">
