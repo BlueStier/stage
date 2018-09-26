@@ -162,10 +162,10 @@ class Pages_model extends CI_Model {
                         //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
                         $config['upload_path']= "./assets/site/img/background/";
                         $config['allowed_types'] = 'gif|jpg|png';
-                        $config ['max_size'] = 100000 ;
-                        $config ['max_width'] = 1024 ;
-                        $config ['max_height'] = 768 ;
-                        $config ['overwrite'] = true;
+                        $config ['max_size'] = 10000000 ;
+                        $config ['max_width'] = 10000 ;
+                        $config ['max_height'] = 10000 ;
+                        $config ['overwrite'] = true;                        
 
                         //upload la photo vers le serveur
                         $this->load->library('upload', $config);

@@ -30,6 +30,9 @@ class Home_model extends CI_Model {
 
         //fonction de mise à jour du texte de la photo du carroussel
         public function updateTitleAndPByLien($nb,$title,$p){
+                $choice = $this->input->post('type'.$nb);
+        switch($choice){
+                case 1:
                 $id_pages = $this->input->post('pageselected'.$nb);
                 $this->load->model('Pages_model');
                 $resultat = $this->Pages_model->get_page_by_id($id_pages);
@@ -41,6 +44,16 @@ class Home_model extends CI_Model {
                 $home['p'.$nb] = $p;
                 $home['path'.$nb] = $path;
                 $home['photo'.$nb] = $page['background'];
-                $this->db->replace('home',$home);    
+                $this->db->replace('home',$home);
+                break;
+                case 2:
+                $id_article = $this->input->post('pageselected'.$nb);
+                $this->load->model('Articles_model');
+                $res = 
+                break;
+                default:
+                header('Location:'.base_url().'cms/3');
+                break;
+                }    
         }
 }

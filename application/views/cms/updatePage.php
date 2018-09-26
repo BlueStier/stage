@@ -17,7 +17,6 @@ $year = date('Y');
               <small>   Page du type : <?php echo $type_page; ?></small>
             </div>
 </div>
-<?php //var_dump($text_item); ?>
 <!-- Pour tous type de pages définition de la photo de background, titre et soustitre (facultatif) -->
 <div class="form-horizontal">
 <div class="box-body">
@@ -45,7 +44,7 @@ $year = date('Y');
                   </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-2 control-label">Souhaitez concervez cette photo ?</label>
+                <label class="col-sm-2 control-label">Concerver cette photo ?</label>
                 <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$back ?>'/>
                 <div class="col-sm-2">
                 <input type="radio" name='radioP' onClick='visibleP(true);' value="Non" >Non     

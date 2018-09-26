@@ -34,7 +34,7 @@ class Articles_model extends CI_Model {
                 return $query->result_array();
         }
 }
-
+        
         public function create($id_pages){               
                 $données =array('id_articlespage'=>$id_pages, 
                                 'text'=>$this->input->post('article'));

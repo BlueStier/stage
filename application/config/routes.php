@@ -75,6 +75,7 @@ $route['cms/updateArticle/(:any)'] = 'cms/updateArticle/$1';
 $route['cms/configAlert/(:any)'] = 'cms/configAlert/$1';
 $route['cms/supAlert/(:any)'] = 'cms/supAlert/$1';
 $route['cms/homePage'] = 'cms/homePage/';
+$route['cms/updateGenHome'] = 'cms/updateGenHome';
 $route['cms/updateIntroHome'] = 'cms/updateIntroHome';
 $route['cms/updateLienHome/(:any)'] = 'cms/updateLienHome/$1';
 $route['cms/cutLink/(:any)'] = 'cms/cutLink/$1';

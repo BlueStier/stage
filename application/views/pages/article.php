@@ -28,7 +28,8 @@ img {
           <?php    
                         foreach($article_item as $article): 
                         if($article['visible']){?>                        
-          <article>         
+          <article>
+          <div id="<?php echo $article['titre']?>">         
           <div class="img-txt">                     
               <img class="impression"alt="Paris"
                     src="<?php echo base_url().$article['photo']?>"/>                   
@@ -41,7 +42,8 @@ img {
               <div class='texte'>
               <?php echo $article['text']?>           
               </div>
-              </div>                         
+              </div> 
+              </div>                        
           </article>
           <br>
           

@@ -49,8 +49,9 @@ class Cms extends CI_Controller
             $this->load->model('Home_model');
             $this->load->model('Pages_model');
             $this->load->model('Articles_model');
-            $data['Articles_item'] = $this->Articles_model->get_article(FALSE,TRUE);
-            $data['pages_item'] = $this->Pages_model->get_page();                       
+            $data['Articles_item'] = $this->Articles_model->get_article(FALSE,FALSE);
+            $data['pages_item'] = $this->Pages_model->get_page();
+            $data['homepage'] = $this->Pages_model->get_page('home');                       
             $data['home_item'] = $this->Home_model->get_home(1);
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu',$data);       
@@ -624,5 +625,12 @@ class Cms extends CI_Controller
         $this->load->model('Home_model');
         $this->Home_model-> updateTitleAndPByLien($nb,$title,$p);
         header('Location:'.base_url().'cms/3');
+    }
+
+    //fonction permettant la mise à jour des paramètres généraux de la homePage
+    public function updateGenHome(){       
+        $this->load->model('Pages_model');
+            $this->Pages_model->updatePage(1);
+            header('Location:'.base_url().'cms/3');
     }
 }
