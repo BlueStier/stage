@@ -34,6 +34,10 @@ class Articles_model extends CI_Model {
                 return $query->result_array();
         }
 }
+
+        public function get_article_by_id($id){
+              return $this->db->get_where('articles', array('id_articles' => $id))->result_array();  
+        }
         
         public function create($id_pages){               
                 $données =array('id_articlespage'=>$id_pages, 
@@ -226,7 +230,25 @@ class Articles_model extends CI_Model {
             $article = $this->db->get_where('articles', array('id_articles' => $id))->result_array();
             //on récupère les infos à changer 
             $titre = $this->input->post('titreArticle2');
+
+            $array = [];
+            $indice = 0;
+            $sizeArray = 0 ;
             if( !empty($titre)){
+                    //on vérifie si l'article est dans le carroussel de la home page
+            $ancienTitre = str_replace(' ','-',$article[0]['titre']);
+            $this->load->model('Home_model');
+            $verif = $this->Home_model->get_home(1);
+            $home = $verif[0];           
+            for($a = 0; $a < 5; $a++){
+                    if($home['type'.$a] == FALSE && $home['type'.$a] != NULL){
+                           if(stristr($home['path'.$a], $ancienTitre)){                             
+                                $indice = $a;
+                           }
+                    }
+            }
+            $sizeArray = sizeof($array);            
+            
                 $article[0]['titre'] = $titre;    
             }
 
@@ -272,6 +294,13 @@ class Articles_model extends CI_Model {
 
             //on remplace l'article de la BDD par le nouvel article
             $this->db->replace('articles', $article[0]);
+
+            //si il y a eu changement de titre et que l'article est dans le carroussel on fait le changement
+            if( $sizeArray > 0){               
+                $this->load->model('Home_model');
+                $this->Home_model->ifupdateArticleOrPage(FALSE,$article[0]['id_articles'],$a);
+
+        }
 
             //on change le jour d'enregistrement pour le valider à aujourd'hui
             $jour='UPDATE articles set jour=now() where id_articles='.$id;

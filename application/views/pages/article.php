@@ -19,17 +19,16 @@ img {
   <div class="container">    
       <div class="text-center">      
         <?php    
-                      echo $intro;
-                      foreach($article_item as $article):                        
-                      endforeach;
+                      echo $intro;                      
                       ?>
  </div>    
      
           <?php    
                         foreach($article_item as $article): 
-                        if($article['visible']){?>                        
-          <article>
-          <div id="<?php echo $article['titre']?>">         
+                        if($article['visible']){
+                          $id = str_replace(' ','-',$article['titre']);?>                        
+          <article >
+          <div id="<?php echo $id; ?>">         
           <div class="img-txt">                     
               <img class="impression"alt="Paris"
                     src="<?php echo base_url().$article['photo']?>"/>                   

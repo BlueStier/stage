@@ -37,23 +37,52 @@ class Home_model extends CI_Model {
                 $this->load->model('Pages_model');
                 $resultat = $this->Pages_model->get_page_by_id($id_pages);
                 $page = $resultat[0];
-                $path = 'pages/'.$page['nom'].'/';
-                $res = Home_model::get_home(1);
-                $home = $res[0];
-                $home['title'.$nb] = $title;
-                $home['p'.$nb] = $p;
-                $home['path'.$nb] = $path;
-                $home['photo'.$nb] = $page['background'];
-                $this->db->replace('home',$home);
+                $path = 'pages/'.$page['nom'].'/';                
+                $photo = $page['background'];
+                $boolean = TRUE;
+                $assos_id = $id_pages;                              
                 break;
                 case 2:
                 $id_article = $this->input->post('pageselected'.$nb);
                 $this->load->model('Articles_model');
-                $res = 
+                $rese = $this->Articles_model->get_article_by_id($id_article);
+                $article = $rese[0];
+                $this->load->model('Pages_model');
+                $resultat = $this->Pages_model->get_page_by_id($article['id_articlespage']);
+                $nomArticle = str_replace(' ','-',$article['titre']);                
+                $path = 'pages/'.$resultat[0]['nom'].'/#'.$nomArticle;
+                $photo = $article['photo'];
+                $boolean = FALSE;
+                $assos_id =  $id_article; 
                 break;
                 default:
                 header('Location:'.base_url().'cms/3');
                 break;
-                }    
+                }
+                $res = Home_model::get_home(1);
+                $home = $res[0]; 
+                $home['title'.$nb] = $title;
+                $home['p'.$nb] = $p;
+                $home['path'.$nb] = $path;
+                $home['photo'.$nb] = $photo;
+                $home['type'.$nb] = $boolean;
+                $home['assos_id'.$nb] = $assos_id;
+                $this->db->replace('home',$home);
+        }
+
+        public function ifupdateArticleOrPage($type,$id,$nb){
+                if($type){
+
+                }else{
+                        $this->load->model('Pages_model');
+                        $resultat = $this->Pages_model->get_page_by_id($article['id_articlespage']);
+                        $nomArticle = str_replace(' ','-',$article['titre']);                
+                        $path = 'pages/'.$resultat[0]['nom'].'/#'.$nomArticle;
+                        $res = Home_model::get_home(1);
+                        $home = $res[0];
+                        $home['path'.$nb] = $path;
+                        $home['photo'.$nb] = $article['photo'];
+                        $this->db->replace('home',$home);      
+                }
         }
 }

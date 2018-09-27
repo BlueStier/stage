@@ -102,15 +102,15 @@ $image = $homepage['background'];
               <h2 class="box-title">Il y a actuellement <?php echo $nbCarroussel; ?> lien(s) présent(s) dans le carroussel de la Home page </h3>              
             </div>
             </div>            
-            <?php
-            foreach($home_item as $h):
+            <?php             
+            foreach($home_item as $he):                           
               for($e = 1; $e <= 5; $e++){ ?>
               <div class="box box-info">
             <div class="box-header with-border">
             <?php if(isset($error)){echo $error['error'];};
              echo validation_errors();
                   echo form_open_multipart('cms/updateLienHome/'. $e);?>
-              <h2 class="box-title">Lien numéro : <?php echo $e; ?></h3>              
+              <h2 class="box-title">Lien numéro : <?php echo $e;?></h3>              
             </div>
             </div> 
            
@@ -120,8 +120,8 @@ $image = $homepage['background'];
                   <label class="col-sm-2 control-label">Titre :</label>
                   <div class="col-sm-10">
                   <input class="form-control" name="title<?php echo $e; ?>" <?php 
-                  if(!empty($h['title'.$e])){
-                    echo 'value="'.$h['title'.$e].'"';
+                  if(!empty($he['title'.$e])){
+                    echo 'value="'.$he['title'.$e].'"';
                     }else{
                       echo 'placeholder="Entrez le texte"';} ?>>
                   </div>
@@ -130,27 +130,41 @@ $image = $homepage['background'];
                   <label class="col-sm-2 control-label">Sous-titre :</label>
                   <div class="col-sm-10">
                   <input class="form-control" name="p<?php echo $e; ?>" <?php 
-                  if(!empty($h['p'.$e])){
-                    echo 'value="'.$h['p'.$e].'"';
+                  if(!empty($he['p'.$e])){
+                    echo 'value="'.$he['p'.$e].'"';
                     }else{
                       echo 'placeholder="Entrez le texte"';} ?>>
                   </div>
                 </div>
                 </div>
-                <?php
-                if(!empty($h['path'.$e])){ 
-                  $str = substr($h['path'.$e],6);
+                <?php               
+                if($he['type'.$e]){ 
+                  $str = substr($he['path'.$e],6);
                   $aff = substr($str,0,-1);?>                
                 <div class="form-horizontal">
                    <div class="form-group">
                 <label class="col-sm-2 control-label">Page en cour : </label>
                 <label class="col-sm-2 control-label"><?php echo $aff; ?></label>
                 <label class="col-sm-2 control-label">Photo :</label>
-                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$h['photo'.$e] ?>'/>                           
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$he['photo'.$e] ?>'/>                           
+                </div>
+                </div>
+                <?php
+                }else{
+                  if($he['type'.$e] != NULL){
+                  $str = substr($he['path'.$e],6);
+                 ?>                
+                <div class="form-horizontal">
+                   <div class="form-group">
+                <label class="col-sm-2 control-label">Article en cour : </label>
+                <label class="col-sm-2 control-label"><?php echo $str; ?></label>
+                <label class="col-sm-2 control-label">Photo :</label>
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$he['photo'.$e] ?>'/>                           
                 </div>
                 </div>
                 <?php
                 }
+              }
                 ?>
                 <div class="form-horizontal">
                 <div class="form-group">
@@ -241,9 +255,20 @@ $image = $homepage['background'];
               <?php endforeach;   ?>
               </div>
                 <div class='row'>
-                <input type='hidde' name='pageselected<?php echo $e; ?>' id='pageselected<?php echo $e; ?>' value=''/> 
-                <input type='hidde' name='type<?php echo $e; ?>' id='type<?php echo $e; ?>' value=''/>                              
-                <button type='submit' class="col-md-12 btn btn-warning">Valider le changement du lien numéro : <?php echo $e; ?> </button>                                
+                <input type='hidden' name='pageselected<?php echo $e; ?>' id='pageselected<?php echo $e; ?>' value=''/> 
+                <input type='hidden' name='type<?php echo $e; ?>' id='type<?php echo $e; ?>' value=''/>
+                <div class="col-md-2"></div>
+                <button type='submit' class="col-md-4 btn btn-warning"<?php
+                if(($e > 1) && (empty($he['path'.($e-1)]))){
+                  echo 'disabled';
+                }
+                ?>
+                >Valider le changement du lien numéro : <?php echo $e; ?> </button>
+                <div class="col-md-1"></div>
+                <?php if (($e != 1) && (!empty($he['path'.$e]))) { ?>
+                <button type='submit' class="col-md-4 btn btn-danger"><i class="fa  fa-warning"></i> Videz le lien numéro : <?php echo $e; ?> </button>
+              <?php } ?>
+                <div class="col-md-1"></div>                                
                 </div>
                 </form>
                 <br>
