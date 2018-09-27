@@ -192,5 +192,8 @@ class Pages_model extends CI_Model {
         }
 
                 $this->db->replace('pages',$page[0]);
+                //si il y a eu changement de titre et que l'article est dans le carroussel on fait le changement         
+                $this->load->model('Home_model');
+                $this->Home_model->ifupdateArticleOrPage(TRUE,$page[0]['id_pages']);
         }
 }
