@@ -283,7 +283,7 @@ class Articles_model extends CI_Model {
             //si il y a eu changement de titre et que l'article est dans le carroussel on fait le changement
                           
                 $this->load->model('Home_model');
-                $this->Home_model->ifupdateArticleOrPage(FALSE,$article[0]['id_articles']);
+                $this->Home_model->ifupdateArticleOrPage(FALSE,$id);
 
         
 

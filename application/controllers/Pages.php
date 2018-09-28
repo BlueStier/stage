@@ -10,7 +10,7 @@ class Pages extends CI_Controller {
         }
 
         public function index(){
-                Pages::view('home2');
+                Pages::view('home');
         }
         //construit la page demandée 
         public function view($page){       
@@ -43,7 +43,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'home'){
                 $this->load->model('Home_model');
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-                $page = 'home2';  
+                $page = 'home';  
         }
         if($pagestab['type'] == 'carroussel'){
                 $this->load->model('Carroussel_model');
@@ -90,9 +90,9 @@ class Pages extends CI_Controller {
                 show_404();
         }
 
-        //$this->load->view('header/index2',$data);
+        $this->load->view('header/index',$data);
         $this->load->view('pages/'.$page,$data);
-        //$this->load->view('templates/footer2');
+        $this->load->view('templates/footer');
         
 }
 }

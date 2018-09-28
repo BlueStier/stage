@@ -80,14 +80,14 @@ class Home_model extends CI_Model {
                         $home = $res[0];
                         $nb = 0 ;
                         for($s = 1; $s < 5; $s++){
-                                if($home['assos_id'.$s] = $id && $home['type'.$s]==TRUE){
+                                if($home['assos_id'.$s] == $id && $home['type'.$s] == TRUE){
                                         $nb = $s;
                                 }
                         }
                         if($nb > 0){
                         $this->load->model('Pages_model');
                         $result = $this->Pages_model->get_page_by_id($id);
-                        $path = 'pages/'.$result[0]['nom'];
+                        $path = 'pages/'.$result[0]['nom'].'/';
                         $home['photo'.$nb] = $result[0]['background'];
                         $home['path'.$nb] = $path;
                         $this->db->replace('home',$home);
@@ -97,7 +97,7 @@ class Home_model extends CI_Model {
                         $home = $res[0];
                         $nb = 0 ;
                         for($s = 1; $s < 5; $s++){
-                                if($home['assos_id'.$s] = $id){
+                                if($home['assos_id'.$s] == $id && $home['type'.$s] == False){
                                         $nb = $s;
                                 }
                         }
@@ -105,13 +105,14 @@ class Home_model extends CI_Model {
                         if($nb > 0){                        
                         $this->load->model('Pages_model');
                         $this->load->model('Articles_model');
-                        $resultat = $this->Articles_model->get_article_by_id($home['assos_id'.$nb]);                       
+                        $resultat = $this->Articles_model->get_article_by_id($id);                       
                         $article = $resultat[0];
                         $result = $this->Pages_model->get_page_by_id($article['id_articlespage']);
                         $nomArticle = str_replace(' ','-',$article['titre']);                
                         $path = 'pages/'.$result[0]['nom'].'/#'.$nomArticle;
                         $home['path'.$nb] = $path;
                         $home['photo'.$nb] = $article['photo'];
+                        //$home['assos_id'.$nb] = $home['assos_id'.$nb];
                         $this->db->replace('home',$home);
                         }      
                 }
