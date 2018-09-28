@@ -28,7 +28,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'bulle'){
                 $this->load->model('Bulles_model');
                 $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-                $page = 'bulle';  
+                $page = 'bulle2';  
         }
         if($pagestab['type'] == 'text'){
                 $this->load->model('Text_model');
@@ -43,7 +43,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'home'){
                 $this->load->model('Home_model');
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-                $page = 'home';  
+                $page = 'home2';  
         }
         if($pagestab['type'] == 'carroussel'){
                 $this->load->model('Carroussel_model');
@@ -90,9 +90,9 @@ class Pages extends CI_Controller {
                 show_404();
         }
 
-        $this->load->view('header/index',$data);
+        $this->load->view('header/index2',$data);
         $this->load->view('pages/'.$page,$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer2');
         
 }
 }

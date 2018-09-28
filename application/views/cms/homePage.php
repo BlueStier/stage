@@ -266,7 +266,7 @@ $image = $homepage['background'];
                 >Valider le changement du lien numéro : <?php echo $e; ?> </button>
                 <div class="col-md-1"></div>
                 <?php if (($e != 1) && (!empty($he['path'.$e]))) { ?>
-                <button type='submit' class="col-md-4 btn btn-danger"><i class="fa  fa-warning"></i> Videz le lien numéro : <?php echo $e; ?> </button>
+                <a type='submit' class="col-md-4 btn btn-danger" href="deleteLien/<?php echo $e; ?>"><i class="fa  fa-warning"></i> Videz le lien numéro : <?php echo $e; ?> </a>
               <?php } ?>
                 <div class="col-md-1"></div>                                
                 </div>

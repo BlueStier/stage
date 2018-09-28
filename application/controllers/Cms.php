@@ -633,4 +633,11 @@ class Cms extends CI_Controller
             $this->Pages_model->updatePage(1);
             header('Location:'.base_url().'cms/3');
     }
+
+    //fonction permettant de vider un lien
+    public function deleteLien($n){
+        $this->load->model('Home_model');
+        $this->Home_model->deleteLien($n);
+        header('Location:'.base_url().'cms/3'); 
+    }
 }

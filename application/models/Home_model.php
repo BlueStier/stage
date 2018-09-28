@@ -112,9 +112,24 @@ class Home_model extends CI_Model {
                         $path = 'pages/'.$result[0]['nom'].'/#'.$nomArticle;
                         $home['path'.$nb] = $path;
                         $home['photo'.$nb] = $article['photo'];
-                        //$home['assos_id'.$nb] = $home['assos_id'.$nb];
                         $this->db->replace('home',$home);
                         }      
                 }
         }
+
+         //fonction permettant de vider un lien
+        public function deleteLien($n){
+        $res = Home_model::get_home(1);
+        $home = $res[0];
+
+        for($o = $n; $o < 5; $o++){
+                $home['photo'.$o] = $home['photo'.($o+1)];
+                $home['path'.$o] = $home['path'.($o+1)];
+                $home['p'.$o] = $home['p'.($o+1)];
+                $home['title'.$o] = $home['title'.($o+1)];
+                $home['type'.$o] = $home['type'.($o+1)];
+                $home['assos_id'.$o] = $home['assos_id'.($o+1)];
+        }
+        $this->db->replace('home',$home);
+    }
 }

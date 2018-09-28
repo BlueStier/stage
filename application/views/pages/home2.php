@@ -39,8 +39,10 @@ $size = sizeof($tab);
 					<div class="hero_slide_background" style="background-image:url(<?php echo base_url().$tab['slide'.$a]['photo']; ?>)"></div>
 					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
 						<div class="hero_slide_content text-center">
+						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
 							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['title']; ?></h1>
 							<h2 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['p']; ?></h2>
+						</a>
 						</div>
 					</div>
 				</div>

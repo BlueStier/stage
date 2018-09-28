@@ -78,6 +78,7 @@ $route['cms/homePage'] = 'cms/homePage/';
 $route['cms/updateGenHome'] = 'cms/updateGenHome';
 $route['cms/updateIntroHome'] = 'cms/updateIntroHome';
 $route['cms/updateLienHome/(:any)'] = 'cms/updateLienHome/$1';
+$route['cms/deleteLien/(:num)'] = 'cms/deleteLien/$1';
 $route['cms/cutLink/(:any)'] = 'cms/cutLink/$1';
 $route['cms/updateLink/(:any)'] = 'cms/updateLink/$1';
 $route['cms/createMenu/(:any)'] = 'cms/createMenu/$1';
