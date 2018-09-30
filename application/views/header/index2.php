@@ -22,9 +22,9 @@
 <div class="super_container">
 
 	<!-- Header -->
-
-	<header class="header d-flex flex-row">
-		<div class="header_content d-flex flex-row align-items-center">
+	<header class="header flex-row" onmouseleave="invisibleMenu();">
+			<div class="header_content flex-row align-items-center">
+				<div class="d-flex">
 			<!-- Logo -->
 			<div class="logo_container">
 				<div class="logo">
@@ -38,15 +38,22 @@
 				<div class="main_nav">
 					<ul class="main_nav_list">
 					<?php
+					$sizeHeader = 0;
 					//pour chaque menu de la bdd
-						foreach($header_item as $header):
+						foreach($header_item as $a=>$header):
      						//vérifie si le menu doit être affiché
-    							if($header['visible']){ ?>
-						<li class="main_nav_item"><a href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a></li>
-								<?php } endforeach; ?>				     
+    							if($header['visible']){ 
+									$sizeHeader++; ?>
+						<li class="main_nav_item"><a onmouseover="seeMenu(<?php echo $a; ?>);" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
+					</li>
+						<?php } endforeach; ?>				     
                     </ul>                    
-				</div>                
+				</div> 	               
 			</nav>
+			</div>
+			<?php for($c = 0; $c < $sizeHeader; $c++){?>
+		<div style="background-color: red;" id='<?php echo $c; ?>'><?php echo $c; ?><br><br><br><br><br><br><br><br></div>
+		<?php } ?>
 		</div>
 		<div class="header_side d-flex flex-row justify-content-center align-items-center">
 		<form action="Search.php" method="post">
@@ -64,15 +71,14 @@
           </div>          
         </div>
         </form>
-		</div>
-		
+		</div>		
 		<!-- Hamburger -->
 		<div class="hamburger_container">
 			<i class="fas fa-bars trans_200"></i>
-		</div>
-
+		</div>					
 	</header>
 	
+
 	<!-- Menu -->
 	<div class="menu_container menu_mm">
 
@@ -129,13 +135,27 @@
 	
 	<!-- Home -->
 
-	<div class="home1">
+	<div class="home1">	
 		<div class="home_background_container prlx_parent">
 			<div class="home_background prlx" style="background-image:url(<?php echo $background;?>)"></div>
-		</div>
-		<div class="home_content">
+		</div>		
+		<div class="home_content">	
 			<h1><?php echo $title; ?></h1>
 			<br>			
 			<h2 class="text-center"><?php echo $subtitle; ?></h2>
 		</div>
 	</div>
+	<script>
+	var size = <?php echo $sizeHeader; ?>;
+	document.body.onload = invisibleMenu();	
+	function invisibleMenu(){
+		for (b = 0; b < size; b++){
+			document.getElementById(b).style.display = 'none';
+		}
+
+	}
+	function seeMenu(id){
+		invisibleMenu();
+		document.getElementById(id).style.display='block' ;
+	}						
+	</script>

@@ -277,7 +277,6 @@ section
 /*********************************
 3. Header
 *********************************/
-
 .header
 {
 	position: fixed;
@@ -289,7 +288,7 @@ section
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	width: 1318px;
-	height: 104px;
+	height: 52px;
 	background: #FFFFFF;
 	z-index: 10;
 	-webkit-transition: all 200ms ease;
@@ -382,7 +381,7 @@ section
 }
 .main_nav_item a:hover
 {
-	color: #ffb606;
+	color: #06ff30;
 }
 
 /*********************************
