@@ -278,7 +278,7 @@ section
 	-o-transform: translateX(-50%);
 	transform: translateX(-50%);
 	width: 1318px;
-	height: 52px;
+	height: 60px;
 	background: #FFFFFF;
 	z-index: 10;
 	-webkit-transition: all 200ms ease;
@@ -286,6 +286,7 @@ section
 	-ms-transition: all 200ms ease;
 	-o-transition: all 200ms ease;
 	transition: all 200ms ease;
+	box-shadow: 0px 20px 49px rgba(0,0,0,0.67);
 }
 .header.scrolled
 {	
@@ -311,6 +312,51 @@ section
 	content: '';
 	box-shadow: 0px 20px 49px rgba(0,0,0,0.67);
 	z-index: -1;
+}
+
+.back_menu{
+	animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari et Chrome */
+    -o-animation: fadein 1s; /* Opera */	
+	background-color: rgba(24, 6, 128, 0.774);
+	
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-moz-keyframes fadein { /* sur Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-webkit-keyframes fadein { /* sur Safari et Chrome */
+    from {
+        opacity:0;
+    }
+    to {		
+        opacity:0.9;
+    }
+}
+@-o-keyframes fadein { /* sur Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+.back_menu:hover{	
+	background-color: rgb(24, 6, 128);
+	opacity:0.9;
 }
 
 /*********************************
@@ -345,6 +391,7 @@ section
 }
 .main_nav
 {
+	margin-left: 7px;
 	margin-top: 7px;
 }
 .main_nav_item
@@ -486,7 +533,7 @@ section
 }
 .menu_item
 {
-	margin-bottom: 9px;
+	margin-bottom: 1px;
 }
 .menu_item a
 {
@@ -503,6 +550,56 @@ section
 .menu_item a:hover
 {
 	color: #ffb606;
+}
+.menu_item .back_sub_menu{
+	animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari et Chrome */
+    -o-animation: fadein 1s; /* Opera */	
+	background-color: rgb(231, 230, 238);
+	padding-right : 20px;
+	
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-moz-keyframes fadein { /* sur Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-webkit-keyframes fadein { /* sur Safari et Chrome */
+    from {
+        opacity:0;
+    }
+    to {		
+        opacity:0.9;
+    }
+}
+@-o-keyframes fadein { /* sur Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+.menu_item .back_sub_menu:hover{	
+	background-color: rgb(172, 170, 184);
+	opacity:0.9;
+}
+
+.menu_item .back_sub_menu a{
+	padding-left: 10%;
+	font-size: 1.5em;
 }
 .menu_close_container
 {

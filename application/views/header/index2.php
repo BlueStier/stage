@@ -15,7 +15,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/responsive.css">
-<link href="<?php echo base_url();?>/assets/site/img/logos/logo.jpg" rel="icon" type="image/png">
+<link href="<?php echo base_url();?>/assets/site/img/logos/logo2.jpg" rel="icon" type="image/jpg">
 </head>
 <body>
 
@@ -23,46 +23,45 @@
 
 	<!-- Header -->
 	<header class="header flex-row" onmouseleave="invisibleMenu();">
-			<div class="header_content flex-row align-items-center">
-				<div class="d-flex">
+			<div class=" flex-row align-items-center">
+				<div class="d-flex align-items-center">
 			<!-- Logo -->
 			<div class="logo_container">
 				<div class="logo">
-					<a href="<?php echo base_url();?>" title="Acceuil"><img src="<?php echo base_url();?>/assets/site/course-master/images/logo.png" alt="">
+					<a href="<?php echo base_url();?>" title="Acceuil"><img src="<?php echo base_url();?>/assets/site/course-master/images/logo2.png" alt="">
 					<span href="<?php echo base_url();?>">Oignies</span></a>
 				</div>
 			</div>
 
 			<!-- Main Navigation -->
 			<nav class="main_nav_container">
-				<div class="main_nav">
+				<div class="d-flex flex-row">
+				<div class=" main_nav">
 					<ul class="main_nav_list">
 					<?php
 					$sizeHeader = 0;
+					$tabHeader = [];
 					//pour chaque menu de la bdd
 						foreach($header_item as $a=>$header):
      						//vérifie si le menu doit être affiché
-    							if($header['visible']){ 
+    							if($header['visible']){
+									$tabHeader[] = $header; 
 									$sizeHeader++; ?>
 						<li class="main_nav_item"><a onmouseover="seeMenu(<?php echo $a; ?>);" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
 					</li>
-						<?php } endforeach; ?>				     
-                    </ul>                    
-				</div> 	               
-			</nav>
-			</div>
-			<?php for($c = 0; $c < $sizeHeader; $c++){?>
-		<div style="background-color: red;" id='<?php echo $c; ?>'><?php echo $c; ?><br><br><br><br><br><br><br><br></div>
-		<?php } ?>
-		</div>
-		<div class="header_side d-flex flex-row justify-content-center align-items-center">
-		<form action="Search.php" method="post">
-		<div class="row justify-content-md-center">        
-          <div class="input-group col-lg-12">         
-            <input class="form-control py-2"
+						<?php } endforeach; ?>
+										     
+					</ul> 
+					                   
+				</div>
+				<div class="header_side main_nav"> 
+				<form action="Search.php" method="post">
+		<div class="justify-content-md-center">        
+          <div class="input-group">         
+            <input class="form-control"
                  id="example-search-input"
                  type="search"
-                 placeholder="Rechercher">
+                 placeholder="Rechercher"/>
                  <span class="input-group-append">
                     <button class="btn btn-outline-secondary" type="submit">
                       <i class="fa fa-search"></i>
@@ -70,8 +69,51 @@
                   </span>                 
           </div>          
         </div>
-        </form>
-		</div>		
+		</form>	
+		</div> 
+		</div>             
+			</nav>
+		
+		</div>			
+			<?php foreach ($tabHeader as $b=>$menu):?>
+			<br>
+		<div class="back_menu" id='<?php echo $b; ?>'>
+		<h1 class="text-center text-white"><?php echo $menu['nom']; ?></h1>
+		<div class="container">		
+		<div class="row">				
+		<?php 
+		foreach($sub_item as $sub):                  
+			$compare = strcmp($sub['menu'],$menu['nom']);            
+			//on vérifie que le sous menu doit être affiché et qu'il correspond au menu parent
+			if($sub['visible'] && ($compare == 0)){?>
+					
+	<?php if($sub['no3level']){	?>
+		<div class="col-md-3 text_center text-white ">	
+	<u><a class="text-white" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php echo $sub['nom']; ?></a></u>
+	</div>
+	<?php } else { ?>
+		<div class="col-md-3 text_center text-white ">	
+	<u><?php echo $sub['nom']; ?></u>
+	<div class="row">
+	<?php //pour chaque sous menu de 3eme niveau :
+                        foreach($third_item as $thi):
+                              //on vérifie que le 3eme niveau doit être affiché et qu'il correspond au sousmenu parent
+                              $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
+							  if($thi['visible'] && ($compare2 == 0)){?>
+							  <div class="col-md-12">
+						<a class="text-white" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$thi['path'];?>"><?php echo $thi['nom']; ?></a>
+						</div>	  
+		<?php }  endforeach;?>
+		</div>					  
+	</div>
+<?php } } endforeach;?>
+</div>
+	</div>
+	</div>
+
+<?php endforeach; ?>
+		</div>
+			
 		<!-- Hamburger -->
 		<div class="hamburger_container">
 			<i class="fas fa-bars trans_200"></i>
@@ -107,10 +149,26 @@
         </form>
 		<br>
 				<ul class="menu_list menu_mm">
-					<li class="menu_item menu_mm"><a href="index.html">Ma ville</a></li>
-					<li class="menu_item menu_mm"><a href="#">Mes temps libres</a></li>
-					<li class="menu_item menu_mm"><a href="courses.html">Ma démocratie</a></li>
-					<li class="menu_item menu_mm"><a href="news.html">Mon portail famille</a></li>					
+				<?php
+									
+					//pour chaque menu de la bdd
+						foreach($header_item as $c=>$header):							
+     						//vérifie si le menu doit être affiché
+    							if($header['visible']){																
+								?>
+						<li class="menu_item menu_mm"><a onmouseover="seeSubMenu(<?php echo $c; ?>);" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
+						<ul id="sub<?php echo $c; ?>">
+						<?php foreach($sub_item as $sub):                  
+			$compare = strcmp($sub['menu'],$header['nom']);            
+			//on vérifie que le sous menu doit être affiché et qu'il correspond au menu parent
+			if($sub['visible'] && ($compare == 0)){ 
+				
+				?>
+				<li class="back_sub_menu"><a href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php echo $sub['nom']; ?></a></li> 
+				<?php } endforeach; ?>
+			</ul>
+					</li>
+						<?php } endforeach; ?>										
 				</ul>
 				
 
@@ -142,20 +200,33 @@
 		<div class="home_content">	
 			<h1><?php echo $title; ?></h1>
 			<br>			
-			<h2 class="text-center"><?php echo $subtitle; ?></h2>
+			<h2 class="text-center"><?php echo $subtitle; ?></h2>		
 		</div>
+		
 	</div>
 	<script>
-	var size = <?php echo $sizeHeader; ?>;
+	var size = <?php echo $sizeHeader; ?>;	
 	document.body.onload = invisibleMenu();	
+	document.body.onload = invisibleSubMenu();	
 	function invisibleMenu(){
 		for (b = 0; b < size; b++){
 			document.getElementById(b).style.display = 'none';
 		}
 
 	}
+	function invisibleSubMenu(){
+		for (b = 0; b < size; b++){
+			document.getElementById('sub'+b).style.display = 'none';
+		}
+
+	}
 	function seeMenu(id){
 		invisibleMenu();
 		document.getElementById(id).style.display='block' ;
-	}						
+	}
+
+	function seeSubMenu(id){
+		invisibleSubMenu();
+		document.getElementById('sub'+id).style.display='block' ;
+	}												
 	</script>

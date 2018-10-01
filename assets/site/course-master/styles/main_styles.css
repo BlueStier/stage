@@ -277,26 +277,7 @@ section
 /*********************************
 3. Header
 *********************************/
-.header
-{
-	position: fixed;
-	top: 45px;
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	-moz-transform: translateX(-50%);
-	-ms-transform: translateX(-50%);
-	-o-transform: translateX(-50%);
-	transform: translateX(-50%);
-	width: 1318px;
-	height: 52px;
-	background: #FFFFFF;
-	z-index: 10;
-	-webkit-transition: all 200ms ease;
-	-moz-transition: all 200ms ease;
-	-ms-transition: all 200ms ease;
-	-o-transition: all 200ms ease;
-	transition: all 200ms ease;
-}
+
 .header.scrolled
 {	
 	top: 15px;
@@ -501,7 +482,7 @@ section
 .menu_item a
 {
 	font-family: 'Open Sans', sans-serif;
-	font-size: 36px;
+	font-size: 32px;
 	font-weight: 700;
 	color: #3a3a3a;
 	-webkit-transition: all 200ms ease;
@@ -514,6 +495,7 @@ section
 {
 	color: #ffb606;
 }
+
 .menu_close_container
 {
 	position: absolute;

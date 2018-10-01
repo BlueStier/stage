@@ -94,6 +94,10 @@
 	{
 		padding-right: 53px;
 	}
+	main_nav
+	{	
+	margin-top: 7px;
+	}
 }
 
 /************
@@ -109,9 +113,16 @@
 4. 1100px
 ************/
 
-@media only screen and (max-width: 1100px)
+@media only screen and (max-width: 1050px)
 {
-	
+	.main_nav_item
+	{
+		margin-right: 33px;
+	}
+	main_nav
+	{	
+	margin-top: 7px;
+	}
 }
 
 /************
@@ -122,15 +133,19 @@
 {
 	.main_nav_item
 	{
-		margin-right: 33px;
+		margin-right: 30px;
+	}
+	main_nav
+	{	
+	margin-top: 7px;
 	}
 }
 
 /************
-6. 991px
+6. 1008px
 ************/
 
-@media only screen and (max-width: 991px)
+@media only screen and (max-width: 1008px)
 {
 	.main_nav_container
 	{
