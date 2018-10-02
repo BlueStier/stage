@@ -15,6 +15,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/plugins/OwlCarousel2-2.2.1/animate.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/main_styles.css">
 <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/responsive.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/elements_styles.css">
+<link rel="stylesheet" type="text/css" href="<?php echo base_url();?>/assets/site/course-master/styles/elements_responsive.css">
 <link href="<?php echo base_url();?>/assets/site/img/logos/logo2.jpg" rel="icon" type="image/jpg">
 </head>
 <body>
@@ -75,7 +77,8 @@
 			</nav>
 		
 		</div>			
-			<?php foreach ($tabHeader as $b=>$menu):?>
+			<?php 
+			foreach ($tabHeader as $b=>$menu):?>
 			<br>
 		<div class="back_menu" id='<?php echo $b; ?>'>
 		<h1 class="text-center text-white"><?php echo $menu['nom']; ?></h1>
@@ -150,7 +153,8 @@
 		<br>
 				<ul class="menu_list menu_mm">
 				<?php
-									
+					$d = 0;
+					$sizeThi = 0;				
 					//pour chaque menu de la bdd
 						foreach($header_item as $c=>$header):							
      						//vérifie si le menu doit être affiché
@@ -158,17 +162,29 @@
 								?>
 						<li class="menu_item menu_mm"><a onmouseover="seeSubMenu(<?php echo $c; ?>);" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$header['path'];?>"><?php /* affiche le nom du menu */ echo $header['nom'] ?></a>
 						<ul id="sub<?php echo $c; ?>">
-						<?php foreach($sub_item as $sub):                  
+						<?php foreach($sub_item as $sub):						                 
 			$compare = strcmp($sub['menu'],$header['nom']);            
 			//on vérifie que le sous menu doit être affiché et qu'il correspond au menu parent
 			if($sub['visible'] && ($compare == 0)){ 
 				
 				?>
-				<li class="back_sub_menu"><a href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php echo $sub['nom']; ?></a></li> 
-				<?php } endforeach; ?>
+				<li class="back_sub_menu"><a onmouseover="seeThiMenu(<?php echo $d; ?>);" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$sub['path'];?>"><?php echo $sub['nom']; ?></a>
+				<ul id="thi<?php echo $d; ?>">
+				<?php //pour chaque sous menu de 3eme niveau :
+                        foreach($third_item as $thi):
+                              //on vérifie que le 3eme niveau doit être affiché et qu'il correspond au sousmenu parent
+                              $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
+							  if($thi['visible'] && ($compare2 == 0)){?>
+							  <li class="sub"><a href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$thi['path'];?>"><?php echo $thi['nom'];?></a></li>
+							  <?php } endforeach; ?>
+							  </ul>
+				</li> 
+				<?php $d++;
+					$sizeThi++; } endforeach; ?>
 			</ul>
 					</li>
-						<?php } endforeach; ?>										
+						<?php				
+					} endforeach; ?>										
 				</ul>
 				
 
@@ -205,9 +221,11 @@
 		
 	</div>
 	<script>
+	var sizethi = <?php echo $sizeThi; ?>;
 	var size = <?php echo $sizeHeader; ?>;	
 	document.body.onload = invisibleMenu();	
-	document.body.onload = invisibleSubMenu();	
+	document.body.onload = invisibleSubMenu();
+	document.body.onload = invisibleThiMenu();	
 	function invisibleMenu(){
 		for (b = 0; b < size; b++){
 			document.getElementById(b).style.display = 'none';
@@ -220,6 +238,12 @@
 		}
 
 	}
+	function invisibleThiMenu(){
+		for (b = 0; b < sizethi; b++){
+			document.getElementById('thi'+b).style.display = 'none';
+		}
+
+	}
 	function seeMenu(id){
 		invisibleMenu();
 		document.getElementById(id).style.display='block' ;
@@ -228,5 +252,10 @@
 	function seeSubMenu(id){
 		invisibleSubMenu();
 		document.getElementById('sub'+id).style.display='block' ;
-	}												
+	}
+
+	function seeThiMenu(id){
+		invisibleThiMenu();
+		document.getElementById('thi'+id).style.display='block' ;
+	}																	
 	</script>

@@ -358,7 +358,26 @@ class Header_model extends CI_Model {
                                 $ancienNom = $this->input->post('ancienNom');
                                 $menu = Header_model::get_menu($ancienNom);
                                 if(!empty($nom)){
-                                $menu[0]['nom'] = $nom;}
+                                //si le nom est changé on fait la modif 
+                                $menu[0]['nom'] = $nom;
+                                //on vérifie si ce menu a des sousmenu et 3ème niveau pour faire le changement
+                                $sousmenu = $this->db->get_where('sousmenu', array('menu' => $ancienNom))->result_array();
+                                $t = sizeof($sousmenu);
+                                if($t > 0){
+                                        for($f = 0; $f < $t; $f++){
+                                                $sousmenu[$f]['menu'] = $nom;
+                                                $this->db->replace('sousmenu', $sousmenu[$f]);
+                                        }
+                                }
+                                $thirdLev = $this->db->get_where('third_level', array('menu' => $ancienNom))->result_array();
+                                $t3 = sizeof($thirdLev);
+                                if($t3 > 0){
+                                        for($g = 0; $g < $t3; $g++){
+                                                $thirdLev[$g]['menu'] = $nom;
+                                                $this->db->replace('third_level', $thirdLev[$g]);
+                                        }
+                                }
+                                }
                                 if(!empty($couleur)){
                                 $menu[0]['couleur'] = $couleur;}
                                 $this->db->replace('menu',$menu[0]);
@@ -381,7 +400,17 @@ class Header_model extends CI_Model {
                                 $ancienNom = $this->input->post('ancienNom');
                                 $Smenu = Header_model::get_sousmenu($ancienNom);
                                 if(!empty($nom)){
-                                $Smenu[0]['nom'] = $nom;}                                
+                                $Smenu[0]['nom'] = $nom;
+                                //si le sousmenu a des 3ème niveau on fait le changement en bdd
+                                $thirdLev = $this->db->get_where('third_level', array('sousmenu' => $ancienNom))->result_array();
+                                $t3 = sizeof($thirdLev);
+                                if($t3 > 0){
+                                        for($g = 0; $g < $t3; $g++){
+                                                $thirdLev[$g]['sousmenu'] = $nom;
+                                                $this->db->replace('third_level', $thirdLev[$g]);
+                                        }
+                                }
+                                }                                
                                 $Smenu[0]['menu'] = $menu;
                                 $this->db->replace('sousmenu',$Smenu[0]);
                         }else{

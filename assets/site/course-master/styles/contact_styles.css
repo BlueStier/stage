@@ -601,6 +601,55 @@ section
 	padding-left: 10%;
 	font-size: 1.5em;
 }
+.back_sub_menu .sub{
+	animation: fadein 1s;
+    -moz-animation: fadein 1s; /* Firefox */
+    -webkit-animation: fadein 1s; /* Safari et Chrome */
+    -o-animation: fadein 1s; /* Opera */
+	padding-right : 0px;
+	
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-moz-keyframes fadein { /* sur Firefox */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:0.9;
+    }
+}
+@-webkit-keyframes fadein { /* sur Safari et Chrome */
+    from {
+        opacity:0;
+    }
+    to {		
+        opacity:0.9;
+    }
+}
+@-o-keyframes fadein { /* sur Opera */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+.back_sub_menu .sub:hover{	
+	opacity:0.9;
+}
+
+.back_sub_menu .sub a{
+	padding-left: 20%;
+	font-size: 0.8em;
+	color : red;
+}
 .menu_close_container
 {
 	position: absolute;
@@ -1085,6 +1134,17 @@ section
 	font-weight: 400;
 	color: #a5a5a5;
 	margin-bottom: 22px;
+}
+.footer_contact_item a
+{
+	font-size: 14px;
+	font-weight: 400;
+	color: #a5a5a5;
+	margin-bottom: 22px;
+}
+.footer_contact_item a:hover
+{
+	color: #ffb606;
 }
 .footer_contact_item:last-child
 {

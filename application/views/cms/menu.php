@@ -201,7 +201,7 @@ foreach($header_item as $header):
       endforeach;
       //on récupère la taille du tabRecup et on affiche les sousmenus classé par menu d'affiliation      
       $tailleSmenu = sizeof($tabRecup)-1;
-      foreach($tabRecup as $k=>$tab): ?>
+      foreach($tabRecup as $k=>$tab):?>
     <div class="col-md-4">
           <div class="box box-default collapsed-box">
             <div class="box-header with-border" style="background-color:<?php /* affiche le nom du menu */ echo $header['couleur'] ?>">
@@ -260,7 +260,7 @@ foreach($header_item as $header):
             <div class="box-body">
             <?php  echo validation_errors(); 
                   echo form_open('cms/updateMenu/2');?>
-                  <input type="hidden" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>      
+                  <input type="hidde" name = 'menuUpdate' value='<?php echo $tab['nom'] ?>'>      
               <button type="submit" class="btn btn-success" href="#"><i class="fa fa-medkit"></i> Modifier</button>              
               <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $tab['id_sousmenu']+50 ?>"><i class="fa  fa-warning"></i> Supprimer</button></form>            
             </div>

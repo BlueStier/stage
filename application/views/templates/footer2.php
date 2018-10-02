@@ -15,8 +15,8 @@
 						<!-- Logo -->
 						<div class="logo_container">
 							<div class="logo">
-								<img src="<?php echo base_url();?>/assets/site/course-master/images/logo.png" alt="">
-								<span>course</span>
+								<img src="<?php echo base_url();?>/assets/site/course-master/images/logo2.png" alt="">
+								<span>Oignies</span>
 							</div>
 						</div>
 
@@ -60,22 +60,25 @@
 						<div class="footer_column_title">Contact</div>
 						<div class="footer_column_content">
 							<ul>
-								<li class="footer_contact_item">
+								<li class="footer_contact_item">									
 									<div class="footer_contact_icon">
 										<img src="<?php echo base_url();?>/assets/site/course-master/images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div>
-									Blvd Libertad, 34 m05200 Arévalo
+									</div>								
+									Mairie de Oignies<br>
+									Place de la IVème République<br>
+									62590 Oignies
 								</li>
 								<li class="footer_contact_item">
 									<div class="footer_contact_icon">
 										<img src="<?php echo base_url();?>/assets/site/course-master/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
 									</div>
-									0034 37483 2445 322
+									Tel : 03 21 74 80 50<br>
+									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Fax : 03 21 37 32 59
 								</li>
 								<li class="footer_contact_item">
 									<div class="footer_contact_icon">
 										<img src="<?php echo base_url();?>/assets/site/course-master/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div>hello@company.com
+									</div class="footer_contact_item"><a href="">Nous envoyer un mail</a>
 								</li>
 							</ul>
 						</div>
@@ -122,5 +125,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 <script src="<?php echo base_url();?>/assets/site/course-master/js/contact_custom.js"></script>
 <script src="<?php echo base_url();?>/assets/site/course-master/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
 <script src="<?php echo base_url();?>/assets/site/course-master/js/custom.js"></script>
+<script src="<?php echo base_url();?>/assets/site/course-master/plugins/progressbar/progressbar.min.js"></script>
+<script src="<?php echo base_url();?>/assets/site/course-master/js/elements_custom.js"></script>
 </body>
 </html>
