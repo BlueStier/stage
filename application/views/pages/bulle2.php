@@ -16,7 +16,7 @@
             if(! empty($bulle['tx'.$i])){                
        ?>	
 							<div class="accordion_container">
-								<div class="accordion d-flex flex-row align-items-center"><h2><?php echo $bulle['tx'.$i]; ?></h2></div>
+								<div class="accordion d-flex flex-row align-items-center"><h2><?php echo $bulle['trt'.$i]; ?></h2></div>
 								<div class="accordion_panel">
 									<div class="row align-items-center">
 										<div class = "col-md-4 ">
@@ -31,7 +31,7 @@
 					} 
 					if (!empty($bulle['sup'])){?>
 					<div class="accordion_container">
-								<div class="accordion d-flex flex-row align-items-center"><h2>Les Conseillers délégués et les Conseillers municipaux  </h2></div>
+								<div class="accordion d-flex flex-row align-items-center"><h2><?php echo $bulle['trtsup']; ?></h2></div>
 								<div class="accordion_panel">
 								<?php echo $bulle['sup'];?>
 							</div>						

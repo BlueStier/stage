@@ -56,23 +56,36 @@ class Bulles_model extends CI_Model {
                                 'soustitre'=>$this->input->post('soustitrebulle'),
                                 'tx1'=>$this->input->post('tx1'),
                                 'photo1' =>$photo[1],
-                                'tx2'=>$this->input->post('tx2'),
+                                'trt1'=>$this->input->post('trt1'),
+                                'tx2'=>$this->input->post('tx2'),                                
                                 'photo2' =>$photo[2],
+                                'trt2'=>$this->input->post('trt2'),
                                 'tx3'=>$this->input->post('tx3'),
                                 'photo3' =>$photo[3],
+                                'trt3'=>$this->input->post('trt3'),
                                 'tx4'=>$this->input->post('tx4'),
                                 'photo4' =>$photo[4],
+                                'trt4'=>$this->input->post('trt4'),
                                 'tx5'=>$this->input->post('tx5'),
-                                'photo5' =>$photo[6],
+                                'photo5' =>$photo[5],
+                                'trt5'=>$this->input->post('trt5'),
                                 'tx6'=>$this->input->post('tx6'),
                                 'photo6' =>$photo[6],
+                                'trt6'=>$this->input->post('trt6'),
                                 'tx7'=>$this->input->post('tx7'),
+                                'photo7' =>$photo[7],
+                                'trt7'=>$this->input->post('trt7'),
+                                'tx8'=>$this->input->post('tx8'),
                                 'photo8' =>$photo[8],
+                                'trt8'=>$this->input->post('trt8'),
                                 'tx9'=>$this->input->post('tx9'),
                                 'photo9' =>$photo[9],
+                                'trt9'=>$this->input->post('trt9'),
                                 'tx10'=>$this->input->post('tx10'),
                                 'photo10' =>$photo[10],
-                                'sup'=> $this->input->post('sup')
+                                'trt10'=>$this->input->post('trt10'),
+                                'sup'=> $this->input->post('sup'),
+                                'trtsup'=>$this->input->post('trtsup'),
                                 ];
                                
                 $this->db->insert('bulle',$données);
@@ -83,7 +96,8 @@ class Bulles_model extends CI_Model {
                 $bulle = Bulles_model::get_bulle($id_a_modif);
                 for($i = $n; $i<10; $i++){
                         $bulle[0]['tx'.$i] = $bulle[0]['tx'.($i+1)];
-                        $bulle[0]['photo'.$i] = $bulle[0]['photo'.($i+1)];  
+                        $bulle[0]['photo'.$i] = $bulle[0]['photo'.($i+1)];
+                        $bulle[0]['trt'.$i] = $bulle[0]['trt'.($i+1)];  
                 }
                 $this->db->replace('bulle',$bulle[0]);
         }
@@ -129,6 +143,7 @@ class Bulles_model extends CI_Model {
 
                         //et on enregistre les textes associés
                         $bulle[0]['tx'.$i] = $this->input->post('tx'.$i);
+                        $bulle[0]['trt'.$i] = $this->input->post('trt'.$i);
                 }
 
                 //on vérifie s'il faut ajouter des bulles
@@ -137,7 +152,7 @@ class Bulles_model extends CI_Model {
                 if($radiobul == 'Oui'){
                         $nbafaire = $this->input->post('nbBui'); 
                         //entre le nbre de bulle existante et le nombre de bulle totale on boucle
-                        for($j = $nbBu; $j <= $nbafaire; $j++){
+                        for($j = $nbBu+1; $j <= $nbafaire; $j++){
                                 //on upload la photo et on modif la valeur dans le tableau de récup de la bdd
                                 if(! $this->upload->do_upload('photo'.$j))
                                 {
@@ -154,7 +169,8 @@ class Bulles_model extends CI_Model {
                                         
                                 }
                                 //et on enregistre les textes associés
-                        $bulle[0]['tx'.$j] = $this->input->post('tx'.$j);
+                        $bulle[0]['tx'.$j] = $this->input->post('stx'.$j);
+                        $bulle[0]['trt'.$j] = $this->input->post('strt'.$j);
                         }
                 }
 
@@ -169,6 +185,7 @@ class Bulles_model extends CI_Model {
                 $bulle[0]['sostitre'] = $soustitre;    
                }
                $bulle[0]['sup'] = $this->input->post('sup');
+               $bulle[0]['trtsup'] = $this->input->post('trtsup');
                //il ne reste plus qu'à faire le changement en BDD
                $this->db->replace('bulle',$bulle[0]);
 }

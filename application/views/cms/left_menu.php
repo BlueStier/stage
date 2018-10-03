@@ -55,15 +55,15 @@
         </li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Modération</span>
+            <i class="fa fa-envelope text-blue"></i>
+            <span>Contact</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Commentaires en attentes</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
+            <li ><a href=""><i class="fa fa-circle-o text-blue"></i> Créer une page de contact</a></li>
+            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o text-blue"></i> Voir tous</a></li>
         </ul>
         </li>
         <li class="treeview">
@@ -108,13 +108,13 @@
         <li class="header">Gestion des utilisateurs</li>
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Utilisateurs </span>
+            <i class="fa fa-user text-green"></i> <span>Utilisateurs </span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Creer</a></li>
+            <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-green"></i> Creer</a></li>
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
           </ul>
         </li>

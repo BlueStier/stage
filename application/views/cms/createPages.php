@@ -14,13 +14,13 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Nom de la page</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le nom de la page">
+                  <input class="form-control" name="nomPage" placeholder="Entrez le nom de la page" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Titre</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='titrePage' placeholder="Entrez le titre de la page">
+                  <input class="form-control" name='titrePage' placeholder="Entrez le titre de la page" required>
                   </div>
                   </div>
                   <div class="form-group">
@@ -81,7 +81,7 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 1er paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='t1' placeholder="Entrez le titre du paragraphe">
+                  <input class="form-control" name='t1' placeholder="Entrez le titre du paragraphe" required>
                   </div>
                   </div>
                   <div class="box-body pad">
@@ -502,6 +502,12 @@
                   <input class="form-control" name='soustitrebulle' placeholder="Entrez un sous-texte d'introduction (facultatif)">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 1ère bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt1' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                   <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 1ère image </label>
@@ -522,25 +528,37 @@
           </div>
           
           <div id="bulle2">
-                 <div class="form-group">                  
-                  <div class="col-sm-9">
-                  <label class="control-label">Saisissez le 2ème texte </label>
-                  <br>
-                  <div class="box-body pad">            
-                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
-                    </textarea>
-                    </div>
-            </div>
-            <div class="col-sm-3">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 2ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt2' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+                 <div class="form-group">
+                 <div class="col-sm-3">
                   <label class="control-label">Choisir la 2ème image </label>
                   <br>
                   <br>
                   <br>                  
                   <input type="file" name="photo2" id="exampleInputFile" value='Choisissez une image'>
-                  </div>
+                  </div>                  
+                  <div class="col-sm-9">
+                  <label class="control-label">Saisissez le 2ème texte </label>
+                  <br>
+                  <div class="box-body pad">            
+                    <textarea id="editor" name="tx2" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                    </div>
+            </div>           
           </div>
           </div>
           <div id="bulle3">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 3ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt3' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
           <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 3ème image </label>
@@ -560,7 +578,20 @@
           </div>
           </div>
           <div id="bulle4">
-                 <div class="form-group">                  
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 4ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt4' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+                 <div class="form-group">
+                 <div class="col-sm-3">
+                  <label class="control-label">Choisir la 4ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo4" id="exampleInputFile" value='Choisissez une image'>
+                  </div>                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le 4ème texte </label>
                   <br>
@@ -568,17 +599,16 @@
                     <textarea id="editor" name="tx4" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
-            </div>
-            <div class="col-sm-3">
-                  <label class="control-label">Choisir la 4ème image </label>
-                  <br>
-                  <br>
-                  <br>                  
-                  <input type="file" name="photo4" id="exampleInputFile" value='Choisissez une image'>
-                  </div>
+            </div>            
           </div>
           </div>
           <div id="bulle5">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 5ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt5' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
           <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 5ème image </label>
@@ -598,7 +628,20 @@
           </div>
           </div>
           <div id="bulle6">
-                 <div class="form-group">                  
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 6ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt6' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+                 <div class="form-group">
+                 <div class="col-sm-3">
+                  <label class="control-label">Choisir la 6ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo6" id="exampleInputFile" value='Choisissez une image'>
+                  </div>                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le 6ème texte </label>
                   <br>
@@ -606,17 +649,16 @@
                     <textarea id="editor" name="tx6" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
-            </div>
-            <div class="col-sm-3">
-                  <label class="control-label">Choisir la 6ème image </label>
-                  <br>
-                  <br>
-                  <br>                  
-                  <input type="file" name="photo6" id="exampleInputFile" value='Choisissez une image'>
-                  </div>
+            </div>            
           </div>
           </div>
           <div id="bulle7">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 7ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt7' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
           <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 7ème image </label>
@@ -636,7 +678,20 @@
           </div>
           </div>
           <div id="bulle8">
-                 <div class="form-group">                  
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 8ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt8' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+                 <div class="form-group">
+                 <div class="col-sm-3">
+                  <label class="control-label">Choisir la 8ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo8" id="exampleInputFile" value='Choisissez une image'>
+                  </div>                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le 8ème texte </label>
                   <br>
@@ -645,16 +700,16 @@
                     </textarea>
                     </div>
             </div>
-            <div class="col-sm-3">
-                  <label class="control-label">Choisir la 8ème image </label>
-                  <br>
-                  <br>
-                  <br>                  
-                  <input type="file" name="photo8" id="exampleInputFile" value='Choisissez une image'>
-                  </div>
+            
           </div>
           </div>
           <div id="bulle9">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 9ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt9' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
           <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir la 9ème image </label>
@@ -674,7 +729,20 @@
           </div>
           </div>
           <div id="bulle10">
-                 <div class="form-group">                  
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la 10ème bulle</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt10' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+                 <div class="form-group">
+                 <div class="col-sm-3">
+                  <label class="control-label">Choisir la 10ème image </label>
+                  <br>
+                  <br>
+                  <br>                  
+                  <input type="file" name="photo10" id="exampleInputFile" value='Choisissez une image'>
+                  </div>                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le 10ème texte </label>
                   <br>
@@ -683,15 +751,15 @@
                     </textarea>
                     </div>
             </div>
-            <div class="col-sm-3">
-                  <label class="control-label">Choisir la 10ème image </label>
-                  <br>
-                  <br>
-                  <br>                  
-                  <input type="file" name="photo10" id="exampleInputFile" value='Choisissez une image'>
+           
+          </div>
+          </div>
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la zone de texte supplémentaire</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trtsup' placeholder="Entrez un titre (obligatoire)">
                   </div>
-          </div>
-          </div>
+                </div>
           <div class="form-group">
           <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
           <br>          

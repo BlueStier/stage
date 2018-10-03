@@ -213,6 +213,12 @@ $year = date('Y');
                     <?php } else {?>
                       <h4>bulle n° <?php  echo $d; ?></h4>
                       <?php } ?>
+                      <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle n° <?php  echo $d; ?></label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trt<?php  echo $d; ?>' value="<?php echo $bulle_item[0]["trt".$d]; ?>">
+                  </div>
+                </div>
                   <div class="form-group">
                   <div class="col-sm-3">                                    
                 <label>Souhaitez concervez cette photo ?</label>
@@ -269,12 +275,18 @@ $year = date('Y');
             <div id='plusbulle'>
             <input id="nbBu" type='hidden' value="<?php echo $nbBu+1; ?>" name='nbBui'/> 
             <div id="bulle2">
+            <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 2</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt2' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                  <div class="form-group">                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le texte 2 </label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx2" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
@@ -289,6 +301,12 @@ $year = date('Y');
           </div>
           <div id="bulle3">
           <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 3</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt3' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+          <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir l'image 3</label>
                   <br>
@@ -300,19 +318,25 @@ $year = date('Y');
                   <label class="control-label">Saisissez le texte 3 </label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx3" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx3" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
           </div>
           </div>
           <div id="bulle4">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 4</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt4' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                  <div class="form-group">                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le texte 4</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx4" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx4" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
@@ -327,6 +351,12 @@ $year = date('Y');
           </div>
           <div id="bulle5">
           <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 5</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt5' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+          <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir l'image 5</label>
                   <br>
@@ -338,19 +368,25 @@ $year = date('Y');
                   <label class="control-label">Saisissez le texte 5</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx5" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx5" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
           </div>
           </div>
           <div id="bulle6">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 6</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt6' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                  <div class="form-group">                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le texte 6</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx6" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx6" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
@@ -365,6 +401,12 @@ $year = date('Y');
           </div>
           <div id="bulle7">
           <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 7</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt7' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+          <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir l'image 7</label>
                   <br>
@@ -376,19 +418,25 @@ $year = date('Y');
                   <label class="control-label">Saisissez le texte 7</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx7" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx7" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
           </div>
           </div>
           <div id="bulle8">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 8</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt8' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                  <div class="form-group">                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le texte 8</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx8" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx8" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
@@ -403,6 +451,12 @@ $year = date('Y');
           </div>
           <div id="bulle9">
           <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 9</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt9' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
+          <div class="form-group">
                   <div class="col-sm-3">
                   <label class="control-label">Choisir l'image 9</label>
                   <br>
@@ -414,19 +468,25 @@ $year = date('Y');
                   <label class="control-label">Saisissez le texte 9</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx9" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx9" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
           </div>
           </div>
           <div id="bulle10">
+          <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la bulle 10</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='strt10' placeholder="Entrez un titre (obligatoire)">
+                  </div>
+                </div>
                  <div class="form-group">                  
                   <div class="col-sm-9">
                   <label class="control-label">Saisissez le texte 10</label>
                   <br>
                   <div class="box-body pad">            
-                    <textarea id="editor" name="tx10" class="ckeditor" rows="10" cols="80">                                            
+                    <textarea id="editor" name="stx10" class="ckeditor" rows="10" cols="80">                                            
                     </textarea>
                     </div>
             </div>
@@ -441,7 +501,13 @@ $year = date('Y');
           </div>
           <div id='plusBu' type="button" class="btn btn-default" onClick="addBulle(true);">Ajouter une bulle</div>
                 <div id='moinsBu' type="button" class="btn btn-default" onClick="addBulle(false);">Enlever une bulle</div>
-            </div>            
+            </div>
+            <div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de la zone de texte supplémentaire</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='trtsup' value="<?php echo $bulle_item[0]["trtsup"]; ?> ">
+                  </div>
+                </div>            
           <div class="form-group">
           <label class="col-sm-3 control-label">Saisissez le texte supplémentaire (facultatif) </label>
           <br>          

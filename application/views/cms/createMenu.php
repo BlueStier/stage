@@ -48,7 +48,7 @@ ancien=""+ thiscolor + "";
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                    <input class="form-control" name="nom" placeholder="Nom" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -107,7 +107,7 @@ if($case == 2){?>
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                    <input class="form-control" name="nom" placeholder="Nom" required>
                   </div>
                 </div>
                 <div class="form-group">
@@ -152,7 +152,7 @@ if($case == 3){?>
                   <label for="inputnom" class="col-sm-2 control-label">Nom du <?php echo $type;?></label>
 
                   <div class="col-sm-10">
-                    <input class="form-control" name="nom" placeholder="Nom">
+                    <input class="form-control" name="nom" placeholder="Nom" required>
                   </div>
                 </div>
                 <div class="form-group">

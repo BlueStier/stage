@@ -16,9 +16,9 @@ class Cms extends CI_Controller
     public function index()
     {
            
-        $this->load->view('cms/header');
-        $this->load->view('cms/left_menu');
-        $this->load->view('cms/index');
+        //$this->load->view('cms/header');
+        $this->load->view('cms/login');
+        //$this->load->view('cms/index');
         
     }
 
@@ -98,6 +98,14 @@ class Cms extends CI_Controller
             $this->load->view('cms/header');
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/articles',$data);
+            $this->load->view('cms/footer');
+            
+        }
+        if($id == 7){
+            $data['nb'] = 7;                                                      
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/user',$data);
             $this->load->view('cms/footer');
             
         }
@@ -639,5 +647,64 @@ class Cms extends CI_Controller
         $this->load->model('Home_model');
         $this->Home_model->deleteLien($n);
         header('Location:'.base_url().'cms/3'); 
+    }
+
+    //fonction de creation d'utilisateur
+    public function createUser(){
+        //on définie les critères obligatoires       
+        $this->form_validation->set_rules('nomUser', 'Nom ', 'required');
+        $this->form_validation->set_rules('prenomUser', 'Prenom', 'required');
+        $this->form_validation->set_rules('mdpUser', 'Mot de passe', 'required');
+        $this->form_validation->set_rules('mdp2User', 'Confirmation du mot de passe', 'required');        
+
+        if($this->form_validation->run()==FALSE)
+        {
+           
+            $data['nb'] = 7;                                                      
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/user',$data);
+            $this->load->view('cms/footer');
+            
+        } else {
+        $nom = $this->input->post('nomUser');
+        $prenom = $this->input->post('prenomUser');
+        $mdp = $this->input->post('mdpUser');
+        $Confmdp = $this->input->post('mdp2User');
+
+        //on vérifie si cet user est déjà en bdd
+        $this->load->model('User_model'); 
+        $exist = $this->User_model->verify_user($nom,$prenom);
+
+        //Si oui redirection vers la page de créatio et info déjà existant
+        if($exist){
+            $data['error'] = array('error'=>'Cet utilisateur existe déjà');
+            $data['nb'] = 7;                                                      
+            $this->load->view('cms/header');
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/user',$data);
+            $this->load->view('cms/footer');
+        }
+
+        //l'utilisateur n'est pas en bdd
+        else {
+
+            //on vérifie que le mot de passe et sa confirmation sont identique
+            //si ce n'est pas le cas redirection
+            if($mdp != $Confmdp){
+                $data['error'] = array('error'=>'Le mot de passe et sa confirmation sont diffférents');
+                $data['nb'] = 7;                                                      
+                $this->load->view('cms/header');
+                $this->load->view('cms/left_menu',$data);
+                $this->load->view('cms/user',$data);
+                $this->load->view('cms/footer'); 
+            }
+
+            //mot de passe et conf ok
+            else {
+                $this->User_model->create_user($nom,$prenom,$mdp);
+            }
+        }
+        }
     }
 }
