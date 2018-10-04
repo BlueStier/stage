@@ -16,21 +16,28 @@ class Cms extends CI_Controller
     public function index()
     {
            
-        //$this->load->view('cms/header');
-        $this->load->view('cms/login');
-        //$this->load->view('cms/index');
+        /*if(!isset($_SESSION)||empty($_SESSION)){
+            header('Location:'.base_url().'login');
+        }*/
         
     }
 
     //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
+        if($this->session->userdata('username') == ''){
+            header('Location:'.base_url().'login');
+        }else{
+            $data['user'] = $this->session->userdata('username');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+        }
         if($id == 1){
             $data['nb'] = 1;                                   
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/menu',$data);
             $this->load->view('cms/footer');
@@ -39,7 +46,7 @@ class Cms extends CI_Controller
             $data['nb'] = 2;
             $this->load->model('Rapide_model');            
             $data['rapide_item'] = $this->Rapide_model->get_rapide();
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/menuRapide',$data);
             $this->load->view('cms/footer');
@@ -53,7 +60,7 @@ class Cms extends CI_Controller
             $data['pages_item'] = $this->Pages_model->get_page();
             $data['homepage'] = $this->Pages_model->get_page('home');                       
             $data['home_item'] = $this->Home_model->get_home(1);
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);       
             $this->load->view('cms/homePage',$data);
             $this->load->view('cms/footer');
@@ -66,7 +73,7 @@ class Cms extends CI_Controller
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();            
             $data['page_item'] = $this->Pages_model->get_page();            
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/pages',$data);
             $this->load->view('cms/footer');
@@ -79,7 +86,7 @@ class Cms extends CI_Controller
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();            
             $data['page_item'] = $this->Pages_model->get_page();            
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createArticle',$data);
             $this->load->view('cms/footer');
@@ -95,7 +102,7 @@ class Cms extends CI_Controller
             $data['page_item'] = $this->Pages_model->get_page_by_type('article');
             $data['past_item'] = $this->Articles_model->get_article_by_page(FALSE,TRUE);
             $data['current_item'] = $this->Articles_model->get_article_by_page(FALSE,FALSE);                                 
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/articles',$data);
             $this->load->view('cms/footer');
@@ -103,9 +110,9 @@ class Cms extends CI_Controller
         }
         if($id == 7){
             $data['nb'] = 7;                                                      
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
-            $this->load->view('cms/user',$data);
+            $this->load->view('cms/createUser',$data);
             $this->load->view('cms/footer');
             
         }
@@ -703,8 +710,15 @@ class Cms extends CI_Controller
             //mot de passe et conf ok
             else {
                 $this->User_model->create_user($nom,$prenom,$mdp);
+                cms::view(8);
             }
         }
         }
+    }
+
+    //fonction de déconnexion
+    public function destroy(){
+        $this->session->sess_destroy();
+        header('Location:'.base_url().'login');
     }
 }

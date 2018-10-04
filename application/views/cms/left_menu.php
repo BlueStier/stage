@@ -5,11 +5,11 @@
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?php echo base_url();?>/assets/site/img/about/Fabienne-Dupuis.gif" class="img-circle" alt="User Image">
+          <img src="<?php echo base_url().$photouser;?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Fabienne Dupuis</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Connectée</a>
+          <p><?php echo $user;?></p>
+          <a href="<?php echo base_url()?>cms/destroy"><i class="fa fa-circle text-success"></i> Déconnexion</a>
         </div>
       </div>
       <!-- search form -->
@@ -115,7 +115,7 @@
           </a>
           <ul class="treeview-menu">
             <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-green"></i> Creer</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
+            <li id='8'><a  href="<?php echo base_url()?>cms/8"><i class="fa fa-circle-o text-green"></i> Voir tous</a></li>
           </ul>
         </li>
         <li class="treeview">

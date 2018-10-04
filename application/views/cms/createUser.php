@@ -39,6 +39,17 @@
                   <input type="file" name="photoUser" id="exampleInputFile" value='Choisissez une photo'>
                 </div>
                 </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Type d'utilisateur :</label>
+                <div class="col-sm-10">                
+                <select id="selectTxt" name ="selectUser" onchange='addElement();' class="form-control select2" >
+                <option selected>Administrateur</option>
+                <option>Auteur</option>
+                <option>Carte</option>
+                <option>Modérateur</option>                
+                </select>
+                </div>
+                </div>
 </div>
 </div>
 <div class="box-footer">
