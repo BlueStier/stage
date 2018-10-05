@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Jeu 04 Octobre 2018 à 16:24
+-- Généré le :  Ven 05 Octobre 2018 à 16:26
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -437,7 +437,7 @@ INSERT INTO `sousmenu` (`id_sousmenu`, `nom`, `menu`, `ordre`, `visible`, `path`
 (2, 'Démocratie Locale', 'Votre Mairie', 2, 1, '', 0),
 (3, 'Vivre à Oignies', 'Votre Mairie', 3, 1, '', 0),
 (5, 'Les services techniques', 'Ma ville', 2, 1, '', 1),
-(6, 'La police municipale', 'Ma ville', 6, 1, '', 1),
+(6, 'La police municipale', 'Mes temps libres', 1, 1, '', 1),
 (7, 'Scolaire et périscolaire', 'Ma ville', 4, 1, '', 1),
 (8, 'Social et santé', 'Ma ville', 5, 1, '', 0),
 (9, 'Culture', 'Ma ville', 3, 1, '', 0),

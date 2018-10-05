@@ -26,7 +26,8 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<?php if($user != NULL){ ?>
+<?php if( isset($user)){ ?>
+<meta http-equiv='refresh' content="1800; URL=<?php echo base_url().'cms/destroy'?> ">
   <body class="hold-transition lockscreen">
 <!-- Automatic element centering -->
 <div class="lockscreen-wrapper">
@@ -34,7 +35,9 @@
     <a href="<?php echo base_url();?>"><b>Admin</b>Oignies</a>
   </div>
   <!-- User name -->
-  <div class="lockscreen-name"><?php echo $user ?></div>
+  
+  <div class="lockscreen-name"><?php if(isset($error)){echo $error['error'].'<br>';}; ?><?php echo $user ?></div>
+  
 
   <!-- START LOCK SCREEN ITEM -->
   <div class="lockscreen-item">
@@ -43,15 +46,17 @@
       <img src="<?php echo base_url().$photouser;?>" alt="User Image">
     </div>
     <!-- /.lockscreen-image -->
-
+    <?php  echo validation_errors();
+                  echo form_open_multipart('login/connect');?>
     <!-- lockscreen credentials (contains the form) -->
-    <form class="lockscreen-credentials">
+    <div class="lockscreen-credentials">
       <div class="input-group">
-        <input type="password" class="form-control" placeholder="Mot de passe">
+        <input type="password" class="form-control" placeholder="Mot de passe" name='pwd'>
 
         <div class="input-group-btn">
-          <button type="button" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
+          <button type="submit" class="btn"><i class="fa fa-arrow-right text-muted"></i></button>
         </div>
+      </div>
       </div>
     </form>
     <!-- /.lockscreen credentials -->
@@ -79,8 +84,7 @@
   <!-- /.login-logo -->
   <div class="login-box-body">
     <p class="login-box-msg">Connexion pour démarrer une session</p>
-
-    <?php echo $user; ?>
+   
     <?php if(isset($error)){echo $error['error'];};
              echo validation_errors();
                   echo form_open_multipart('login/connect');?>

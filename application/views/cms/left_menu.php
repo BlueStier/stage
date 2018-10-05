@@ -9,7 +9,7 @@
         </div>
         <div class="pull-left info">
           <p><?php echo $user;?></p>
-          <a href="<?php echo base_url()?>cms/destroy"><i class="fa fa-circle text-success"></i> Déconnexion</a>
+          <a href="<?php echo base_url()?>cms/dodo"><i class="fa fa-circle text-success"></i> Mettre en veille</a>
         </div>
       </div>
       <!-- search form -->

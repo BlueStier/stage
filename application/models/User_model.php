@@ -10,6 +10,16 @@ class User_model extends CI_Model {
                 
         }
 
+        public function get_user($user_id = FALSE){
+            if ($user_id === FALSE)
+        {
+                //récupération des éléments                 
+                $query = $this->db->get('user');                
+                return $query->result_array();
+        }
+            return $this->db->get_where('user', array('id_user' => $user_id))->row_array();
+        }
+
         public function verify_user($nom,$prenom){
             $query = $this->db->get_where('user', array('nom' => $nom))->result_array();
             $size = sizeof($query);
@@ -64,7 +74,12 @@ class User_model extends CI_Model {
             
         }
 
-        public function verify($nom,$prenom,$mdp){
+        public function delete($id){
+            $this->db->delete('user',array('id_user' => $id));
+
+        }
+
+        public function verify($nom,$prenom,$mdp,$bool){
             $result = $this->db->get_where('user',array('nom'=> $nom,'prenom'=> $prenom))->row_array();
             $verif = empty($result);
             if($verif){
@@ -72,8 +87,13 @@ class User_model extends CI_Model {
             }else{
                 $hash = $this->encryption->decrypt($result['password']);
                 if($hash == $mdp){
+                    if($bool){
+                        $this->session->set_userdata('__ci_last_regenerate',time());
+                        $this->session->set_userdata('logged_in',TRUE);
+                    }else{
                     $dataUser = ['username'=> $prenom.' '.$nom, 'logged_in' => TRUE, 'id' => $result['id_user'],'photo'=>$result['photo'], 'type' => $result['type']];
                     $this->session->set_userdata($dataUser);
+                    }
                     return true;
                 }else{
                     return false;

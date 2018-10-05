@@ -25,9 +25,16 @@ class Cms extends CI_Controller
     //construit le centre de la page en fonction de l'item sélectionné
     public function view($id)
     {
-        if($this->session->userdata('username') == ''){
+        $time = $this->session->userdata('__ci_last_regenerate')+900;
+        $délai = FALSE;
+        if($time < time()){
+            $this->session->set_userdata('logged_in',FALSE);
+        }
+        if($this->session->userdata('username') == '' || $this->session->userdata('logged_in') == FALSE){
+            $this->session->set_userdata('logged_in',FALSE);
             header('Location:'.base_url().'login');
         }else{
+            $this->session->set_userdata('__ci_last_regenerate',time());
             $data['user'] = $this->session->userdata('username');
             $data['photouser'] = $this->session->userdata('photo');
             $data['typeuser'] = $this->session->userdata('type');
@@ -116,6 +123,16 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
             
         }
+        if($id == 8){
+            $this->load->model('User_model');
+            $data['nb'] = 8;
+            $data['users'] = $this->User_model->get_user();                                                      
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/user',$data);
+            $this->load->view('cms/footer');
+            
+        }
     }
 
     //appel la fonction du model de suppression 
@@ -163,11 +180,16 @@ class Cms extends CI_Controller
 
     //création de la pge d'enregistrement d'un menu/sousmenu...
     public function createMenu($type){
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
+
         if($type == 1){
             $data['case'] = 1;           
             $data['type'] = "Menu";           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -175,8 +197,8 @@ class Cms extends CI_Controller
             $data['case'] = 2;           
             $data['type'] = "Sousmenu";
             $data['header_item'] = $this->Header_model->get_menu();           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -184,8 +206,8 @@ class Cms extends CI_Controller
             $data['case'] = 3;           
             $data['type'] = "3ème niveau";
             $data['sub_item'] = $this->Header_model->get_sousmenu();           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -210,13 +232,18 @@ class Cms extends CI_Controller
 
     //creer la page updateMenu en fonction du menu,sousmenu... choisi
     public function updateMenu($type){
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
+
         $amodif = $this->input->post('menuUpdate'); 
         if($type == 1){
             $data['header_item'] = $this->Header_model->get_menu($amodif); 
             $data['case'] = 1;           
             $data['type'] = "Menu";           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/updateMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -225,8 +252,8 @@ class Cms extends CI_Controller
             $data['type'] = "Sousmenu";
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu($amodif);           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/updateMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -235,8 +262,8 @@ class Cms extends CI_Controller
             $data['type'] = "3ème niveau";
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu($amodif);           
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/updateMenu',$data);
             $this->load->view('cms/footer');            
         }
@@ -244,13 +271,17 @@ class Cms extends CI_Controller
 
     //appel la page createPage
     public function createPages(){
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
         $this->load->model('Pages_model');
         $data['nb'] = 4;                
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu();            
         $data['type_item'] = $this->Pages_model->get_type();
-        $this->load->view('cms/header');
+        $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
         $this->load->view('cms/createPages', $data);
         $this->load->view('cms/footer');
@@ -269,8 +300,8 @@ class Cms extends CI_Controller
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();            
             $data['type_item'] = $this->Pages_model->get_type();
-            $this->load->view('cms/header');
-            $this->load->view('cms/left_menu');
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createPages', $data);
             $this->load->view('cms/footer');
         }else{
@@ -294,8 +325,8 @@ class Cms extends CI_Controller
                 $data['sub_item'] = $this->Header_model->get_sousmenu();
                 $data['third_item'] = $this->Header_model->get_thirdmenu();            
                 $data['type_item'] = $this->Pages_model->get_type();
-                $this->load->view('cms/header');
-                $this->load->view('cms/left_menu');
+                $this->load->view('cms/header',$data);
+                $this->load->view('cms/left_menu',$data);
                 $this->load->view('cms/createPages', $data);
                 $this->load->view('cms/footer');
         }
@@ -381,7 +412,11 @@ class Cms extends CI_Controller
 }
 
     //ouvre la page de mise à jour d'une page
-    public function updatePage($id){       
+    public function updatePage($id){ 
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');      
         $this->load->model('Pages_model');
         $data['nb'] = 4;
         $data['page_item'] = $this->Pages_model->get_page_by_id($id);                
@@ -424,7 +459,7 @@ class Cms extends CI_Controller
         endforeach;                  
    }           
        
-        $this->load->view('cms/header');
+        $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
         $this->load->view('cms/updatePage', $data);
         $this->load->view('cms/footer');
@@ -603,12 +638,16 @@ class Cms extends CI_Controller
 
     //appel la page de mise à jour d'un article
     public function updateArticle($id){
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
         $this->load->model('Articles_model');
         $this->load->model('Pages_model');
         $data['nb'] = 6;                              
         $data['page_item'] = $this->Pages_model->get_page(); 
         $data['Article_item'] = $this->Articles_model->get_article($id,FALSE);         
-        $this->load->view('cms/header');
+        $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
         $this->load->view('cms/updateArticle',$data);
         $this->load->view('cms/footer'); 
@@ -658,6 +697,11 @@ class Cms extends CI_Controller
 
     //fonction de creation d'utilisateur
     public function createUser(){
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
+
         //on définie les critères obligatoires       
         $this->form_validation->set_rules('nomUser', 'Nom ', 'required');
         $this->form_validation->set_rules('prenomUser', 'Prenom', 'required');
@@ -668,9 +712,9 @@ class Cms extends CI_Controller
         {
            
             $data['nb'] = 7;                                                      
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
-            $this->load->view('cms/user',$data);
+            $this->load->view('cms/createUser',$data);
             $this->load->view('cms/footer');
             
         } else {
@@ -687,9 +731,9 @@ class Cms extends CI_Controller
         if($exist){
             $data['error'] = array('error'=>'Cet utilisateur existe déjà');
             $data['nb'] = 7;                                                      
-            $this->load->view('cms/header');
+            $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
-            $this->load->view('cms/user',$data);
+            $this->load->view('cms/createUser',$data);
             $this->load->view('cms/footer');
         }
 
@@ -701,9 +745,9 @@ class Cms extends CI_Controller
             if($mdp != $Confmdp){
                 $data['error'] = array('error'=>'Le mot de passe et sa confirmation sont diffférents');
                 $data['nb'] = 7;                                                      
-                $this->load->view('cms/header');
+                $this->load->view('cms/header',$data);
                 $this->load->view('cms/left_menu',$data);
-                $this->load->view('cms/user',$data);
+                $this->load->view('cms/createUser',$data);
                 $this->load->view('cms/footer'); 
             }
 
@@ -720,5 +764,19 @@ class Cms extends CI_Controller
     public function destroy(){
         $this->session->sess_destroy();
         header('Location:'.base_url().'login');
+    }
+
+    //fonction de mise en veille
+    public function dodo(){
+        $this->session->set_userdata('logged_in',FALSE);
+        header('Location:'.base_url().'login');
+    }
+
+    //fonction de suppression d'un utilisateur
+    public function deleteUser(){
+        $id_user = $this->input->post('id_user');
+        $this->load->model('User_model');
+        $this->User_model->delete($id_user);
+        Cms::view(8);
     }
 }

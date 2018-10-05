@@ -22,6 +22,35 @@ class Login extends CI_Controller
     }
 
     public function connect(){
+        //si une session est en cour
+        if($this->session->userdata('username')!== NULL){
+            //on définie les critères obligatoires
+            $this->form_validation->set_rules('pwd', 'Mot de passe', 'required');
+
+            if($this->form_validation->run()==FALSE)
+         {
+            $data['user'] = $this->session->userdata('username');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->view('log/login');
+             
+         } else {
+            $user_id = $this->session->userdata('id');
+            $this->load->model('User_model');
+            $user = $this->User_model->get_user($user_id);
+            $mdp = $this->input->post('pwd');
+            $verify = $this->User_model->verify($user['nom'],$user['prenom'],$mdp ,TRUE);         
+         if($verify){           
+            header('Location:'.base_url().'cms/1');
+         } else { 
+            $data['user'] = $this->session->userdata('username');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');           
+            $data['error'] = ['error' => 'Mot de passe incorrect'];         
+            $this->load->view('log/login',$data);
+         }
+         }   
+        }else{
          //on définie les critères obligatoires       
          $this->form_validation->set_rules('nom', 'Nom ', 'required');
          $this->form_validation->set_rules('prenom', 'Prénom ', 'required');
@@ -37,7 +66,7 @@ class Login extends CI_Controller
          $mdp = $this->input->post('pwd');
 
          $this->load->model('User_model');
-         $verify = $this->User_model->verify($nom,$prenom,$mdp);         
+         $verify = $this->User_model->verify($nom,$prenom,$mdp,FALSE);         
          if($verify){           
             header('Location:'.base_url().'cms/1');
          } else {            
@@ -45,5 +74,6 @@ class Login extends CI_Controller
          $this->load->view('log/login',$data);
          }
         }
+    }
     }
 }
