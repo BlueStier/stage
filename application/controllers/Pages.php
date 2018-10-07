@@ -69,7 +69,7 @@ class Pages extends CI_Controller {
                 foreach($data['folder']as $f):
                     $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
                 endforeach;
-                $page = 'document';  
+                $page = 'document2';  
         }
 
         
