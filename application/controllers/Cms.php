@@ -760,6 +760,28 @@ class Cms extends CI_Controller
         }
     }
 
+    //fonction de mise à jour d'un utilisateur
+    public function updateUser($id){
+        $this->load->model('User_model');
+        $this->session->set_userdata('__ci_last_regenerate',time());
+        $data['user'] = $this->session->userdata('username');
+        $data['photouser'] = $this->session->userdata('photo');
+        $data['typeuser'] = $this->session->userdata('type');
+
+        $data['user_by_id'] = $this->User_model->get_user($id);
+        $this->load->view('cms/header',$data);
+        $this->load->view('cms/left_menu',$data);
+        $this->load->view('cms/updateUser',$data);
+        $this->load->view('cms/footer'); 
+        
+    }
+
+    //fonction de validation de la mise à jour d'un user
+    public function validupUser($bool,$id){
+        $this->load->model('User_model');
+        $this->User_model->update($bool,$id);
+    }
+
     //fonction de déconnexion
     public function destroy(){
         $this->session->sess_destroy();

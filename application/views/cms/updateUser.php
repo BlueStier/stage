@@ -1,7 +1,8 @@
+
 <div class="content-wrapper">
     <div class="box box-info">
       <div class="box-header with-border">
-        <h3 class="box-title">Créer un utilisateur :</h3>
+        <h3 class="box-title">Modifier : <?php echo $user;?></h3>
       </div><!-- /.box-header -->
     </div>
     <div class="form-horizontal">
@@ -9,31 +10,41 @@
 <div class="form-group">
 <?php if(isset($error)){echo $error['error'];};
              echo validation_errors();
-                  echo form_open_multipart('cms/createUser');?>
+                  echo form_open_multipart('cms/validupUser/true/'.$user_by_id['id_user']);?>
                   <label class="col-sm-2 control-label">Nom de l'utilisateur</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomUser" placeholder="Entrez le nom de l'utilisateur" required>
+                  <input class="form-control" name="nomUser" value="<?php echo $user_by_id['nom']; ?>" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Prenom de l'utilisateur</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="prenomUser" placeholder="Entrez le prénom de l'utilisateur" required>
+                  <input class="form-control" name="prenomUser" value="<?php echo $user_by_id['prenom']; ?>" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Mot de passe</label>
                   <div class="col-sm-10">
-                  <input type="password" class="form-control" name="mdpUser" placeholder="Entrez le mot de passe" required>
+                  <input type="password" class="form-control" name="mdpUser" placeholder="Entrez le nouveau mot de passe" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Confirmation du mot de passe</label>
                   <div class="col-sm-10">
-                  <input type="password" class="form-control" name="mdp2User" placeholder="Confirmez le mot de passe" required>
+                  <input type="password" class="form-control" name="mdp2User" placeholder="Confirmez le nouveau mot de passe" required>
                   </div>
                 </div>
                 <div class="form-group">
+                <label class="col-sm-2 control-label">Concerver cette photo </label>
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$user_by_id['photo'] ?>'/>
+                <div class="col-sm-2">
+                <input type="radio" name='radioU' onClick='visibleP(true);' value="Non" >Non     
+                </div>
+                <div class="col-sm-2">
+                <input type="radio" name='radioU' onClick='visibleP(false);' value="Oui"checked>Oui     
+                </div>                                
+                </div>
+                <div id="photoU" class="form-group">
                   <label class="col-sm-2 control-label">Choisir une photo </label>
                   <div class="col-sm-10">
                   <input type="file" name="photoUser" id="exampleInputFile" value='Choisissez une photo'>
@@ -42,7 +53,7 @@
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Type d'utilisateur :</label>
                 <div class="col-sm-10">                
-                <select id="selectTxt" name ="selectUser" onchange='addElement();' class="form-control select2" >
+                <select id="selectTxt" name ="selectUser"  class="form-control select2" >
                 <option selected>Administrateur</option>
                 <option>Auteur</option>
                 <option>Carte</option>
@@ -53,10 +64,9 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Adresse mail :</label>
                   <div class="col-sm-10">
-                  <input type="email" class="form-control" name="mail" placeholder="Adresse mail @oignies.fr" required>
+                  <input type="email" class="form-control" name="mail" value="<?php echo $user_by_id['mail']; ?>" required>
                   </div>
                 </div>
-
 </div>
 </div>
 <div class="box-footer">
@@ -74,3 +84,10 @@
   <!-- Add the sidebar's background. This div must be placed
        immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
+
+  <script>
+  document.getElementById("photoU").style.display ='none';
+  function visibleP(choix){
+  (choix ? document.getElementById('photoU').style.display='block' : document.getElementById('photoU').style.display='none'); 
+}
+  </script>

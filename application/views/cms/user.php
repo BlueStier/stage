@@ -29,7 +29,7 @@
             </div>
             <div class="box-footer no-padding">
               <ul class="nav nav-stacked">
-                <li><a href="#">Modifer<i class="pull-right fa fa-pencil text-green"></i></i></a></li>
+                <li><a href="<?php echo base_url().'cms/updateUser/'.$u['id_user'];?>">Modifer<i class="pull-right fa fa-pencil text-green"></i></i></a></li>
                 <li><a data-toggle="modal" data-target="#modal-danger<?php echo $u["id_user"]?>" >Supprimer<i class="pull-right fa fa-trash text-blue"></i></a></li>
             </ul>
             </div>
