@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Ven 05 Octobre 2018 à 16:26
+-- Généré le :  Lun 08 Octobre 2018 à 16:02
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -574,6 +574,30 @@ INSERT INTO `travaux` (`id_travaux`, `adresse`, `latitude`, `longitude`, `date_e
 (8, '\'mairie\'', 50.4685, 2.9918, '0000-00-00', '\'25 septembre 2018\'', '\'30 septembre 2018\'', '\'moi\'', '\'test\'', '\'0300020508\'', '\'bla bla bla \''),
 (9, '\'18 rue ferdinand pantigny\'', 50.4651, 2.99197, '0000-00-00', '\'Lundi 13 Août\'', '\'Vendredi 31 Août (selon aléas)\'', '\'Goupe Colas\'', '\'test\'', '\'0300020508\'', '\'pour voir\'');
 
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `user`
+--
+
+CREATE TABLE `user` (
+  `id_user` int(10) NOT NULL,
+  `nom` varchar(100) NOT NULL,
+  `prenom` varchar(100) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `date_enregistrement` datetime NOT NULL,
+  `photo` varchar(256) NOT NULL,
+  `type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `user`
+--
+
+INSERT INTO `user` (`id_user`, `nom`, `prenom`, `password`, `date_enregistrement`, `photo`, `type`) VALUES
+(4, 'test', 'test', '8e09afecaf94f5dd2fb2ea8f902c9cb05315b0ecbbd760906ee3ecfdffd42230770a8fe427f1db37fe5f47682d760b5e2d453e5e032d5e1c7544bdc39f08ae392OWMvKGBEVz5VQqx52Bg7dCBKsi68OWR9ah+B3wYUlA=', '2018-10-04 10:34:50', 'assets/cms/user/haaa.JPG', 'Administrateur'),
+(5, 'Roussel', 'Loic', '8d13ed19967f722ad1ad303c01c6f54c72a5b8559bcefbe16e97ae3b81f12d2cd33a76c0c32f78854dd79c717aac4c21518d7e7fda46eae32c53d72f7ab3716bj0OyJOlcy2SbflrM1coaflg6kIQM3njipXPKBHvsmq4=', '2018-10-05 16:03:48', 'assets/cms/user/IMG_20180926_095006.jpg', 'Administrateur');
+
 --
 -- Index pour les tables exportées
 --
@@ -689,6 +713,12 @@ ALTER TABLE `travaux`
   ADD PRIMARY KEY (`id_travaux`);
 
 --
+-- Index pour la table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id_user`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -777,6 +807,11 @@ ALTER TABLE `third_level`
 --
 ALTER TABLE `travaux`
   MODIFY `id_travaux` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+--
+-- AUTO_INCREMENT pour la table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

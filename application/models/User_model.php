@@ -85,7 +85,7 @@ class User_model extends CI_Model {
             if($verif){
                 return false;
             }else{
-                $hash = $result['password'];//$this->encryption->decrypt($result['password']);
+                $hash = $this->encryption->decrypt($result['password']);
                 if($hash == $mdp){
                     if($bool){
                         $this->session->set_userdata('__ci_last_regenerate',time());
