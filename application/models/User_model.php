@@ -112,14 +112,15 @@ class User_model extends CI_Model {
                     else
                     {   
                         $data = array('upload_data'=>$this->upload->data());
-                        $photo = 'assets/cms/user/'.$data['upload_data']['orig_name'];                                        
+                        $user['photo'] = 'assets/cms/user/'.$data['upload_data']['orig_name'];                                        
                      
                     }
-
-                }else{
-                    $photo = $user['photo'];
                 }
-                $array = ['nom' => $nom, 'prenom' => $prenom, 'password' => $hash,'photo'=> $photo,'type' => $type, 'mail' => $mail];
+                $user['nom'] = $nom;
+                $user['prenom'] = $prenom;
+                $user['password'] = $hash;
+                $user['type'] = $type;
+                $user['mail'] = $mail;
                 $this->db->replace('user',$user);
             }
         }

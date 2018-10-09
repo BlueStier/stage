@@ -778,9 +778,26 @@ class Cms extends CI_Controller
 
     //fonction de validation de la mise à jour d'un user
     public function validupUser($bool,$id){
+        $mdp = $this->input->post('mdpUser');
+        $Confmdp = $this->input->post('mdp2User');
+
+        if($mdp != $Confmdp){
+            $this->load->model('User_model');
+            $data['user_by_id'] = $this->User_model->get_user($id);
+            $this->session->set_userdata('__ci_last_regenerate',time());
+            $data['user'] = $this->session->userdata('username');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $data['error'] = array('error'=>'Le mot de passe et sa confirmation sont diffférents');
+            $data['nb'] = 7;                                                      
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/updateUser',$data);
+            $this->load->view('cms/footer'); 
+        }
         $this->load->model('User_model');
         $this->User_model->update($bool,$id);
-    }
+         }
 
     //fonction de déconnexion
     public function destroy(){
