@@ -36,6 +36,8 @@ class Cms extends CI_Controller
         }else{
             $this->session->set_userdata('__ci_last_regenerate',time());
             $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
             $data['photouser'] = $this->session->userdata('photo');
             $data['typeuser'] = $this->session->userdata('type');
         }
@@ -764,10 +766,10 @@ class Cms extends CI_Controller
     public function updateUser($id){
         $this->load->model('User_model');
         $this->session->set_userdata('__ci_last_regenerate',time());
-        $data['user'] = $this->session->userdata('username');
+        $data['user'] = $this->session->userdata('username');        
         $data['photouser'] = $this->session->userdata('photo');
         $data['typeuser'] = $this->session->userdata('type');
-
+        $data['id_user'] = $this->session->userdata('id');
         $data['user_by_id'] = $this->User_model->get_user($id);
         $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
@@ -797,6 +799,7 @@ class Cms extends CI_Controller
         }
         $this->load->model('User_model');
         $this->User_model->update($bool,$id);
+        header('Location:'.base_url().'cms/8');
          }
 
     //fonction de déconnexion

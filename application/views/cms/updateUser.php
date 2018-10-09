@@ -1,4 +1,6 @@
-
+<?php if($user_by_id['id_user'] == $id_user){
+  $disab = 'disabled';
+  }else{ $disab ='';}?>
 <div class="content-wrapper">
     <div class="box box-info">
       <div class="box-header with-border">
@@ -19,7 +21,7 @@
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Prenom de l'utilisateur</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="prenomUser" value="<?php echo $user_by_id['prenom']; ?>" required>
+                  <input class="form-control" name="prenomUser" value="<?php echo $user_by_id['prenom']; ?>" <?php echo $disab; ?> required>
                   </div>
                 </div>
                 <div class="form-group">

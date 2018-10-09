@@ -275,10 +275,10 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Gérer son Profil</a>
+                  <a href="<?php echo base_url().'cms/updateUser/'.$id_user;?>"  class="btn btn-default btn-flat">Gérer son Profil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="<?php echo base_url()?>cms/destroy"S class="btn btn-default btn-flat">Déconnexion</a>
+                  <a href="<?php echo base_url()?>cms/destroy" class="btn btn-default btn-flat">Déconnexion</a>
                 </div>
               </li>
             </ul>
@@ -291,3 +291,103 @@
       </div>
     </nav>
   </header>
+          <!-- Modal pour la suppression d'un article -->
+          <div class="modal modal-info fade" id="modal-info">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Gérer votre profil</h4>
+              </div>
+              <div class="modal-body">
+              <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Mot de passe :</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            <div class="form-group row">
+                  <label class="col-sm-2 control-label">Mot de passe</label>
+                  <div class="col-sm-10">
+                  <input type="password" class="form-control text-black" name="mdpUser2" placeholder="Entrez le nouveau mot de passe" required>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-sm-2 control-label">Confirmation du mot de passe</label>
+                  <div class="col-sm-10">
+                  <input type="password" class="form-control text-black" name="mdp2User" placeholder="Confirmez le nouveau mot de passe" required>
+                  </div>
+                </div> 
+            </div>
+              </div>
+              <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Adresse mail :</h3>
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            <input class="text-black" name="mail2" value="<?php echo $mail;?>"/>
+            </div>
+              </div>
+              <div class="box box-default collapsed-box">
+            <div class="box-header with-border">
+              <h3 class="box-title">Photo :</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+                </button>
+              </div>
+              <!-- /.box-tools -->
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+            <div class="form-group row">            
+                <label class="col-sm-2 control-label text-black">Concerver cette photo </label>
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$photouser;?>'/>
+                <div class="col-sm-2 text-black">
+                <input type="radio" name='radioUp0' onClick='visiblePo(true);' value="Non" >Non     
+                </div>
+                <div class="col-sm-2 text-black">
+                <input type="radio" name='radioUp0' onClick='visiblePo(false);' value="Oui"checked>Oui     
+                </div>                                
+                </div>
+                <div id="photoUp" class="form-group row">
+                  <label class="col-sm-2 control-label text-black">Choisir une photo </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="photoUser" id="exampleInputFile" value='Choisissez une photo'>
+                </div>
+                </div>
+            </div>
+              </div>
+              </div>
+              
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
+                <?php echo validation_errors(); 
+                      echo form_open('cms/validupUser/false/'.$id_user);?>
+                <button type="submit" class="btn btn-outline" >Confirmer les modifications</button>
+                </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->        
+          </div>
+          <script>
+           document.getElementById("photoUp").style.display ='none';
+  function visiblePo(choix){
+  (choix ? document.getElementById('photoUp').style.display='block' : document.getElementById('photoUp').style.display='none'); 
+}
+          </script>   

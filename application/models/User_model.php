@@ -106,7 +106,7 @@ class User_model extends CI_Model {
                         $data['nb'] = 7;                                                      
                         $this->load->view('cms/header');
                         $this->load->view('cms/left_menu',$data);
-                        $this->load->view('cms/createUser',$data);
+                        $this->load->view('cms/updateUser',$data);
                         $this->load->view('cms/footer'); 
                     }
                     else
@@ -122,6 +122,14 @@ class User_model extends CI_Model {
                 $user['type'] = $type;
                 $user['mail'] = $mail;
                 $this->db->replace('user',$user);
+            } else {
+                $mail = $this->input->post('mail2');
+                if($this->input->post('mdpUser2')!=''){
+                $hash = $this->encryption->encrypt($this->input->post('mdpUser'));
+                }
+                $user['password'] = $hash;
+                $user['mail'] = $mail;
+                $this->db->replace('user',$user); 
             }
         }
 
@@ -137,7 +145,7 @@ class User_model extends CI_Model {
                         $this->session->set_userdata('__ci_last_regenerate',time());
                         $this->session->set_userdata('logged_in',TRUE);
                     }else{
-                    $dataUser = ['username'=> $prenom.' '.$nom, 'logged_in' => TRUE, 'id' => $result['id_user'],'photo'=>$result['photo'], 'type' => $result['type']];
+                    $dataUser = ['username'=> $prenom.' '.$nom, 'logged_in' => TRUE, 'id' => $result['id_user'],'photo'=> $result['photo'], 'type' => $result['type'], 'mail' => $result['mail']];
                     $this->session->set_userdata($dataUser);
                     }
                     return true;
