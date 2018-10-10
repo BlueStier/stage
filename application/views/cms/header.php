@@ -136,48 +136,32 @@
               <li class="footer"><a href="#">See All Messages</a></li>
             </ul>
           </li>
+          <?php 
+          $alert = sizeof($alerte);
+          if($typeuser=='Administrateur'&& $alert > 0){ ?>
           <!-- Notifications: style can be found in dropdown.less -->
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="Alertes">
               <i class="fa fa-bell-o" ></i>
-              <span class="label label-warning">10</span>
+              <span class="label label-warning"><?php echo $alert;?></span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">You have 10 notifications</li>
+              <li class="header">Il y a <?php echo $alert;?> alerte à valider</li>
               <li>
                 <!-- inner menu: contains the actual data -->
                 <ul class="menu">
+                <?php foreach($alerte as $a):?>
                   <li>
-                    <a href="#">
-                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    <a href="<?php echo base_url(); ?>cms/updateArticle/<?php echo $a['id_articles']; ?>">
+                      <h3><i class="fa fa-newspaper-o text-yellow"></i> <?php echo $a['titre'].'</h3> alerte pour le : '.$a['alerte'];?>
                     </a>
                   </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
-                    </a>
-                  </li>
+          <?php endforeach; ?>
                 </ul>
-              </li>
-              <li class="footer"><a href="#">View all</a></li>
+              </li>              
             </ul>
           </li>
+          <?php } ?>
           <!-- Tasks: style can be found in dropdown.less -->
           <li class="dropdown tasks-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -283,11 +267,7 @@
               </li>
             </ul>
           </li>
-          <!-- Control Sidebar Toggle Button -->
-          <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-          </li>
-        </ul>
+         </ul>
       </div>
     </nav>
   </header>

@@ -209,7 +209,7 @@ class Articles_model extends CI_Model {
     }
 
     public function findAlert(){
-
+       return $this->db->query('SELECT * FROM `articles` WHERE DATEDIFF(alerte,now())<=7')->result_array();
         
     }
 

@@ -40,6 +40,8 @@ class Cms extends CI_Controller
             $data['mail'] = $this->session->userdata('mail');
             $data['photouser'] = $this->session->userdata('photo');
             $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
         }
         if($id == 1){
             $data['nb'] = 1;                                   
@@ -183,9 +185,13 @@ class Cms extends CI_Controller
     //création de la pge d'enregistrement d'un menu/sousmenu...
     public function createMenu($type){
         $this->session->set_userdata('__ci_last_regenerate',time());
-        $data['user'] = $this->session->userdata('username');
-        $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
 
         if($type == 1){
             $data['case'] = 1;           
@@ -235,9 +241,13 @@ class Cms extends CI_Controller
     //creer la page updateMenu en fonction du menu,sousmenu... choisi
     public function updateMenu($type){
         $this->session->set_userdata('__ci_last_regenerate',time());
-        $data['user'] = $this->session->userdata('username');
-        $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
 
         $amodif = $this->input->post('menuUpdate'); 
         if($type == 1){
@@ -273,10 +283,14 @@ class Cms extends CI_Controller
 
     //appel la page createPage
     public function createPages(){
-        $this->session->set_userdata('__ci_last_regenerate',time());
-        $data['user'] = $this->session->userdata('username');
-        $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');
+       $this->session->set_userdata('__ci_last_regenerate',time());
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
         $this->load->model('Pages_model');
         $data['nb'] = 4;                
         $data['header_item'] = $this->Header_model->get_menu();
@@ -417,8 +431,12 @@ class Cms extends CI_Controller
     public function updatePage($id){ 
         $this->session->set_userdata('__ci_last_regenerate',time());
         $data['user'] = $this->session->userdata('username');
+        $data['id_user'] = $this->session->userdata('id');
+        $data['mail'] = $this->session->userdata('mail');
         $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');      
+        $data['typeuser'] = $this->session->userdata('type');
+        $this->load->model('Articles_model');
+        $data['alerte'] = $this->Articles_model->findAlert();     
         $this->load->model('Pages_model');
         $data['nb'] = 4;
         $data['page_item'] = $this->Pages_model->get_page_by_id($id);                
@@ -641,10 +659,14 @@ class Cms extends CI_Controller
     //appel la page de mise à jour d'un article
     public function updateArticle($id){
         $this->session->set_userdata('__ci_last_regenerate',time());
-        $data['user'] = $this->session->userdata('username');
-        $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');
-        $this->load->model('Articles_model');
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
+        
         $this->load->model('Pages_model');
         $data['nb'] = 6;                              
         $data['page_item'] = $this->Pages_model->get_page(); 
@@ -701,9 +723,12 @@ class Cms extends CI_Controller
     public function createUser(){
         $this->session->set_userdata('__ci_last_regenerate',time());
         $data['user'] = $this->session->userdata('username');
+        $data['id_user'] = $this->session->userdata('id');
+        $data['mail'] = $this->session->userdata('mail');
         $data['photouser'] = $this->session->userdata('photo');
         $data['typeuser'] = $this->session->userdata('type');
-
+        $this->load->model('Articles_model');
+        $data['alerte'] = $this->Articles_model->findAlert();
         //on définie les critères obligatoires       
         $this->form_validation->set_rules('nomUser', 'Nom ', 'required');
         $this->form_validation->set_rules('prenomUser', 'Prenom', 'required');
