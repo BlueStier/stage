@@ -67,7 +67,7 @@
     Entrer votre mot de passe pour réactiver votre session
   </div>
   <div class="text-center">
-    <a href="login.html">Se connecter avec un autre utilisateur</a>
+    <a href="<?php echo base_url()?>cms/destroy">Se connecter avec un autre utilisateur</a>
   </div>
   <div class="lockscreen-footer text-center">
   <strong>Copyright &copy; 2018-BlueStier</strong> All rights
