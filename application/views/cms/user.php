@@ -37,7 +37,7 @@
           </div>
           <!-- /.widget-user -->
         </div>
-        <!-- Modal pour la suppression d'un article -->
+        <!-- Modal pour la suppression d'un user -->
         <div class="modal modal-danger fade" id="modal-danger<?php echo $u["id_user"]?>">
           <div class="modal-dialog">
             <div class="modal-content">

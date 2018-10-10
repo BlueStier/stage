@@ -109,13 +109,48 @@
       </div>
     </form>    
 
-    <a href="#">Mot de passe oublié</a><br>    
+    <a href="#" data-toggle="modal" data-target="#modal-info">Mot de passe oublié</a><br>    
     <strong>Copyright &copy; 2018-BlueStier</strong> All rights
     reserved.
   </div>
+  <?php if(isset($message)){echo $message;};?>
   <!-- /.login-box-body -->
 </div>
+
 <!-- /.login-box -->
+
+        <!-- Modal pour la suppression d'un user -->
+        <div class="modal modal-info fade" id="modal-info">
+        <?php if(isset($error)){echo $error['error'];};
+             echo validation_errors();
+                  echo form_open_multipart('login/mdp');?>
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Envoi d'un nouveau mot de passe</h4>
+              </div>
+              <div class="modal-body">
+              <div class="form-group has-feedback">
+        <input type="name" class="form-control" name="nom" placeholder="Nom" required>
+        <span class="fa fa-user form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="name" class="form-control" name="prenom" placeholder="Prenom" required>
+        <span class="fa fa-user form-control-feedback"></span>
+      </div>
+               
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>                
+                <button type="submit" class="btn btn-outline" >Envoyer le nouveau mot de passe</button>
+                </form>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->        
 <?php } ?>
 <!-- jQuery 3 -->
 <script src="<?php echo base_url();?>/assets/cms/bower_components/jquery/dist/jquery.min.js"></script>

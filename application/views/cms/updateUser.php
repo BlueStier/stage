@@ -1,5 +1,5 @@
 <?php if($user_by_id['id_user'] == $id_user){
-  $disab = 'disabled';
+  $disab = "disabled";
   }else{ $disab ='';}?>
 <div class="content-wrapper">
     <div class="box box-info">
@@ -12,14 +12,14 @@
 <div class="form-group">
 <?php if(isset($error)){echo $error['error'];};
              echo validation_errors();
-                  echo form_open_multipart('cms/validupUser/true/'.$user_by_id['id_user']);?>
-                  <label class="col-sm-2 control-label">Nom de l'utilisateur</label>
+                  echo form_open_multipart('cms/validupUser/'.$user_by_id['id_user']);?>
+                  <label class="col-sm-2 control-label" >Nom de l'utilisateur</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomUser" value="<?php echo $user_by_id['nom']; ?>" required>
+                  <input class="form-control" name="nomUser" value="<?php echo $user_by_id['nom']; ?>" <?php echo $disab; ?> required>
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Prenom de l'utilisateur</label>
+                  <label class="col-sm-2 control-label" >Prenom de l'utilisateur</label>
                   <div class="col-sm-10">
                   <input class="form-control" name="prenomUser" value="<?php echo $user_by_id['prenom']; ?>" <?php echo $disab; ?> required>
                   </div>
@@ -53,9 +53,9 @@
                 </div>
                 </div>
                 <div class="form-group">
-                <label class="col-sm-2 control-label">Type d'utilisateur :</label>
+                <label class="col-sm-2 control-label" <?php echo $disab; ?>>Type d'utilisateur :</label>
                 <div class="col-sm-10">                
-                <select id="selectTxt" name ="selectUser"  class="form-control select2" >
+                <select id="selectTxt" name ="selectUser"  class="form-control select2" <?php echo $disab; ?> >
                 <option selected>Administrateur</option>
                 <option>Auteur</option>
                 <option>Carte</option>

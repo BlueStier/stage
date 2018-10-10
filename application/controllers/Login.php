@@ -32,7 +32,7 @@ class Login extends CI_Controller
             $data['user'] = $this->session->userdata('username');
             $data['photouser'] = $this->session->userdata('photo');
             $data['typeuser'] = $this->session->userdata('type');
-            $this->load->view('log/login');
+            $this->load->view('log/login',$data);
              
          } else {
             $user_id = $this->session->userdata('id');
@@ -75,5 +75,13 @@ class Login extends CI_Controller
          }
         }
     }
+    }
+
+    public function mdp(){
+        $nom = $this->input->post('nom'); 
+        $prenom = $this->input->post('prenom'); 
+        $this->load->model('User_model');
+        $user = $this->User_model->forget_mdp($nom,$prenom);
+
     }
 }

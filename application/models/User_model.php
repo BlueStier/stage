@@ -79,9 +79,8 @@ class User_model extends CI_Model {
 
         }
 
-        public function update($bool,$id){
-            $user = User_model::get_user($id);
-            if($bool){
+        public function update($id){
+            $user = User_model::get_user($id);         
                 $nom = $this->input->post('nomUser');
                 $prenom = $this->input->post('prenomUser');
                 $mail = $this->input->post('mail');
@@ -116,22 +115,16 @@ class User_model extends CI_Model {
                      
                     }
                 }
+                if($user['id_user'] != $this->session->userdata('id')){
                 $user['nom'] = $nom;
-                $user['prenom'] = $prenom;
-                $user['password'] = $hash;
+                $user['prenom'] = $prenom;   
                 $user['type'] = $type;
+                    }
+                $user['password'] = $hash;
                 $user['mail'] = $mail;
                 $this->db->replace('user',$user);
-            } else {
-                $mail = $this->input->post('mail2');
-                if($this->input->post('mdpUser2')!=''){
-                $hash = $this->encryption->encrypt($this->input->post('mdpUser'));
-                }
-                $user['password'] = $hash;
-                $user['mail'] = $mail;
-                $this->db->replace('user',$user); 
-            }
-        }
+            } 
+     
 
         public function verify($nom,$prenom,$mdp,$bool){
             $result = $this->db->get_where('user',array('nom'=> $nom,'prenom'=> $prenom))->row_array();
@@ -153,5 +146,50 @@ class User_model extends CI_Model {
                     return false;
                 }            
             }
+        }
+
+        public function forget_mdp($nom, $prenom){
+            $user = $this->db->get_where('user',array('nom'=> $nom,'prenom'=> $prenom))->row_array();
+
+            $mdp = User_model::chaine_aleatoire(12);
+            $message = "<h1>Bonjour ".$user['prenom']." ".$user['nom']."</h1><br><br><br> Suite à votre demande de réinitialisation de mot de passe nous vous coseillons de modifier celui-ci après vous
+            être cconnecter.<br><br><br> Votre nouveau mot de passe est :<br><br><br><h3>".$mdp;"</h3><br><br><br<br>Passez une bonne journée.";
+
+            $user['password'] = $this->encryption->encrypt($mdp);
+            $this->db->replace('user',$user);
+           
+            $this->load->library('email');
+            $config['protocol'] = '';
+            $config['smtp_host'] = '';
+            $config['smtp_port'] = '';
+            $config['smtp_user'] = 'lroussel2703@gmail.com';
+            $config['smtp_pass'] = 'Boubidou1';           
+            $config['crlf'] = '\r\n';
+            $config['newline'] = '\r\n';
+            $config['mailtype'] = 'html';
+            
+            $this->email->initialize($config);
+            $this->email->from('lroussel2703@gmail.com', 'Mot de passe oublié');
+            $this->email->to('lroussel2703@gmail.com');
+            $this->email->subject('Réinitailisation de votre mot de passe');
+            $this->email->message($message);
+            $this->email->send();
+            
+            $data['message'] = "Votre nouveau mot de passe a été envoyé à l'adresse :".$user['mail'];
+            $this->load->view('log/login',$data);
+
+        }
+
+        public function chaine_aleatoire($nb_car, $chaine = 'azertyuiopqsdfghjklmwxcvbn123456789+-=')
+        {
+            $nb_lettres = strlen($chaine) - 1;
+            $generation = '';
+            for($i=0; $i < $nb_car; $i++)
+            {
+                $pos = mt_rand(0, $nb_lettres);
+                $car = $chaine[$pos];
+                $generation .= $car;
+            }
+            return $generation;
         }
 }

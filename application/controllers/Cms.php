@@ -770,6 +770,7 @@ class Cms extends CI_Controller
         $data['photouser'] = $this->session->userdata('photo');
         $data['typeuser'] = $this->session->userdata('type');
         $data['id_user'] = $this->session->userdata('id');
+        $data['mail'] = $this->session->userdata('mail');
         $data['user_by_id'] = $this->User_model->get_user($id);
         $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
@@ -779,7 +780,7 @@ class Cms extends CI_Controller
     }
 
     //fonction de validation de la mise à jour d'un user
-    public function validupUser($bool,$id){
+    public function validupUser($id){
         $mdp = $this->input->post('mdpUser');
         $Confmdp = $this->input->post('mdp2User');
 
@@ -798,7 +799,7 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer'); 
         }
         $this->load->model('User_model');
-        $this->User_model->update($bool,$id);
+        $this->User_model->update($id);
         header('Location:'.base_url().'cms/8');
          }
 

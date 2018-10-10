@@ -1,0 +1,2 @@
+mettre le fichier usr à la racine de l'ordi c:
+dans php.ini de uwamp mettre sendmail_path = "/usr/sbin/sendmail.exe"
