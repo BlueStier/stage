@@ -66,50 +66,24 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li ><a href=""><i class="fa fa-circle-o text-blue"></i> Créer une page de contact</a></li>
+            <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-blue"></i> Créer une page de contact</a></li>
             <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o text-blue"></i> Voir tous</a></li>
         </ul>
         </li>
-        <?php } ?>
+        <?php } ?>        
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-pie-chart"></i>
-            <span>Gestion des catégories</span>
+            <i class="fa fa-map-marker text-red"></i>
+            <span>Carte interactive</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> Créer un catégoirie</a></li>
-            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>
-        </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>Travaux</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> Créer </a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Voir tous</a></li>            
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o text-red"></i> Créer un point d'intéret</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o text-red"></i> Voir tous</a></li>            
           </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Chatter</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
-          </ul>
-        </li>
+        </li>       
         <li class="header">Gestion des utilisateurs</li>
         <li class="treeview">
           <a href="#">
@@ -119,8 +93,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-green"></i> Creer</a></li>
-            <li id='8'><a  href="<?php echo base_url()?>cms/8"><i class="fa fa-circle-o text-green"></i> Voir tous</a></li>
+            <li id='11' class="active"><a href="<?php echo base_url()?>cms/11"><i class="fa fa-circle-o text-green"></i> Creer</a></li>
+            <li id='12'><a  href="<?php echo base_url()?>cms/12"><i class="fa fa-circle-o text-green"></i> Voir tous</a></li>
           </ul>
         </li>
         <li class="treeview">

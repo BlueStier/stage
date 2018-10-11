@@ -119,17 +119,27 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
             
         }
+
         if($id == 7){
             $data['nb'] = 7;                                                      
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/createForm',$data);
+            $this->load->view('cms/footer');
+            
+        }
+        
+        if($id == 11){
+            $data['nb'] = 11;                                                      
             $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/createUser',$data);
             $this->load->view('cms/footer');
             
         }
-        if($id == 8){
+        if($id == 12){
             $this->load->model('User_model');
-            $data['nb'] = 8;
+            $data['nb'] = 12;
             $data['users'] = $this->User_model->get_user();                                                      
             $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
