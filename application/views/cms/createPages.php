@@ -789,6 +789,28 @@
              
             </div>
                 </div>
+                 <!-- Div pour création d'un page d'articles -->
+                 <div id="formulaire">
+                 <label class="center">Veuillez tapper votre texte d'intro (facultatif)</label>
+                  <div class="box-body pad">              
+                    <textarea id="editor" name="article" class="ckeditor" rows="100" cols="80">                                            
+                    </textarea>             
+            </div>
+            <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Choissisez un type de champ :</h3><br>
+              <button onClick="nom()">Nom</button><button>Prenom</button><button>Adresse</button><button>Date</button><button>Menu</button><button>Email</button><button>Zone de texte</button><button>Nombre</button><button>Checkbox</button><button>Bouton radio</button>
+            </div>
+            <div class="form-group">
+                  <label  class="col-sm-2 control-label">Champ NOM </label>
+                  <div class="col-sm-2">
+                  <input class="flat-red" type="checkbox" name='trtsup' />
+                  </div>
+                  <label class="col-sm-8 control-label">cocher la case si il doit être obligatoire</label>
+                </div>
+            
+</div>
+                </div>
                <!-- fin Div -->
                <!-- fin Div -->
                <!-- table des menus -->
@@ -924,6 +946,7 @@ document.getElementById("carroussel").style.display ='none';
 document.getElementById("bulle").style.display ='none';
 document.getElementById("article").style.display ='none';
 document.getElementById("document").style.display ='none';
+document.getElementById("formulaire").style.display ='none';
 document.getElementById("sans").style.display ='block';
 
 document.body.onload = invisible('txt');
@@ -950,6 +973,7 @@ function choix() {
       document.getElementById("article").style.display ='none';
       document.getElementById("document").style.display ='none';
       document.getElementById("table").style.display ='block';
+      document.getElementById("formulaire").style.display ='none';
     break;
     case "carroussel":
       document.getElementById("text").style.display ='none';
@@ -959,6 +983,7 @@ function choix() {
       document.getElementById("article").style.display ='none';
       document.getElementById("document").style.display ='none';
       document.getElementById("table").style.display ='block';
+      document.getElementById("formulaire").style.display ='none';
     break;
     case "bulle":
       document.getElementById("text").style.display ='none';
@@ -968,6 +993,7 @@ function choix() {
       document.getElementById("article").style.display ='none';
       document.getElementById("document").style.display ='none';
       document.getElementById("table").style.display ='block';
+      document.getElementById("formulaire").style.display ='none';
     break;
     case "sans":    
       document.getElementById("text").style.display ='none';
@@ -977,6 +1003,7 @@ function choix() {
       document.getElementById("document").style.display ='none';
       document.getElementById("sans").style.display ='block';
       document.getElementById("table").style.display ='block';
+      document.getElementById("formulaire").style.display ='none';
     break;
     case "article":    
       document.getElementById("text").style.display ='none';
@@ -986,6 +1013,7 @@ function choix() {
       document.getElementById("document").style.display ='none';
       document.getElementById("article").style.display ='block';
       document.getElementById("table").style.display ='block';
+      document.getElementById("formulaire").style.display ='none';
     break;
     case "document":    
       document.getElementById("text").style.display ='none';
@@ -993,8 +1021,19 @@ function choix() {
       document.getElementById("bulle").style.display ='none';
       document.getElementById("sans").style.display ='none';
       document.getElementById("article").style.display ='none';
+      document.getElementById("formulaire").style.display ='none';
       document.getElementById("moinsAn").style.display ='none';
       document.getElementById("document").style.display ='block';
+      document.getElementById("table").style.display ='block';      
+    break;
+    case "formulaire":    
+      document.getElementById("text").style.display ='none';
+      document.getElementById("carroussel").style.display ='none';
+      document.getElementById("bulle").style.display ='none';
+      document.getElementById("sans").style.display ='none';
+      document.getElementById("article").style.display ='none';
+      document.getElementById("formulaire").style.display ='block';
+      document.getElementById("document").style.display ='none';
       document.getElementById("table").style.display ='block';      
     break;
     default:
