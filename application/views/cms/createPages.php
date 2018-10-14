@@ -796,20 +796,40 @@
                     <textarea id="editor" name="article" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>             
             </div>
+            <input type="hidden" name='nbform' id='nbform'/>
             <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Choissisez un type de champ :</h3><br>
-              <button onClick="nom()">Nom</button><button>Prenom</button><button>Adresse</button><button>Date</button><button>Menu</button><button>Email</button><button>Zone de texte</button><button>Nombre</button><button>Checkbox</button><button>Bouton radio</button>
+              <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
+              <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
+              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
+              <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
+              <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
+              <button>Checkbox</button><button>Bouton radio</button>
             </div>
-            <div class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-2">
-                  <input class="flat-red" type="checkbox" name='trtsup' />
+            <div id='form'>
+            <div id='liste1' style="border-style: double;">
+<span>Propiétés de la liste :</span><a class='btn btn-primary'>ajouter un item</a><br><br>
+<div class="form-group">
+                  <label  class="col-sm-2 control-label">Titre de l'item</label> 
+                  <div class='col-sm-3'>                
+                  <input class="form-control " name='trt10' placeholder="obligatoire">
+                  </div>                  
+                  <label  class="col-sm-2 control-label">Adresse mail destinataire</label> 
+                  <div class='col-sm-3'>                 
+                  <input class="form-control col-sm-4" name='trt10' placeholder="facultatif">
                   </div>
-                  <label class="col-sm-8 control-label">cocher la case si il doit être obligatoire</label>
-                </div>
-            
+                  <a class='btn btn-warning'>Supprimer</a>
+                  </div>   
+            </div>
+            </div>
 </div>
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Transmettre le formulaire :</h3><br><br>
+              Vous pouvez transmettre le mail directement à un ou plusieurs services en cliquant <a>ici</a><br><br>
+              Pour permettre à l'usager de transmettre son formulaire selon une liste déroulante cliquez <a>ici</a><br><br>
+                </div>
+                </div>
                 </div>
                <!-- fin Div -->
                <!-- fin Div -->
@@ -1092,5 +1112,138 @@ function addYear(bool){
   }
 }
 
+var nb_liste = 0;
+var old_num = 0;
+var numero = 1;
+function nom(nb) {
+	var insert =document.getElementById("form");
+    var div = document.createElement("div");
+    div.setAttribute('class','form-group');
+    div.setAttribute('id','formulaire'+numero);    
+    var hidden = document.createElement("input");
+    hidden.setAttribute('type','hidden');
+    hidden.setAttribute('name','input'+numero);
+    var input2 = document.createElement("input");
+    switch(nb){
+      case 1 :
+      hidden.setAttribute('value','nom');
+      var t = document.createTextNode("Champ NOM");
+      input2.setAttribute('placeholder','ex:Votre nom');
+      break;
+      case 2 :
+      hidden.setAttribute('value','prenom');
+      var t = document.createTextNode("Champ PRENOM");
+      input2.setAttribute('placeholder','ex:Votre prenom');
+      break;
+      case 3 :
+      hidden.setAttribute('value','adresse');
+      var t = document.createTextNode("Champ ADRESSE");
+      input2.setAttribute('placeholder','ex:Votre adresse');
+      break;
+      case 4 :
+      hidden.setAttribute('value','date');
+      var t = document.createTextNode("Champ DATE");
+      input2.setAttribute('placeholder','ex:date de naissance');
+      break;
+      case 5 :
+      hidden.setAttribute('value','email');
+      var t = document.createTextNode("Champ EMAIL");
+      input2.setAttribute('placeholder','ex:Votre Email');
+      break;
+      case 6 :
+      hidden.setAttribute('value','area');
+      var t = document.createTextNode("Champ ZONE DE TEXTE");
+      input2.setAttribute('placeholder','ex:Votre message');
+      break;
+      case 7 :
+      hidden.setAttribute('value','nb');
+      var t = document.createTextNode("Champ NOMBRE");
+      input2.setAttribute('placeholder','ex:Nombre de participants');
+      break;
+      case 8 :
+      hidden.setAttribute('value','file');
+      var t = document.createTextNode("Champ FICHIER");
+      input2.setAttribute('placeholder','ex:Joindre une photo');
+      break;
+      case 9 :
+      hidden.setAttribute('value','liste');
+      var t = document.createTextNode("Champ LISTE");
+      input2.setAttribute('placeholder','ex:Choisir le service');
 
+      var liste = document.createElement('div');
+      liste.setAttribute('id','liste'+numero);
+
+      break;
+    }
+   
+    var label = document.createElement("label");
+    label.setAttribute('class','col-sm-2 control-label');
+    
+    label.appendChild(t);
+    
+    var input = document.createElement("input");
+    input.setAttribute('class','col-sm-2');
+    input.setAttribute('type','checkbox');
+    input.setAttribute('name','ch'+numero);
+    var label2 = document.createElement("label");
+    label2.setAttribute('class','control-label');
+    var t2 = document.createTextNode("Obligatoire?");
+    var div_check = document.createElement("div");
+    div_check.setAttribute('class','col-sm-2 ');
+    label2.appendChild(t2);
+    div_check.appendChild(label2);
+    div_check.appendChild(input);
+    
+    var label3 = document.createElement("label");
+    label3.setAttribute('class','col-sm-2 control-label');
+    var t3 = document.createTextNode("nom du champ :");
+    label3.appendChild(t3);    
+    
+    input2.setAttribute('class','col-sm-2');
+    
+    input2.setAttribute('name','champ'+numero);
+    
+    var div_at1 = document.createElement("div");
+    div_at1.setAttribute('class','col-sm-1 ');
+    
+    var div_at2 = document.createElement("div");
+    div_at2.setAttribute('class','col-sm-1 ');
+    
+    var a = document.createElement("a");
+    a.setAttribute('class','btn btn-danger col-sm-2');
+    a.setAttribute('onClick','supthis();');
+    a.setAttribute('id','this'+numero);
+    
+    var t4 = document.createTextNode("Supprimer ce champ");
+    a.appendChild(t4);
+    div.appendChild(hidden);
+    div.appendChild(label);
+    div.appendChild(div_check);
+    div.appendChild(label3);
+    div.appendChild(input2);
+    div.appendChild(div_at1);
+    div.appendChild(a);
+    div.appendChild(div_at2);
+    insert.appendChild(div);
+
+    document.getElementById('nbform').value = numero;
+  
+  if(numero > 1){
+    document.getElementById('this'+old_num).style.display ='none';}
+    old_num++;
+    numero++;
+}
+
+function supthis(){
+  numero--;
+  old_num--;
+  var form = document.getElementById("form");
+  var formulaire =  document.getElementById('formulaire'+numero);
+  form.removeChild(formulaire);
+  if(numero > 1){
+    document.getElementById('this'+old_num).style.display ='initial';
+    }
+  document.getElementById('nbform').value = old_num;
+  
+}
 </script>
