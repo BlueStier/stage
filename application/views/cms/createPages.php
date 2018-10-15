@@ -796,899 +796,27 @@
                     <textarea id="editor" name="article" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>             
             </div>
+            <input type="hidden" name='nbform' id='nbform'/>
             <div class="box box-info">
             <div id="test"></div>
             <div class="box-header with-border">
-              <h3 class="box-title">Choissisez un type de champ :</h3><br>
-              <a class="btn btn-default" onClick="select('n');">Nom</a><a class="btn btn-default" onClick="select('p');">Prenom</a><a class="btn btn-default" onClick="select('adr');">Adresse</a><a class="btn btn-default" onClick="select('tel');">Téléphone</a>
-              <a class="btn btn-default" onClick="select('date');">Date</a><a class="btn btn-default" onClick="select('me');">Menu</a><a class="btn btn-default" onClick="select('email');">Email</a>
-              <a class="btn btn-default" onClick="select('area');">Zone de texte</a><a class="btn btn-default" onClick="select('nb');">Nombre</a><a class="btn btn-default" onClick="select('chk');">Checkbox</a>
-              <a class="btn btn-default" onClick="select('rad');">Bouton radio</a>
+              <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
+              <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
+              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
+              <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
+              <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
+              <button>Checkbox</button><button>Bouton radio</button>
             </div>
-            <h3 class="box-title">Votre formulaire :</h3><br>
-            <input type='' id='input1' value=""/>
-            <div id='n1' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre nom ou nom du père..."/>
-                  <div class="col-sm-1"></div>
-                  <a id="supn1" onCLick="deselect('n')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='p1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre prenom"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supp1" onCLick="deselect('p')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='adr1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre adresse"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supadr1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='tel1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre numéro de tel"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suptel1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='date1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre date de naissance"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supdate1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='me1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre email"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supemail1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='area1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Saisissez votre message"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suparea1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='nb1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Nombre de participants"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supnb1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='chk1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: s'abonner"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supchk1" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='rad1' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c1' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Homme/Femme"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suprad1" onCLick="deselect('n')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                
-                <input type='' id='input2' value=""/>
-              <div id='n2' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre nom ou nom du père..."/>
-                  <div class="col-sm-1"></div>
-                  <a id="supn2" onCLick="deselect('n')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='p2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre prenom"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supp2" onCLick="deselect('p')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='adr2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre adresse"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supadr2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='tel2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre numéro de tel"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suptel2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='date2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre date de naissance"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supdate2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='me2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre email"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supemail2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='area2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Saisissez votre message"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suparea2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='nb2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Nombre de participants"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supnb2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='chk2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: s'abonner"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supchk2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='rad2' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Homme/Femme"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suprad2" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-
-
-                  <input type='' id='input3' value=""/>
-              <div id='n3' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre nom ou nom du père..."/>
-                  <div class="col-sm-1"></div>
-                  <a id="supn3" onCLick="deselect('n')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='p3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre prenom"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supp3" onCLick="deselect('p')" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='adr3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre adresse"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supadr3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='tel3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre numéro de tel"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suptel3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='date3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre date de naissance"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supdate3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='me3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Votre email"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supemail3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='area3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Saisissez votre message"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suparea3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='nb3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c2' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Nombre de participants"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supnb3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='chk3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: s'abonner"/>
-                  <div class="col-sm-1"></div>
-                  <a id="supchk3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-                <div id='rad3' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c3' />cocher la case si le champ est obligatoire
-                  </div>
-                  <label class = "col-sm-2 control-label">Nommer le champ : </label>
-                  <input class="col-sm-2" type="text" name='nomInput1' placeholder="ex: Homme/Femme"/>
-                  <div class="col-sm-1"></div>
-                  <a id="suprad3" onCLick="deselect(1)" class="col-sm-2 btn btn-primary" >Supprimer</a>
-                </div>
-
-               
-                <input type='' id='input4' value=""/>
-            <div id='n4' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad4' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c4' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
-                <input type='' id='input5' value=""/>
-            <div id='n5' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-2">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad5' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c5' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
-                <input type='' id='input6' value=""/>
-            <div id='n6' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad6' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c6' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
-                <input type='' id='input7' value=""/>
-            <div id='n7' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad7' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c7' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-
-                <input type='' id='input8' value=""/>
-            <div id='n8' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad8' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c8' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
-                <input type='' id='input9' value=""/>
-            <div id='n9' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad9' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c9' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
-                <input type='' id='input10' value=""/>
-            <div id='n10' class="form-group">
-                  <label class="col-sm-2 control-label">Champ NOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='p10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ PRENOM </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='adr10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ADRESSE (n° et voie, code postal, ville) </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='tel10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ TELEPHONE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='date10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ DATE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='me10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ MENU </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='email10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ EMAIL </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='area10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ ZONE DE TEXTE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='nb10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ NOMBRE </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='chk10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ CHECKBOX </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-                <div id='rad10' class="form-group">
-                  <label  class="col-sm-2 control-label">Champ BOUTON RADIO </label>
-                  <div class="col-sm-4">
-                  <input type="checkbox" name='c10' />cocher la case si le champ est obligatoire
-                  </div>
-                  <button class="col-sm-4 btn btn-primary" >Supprimer</button>
-                </div>
-               
+            <div id='form'>
+ 
 </div>
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Transmettre le formulaire :</h3><br><br>
+              Vous pouvez transmettre le mail directement à un ou plusieurs services en cliquant <a>ici</a><br><br>
+              Pour permettre à l'usager de transmettre son formulaire selon une liste déroulante cliquez <a>ici</a><br><br>
+                </div>
+                </div>
                 </div>
                <!-- fin Div -->
                <!-- fin Div -->
@@ -1832,8 +960,6 @@ document.body.onload = invisible('txt');
 document.body.onload = invisible('bulle');
 document.body.onload = invisible('doc');
 
-document.body.onload = invisibleform();
-
 
 function invisible(txt){
   for(var i=2;i<=10;i++){
@@ -1841,26 +967,6 @@ function invisible(txt){
   }
 }
 
-function total(txt){
-  for(var i=1;i<=10;i++){
-     document.getElementById(txt+i).style.display ='none';    
-  }
-}
-
-function invisibleform(){
-
-  total('n');
-  total('p');
-  total('adr');
-  total('tel');
-  total('date');
-  total('me');
-  total('email');
-  total('area');
-  total('nb');
-  total('chk');
-  total('rad');
-}
 
 function choix() {
   var x = document.getElementById("select").selectedIndex;
@@ -2008,16 +1114,266 @@ var num = 0;
    oldtype = type;
  }
 
- function deselect(type){
-  selct = document.getElementById(oldtype+num);
-   input = document.getElementById('input'+num);
-   input.value = "";
-   selct.style.display ='none';
-   num--;
-   document.getElementById('sup'+oldtype+num).style.display ='initial';
-   oldtype = type;
- }
- function test(){
+var nb_liste = 1;
+var old_num = 0;
+var numero = 1;
+function nom(nb) {
+	var insert =document.getElementById("form");
+    var div = document.createElement("div");
+    div.setAttribute('class','form-group');
+    div.setAttribute('id','formulaire'+numero);    
+    var hidden = document.createElement("input");
+    hidden.setAttribute('type','hidden');
+    hidden.setAttribute('name','input'+numero);
+    var input2 = document.createElement("input");
+    switch(nb){
+      case 1 :
+      hidden.setAttribute('value','nom');
+      var t = document.createTextNode("Champ NOM");
+      input2.setAttribute('placeholder','ex:Votre nom');
+      break;
+      case 2 :
+      hidden.setAttribute('value','prenom');
+      var t = document.createTextNode("Champ PRENOM");
+      input2.setAttribute('placeholder','ex:Votre prenom');
+      break;
+      case 3 :
+      hidden.setAttribute('value','adresse');
+      var t = document.createTextNode("Champ ADRESSE");
+      input2.setAttribute('placeholder','ex:Votre adresse');
+      break;
+      case 4 :
+      hidden.setAttribute('value','date');
+      var t = document.createTextNode("Champ DATE");
+      input2.setAttribute('placeholder','ex:date de naissance');
+      break;
+      case 5 :
+      hidden.setAttribute('value','email');
+      var t = document.createTextNode("Champ EMAIL");
+      input2.setAttribute('placeholder','ex:Votre Email');
+      break;
+      case 6 :
+      hidden.setAttribute('value','area');
+      var t = document.createTextNode("Champ ZONE DE TEXTE");
+      input2.setAttribute('placeholder','ex:Votre message');
+      break;
+      case 7 :
+      hidden.setAttribute('value','nb');
+      var t = document.createTextNode("Champ NOMBRE");
+      input2.setAttribute('placeholder','ex:Nombre de participants');
+      break;
+      case 8 :
+      hidden.setAttribute('value','file');
+      var t = document.createTextNode("Champ FICHIER");
+      input2.setAttribute('placeholder','ex:Joindre une photo');
+      break;
+      case 9 :
+      hidden.setAttribute('value','liste');
+      var t = document.createTextNode("Champ LISTE");
+      input2.setAttribute('placeholder','ex:Choisir le service');
+
+      //création de la partie propriété de la liste
+      var div1 = document.createElement('div');
+      div1.setAttribute('class','col-sm-1');
+      var liste = document.createElement('div');
+      liste.setAttribute('id','liste'+nb_liste);
+      liste.setAttribute('style','border-style: double;');
+      liste.setAttribute('class','col-sm-10');
+      var span = document.createElement('span');
+      var text = document.createTextNode("Propiétés de la liste :  ");
+      span.appendChild(text);
+      var button = document.createElement('a');
+      button.setAttribute('class','btn btn-primary');
+      button.setAttribute('onClick','liste('+nb_liste+')');
+      var text_btn = document.createTextNode("Ajouter un item");
+      button.appendChild(text_btn);
+      var esp1 = document.createElement('br');
+      var esp2 = document.createElement('br');
+
+      //div du form-group
+      var formgroup = document.createElement('div');
+      formgroup.setAttribute('class','form-group');
+      var titre =  document.createElement('label');
+      titre.setAttribute('class','col-sm-2 control-label');
+      var text_titre = document.createTextNode("Titre de l'item ");
+      titre.appendChild(text_titre);
+
+      var divcol1 = document.createElement('div');
+      divcol1.setAttribute('class','col-sm-3');
+
+      var inputtit = document.createElement('input');
+      inputtit.setAttribute('class','form-control');
+      inputtit.setAttribute('name','titreitem1');
+      inputtit.setAttribute('placeholder','obligatoire');
+
+      divcol1.appendChild(inputtit);
+
+      var adrMail =  document.createElement('label');
+      adrMail.setAttribute('class','col-sm-2 control-label');
+      var text_mail = document.createTextNode("Adresse mail destinataire");
+      adrMail.appendChild(text_mail);
+
+      var divcol2 = document.createElement('div');
+      divcol2.setAttribute('class','col-sm-3');
+
+      var inputMail = document.createElement('input');
+      inputMail.setAttribute('class','form-control');
+      inputMail.setAttribute('name','mailitem1');
+      inputMail.setAttribute('placeholder','facultatif');
+
+      divcol2.appendChild(inputMail);
+
+      var butSup = document.createElement('a');
+      butSup.setAttribute('class','btn btn-warning');
+      butSup.setAttribute('onClick','supliste('+nb_liste+')');
+      var text_bts = document.createTextNode("Supprimer l'item");
+      butSup.appendChild(text_bts);
+
+      //les élément de la div formgroup sont créés on assemble
+      formgroup.appendChild(titre);
+      formgroup.appendChild(divcol1);
+      formgroup.appendChild(adrMail);
+      formgroup.appendChild(divcol2);
+      formgroup.appendChild(butSup);
+
+      //construction de la div final
+      liste.appendChild(span);
+      liste.appendChild(button);
+      liste.appendChild(esp1);
+      liste.appendChild(esp2);
+      liste.appendChild(formgroup);
+      break;
+    }
    
- }
+    var label = document.createElement("label");
+    label.setAttribute('class','col-sm-2 control-label');
+    
+    label.appendChild(t);
+    
+    var input = document.createElement("input");
+    input.setAttribute('class','col-sm-2');
+    input.setAttribute('type','checkbox');
+    input.setAttribute('name','ch'+numero);
+    var label2 = document.createElement("label");
+    label2.setAttribute('class','control-label');
+    var t2 = document.createTextNode("Obligatoire?");
+    var div_check = document.createElement("div");
+    div_check.setAttribute('class','col-sm-2 ');
+    label2.appendChild(t2);
+    div_check.appendChild(label2);
+    div_check.appendChild(input);
+    
+    var label3 = document.createElement("label");
+    label3.setAttribute('class','col-sm-2 control-label');
+    var t3 = document.createTextNode("nom du champ :");
+    label3.appendChild(t3);    
+    
+    input2.setAttribute('class','col-sm-2');
+    
+    input2.setAttribute('name','champ'+numero);
+    
+    var div_at1 = document.createElement("div");
+    div_at1.setAttribute('class','col-sm-1 ');
+    
+    var div_at2 = document.createElement("div");
+    div_at2.setAttribute('class','col-sm-1 ');
+    
+    var a = document.createElement("a");
+    a.setAttribute('class','btn btn-danger col-sm-2');
+    a.setAttribute('onClick','supthis();');
+    a.setAttribute('id','this'+numero);
+    
+    var t4 = document.createTextNode("Supprimer ce champ");
+    a.appendChild(t4);
+    div.appendChild(hidden);
+    div.appendChild(label);
+    div.appendChild(div_check);
+    div.appendChild(label3);
+    div.appendChild(input2);
+    div.appendChild(div_at1);
+    div.appendChild(a);
+    div.appendChild(div_at2);
+
+    if(nb == 9){
+      div.appendChild(esp1);
+      div.appendChild(esp2);
+      div.appendChild(div1);
+      div.appendChild(liste); 
+    }
+    
+    insert.appendChild(div);    
+
+    document.getElementById('nbform').value = numero;
+  
+  if(numero > 1){
+    document.getElementById('this'+old_num).style.display ='none';}
+    old_num++;
+    numero++;
+}
+
+function supthis(){
+  numero--;
+  old_num--;
+  var form = document.getElementById("form");
+  var formulaire =  document.getElementById('formulaire'+numero);
+  form.removeChild(formulaire);
+  if(numero > 1){
+    document.getElementById('this'+old_num).style.display ='initial';
+    }
+  document.getElementById('nbform').value = old_num;
+  
+}
+
+function liste(n){
+  nb_liste++;
+      //div du form-group
+      var formgroup = document.createElement('div');
+      formgroup.setAttribute('class','form-group');
+      var titre =  document.createElement('label');
+      titre.setAttribute('class','col-sm-2 control-label');
+      var text_titre = document.createTextNode("Titre de l'item ");
+      titre.appendChild(text_titre);
+
+      var divcol1 = document.createElement('div');
+      divcol1.setAttribute('class','col-sm-3');
+
+      var inputtit = document.createElement('input');
+      inputtit.setAttribute('class','form-control');
+      inputtit.setAttribute('name','titreitem'+nb_liste);
+      inputtit.setAttribute('placeholder','obligatoire');
+
+      divcol1.appendChild(inputtit);
+
+      var adrMail =  document.createElement('label');
+      adrMail.setAttribute('class','col-sm-2 control-label');
+      var text_mail = document.createTextNode("Adresse mail destinataire");
+      adrMail.appendChild(text_mail);
+
+      var divcol2 = document.createElement('div');
+      divcol2.setAttribute('class','col-sm-3');
+
+      var inputMail = document.createElement('input');
+      inputMail.setAttribute('class','form-control');
+      inputMail.setAttribute('name','mailitem'+nb_liste);
+      inputMail.setAttribute('placeholder','facultatif');
+
+      divcol2.appendChild(inputMail);
+
+      var butSup = document.createElement('a');
+      butSup.setAttribute('class','btn btn-warning');
+      butSup.setAttribute('onClick','liste('+nb_liste+')');
+      var text_bts = document.createTextNode("Supprimer l'item");
+      butSup.appendChild(text_bts);
+
+      //les élément de la div formgroup sont créés on assemble
+      formgroup.appendChild(titre);
+      formgroup.appendChild(divcol1);
+      formgroup.appendChild(adrMail);
+      formgroup.appendChild(divcol2);
+      formgroup.appendChild(butSup);
+
+      //construction de la div final
+      var listeToUpdate = document.getElementById('liste'+n);
+      listeToUpdate.appendChild(formgroup);
+}
 </script>
