@@ -402,6 +402,13 @@ class Cms extends CI_Controller
                     $id_pages = $this->Pages_model->get_idpage($nomPage);
                     $this->Document_model->create($id_pages,$nomPage);    
                 break;
+                case "formulaire":
+                    $this->load->model('Form_model');
+                    $nomPage = str_replace(' ','-',$this->input->post('nomPage'));                
+                    $id_pages = $this->Pages_model->get_idpage($nomPage);
+                    $this->Form_model->create($id_pages);    
+                break;
+              
             }
 
             //on récupère les menus,sousmenu... sélectionné pour faire la mise à jour du chemin d'accès           
@@ -423,7 +430,7 @@ class Cms extends CI_Controller
                 $this->Header_model->updateMenuByPage($array3Menu,3); 
             }            
                         
-            header('Location:'.base_url().'cms/4');
+            //header('Location:'.base_url().'cms/4');
     }      
        
     }

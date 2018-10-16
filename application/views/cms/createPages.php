@@ -81,7 +81,7 @@
                   <div class="form-group">
                   <label for="exampleInputEmail1" class="col-sm-2 control-label">Titre du 1er paragraphe</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='t1' placeholder="Entrez le titre du paragraphe" required>
+                  <input class="form-control" name='t1' placeholder="Entrez le titre du paragraphe" >
                   </div>
                   </div>
                   <div class="box-body pad">
@@ -805,7 +805,7 @@
               <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
               <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
               <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
-              <button>Checkbox</button><button>Bouton radio</button>
+              
             </div>
             <div id='form'>
  
@@ -815,6 +815,7 @@
               <h3 class="box-title">Transmettre le formulaire :</h3><br><br>
               Vous pouvez transmettre le mail directement à un ou plusieurs services en cliquant <a>ici</a><br><br>
               Pour permettre à l'usager de transmettre son formulaire selon une liste déroulante cliquez <a>ici</a><br><br>
+                </div>
                 </div>
                 </div>
                 </div>
@@ -1219,7 +1220,7 @@ function nom(nb) {
       var inputMail = document.createElement('input');
       inputMail.setAttribute('class','form-control');
       inputMail.setAttribute('name','mailitem1');
-      inputMail.setAttribute('placeholder','facultatif');
+      inputMail.setAttribute('placeholder','facultatif@oignies.fr');
 
       divcol2.appendChild(inputMail);
 
@@ -1324,11 +1325,14 @@ function supthis(){
   
 }
 
+var idform = 1;
 function liste(n){
-  nb_liste++;
+    nb_liste++;
+  
       //div du form-group
       var formgroup = document.createElement('div');
       formgroup.setAttribute('class','form-group');
+      formgroup.setAttribute('id','item'+idform);
       var titre =  document.createElement('label');
       titre.setAttribute('class','col-sm-2 control-label');
       var text_titre = document.createTextNode("Titre de l'item ");
@@ -1355,13 +1359,13 @@ function liste(n){
       var inputMail = document.createElement('input');
       inputMail.setAttribute('class','form-control');
       inputMail.setAttribute('name','mailitem'+nb_liste);
-      inputMail.setAttribute('placeholder','facultatif');
+      inputMail.setAttribute('placeholder','facultatif@oignies.fr');
 
       divcol2.appendChild(inputMail);
 
       var butSup = document.createElement('a');
       butSup.setAttribute('class','btn btn-warning');
-      butSup.setAttribute('onClick','liste('+nb_liste+')');
+      butSup.setAttribute('onClick','supliste('+nb_liste+')');
       var text_bts = document.createTextNode("Supprimer l'item");
       butSup.appendChild(text_bts);
 
@@ -1375,5 +1379,10 @@ function liste(n){
       //construction de la div final
       var listeToUpdate = document.getElementById('liste'+n);
       listeToUpdate.appendChild(formgroup);
+      idform++;
+}
+
+function supliste(){
+
 }
 </script>
