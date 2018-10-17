@@ -797,8 +797,7 @@
                     </textarea>             
             </div>
             <input type="hidden" name='nbform' id='nbform'/>
-            <div class="box box-info">
-            <div id="test"></div>
+            <div class="box box-info">            
             <div class="box-header with-border">
               <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
               <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
@@ -1115,6 +1114,7 @@ var num = 0;
    oldtype = type;
  }
 
+
 var nb_liste = 1;
 var old_num = 0;
 var numero = 1;
@@ -1172,12 +1172,16 @@ function nom(nb) {
       hidden.setAttribute('value','liste');
       var t = document.createTextNode("Champ LISTE");
       input2.setAttribute('placeholder','ex:Choisir le service');
-
+      var nb_item_by_liste = document.createElement('input');
+      nb_item_by_liste.setAttribute('id','nbitembyliste'+numero);
+      nb_item_by_liste.setAttribute('name','nbitembyliste'+numero);
+      nb_item_by_liste.setAttribute('value','1');
+      //nb_item_by_liste.setAttribute('type','hidden');
       //création de la partie propriété de la liste
       var div1 = document.createElement('div');
       div1.setAttribute('class','col-sm-1');
       var liste = document.createElement('div');
-      liste.setAttribute('id','liste'+nb_liste);
+      liste.setAttribute('id','liste'+numero);
       liste.setAttribute('style','border-style: double;');
       liste.setAttribute('class','col-sm-10');
       var span = document.createElement('span');
@@ -1185,7 +1189,7 @@ function nom(nb) {
       span.appendChild(text);
       var button = document.createElement('a');
       button.setAttribute('class','btn btn-primary');
-      button.setAttribute('onClick','liste('+nb_liste+')');
+      button.setAttribute('onClick','liste('+numero+')');
       var text_btn = document.createTextNode("Ajouter un item");
       button.appendChild(text_btn);
       var esp1 = document.createElement('br');
@@ -1204,7 +1208,7 @@ function nom(nb) {
 
       var inputtit = document.createElement('input');
       inputtit.setAttribute('class','form-control');
-      inputtit.setAttribute('name','titreitem1');
+      inputtit.setAttribute('name',numero+'titreitem1');
       inputtit.setAttribute('placeholder','obligatoire');
 
       divcol1.appendChild(inputtit);
@@ -1219,23 +1223,18 @@ function nom(nb) {
 
       var inputMail = document.createElement('input');
       inputMail.setAttribute('class','form-control');
-      inputMail.setAttribute('name','mailitem1');
+      inputMail.setAttribute('name',numero+'mailitem1');
       inputMail.setAttribute('placeholder','facultatif@oignies.fr');
 
       divcol2.appendChild(inputMail);
 
-      var butSup = document.createElement('a');
-      butSup.setAttribute('class','btn btn-warning');
-      butSup.setAttribute('onClick','supliste('+nb_liste+')');
-      var text_bts = document.createTextNode("Supprimer l'item");
-      butSup.appendChild(text_bts);
-
+     
       //les élément de la div formgroup sont créés on assemble
+      formgroup.appendChild(nb_item_by_liste);
       formgroup.appendChild(titre);
       formgroup.appendChild(divcol1);
       formgroup.appendChild(adrMail);
-      formgroup.appendChild(divcol2);
-      formgroup.appendChild(butSup);
+      formgroup.appendChild(divcol2);     
 
       //construction de la div final
       liste.appendChild(span);
@@ -1325,14 +1324,16 @@ function supthis(){
   
 }
 
-var idform = 1;
-function liste(n){
-    nb_liste++;
+
+function liste(n){    
+  var old_form = parseInt(document.getElementById('nbitembyliste'+n).value);
+  var idform = parseInt(document.getElementById('nbitembyliste'+n).value)+1;;
   
+  //console_log(value);
       //div du form-group
       var formgroup = document.createElement('div');
       formgroup.setAttribute('class','form-group');
-      formgroup.setAttribute('id','item'+idform);
+      formgroup.setAttribute('id',n+'item'+idform);
       var titre =  document.createElement('label');
       titre.setAttribute('class','col-sm-2 control-label');
       var text_titre = document.createTextNode("Titre de l'item ");
@@ -1343,7 +1344,7 @@ function liste(n){
 
       var inputtit = document.createElement('input');
       inputtit.setAttribute('class','form-control');
-      inputtit.setAttribute('name','titreitem'+nb_liste);
+      inputtit.setAttribute('name',n+'titreitem'+idform);
       inputtit.setAttribute('placeholder','obligatoire');
 
       divcol1.appendChild(inputtit);
@@ -1358,14 +1359,15 @@ function liste(n){
 
       var inputMail = document.createElement('input');
       inputMail.setAttribute('class','form-control');
-      inputMail.setAttribute('name','mailitem'+nb_liste);
+      inputMail.setAttribute('name',n+'mailitem'+idform);
       inputMail.setAttribute('placeholder','facultatif@oignies.fr');
 
       divcol2.appendChild(inputMail);
 
       var butSup = document.createElement('a');
       butSup.setAttribute('class','btn btn-warning');
-      butSup.setAttribute('onClick','supliste('+nb_liste+')');
+      butSup.setAttribute('id',n+'butsup'+idform);
+      butSup.setAttribute('onClick','supliste('+n+')');
       var text_bts = document.createTextNode("Supprimer l'item");
       butSup.appendChild(text_bts);
 
@@ -1379,10 +1381,23 @@ function liste(n){
       //construction de la div final
       var listeToUpdate = document.getElementById('liste'+n);
       listeToUpdate.appendChild(formgroup);
-      idform++;
+      if(idform > 2){
+      document.getElementById(n+'butsup'+old_form).style.display ='none';
+      }      
+      
+      document.getElementById('nbitembyliste'+n).value = idform;
+      
 }
 
-function supliste(){
-
+function supliste(n){
+  var old_form = parseInt(document.getElementById('nbitembyliste'+n).value)-1;
+  var idform = parseInt(document.getElementById('nbitembyliste'+n).value);;
+  var liste = document.getElementById('liste'+n);
+  var item_sup = document.getElementById(n+'item'+idform);
+  liste.removeChild(item_sup);
+  if(idform > 2){
+      document.getElementById(n+'butsup'+old_form).style.display ='initial';
+      }
+      document.getElementById('nbitembyliste'+n).value = old_form;
 }
 </script>

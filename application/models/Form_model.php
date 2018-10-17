@@ -48,7 +48,12 @@ class Form_model extends CI_Model {
 
             for($i = 1; $i <= $nb_champ; $i++){
                 $array["type".$i] = $this->input->post("input".$i);
+                if($array["type".$i] == 'liste'){
+                    $this->load->model('Liste_model');
+                    $array["champ".$i] = $this->Liste_model->create($id_pages,$i);
+                }else{
                 $array["champ".$i] = $this->input->post("champ".$i);
+                }
                 if($this->input->post("ch".$i)!== NULL){
                     $array["ob".$i] = TRUE;
                 }else{
@@ -58,7 +63,7 @@ class Form_model extends CI_Model {
              
             //et on l'injecte en BDD
             $this->db->insert('formulaire',$array);
-            
+            var_dump($array);
         }
 
 }
