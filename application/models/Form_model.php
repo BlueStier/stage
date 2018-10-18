@@ -49,18 +49,57 @@ class Form_model extends CI_Model {
             for($i = 1; $i <= $nb_champ; $i++){
                 $array["type".$i] = $this->input->post("input".$i);
                 if($array["type".$i] == 'liste'){
+                    //si le champ est der type liste on insert la liste dans la table correspondant
+                    //et on récupère l'id  
                     $this->load->model('Liste_model');
                     $array["champ".$i] = $this->Liste_model->create($id_pages,$i);
                 }else{
                 $array["champ".$i] = $this->input->post("champ".$i);
                 }
+                //défini si le champ est obligatoire ou pas
                 if($this->input->post("ch".$i)!== NULL){
                     $array["ob".$i] = TRUE;
                 }else{
                     $array["ob".$i] = FALSE;
                 }
             }
-             
+
+            //combien d'adresse mail de destinataire ?
+            $nb_mail = $this->input->post('nbmail');
+
+            //combien de colonne de type adresse mail contient la table formulaire ?
+            $query = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
+            
+            $mail_table = $query['mail_table'];
+            //si la table est plus petite que le nb de champ  insérer on la modifie
+            if($nb_mail > $mail_table){
+                $a = $mail_table + 1;
+                for($a; $a <= $nb_mail; $a++){
+                    $str4 = "ALTER TABLE formulaire ADD mail_dest".$a." VARCHAR(100)";
+                    $this->db->query($str4);
+                }
+
+            }
+            
+            //récupère les champs d'adresse mail
+            for($b = 1; $b <= $nb_mail ; $b++){
+                $atester = $this->input->post('mail_dest'+$b);
+                //si le mail contient bien @oignies.fr on le met dans l'array
+                if(strpos($atester, '@oignies.fr')){
+                    $array["mail_dest".$b];
+                }else{
+                    $data["error_mail"] = "au moins une adresse mail n'est pas valide";
+                    $this->load->model('Pages_model');                    
+                    $data['header_item'] = $this->Header_model->get_menu();
+                    $data['sub_item'] = $this->Header_model->get_sousmenu();
+                    $data['third_item'] = $this->Header_model->get_thirdmenu();            
+                    $data['type_item'] = $this->Pages_model->get_type();
+                    $this->load->view('cms/header',$data);
+                    $this->load->view('cms/left_menu',$data);
+                    $this->load->view('cms/createPages', $data);
+                    $this->load->view('cms/footer'); 
+                }
+            } 
             //et on l'injecte en BDD
             $this->db->insert('formulaire',$array);
             var_dump($array);
