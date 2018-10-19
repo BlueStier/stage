@@ -7,6 +7,7 @@ class Pages extends CI_Controller {
             $this->load->model('Rapide_model');
             $this->load->model('Pages_model');
             $this->load->helper('url_helper');
+            $this->load->library('form_validation');
         }
 
         public function index(){
@@ -69,7 +70,15 @@ class Pages extends CI_Controller {
                 foreach($data['folder']as $f):
                     $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
                 endforeach;
-                $page = 'document2';  
+                $page = 'document2';          
+        } 
+        if($pagestab['type'] == 'formulaire'){
+                $this->load->model('Form_model');
+                $recup = $this->Form_model->get_form($pagestab['id_pages']);                
+                $data['intro']=$recup['intro'];
+                $data['form'] = $recup;
+                //$data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);                
+                $page = 'formulaire';  
         }
 
         

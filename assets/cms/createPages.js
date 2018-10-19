@@ -478,13 +478,13 @@ function ajoutmail() {
     divinput.setAttribute('class', 'col-sm-6');
 
     var inputmail = document.createElement('input');
-    inputmail.setAttribute('type', 'email');
-    inputmail.setAttribute('class', 'form-control');
+    inputmail.setAttribute('type', 'text');
     inputmail.setAttribute('name', 'mail_dest' + nbmail);
-    inputmail.setAttribute('placeholder', 'mail@oignies.fr');
-    inputmail.setAttribute('onblur', 'verifmail(this);');
+    inputmail.setAttribute('placeholder', 'nom.prenom');
 
+    var textoignies = document.createTextNode("@oignies.fr");
     divinput.appendChild(inputmail);
+    divinput.appendChild(textoignies);
 
     var supmail = document.createElement('a');
     supmail.setAttribute('class', 'col-sm-2 btn btn-warning');
@@ -518,12 +518,5 @@ function supmail() {
     document.getElementById('nbmail').value = nbmail;
 }
 
-function verifmail(champ) {
-    var verif = String(champ.value).indexOf('@oignies.fr');
-    if (verif < 0) {
-        champ.style.backgroundColor = "#fba";
-        champ.setAttribute('value', '');
-        champ.setAttribute('placeholder', "L'adresse mail n'est pas valide elle doit finir par @oignies.fr");
-    }
 
-}
+

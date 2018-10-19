@@ -46,6 +46,7 @@ class Liste_model extends CI_Model {
             //récupère les données de l'utilisateur
             $array = ["id_liste" => $id_liste];
             $array = ["id_pages" => $id_pages];
+            $array = ["nom_champ" => $this->input->post("champ".$nb_liste)];
 
             for($i = 1; $i <= $nb_item; $i++){
                 $array["titreitem".$i] = $this->input->post($nb_liste."titreitem".$i);

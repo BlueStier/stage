@@ -17,7 +17,7 @@ class Form_model extends CI_Model {
                         $query = $this->db->get('formulaire');                
                         return $query->result_array();
                 }
-                return $this->db->get_where('formulaire', array('id_form' => $id))->row_array();
+                return $this->db->get_where('formulaire', array('id_pages' => $id))->row_array();
         }
 
         //fonction de creation et d'enregistrement d'un formulaire en bdd
@@ -45,6 +45,7 @@ class Form_model extends CI_Model {
             
             //récupère les données de l'utilisateur
             $array = ["id_pages" => $id_pages];
+            $array['intro'] = $this->input->post("intro_form");
 
             for($i = 1; $i <= $nb_champ; $i++){
                 $array["type".$i] = $this->input->post("input".$i);
@@ -68,9 +69,9 @@ class Form_model extends CI_Model {
             $nb_mail = $this->input->post('nbmail');
 
             //combien de colonne de type adresse mail contient la table formulaire ?
-            $query = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
+            $query2 = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
             
-            $mail_table = $query['mail_table'];
+            $mail_table = $query2['mail_table'];
             //si la table est plus petite que le nb de champ  insérer on la modifie
             if($nb_mail > $mail_table){
                 $a = $mail_table + 1;
@@ -83,26 +84,13 @@ class Form_model extends CI_Model {
             
             //récupère les champs d'adresse mail
             for($b = 1; $b <= $nb_mail ; $b++){
-                $atester = $this->input->post('mail_dest'+$b);
-                //si le mail contient bien @oignies.fr on le met dans l'array
-                if(strpos($atester, '@oignies.fr')){
-                    $array["mail_dest".$b];
-                }else{
-                    $data["error_mail"] = "au moins une adresse mail n'est pas valide";
-                    $this->load->model('Pages_model');                    
-                    $data['header_item'] = $this->Header_model->get_menu();
-                    $data['sub_item'] = $this->Header_model->get_sousmenu();
-                    $data['third_item'] = $this->Header_model->get_thirdmenu();            
-                    $data['type_item'] = $this->Pages_model->get_type();
-                    $this->load->view('cms/header',$data);
-                    $this->load->view('cms/left_menu',$data);
-                    $this->load->view('cms/createPages', $data);
-                    $this->load->view('cms/footer'); 
-                }
+                $atester = $this->input->post('mail_dest'.$b);
+                //concatène avec @oignies.fr
+                $array["mail_dest".$b] = $atester."@oignies.fr";
             } 
             //et on l'injecte en BDD
             $this->db->insert('formulaire',$array);
-            var_dump($array);
+            //var_dump($array);
         }
 
 }

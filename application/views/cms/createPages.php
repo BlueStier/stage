@@ -794,7 +794,7 @@
                  <div id="formulaire">
                  <label class="center">Veuillez tapper votre texte d'intro (facultatif)</label>
                   <div class="box-body pad">              
-                    <textarea id="editor" name="article" class="ckeditor" rows="100" cols="80">                                            
+                    <textarea id="editor" name="intro_form" class="ckeditor" rows="100" cols="80">                                            
                     </textarea>             
             </div>
             <input type="hidden" name='nbform' id='nbform'/>
@@ -813,14 +813,14 @@
 </div>
 <div class="box box-info">
             <div class="box-header with-border" id='destinataire' >
-              <h3 class="box-title">Transmettre le formulaire : (l'adresse doit finir par @oignies.fr)</h3>
+              <h3 class="box-title">Transmettre le formulaire : </h3>
               <input type="hidden" id='nbmail' name='nbmail' value='1'/>
               <?php if(isset($error_mail)){ echo $error_mail; }?>
               <a onClick="ajoutmail();" class="btn btn-info pull-right">Ajouter une adresse mail</a><br><br><br>
               <div class="form-group" >
                   <label  class="col-sm-2 control-label">Entrez l'adresse mail </label>
                   <div class="col-sm-6">
-                  <input type="email" class="form-control" name='mail_dest1' placeholder="mail@oignies.fr" onblur='verifmail(this);' required>
+                  <input type="text" name='mail_dest1' placeholder="nom.prenom" >@oignies.fr
                   </div>                  
                 </div>
                 </div>

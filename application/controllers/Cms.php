@@ -430,7 +430,7 @@ class Cms extends CI_Controller
                 $this->Header_model->updateMenuByPage($array3Menu,3); 
             }            
                         
-            //header('Location:'.base_url().'cms/4');
+            header('Location:'.base_url().'cms/4');
     }      
        
     }
