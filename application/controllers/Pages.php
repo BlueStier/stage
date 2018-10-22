@@ -74,10 +74,18 @@ class Pages extends CI_Controller {
         } 
         if($pagestab['type'] == 'formulaire'){
                 $this->load->model('Form_model');
+                $this->load->model('Liste_model');
                 $recup = $this->Form_model->get_form($pagestab['id_pages']);                
-                $data['intro']=$recup['intro'];
+                $data['intro'] = $recup['intro'];
                 $data['form'] = $recup;
-                //$data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);                
+                $data['nb_champ'] = $this->Form_model->nb_champ($pagestab['id_pages']);
+                for($i = 1; $i <= $data['nb_champ']; $i++){
+                        //on vérifie si on à une liste dans les champs
+                        if($recup['type'.$i] == 'liste'){
+                                $data['liste'] = $this->Liste_model->get_liste($recup['champ'.$i]);
+                                $data['nb_item'] =  $this->Liste_model->nb_item($recup['champ'.$i]);
+                        }
+                }              
                 $page = 'formulaire';  
         }
 

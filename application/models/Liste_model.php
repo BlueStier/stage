@@ -17,7 +17,22 @@ class Liste_model extends CI_Model {
                         $query = $this->db->get('liste');                
                         return $query->result_array();
                 }
-                return $this->db->get_where('liste', array('id_pages' => $id))->row_array();
+                return $this->db->get_where('liste', array('id_liste' => $id))->row_array();
+        }
+
+        //fonction récupérant le nbre d'item d'un liste
+        public function nb_item($id){
+            $query = $this->db->query("SELECT COUNT(*) AS 'nb_item' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'liste' and COLUMN_NAME like 'titreitem%'")->row_array();
+            $nb_item = $query['nb_item'];
+            $nb = 0;
+            $array = Liste_model::get_liste($id);
+
+            for($a = 1; $a <= $nb_item; $a++){
+                if($array['titreitem'.$a] != NULL){
+                    $nb++;
+                }
+            }
+            return $nb;
         }
 
         //fonction de creation et d'enregistrement d'un formulaire en bdd

@@ -20,6 +20,20 @@ class Form_model extends CI_Model {
                 return $this->db->get_where('formulaire', array('id_pages' => $id))->row_array();
         }
 
+        //fonction permettant de récupérer le nombre de champ dans un formulaire
+        public function nb_champ($id){
+            $query = $this->db->query("SELECT COUNT(*) AS 'nb_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'type%'")->row_array();
+            $nb_table = $query['nb_table'];
+            $nb = 0;
+            $array = Form_model::get_form($id);
+            for($i = 1; $i <= $nb_table; $i++ ){
+                if($array['type'.$i] != NULL){
+                    $nb++;
+                }
+            }
+            return $nb;
+        }
+
         //fonction de creation et d'enregistrement d'un formulaire en bdd
         public function create($id_pages){
             //on récupère le nombre de champ à mettre dans le formulaire

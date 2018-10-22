@@ -919,10 +919,14 @@ section
 {
 	width: 100%;
 	background: #f8f4f4;
+	color: #a5a5a5 !important;
+	font-size: 14px !important;
+	font-weight: 500 !important;
 	border: solid 2px transparent;
 	margin-bottom: 24px;
 	height: 42px;
 	padding-left: 33px;
+	cursor: pointer;
 }
 .select_field:focus
 {
