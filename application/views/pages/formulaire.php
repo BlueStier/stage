@@ -3,42 +3,51 @@
 					
 					<!-- Contact Form -->
 					<div class="contact_form">
-						<div class="contact_title"><?php echo $intro; var_dump($liste);?></div>
+						<div class="contact_title"><?php echo $intro; ?></div>
 
 						<div class="contact_form_container">
-							<form action="post">
-							<?php for($i = 1; $i <= $nb_champ; $i++){
+							
+							<?php  echo form_open_multipart('pages/form/'.$id);
+							for($i = 1; $i <= $nb_champ; $i++){
 								switch($form['type'.$i]){
 									case"nom" :
 									case"prenom" :
 									case"adresse" :?>							
-								<input  class="input_field " type="text" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
+								<input name="<?php echo $form['type'.$i];?>" class="input_field " type="text" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
 							<?php break;
 									case"email" :?>							
-								<input  class="input_field " type="email" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
+								<input name="<?php echo $form['type'.$i];?>" class="input_field " type="email" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
 							<?php break;
 								case"area" :?>							
-								<textarea  class="text_field" name="message" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>></textarea>
+								<textarea name="<?php echo $form['type'.$i];?>" class="text_field" name="message" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>></textarea>
 							<?php break;
-								case"liste" :
-								echo $liste['nom_champ']."<br><br>";?>							
-								<select class='select_field'>
+								case"liste" :?>
+								<div class="row d-flex align-item">
+								<span class="input_field col-sm-6" ><?php echo $liste['nom_champ']; ?></span>														
+								<select class='select_field col-sm-6'>
 								<?php for( $a = 1; $a <= $nb_item; $a++){?>
 								<option><?php echo $liste['titreitem'.$a] ?></option>
 								<?php } ?>
 								</select>
+								</div>
 							<?php break;
 								case"nb" :?>							
 								<input  class="input_field " type="number" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
 							<?php break;
 								case"file" :?>
-								<label id='label_file' onclick="confselectfile();" for='file' class='select_field' ><?php echo $form['champ'.$i]; ?></label>							
-								<input id='file' style='' type="file">
+								<label id='label_file'  for='file' class='select_field' onBlur="confselectfile();" ><?php echo $form['champ'.$i]; ?></label>							
+								<input id='file' onChange="confselectfile(this.value);" style='display: none;' type="file">
+							<?php break;
+								case"date" :?>
+								<div class="row d-flex align-item">
+								<div class="input_field col-sm-6"><?php echo $form['champ'.$i]; ?></div>																																
+								<input id="date" class="input_field col-sm-6" type="date" <?php if($form['ob'.$i]){echo 'required';}?> >
+								</div>	
 							<?php break;															
 								}
 						 } ?>
 								
-                                <button type="submit"  class="contact_send_btn trans_200" value="Submit">Envoyer</button>
+                                <button type="submit" class="contact_send_btn trans_200" value="Submit">Envoyer</button>
                                 
                             </form>
 						</div>
@@ -47,7 +56,8 @@
 <br>
 </div>
 <script>
-function confselectfile(){
-	document.getElementById('label_file').innerHTML = "fichier sélectionné :" + document.getElementById('file').value;
+function confselectfile(val){	
+	document.getElementById('label_file').innerHTML = "fichier sélectionné :" + val;	
 }
-</script>				
+</script>
+				

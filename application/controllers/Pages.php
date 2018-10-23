@@ -75,7 +75,8 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'formulaire'){
                 $this->load->model('Form_model');
                 $this->load->model('Liste_model');
-                $recup = $this->Form_model->get_form($pagestab['id_pages']);                
+                $recup = $this->Form_model->get_form($pagestab['id_pages']);
+                $data['id'] = $pagestab['id_pages'];               
                 $data['intro'] = $recup['intro'];
                 $data['form'] = $recup;
                 $data['nb_champ'] = $this->Form_model->nb_champ($pagestab['id_pages']);
@@ -111,5 +112,35 @@ class Pages extends CI_Controller {
         $this->load->view('pages/'.$page,$data);
         $this->load->view('templates/footer2');
         
+}
+
+        public function form($id){
+                $nom = $prenom = $adresse = $email = $message ='';
+                $this->load->model('Form_model');
+                $this->load->model('Liste_model');
+                $recup = $this->Form_model->get_form($id);
+                $nb_champ = $this->Form_model->nb_champ($id);
+
+                for($i = 1; $i <= $nb_champ; $i++){
+                        switch($recup['type'.$i]){
+                                case"nom" :
+                                $nom = $this->input->post('nom');
+                                break;
+                                case"prenom" :
+                                $prenom = $this->input->post('prenom');
+                                break;
+                                case"adresse" :
+                                $adresse = $this->input->post('adresse');
+                                break;
+                                case"email" :
+                                $email = $this->input->post('email');
+                                break;
+                                case"area" :
+                                $message = $this->input->post('area');
+                                break;                        
+                        }     
+
+                }
+                echo $nom.'  '.$prenom.'  '.$adresse.'  '.$email;
 }
 }
