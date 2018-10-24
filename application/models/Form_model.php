@@ -34,6 +34,20 @@ class Form_model extends CI_Model {
             return $nb;
         }
 
+        //fonction permettant de récupérer le nombre de mail de destinataire dans un formulaire
+        public function mail_dest($id){
+            $query = $this->db->query("SELECT COUNT(*) AS 'nb_mail' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
+            $nb_table = $query['nb_mail'];
+            $nb = 0;
+            $array = Form_model::get_form($id);
+            for($i = 1; $i <= $nb_table; $i++ ){
+                if($array['mail_dest'.$i] != NULL){
+                    $nb++;
+                }
+            }
+            return $nb;
+        }
+
         //fonction de creation et d'enregistrement d'un formulaire en bdd
         public function create($id_pages){
             //on récupère le nombre de champ à mettre dans le formulaire

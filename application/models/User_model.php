@@ -152,7 +152,7 @@ class User_model extends CI_Model {
             $user = $this->db->get_where('user',array('nom'=> $nom,'prenom'=> $prenom))->row_array();
 
             $mdp = User_model::chaine_aleatoire(12);
-            $message = "<h1>Bonjour ".$user['prenom']." ".$user['nom']."</h1><br><br><br> Suite à votre demande de réinitialisation de mot de passe nous vous coseillons de modifier celui-ci après vous
+            $message = "<h1>Bonjour ".$user['prenom']." ".$user['nom']."</h1><br><br><br> Suite à votre demande de réinitialisation de mot de passe nous vous conseillons de modifier celui-ci après vous
             être cconnecter.<br><br><br> Votre nouveau mot de passe est :<br><br><br><h3>".$mdp;"</h3><br><br><br<br>Passez une bonne journée.";
 
             $user['password'] = $this->encryption->encrypt($mdp);

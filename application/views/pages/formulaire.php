@@ -23,16 +23,17 @@
 							<?php break;
 								case"liste" :?>
 								<div class="row d-flex align-item">
+								<input type="hidden" name='nb_champ' value="<?php echo $form['champ'.$i];?>"/>
 								<span class="input_field col-sm-6" ><?php echo $liste['nom_champ']; ?></span>														
-								<select class='select_field col-sm-6'>
+								<select name="<?php echo $form['type'.$i];?>" class='select_field col-sm-6' >
 								<?php for( $a = 1; $a <= $nb_item; $a++){?>
-								<option><?php echo $liste['titreitem'.$a] ?></option>
+								<option <?php if($a==1){echo "selected";} ?>><?php echo $liste['titreitem'.$a] ?></option>
 								<?php } ?>
 								</select>
 								</div>
 							<?php break;
 								case"nb" :?>							
-								<input  class="input_field " type="number" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
+								<input name="<?php echo $form['type'.$i];?>" class="input_field " type="number" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> >
 							<?php break;
 								case"file" :?>
 								<label id='label_file'  for='file' class='select_field' onBlur="confselectfile();" ><?php echo $form['champ'.$i]; ?></label>							
@@ -41,7 +42,7 @@
 								case"date" :?>
 								<div class="row d-flex align-item">
 								<div class="input_field col-sm-6"><?php echo $form['champ'.$i]; ?></div>																																
-								<input id="date" class="input_field col-sm-6" type="date" <?php if($form['ob'.$i]){echo 'required';}?> >
+								<input name="<?php echo $form['type'.$i];?>" class="input_field col-sm-6" type="date" <?php if($form['ob'.$i]){echo 'required';}?> >
 								</div>	
 							<?php break;															
 								}

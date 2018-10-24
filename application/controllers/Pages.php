@@ -115,10 +115,12 @@ class Pages extends CI_Controller {
 }
 
         public function form($id){
-                $nom = $prenom = $adresse = $email = $message ='';
+                $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date ='';
+                $service = 0;
                 $this->load->model('Form_model');
                 $this->load->model('Liste_model');
                 $recup = $this->Form_model->get_form($id);
+                $mail_dest = $recup['mail_dest1'].', ';
                 $nb_champ = $this->Form_model->nb_champ($id);
 
                 for($i = 1; $i <= $nb_champ; $i++){
@@ -137,10 +139,98 @@ class Pages extends CI_Controller {
                                 break;
                                 case"area" :
                                 $message = $this->input->post('area');
-                                break;                        
+                                break; 
+                                case"nb" :
+                                $nombre = $this->input->post('nb');
+                                break;                
+                                case"date" :
+                                $date = $this->input->post('date');
+                                break;
+                                case"liste" :
+                                $liste = $this->input->post('liste');
+                                $g = $this->input->post('nb_champ');
+                                $this->load->model('Liste_model');
+                                $arrayListe =  $this->Liste_model->get_liste($g);
+                                $n = $this->Liste_model->nb_item($g);
+                                for($v = 1; $v <= $n; $v++){
+                                        if($arrayListe['titreitem'.$v] == $liste){
+                                                $mail_dest .= $arrayListe['mailitem'.$v].', ';
+                                                $service = 1;
+                                        }
+                                }
+                                break;                                        
                         }     
 
                 }
-                echo $nom.'  '.$prenom.'  '.$adresse.'  '.$email;
+
+                //on doit envoyer le mail à combien de destinataires ?
+                $nb_dest = $this->Form_model->mail_dest($id);                
+
+                for($r = 2; $r <= $nb_dest; $r++){
+                        $mail_dest .= $recup['mail_dest'.$r].', '; 
+                }
+               
+               $array =[
+                       'nom' => $nom,
+                       'prenom' => $prenom,
+                       'adresse' => $adresse,
+                       'date' => $date,
+                       'nb' => $nombre,
+                       'message' => $message,
+                       'mail_cit' => $email,
+                       'mail_dest' => $mail_dest,
+                       'liste'=> $liste,
+                       'service' => $service,                       
+               ]; 
+                            
+               Pages::send_mail($array);
+}
+
+public function send_mail($array){
+        //préparation du mail
+        $message = "<h1>Bonjour ".$array['prenom']." ".$array['nom']."</h1><br><br><br> 
+        Nous avons bien reçu votre demande.";
+
+        if($array['liste'] !='' && $array['service'] == 1){                
+                $message .= " Celle-ci est transmise au service ".$array['liste']."<br>";
+        }
+        
+        $message .= " Nous y répondrons le plus rapidement possible.<br><br><br>
+        Pour rappel voilà les informations que vous nous avez transmises :<br><br><br>
+        Nom : ".$array['nom']."<br>Prenom : ".$array['prenom']."<br>"; 
+       
+        if($array['adresse'] !=''&& $array['service'] == 0){
+                $message .= "Vous résidez au : ".$array['adresse']."<br>";
+        }
+        if($array['date'] !=''){
+                $french_date = date("d-m-Y",strtotime($array['date']));
+                $message .= "Date : ".$french_date."<br>";
+        }
+        if($array['liste'] !=''){                
+                $message .= "Vous avez choisi : ".$array['liste']."<br>";
+        }
+        if($array['message'] !=''){
+                $message .= 'Votre message :<br>'.$array['message']."<br><br>";
+        }
+        $message .= "Nous vous remercions de nous avoir contactez.<br>Tous les agents de la commune vous souhaite une agréable journée.<br>";
+
+        //initialisation de la librairie
+        $this->load->library('email');
+        $config['protocol'] = '';
+        $config['smtp_host'] = '';
+        $config['smtp_port'] = '';
+        $config['smtp_user'] = 'lroussel2703@gmail.com';
+        $config['smtp_pass'] = 'Boubidou1';           
+        $config['crlf'] = '\r\n';
+        $config['newline'] = '\r\n';
+        $config['mailtype'] = 'html';
+        
+        $this->email->initialize($config);
+        $this->email->from('lroussel2703@gmail.com', 'Votre Message');
+        $this->email->to($array['mail_cit'].', '.$array['mail_dest']);
+        $this->email->subject('Votre message auprès de la ville de Oignies');
+        $this->email->message($message);
+        $this->email->send();
+        
 }
 }
