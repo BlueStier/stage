@@ -1,5 +1,5 @@
 <?php
-class Pages extends CI_Controller {
+class Pages extends CI_Controller {        
         public function __construct()
         {
             parent::__construct();
@@ -87,7 +87,8 @@ class Pages extends CI_Controller {
                                 $data['nb_item'] =  $this->Liste_model->nb_item($recup['champ'.$i]);
                         }
                 }              
-                $page = 'formulaire';  
+                $page = 'formulaire';
+                $data['page'] = $page;  
         }
 
         
@@ -115,7 +116,7 @@ class Pages extends CI_Controller {
 }
 
         public function form($id){
-                $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date ='';
+                $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = '';
                 $service = 0;
                 $this->load->model('Form_model');
                 $this->load->model('Liste_model');
@@ -158,6 +159,24 @@ class Pages extends CI_Controller {
                                                 $service = 1;
                                         }
                                 }
+                                break;
+                                case"file" :
+                                $config['upload_path']= "./ressources/doc_citoyen/";
+                                $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xls|doc|docx';
+                                $config ['max_size'] = 10000000 ;
+                                $config ['max_width'] = 10000 ;
+                                $config ['max_height'] = 10000 ;
+                                $config ['overwrite'] = false;
+                        
+                                //upload la photo vers le serveur
+                                $this->load->library('upload', $config);
+                                if(!$this->upload->do_upload('file'))
+                                {
+                                        echo 't trop bon mon pote';
+                                }else{
+                                        $data = array('upload_data'=>$this->upload->data());
+                                        $file = '/ressources/doc_citoyen/'.$data['upload_data']['orig_name'];      
+                                }
                                 break;                                        
                         }     
 
@@ -180,10 +199,15 @@ class Pages extends CI_Controller {
                        'mail_cit' => $email,
                        'mail_dest' => $mail_dest,
                        'liste'=> $liste,
-                       'service' => $service,                       
-               ]; 
-                            
-               Pages::send_mail($array);
+                       'service' => $service,
+                       'file' => $file,                       
+               ];
+                
+               $this->load->model('Bddcit_model'); 
+               //$this->Bddcit_model->create($array);           
+               //Pages::send_mail($array);
+               $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
+               Pages::view($this->input->post('page'));
 }
 
 public function send_mail($array){
@@ -212,6 +236,9 @@ public function send_mail($array){
         if($array['message'] !=''){
                 $message .= 'Votre message :<br>'.$array['message']."<br><br>";
         }
+        if($array['file']!=''){
+                $message .= 'Vous retrouverez en pièce jointe le fichier que vous nous avez transmis.<br><br>';
+        }
         $message .= "Nous vous remercions de nous avoir contactez.<br>Tous les agents de la commune vous souhaite une agréable journée.<br>";
 
         //initialisation de la librairie
@@ -230,6 +257,9 @@ public function send_mail($array){
         $this->email->to($array['mail_cit'].', '.$array['mail_dest']);
         $this->email->subject('Votre message auprès de la ville de Oignies');
         $this->email->message($message);
+        if($array['file']!=''){
+                $this->email->attach('.'.$array['file']);     
+        }
         $this->email->send();
         
 }

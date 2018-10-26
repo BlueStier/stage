@@ -4,7 +4,7 @@
 					<!-- Contact Form -->
 					<div class="contact_form">
 						<div class="contact_title"><?php echo $intro; ?></div>
-
+						<?php if(isset($message)){echo $message;};?>
 						<div class="contact_form_container">
 							
 							<?php  echo form_open_multipart('pages/form/'.$id);
@@ -37,7 +37,7 @@
 							<?php break;
 								case"file" :?>
 								<label id='label_file'  for='file' class='select_field' onBlur="confselectfile();" ><?php echo $form['champ'.$i]; ?></label>							
-								<input id='file' onChange="confselectfile(this.value);" style='display: none;' type="file">
+								<input id='file' name="<?php echo $form['type'.$i];?>" onChange="confselectfile(this.value);" style='display: none;' type="file">
 							<?php break;
 								case"date" :?>
 								<div class="row d-flex align-item">
@@ -47,7 +47,7 @@
 							<?php break;															
 								}
 						 } ?>
-								
+								<input type ='hidden' name='page' value="<?php echo $page; ?>"/>
                                 <button type="submit" class="contact_send_btn trans_200" value="Submit">Envoyer</button>
                                 
                             </form>
