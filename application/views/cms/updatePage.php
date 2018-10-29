@@ -822,7 +822,196 @@ $year = date('Y');
                 var initial = nbY;
                 var An = nbY+1;                
                 </script>
+                <?php }
+                if($type_page == 'formulaire'){ ?>
+                  <label class="center">Veuillez tapper votre texte d'intro (facultatif)</label>
+                  <div class="box-body pad">              
+                    <textarea id="editor" name="intro_form" class="ckeditor" rows="100" cols="80">
+                    <?php echo $intro; ?>                                            
+                    </textarea>
+                    </div>
+                    <input type="hidden" name='nbform' id='nbform' value="<?php echo $nb_champ; ?>"/>
+            <div class="box box-info">            
+            <div class="box-header with-border">
+              <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
+              <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
+              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
+              <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
+              <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
+              <a class='btn btn-default' onClick="nom(10)">Checkbox</a>
+              
+            </div>
+                    <div id="form">
+                    <?php for($i = 1; $i <= $nb_champ; $i++){ ?>
+                        <div class="form-group" id ="formulaire<?php echo $i; ?>">
+                     <?php switch($form['type'.$i]){
+                        case"nom" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="nom">
+                        <label class="col-sm-2 control-label">Champ NOM</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>" <?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                  <?php break;
+                        case"prenom" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="prenom">
+                        <label class="col-sm-2 control-label">Champ PRENOM</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                  <?php break;
+                        case"adresse" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="adresse">
+                        <label class="col-sm-2 control-label">Champ ADRESSE</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"email" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="email">
+                        <label class="col-sm-2 control-label">Champ EMAIL</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"area" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="area">
+                        <label class="col-sm-2 control-label">Champ ZONE DE TEXTE</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"nb" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="nb">
+                        <label class="col-sm-2 control-label">Champ NOMBRE</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"file" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="file">
+                        <label class="col-sm-2 control-label">Champ FICHIER</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"date" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="date">
+                        <label class="col-sm-2 control-label">Champ DATE</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <?php break;
+                        case"liste" :?>
+                        <input type="hidden" name="input<?php echo $i; ?>" value="liste">
+                        <label class="col-sm-2 control-label">Champ LISTE</label>
+                        <div class="col-sm-2 ">
+                        <label class="control-label">Obligatoire?</label>
+                        <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                        </div>
+                        <label class="col-sm-2 control-label">nom du champ :</label>
+                        <input required="required" value="<?php echo $liste['nom_champ']; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <div class="col-sm-1 "></div>
+                        <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                        <div class="col-sm-1 "></div>
+                        <br>
+                        <br>
+                        <div class="col-sm-1 "></div>
+                        <div id="liste<?php echo $i; ?>" style="border-style: double;" class="col-sm-10">
+                        <span>Propiétés de la liste :  </span>                        
+                        <a class="btn btn-info pull-right" onclick="liste(1)">Ajouter un item</a>
+                        <?php for( $a = 1; $a <= $nb_item; $a++){?>
+                        <div class="form-group" id='<?php echo $i; ?>item<?php echo $a; ?>'>
+                        <input id="nbitembyliste<?php echo $i; ?>" name="nbitembyliste<?php echo $i; ?>" value="<?php echo $nb_item; ?>" type="hidden">
+                        <label class="col-sm-2 control-label">Titre de l'item </label>
+                        <div class="col-sm-3">
+                        <input class="form-control" name="<?php echo $i; ?>titreitem<?php echo $a; ?>" value="<?php echo $liste['titreitem'.$a] ?>">
+                        </div>
+                        <label class="col-sm-2 control-label">Adresse mail destinataire</label>
+                        <div class="col-sm-3">
+                        <input class="form-control" name="<?php echo $i; ?>mailitem<?php echo $a; ?>" value="<?php echo $liste['mailitem'.$a] ?>">
+                        </div>
+                        <?php if($a > 1){ ?>
+                        <a class="btn btn-warning" href="<?php echo base_url()?>cms/supItem/<?php echo $a."/". $liste['id_liste']."/".$id_page?>">Supprimer l'item</a>
+                        <?php } ?>
+                        </div>                        
+                        <?php } ?>
+                        </div>
+                        <?php break;
+                  ?>
+                               
                 <?php } ?>
+                </div>              
+                <?php } ?>
+                <div class="box box-info">
+            <div class="box-header with-border" id='destinataire' >
+              <h3 class="box-title">Transmettre le formulaire : </h3>
+              <input type="hidden" id='nbmail' name='nbmail' value='<?php echo $nb_mail; ?>'/>
+                            <a onClick="ajoutmail();" class="btn btn-info pull-right">Ajouter une adresse mail</a><br><br><br>
+                <?php for($b = 1; $b <= $nb_mail; $b++){?>
+                <div class="form-group" id="grpmail<?php echo $b; ?>">
+                <label class="col-sm-2 control-label">Entrez l'adresse mail</label>
+                <div class="col-sm-6">
+                <input type="text" name="mail_dest<?php echo $i; ?>" value="<?php echo substr($form['mail_dest'.$b],0,-11); ?>">@oignies.fr</div>
+                <?php if($b > 1){ ?>
+                <a class="col-sm-2 btn btn-warning" onclick="supmail();" id="supmail<?php echo $i; ?>" >Supprimer</a>
+                <?php } ?>
+                </div>
+                <?php }?>
+                </div>                
+                </div>
+                </div>
+                <?php }?>
+              
+                
+               </div> 
                <!-- table des menus -->
               <!-- box-header -->
               <div id="table"> 
@@ -956,97 +1145,12 @@ $year = date('Y');
 
 
 <!-- ./wrapper -->
+<script src="<?php echo base_url();?>/assets/cms/updatePages.js"></script>
 <script>
-document.getElementById("choixPhoto").style.display ='none';
-
 <?php if($type_page == 'document'){
   echo "document.body.onload = invisible('doc');";
 }?>
 <?php if($type_page == 'bulle'){
   echo "document.body.onload = invisible('bulle');";
 }?>
-
-function invisible(txt){
-  for(var i=2;i<=10;i++){
-     document.getElementById(txt+i).style.display ='none';    
-  }
-}
-
-function visibleP(choix){
-  (choix ? document.getElementById('choixPhoto').style.display='block' : document.getElementById('choixPhoto').style.display='none'); 
-}
-
-function visibleC(choix){
-  (choix ? document.getElementById('ajoutCar').style.display='block' : document.getElementById('ajoutCar').style.display='none'); 
-}
-
-
-function visibleAn(choix){
-  if(choix){    
-     document.getElementById('an').style.display='block';
-     document.getElementById("doc"+nbY).style.display ='block';
-     document.getElementById("moinsAn").style.display ='none';
-  }else{
-   document.getElementById('an').style.display='none';
-  invisible('doc'); 
-}
-}
-
-function addYear(bool){ 
-  if(document.getElementById("nbY").value >= 9){
-    document.getElementById("plusAn").style.display ='none';
-  }else{
-    document.getElementById("plusAn").style.display ='inline';
-  }
-  if(bool){    
-    document.getElementById("nbY").value = An ;
-  document.getElementById("doc"+An).style.display ='block';
-  An++;
-  } else {
-    An--;
-    document.getElementById("doc"+An).style.display ='none';
-    document.getElementById("nbY").value = An-1 ;        
-  }
-  if(document.getElementById("nbY").value > initial){
-    document.getElementById("moinsAn").style.display ='inline';
-  }else{
-    document.getElementById("moinsAn").style.display ='none';
-  }
-}
-
-var nbBu = parseInt(document.getElementById("nbBu").value,10);
-var initialb = nbBu;
-var Pbu = nbBu+1;
-
-function visibleBulle(choix){
-  if(choix){
-    document.getElementById("plusbulle").style.display ='block';
-    document.getElementById("bulle"+nbBu).style.display ='block';
-  }else{
-    document.getElementById("plusbulle").style.display ='none';
-    invisible('bulle');
-  }
-}
-
-function addBulle(bool){ 
-  if(document.getElementById("nbBu").value >= 9){
-    document.getElementById("plusBu").style.display ='none';
-  }else{
-    document.getElementById("plusBu").style.display ='inline';
-  }
-  if(bool){    
-    document.getElementById("nbBu").value = Pbu ;
-  document.getElementById("bulle"+Pbu).style.display ='block';
-  Pbu++;
-  } else {
-    Pbu--;
-    document.getElementById("bulle"+Pbu).style.display ='none';
-    document.getElementById("nbBu").value = Pbu-1 ;        
-  }
-  if(document.getElementById("nbBu").value > initialb){
-    document.getElementById("moinsBu").style.display ='inline';
-  }else{
-    document.getElementById("moinsBu").style.display ='none';
-  }
-}
 </script>

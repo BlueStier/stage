@@ -121,4 +121,18 @@ class Form_model extends CI_Model {
             //var_dump($array);
         }
 
+        public function supChamp($id_a_modif,$n){
+            $form = Form_model::get_form($id_a_modif);
+            $nb_champ = Form_model::nb_champ($id_a_modif);
+            for($i = $n; $i < $nb_champ; $i++){
+                $form['type'.$i] = $form['type'.($i+1)];
+                $form['champ'.$i] = $form['champ'.($i+1)];
+                $form['ob'.$i] = $form['ob'.($i+1)];  
+            }
+                $form['type'.$nb_champ] = "";
+                $form['champ'.$nb_champ] = "";
+                $form['ob'.$nb_champ] = "";
+            $this->db->replace('formulaire',$form);
+        }
+
 }

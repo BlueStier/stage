@@ -494,7 +494,22 @@ class Cms extends CI_Controller
         foreach($data['folder']as $f):
             $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
         endforeach;                  
-   }           
+   } 
+        if($typePage == 'formulaire'){
+         $this->load->model('Form_model');
+         $this->load->model('Liste_model');
+         $recup = $this->Form_model->get_form($id);                     
+         $data['intro'] = $recup['intro'];
+         $data['form'] = $recup;
+         $data['nb_champ'] = $this->Form_model->nb_champ($id);
+         $data['nb_mail'] = $this->Form_model->mail_dest($id);
+         for($i = 1; $i <= $data['nb_champ']; $i++){
+            //on vérifie si on à une liste dans les champs
+            if($recup['type'.$i] == 'liste'){
+                    $data['liste'] = $this->Liste_model->get_liste($recup['champ'.$i]);
+                    $data['nb_item'] =  $this->Liste_model->nb_item($recup['champ'.$i]);
+            }
+    } }         
        
         $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
@@ -599,6 +614,23 @@ class Cms extends CI_Controller
         $this->Document_model->supDoc($pathname);
         }
         Cms::updatePage($id_a_modif);
+    }
+
+    public function supChamp($n,$id_a_modif){
+        $this->load->model('Form_model');
+        $form = $this->Form_model->get_form($id_a_modif);
+        if( $form["type".$n] == 'liste'){
+            $this->load->model('Liste_model');
+            //$this->Liste_model->delete($form["champ".$n]);            
+        }        
+        $this->Form_model->supChamp($id_a_modif,$n);
+        Cms::updatePage($id_a_modif);
+    }
+
+    public function supItem($n, $id_a_modif, $id_page){      
+        $this->load->model('Liste_model');
+        $this->Liste_model->supItem($id_a_modif,$n);
+        Cms::updatePage($id_page);
     }
 
     public function cutLink($type)

@@ -74,4 +74,21 @@ class Liste_model extends CI_Model {
             
         }
 
+        public function delete($id){
+            $this->db->delete('liste', array('id_liste' => $id));
+        }
+
+        public function supItem($id_a_modif,$n){
+            $liste = Liste_model::get_liste($id_a_modif);
+            $nb_item = Liste_model::nb_item($id_a_modif);
+            for($i = $n; $i < $nb_item; $i++){
+                $liste['titreitem'.$i] = $liste['titreitem'.($i+1)];
+                $liste['mailitem'.$i] = $liste['mailitem'.($i+1)];
+                
+            }
+            $liste['titreitem'.$nb_item] = NULL;
+            $liste['mailitem'.$nb_item] = NULL;
+            $this->db->replace('liste',$liste);
+        }
+
 }

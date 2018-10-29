@@ -6,7 +6,7 @@ class Pages extends CI_Controller {
             $this->load->model('Header_model');
             $this->load->model('Rapide_model');
             $this->load->model('Pages_model');
-            $this->load->helper('url_helper');
+            $this->load->helper('url_helper','security_helper');
             $this->load->library('form_validation');
         }
 
@@ -14,7 +14,7 @@ class Pages extends CI_Controller {
                 Pages::view('home');
         }
         //construit la page demandée 
-        public function view($page){       
+        public function view($page, $str = FALSE){       
         //récupère les infos pour le header (menu, sousmenu...)
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
@@ -76,6 +76,10 @@ class Pages extends CI_Controller {
                 $this->load->model('Form_model');
                 $this->load->model('Liste_model');
                 $recup = $this->Form_model->get_form($pagestab['id_pages']);
+                if($str != FALSE){
+                $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
+        }
+                $data['page'] = $page;
                 $data['id'] = $pagestab['id_pages'];               
                 $data['intro'] = $recup['intro'];
                 $data['form'] = $recup;
@@ -88,7 +92,7 @@ class Pages extends CI_Controller {
                         }
                 }              
                 $page = 'formulaire';
-                $data['page'] = $page;  
+                  
         }
 
         
@@ -126,26 +130,34 @@ class Pages extends CI_Controller {
 
                 for($i = 1; $i <= $nb_champ; $i++){
                         switch($recup['type'.$i]){
+                                //pour chaque cas on récupère les données et on rend inoffensives les attques javascript
                                 case"nom" :
-                                $nom = $this->input->post('nom');
+                                $n = $this->input->post('nom');
+                                $nom = $this->security->xss_clean($n);                                
                                 break;
                                 case"prenom" :
-                                $prenom = $this->input->post('prenom');
+                                $p = $this->input->post('prenom');
+                                $prenom = $this->security->xss_clean($p);
                                 break;
                                 case"adresse" :
-                                $adresse = $this->input->post('adresse');
+                                $a = $this->input->post('adresse');
+                                $adresse = $this->security->xss_clean($a);
                                 break;
                                 case"email" :
-                                $email = $this->input->post('email');
+                                $e = $this->input->post('email');
+                                $email = $this->security->xss_clean($e);                                
                                 break;
                                 case"area" :
-                                $message = $this->input->post('area');
+                                $m = $this->input->post('area');
+                                $message = $this->security->xss_clean($m);                                
                                 break; 
                                 case"nb" :
-                                $nombre = $this->input->post('nb');
+                                $nb = $this->input->post('nb');
+                                $nombre = $this->security->xss_clean($nb);
                                 break;                
                                 case"date" :
-                                $date = $this->input->post('date');
+                                $da= $this->input->post('date');
+                                $date = $this->security->xss_clean($da);                                
                                 break;
                                 case"liste" :
                                 $liste = $this->input->post('liste');
@@ -161,6 +173,11 @@ class Pages extends CI_Controller {
                                 }
                                 break;
                                 case"file" :
+                                $file = $this->input->post('file');
+                                //on vérifie que le fichier n'est pas vérollé
+                                if($this->security->xss_clean($file, TRUE) === FALSE){
+                                        echo "c pas bien";
+                                }else{                                        
                                 $config['upload_path']= "./ressources/doc_citoyen/";
                                 $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xls|doc|docx';
                                 $config ['max_size'] = 10000000 ;
@@ -170,13 +187,12 @@ class Pages extends CI_Controller {
                         
                                 //upload la photo vers le serveur
                                 $this->load->library('upload', $config);
-                                if(!$this->upload->do_upload('file'))
+                                if($this->upload->do_upload('file'))
                                 {
-                                        echo 't trop bon mon pote';
-                                }else{
                                         $data = array('upload_data'=>$this->upload->data());
-                                        $file = '/ressources/doc_citoyen/'.$data['upload_data']['orig_name'];      
+                                        $file = '/ressources/doc_citoyen/'.$data['upload_data']['orig_name']; 
                                 }
+                        }
                                 break;                                        
                         }     
 
@@ -204,10 +220,9 @@ class Pages extends CI_Controller {
                ];
                 
                $this->load->model('Bddcit_model'); 
-               //$this->Bddcit_model->create($array);           
-               //Pages::send_mail($array);
-               $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
-               Pages::view($this->input->post('page'));
+               $this->Bddcit_model->create($array);           
+               Pages::send_mail($array);              
+               Pages::view($this->input->post('page'), TRUE);
 }
 
 public function send_mail($array){
