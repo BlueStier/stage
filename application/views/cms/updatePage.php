@@ -830,18 +830,13 @@ $year = date('Y');
                     <?php echo $intro; ?>                                            
                     </textarea>
                     </div>
-                    <input type="hidden" name='nbform' id='nbform' value="<?php echo $nb_champ; ?>"/>
+                    <input type="hidde" name='nbform2' id='nbform' value="<?php echo $nb_champ; ?>"/>
             <div class="box box-info">            
             <div class="box-header with-border">
-              <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
-              <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
-              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
-              <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
-              <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
-              <a class='btn btn-default' onClick="nom(10)">Checkbox</a>
+              <h3 class="box-title">Champs présents dans le formulaire :</h3><br><br>
               
             </div>
-                    <div id="form">
+                    
                     <?php for($i = 1; $i <= $nb_champ; $i++){ ?>
                         <div class="form-group" id ="formulaire<?php echo $i; ?>">
                      <?php switch($form['type'.$i]){
@@ -853,7 +848,7 @@ $year = date('Y');
                         <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>" <?php if($form['ob'.$i]){echo 'checked';}?>>
                         </div>
                         <label class="col-sm-2 control-label">nom du champ :</label>
-                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <input required="required" placeholder="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
                         <div class="col-sm-1 "></div>
                         <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
                         <div class="col-sm-1 "></div>
@@ -990,24 +985,36 @@ $year = date('Y');
                 <?php } ?>
                 </div>              
                 <?php } ?>
+                
+                <div class="box-header with-border">
+              <h3 class="box-title">Choissisez un type de champ à rajouter :</h3><br><br>
+              <a class='btn btn-default' onClick="javascript:nom(1);">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
+              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
+              <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
+              <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
+              <a class='btn btn-default' onClick="nom(10)">Checkbox</a>
+              
+            </div>
+            <div id="form">
+            </div>
                 <div class="box box-info">
             <div class="box-header with-border" id='destinataire' >
               <h3 class="box-title">Transmettre le formulaire : </h3>
-              <input type="hidden" id='nbmail' name='nbmail' value='<?php echo $nb_mail; ?>'/>
+              <input type="hidde" id='nbmail' name='nbmail' value='<?php echo $nb_mail; ?>'/>
                             <a onClick="ajoutmail();" class="btn btn-info pull-right">Ajouter une adresse mail</a><br><br><br>
                 <?php for($b = 1; $b <= $nb_mail; $b++){?>
                 <div class="form-group" id="grpmail<?php echo $b; ?>">
                 <label class="col-sm-2 control-label">Entrez l'adresse mail</label>
                 <div class="col-sm-6">
-                <input type="text" name="mail_dest<?php echo $i; ?>" value="<?php echo substr($form['mail_dest'.$b],0,-11); ?>">@oignies.fr</div>
+                <input type="text" name="mail_dest<?php echo $b; ?>" value="<?php echo substr($form['mail_dest'.$b],0,-11); ?>">@oignies.fr</div>
                 <?php if($b > 1){ ?>
-                <a class="col-sm-2 btn btn-warning" onclick="supmail();" id="supmail<?php echo $i; ?>" >Supprimer</a>
+                <a class="col-sm-2 btn btn-warning" href="<?php echo base_url()?>cms/supMail/<?php echo $b."/".$id_page?>" >Supprimer</a>
                 <?php } ?>
                 </div>
                 <?php }?>
                 </div>                
                 </div>
-                </div>
+                
                 <?php }?>
               
                 

@@ -22,7 +22,6 @@
 <body>
 
 <div class="super_container">
-
 	<!-- Header -->
 	<header class="header flex-row" onmouseleave="invisibleMenu();">
 			<div class=" flex-row align-items-center">
@@ -174,8 +173,8 @@
 				<?php //pour chaque sous menu de 3eme niveau :
                         foreach($third_item as $thi):
                               //on vérifie que le 3eme niveau doit être affiché et qu'il correspond au sousmenu parent
-                              $compare2 = strcmp($thi['sousmenu'],$sub['nom']);
-							  if($thi['visible'] && ($compare2 == 0)){?>
+							  $compare3 = strcmp($thi['sousmenu'],$sub['nom']);							 
+							  if($thi['visible'] && ($compare3 == 0)){?>
 							  <li class="sub"><a href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().$thi['path'];?>"><?php echo $thi['nom'];?></a></li>
 							  <?php } endforeach; ?>
 							  </ul>

@@ -64,6 +64,7 @@ $route['cms/supBulle/(:any)/(:num)'] = 'cms/supBulle/$1/$2';
 $route['cms/supPhoto/(:num)/(.*)'] = 'cms/supPhoto/$1/$2';
 $route['cms/supDoc/(:num)/(:num)/(.*)'] = 'cms/supDoc/$1/$2/$3';
 $route['cms/supChamp/(:any)/(:num)'] = 'cms/supChamp/$1/$2';
+$route['cms/supMail/(:any)/(:num)'] = 'cms/supMail/$1/$2';
 $route['cms/supItem/(:any)/(:num)/(:num)'] = 'cms/supItem/$1/$2/$3';
 $route['cms/validatePage'] = 'cms/validatePage/';
 $route['cms/updatePage/(:any)'] = 'cms/updatePage/$1';

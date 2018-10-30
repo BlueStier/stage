@@ -48,19 +48,16 @@ class Form_model extends CI_Model {
             return $nb;
         }
 
-        //fonction de creation et d'enregistrement d'un formulaire en bdd
-        public function create($id_pages){
-            //on récupère le nombre de champ à mettre dans le formulaire
-            $nb_champ = $this->input->post('nbform');
-
+        public function augNBCol($n,$bool){
+            if($bool){
             //la table formulaire contient combien de colonne pour enregistrer les champs?
             $query = $this->db->query("SELECT COUNT(*) AS 'nb_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'type%'")->row_array();
             
             $nb_table = $query['nb_table'];
             //si la table est plus petite que le nb de champ  insérer on la modifie
-            if($nb_champ > $nb_table){
+            if($n > $nb_table){
                 $deb = $nb_table + 1;
-                for($deb; $deb <= $nb_champ; $deb++){
+                for($deb; $deb <= $n; $deb++){
                     $str1 = "ALTER TABLE formulaire ADD type".$deb." VARCHAR(100)";
                     $this->db->query($str1);
                     $str2 = "ALTER TABLE formulaire ADD champ".$deb." VARCHAR(256)";
@@ -70,6 +67,29 @@ class Form_model extends CI_Model {
                 }
 
             }
+            }else{
+            //combien de colonne de type adresse mail contient la table formulaire ?
+            $query2 = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
+            
+            $mail_table = $query2['mail_table'];
+            //si la table est plus petite que le nb de champ  insérer on la modifie
+            if($n > $mail_table){
+            $a = $mail_table + 1;
+            for($a; $a <= $n; $a++){
+            $str4 = "ALTER TABLE formulaire ADD mail_dest".$a." VARCHAR(100)";
+            $this->db->query($str4);
+     }
+
+ }
+            }
+        }
+
+        //fonction de creation et d'enregistrement d'un formulaire en bdd
+        public function create($id_pages){
+            //on récupère le nombre de champ à mettre dans le formulaire
+            $nb_champ = $this->input->post('nbform');
+
+            Form_model::augNBCol($nb_champ,TRUE);
             
             //récupère les données de l'utilisateur
             $array = ["id_pages" => $id_pages];
@@ -96,19 +116,7 @@ class Form_model extends CI_Model {
             //combien d'adresse mail de destinataire ?
             $nb_mail = $this->input->post('nbmail');
 
-            //combien de colonne de type adresse mail contient la table formulaire ?
-            $query2 = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
-            
-            $mail_table = $query2['mail_table'];
-            //si la table est plus petite que le nb de champ  insérer on la modifie
-            if($nb_mail > $mail_table){
-                $a = $mail_table + 1;
-                for($a; $a <= $nb_mail; $a++){
-                    $str4 = "ALTER TABLE formulaire ADD mail_dest".$a." VARCHAR(100)";
-                    $this->db->query($str4);
-                }
-
-            }
+            Form_model::augNBCol($nb_mail,FALSE);
             
             //récupère les champs d'adresse mail
             for($b = 1; $b <= $nb_mail ; $b++){
@@ -118,7 +126,7 @@ class Form_model extends CI_Model {
             } 
             //et on l'injecte en BDD
             $this->db->insert('formulaire',$array);
-            //var_dump($array);
+            
         }
 
         public function supChamp($id_a_modif,$n){
@@ -135,4 +143,61 @@ class Form_model extends CI_Model {
             $this->db->replace('formulaire',$form);
         }
 
+        public function supMail($id_a_modif,$n){
+            $form = Form_model::get_form($id_a_modif);
+            $query2 = $this->db->query("SELECT COUNT(*) AS 'mail_table' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'formulaire' and COLUMN_NAME like 'mail_dest%'")->row_array();
+            
+            $mail_table = $query2['mail_table'];
+            for($d = $n; $d < $mail_table; $d++){
+                $form['mail_dest'.$d] = $form['mail_dest'.($d+1)];
+            }
+            $form['mail_dest'.$mail_table] = "";
+            $this->db->replace('formulaire',$form);
+        }
+
+        public function update($id){
+            //extraction des données de la bdd concernant ce formulaire
+            $array = Form_model::get_form($id);
+             //on récupère le nombre de champ à mettre dans le formulaire
+             $nb_champ = $this->input->post('nbform2');
+
+             Form_model::augNBCol($nb_champ,TRUE);
+             
+             //récupère les données de l'utilisateur             
+             $array['intro'] = $this->input->post("intro_form");
+ 
+             for($i = 1; $i <= $nb_champ; $i++){
+                 $array["type".$i] = $this->input->post("input".$i);
+                 if($array["type".$i] == 'liste'){
+                     //si le champ est der type liste on insert la liste dans la table correspondant
+                     //et on récupère l'id  
+                     $this->load->model('Liste_model');
+                     $array["champ".$i] = $this->Liste_model->create($id,$i);                     
+                 }else{
+                 $array["champ".$i] = $this->input->post("champ".$i);                
+                 }
+                 //défini si le champ est obligatoire ou pas
+                 if($this->input->post("ch".$i)!== NULL){
+                     $array["ob".$i] = TRUE;
+                 }else{
+                     $array["ob".$i] = FALSE;
+                 }
+             }
+ 
+             //combien d'adresse mail de destinataire ?
+             $nb_mail = $this->input->post('nbmail');
+            
+             Form_model::augNBCol($nb_mail,FALSE);
+             
+             //récupère les champs d'adresse mail
+             for($b = 1; $b <= $nb_mail ; $b++){
+                 $atester = $this->input->post('mail_dest'.$b);
+                 //concatène avec @oignies.fr
+                 $array["mail_dest".$b] = $atester."@oignies.fr";
+             } 
+             //et on l'injecte en BDD
+             $this->db->replace('formulaire',$array);
+            
+         }
+        
 }

@@ -36,7 +36,7 @@ class Liste_model extends CI_Model {
         }
 
         //fonction de creation et d'enregistrement d'un formulaire en bdd
-        public function create($id_pages,$nb_liste){
+        public function create($id_pages,$nb_liste){            
             //on récupère le nombre de champ à mettre dans le formulaire
             $nb_item = $this->input->post('nbitembyliste'.$nb_liste);
 
@@ -58,8 +58,8 @@ class Liste_model extends CI_Model {
             //on récupère le dernier id de la table liste
             $idquery = $this->db->query("SELECT MAX(id_liste) as 'id' FROM liste")->row_array();
             $id_liste = $idquery['id'] + 1;
-            //récupère les données de l'utilisateur
-            $array = ["id_liste" => $id_liste];
+            //récupère les données de l'utilisateur            
+            $array["id_liste"] = $id_liste;
             $array = ["id_pages" => $id_pages];
             $array = ["nom_champ" => $this->input->post("champ".$nb_liste)];
 
@@ -69,7 +69,9 @@ class Liste_model extends CI_Model {
             }
              
             //et on l'injecte en BDD
-            $this->db->insert('liste',$array);
+            var_dump($array);
+            echo $id_liste;            
+            //$this->db->insert('liste',$array);
             return $id_liste;
             
         }

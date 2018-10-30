@@ -559,6 +559,10 @@ class Cms extends CI_Controller
                 $this->load->model('Document_model');
                 $this->Document_model->update($id,$nom_page[0]['nom']); 
             }
+            if($nom_page[0]['type']=='formulaire'){
+                $this->load->model('Form_model');
+                $this->Form_model->update($id); 
+            }
             
             //on extrait tous les chemins dans les menus et sous menus...et remise à vide
             
@@ -586,7 +590,7 @@ class Cms extends CI_Controller
             endforeach;
             
             //on remet les chemins dans les menus sélectionnés
-            Cms::updateLink(2);
+            //Cms::updateLink(2);
     }
 
     public function supBulle($n,$id_a_modif){
@@ -621,7 +625,7 @@ class Cms extends CI_Controller
         $form = $this->Form_model->get_form($id_a_modif);
         if( $form["type".$n] == 'liste'){
             $this->load->model('Liste_model');
-            //$this->Liste_model->delete($form["champ".$n]);            
+            $this->Liste_model->delete($form["champ".$n]);            
         }        
         $this->Form_model->supChamp($id_a_modif,$n);
         Cms::updatePage($id_a_modif);
@@ -631,6 +635,12 @@ class Cms extends CI_Controller
         $this->load->model('Liste_model');
         $this->Liste_model->supItem($id_a_modif,$n);
         Cms::updatePage($id_page);
+    }
+
+    public function supMail($n, $id_a_modif){      
+        $this->load->model('Form_model');
+        $this->Form_model->supMail($id_a_modif,$n);
+        Cms::updatePage($id_a_modif);
     }
 
     public function cutLink($type)
