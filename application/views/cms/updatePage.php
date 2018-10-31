@@ -961,7 +961,7 @@ $year = date('Y');
                         <div class="col-sm-1 "></div>
                         <div id="liste<?php echo $i; ?>" style="border-style: double;" class="col-sm-10">
                         <span>Propiétés de la liste :  </span>                        
-                        <a class="btn btn-info pull-right" onclick="liste(1)">Ajouter un item</a>
+                        <a class="btn btn-info pull-right" onclick="liste(<?php echo $i; ?>)">Ajouter un item</a>
                         <?php for( $a = 1; $a <= $nb_item; $a++){?>
                         <div class="form-group" id='<?php echo $i; ?>item<?php echo $a; ?>'>
                         <input id="nbitembyliste<?php echo $i; ?>" name="nbitembyliste<?php echo $i; ?>" value="<?php echo $nb_item; ?>" type="hidden">

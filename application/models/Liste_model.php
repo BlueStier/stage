@@ -68,10 +68,8 @@ class Liste_model extends CI_Model {
                 $array["mailitem".$i] = $this->input->post($nb_liste."mailitem".$i);                
             }
              
-            //et on l'injecte en BDD
-            var_dump($array);
-            echo $id_liste;            
-            //$this->db->insert('liste',$array);
+            //et on l'injecte en BDD                     
+            $this->db->insert('liste',$array);
             return $id_liste;
             
         }

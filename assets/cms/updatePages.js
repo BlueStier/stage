@@ -89,7 +89,6 @@ function addBulle(bool) {
 function nom(nb) {
     var old_num = document.getElementById('nbform').value;
     var numero = parseInt(document.getElementById('nbform').value) + 1;
-    alert(old_num);
     var insert = document.getElementById("form");
     var div = document.createElement("div");
     div.setAttribute('class', 'form-group');
@@ -304,7 +303,6 @@ function liste(n) {
     var old_form = parseInt(document.getElementById('nbitembyliste' + n).value);
     var idform = parseInt(document.getElementById('nbitembyliste' + n).value) + 1;;
 
-    //console_log(value);
     //div du form-group
     var formgroup = document.createElement('div');
     formgroup.setAttribute('class', 'form-group');

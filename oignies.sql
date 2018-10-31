@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  localhost
--- Généré le :  Lun 08 Octobre 2018 à 16:02
+-- Généré le :  Mer 31 Octobre 2018 à 16:02
 -- Version du serveur :  5.7.11
 -- Version de PHP :  5.6.18
 
@@ -76,8 +76,8 @@ CREATE TABLE `articles` (
 --
 
 INSERT INTO `articles` (`id_articles`, `id_articlespage`, `jour`, `photo`, `titre`, `text`, `alerte`, `visible`) VALUES
-(1, 54, '2018-09-27', 'assets/site/img/articles/semimolle.JPG', 'le titre', '<p>Je pensais,il a menti en chaque mot, L&#39;hideux infirme,de son &oelig;il qu&#39;il disait voil&eacute; par le songe</p>\r\n\r\n<p>De biais contemplait l&#39;effet de ses mensonges Sur moi,et sa bouche,incapable de masquer les cahots</p>\r\n\r\n<p>De sa liesse,qui secouait et tordait son corps bot</p>\r\n\r\n<p>Devant l&#39;agonie de la victime que la mort ronge.</p>\r\n\r\n<p>Quel autre dessin e&ucirc;t pu animer ce menteur diabolique?</p>\r\n\r\n<p>De son b&acirc;ton dress&eacute; tel un attrape-foudre furieux Il leurre,menace, et s&eacute;duit le curieux Qui demande son chemin. Et ce rire satanique Graverait je n&#39;en dout l&#39;&eacute;pitaphe v&eacute;ridique Relatant ma venue en ces maudits lieux. III Si fort de ses conseils je devais me d&eacute;tourner De ma route pour m&#39;engager dans le sinistre chemin,o&ugrave;, Comme chacun le sait,se cache la Tour Noire, c&#39;est pourtant sans remous, Et dicuke,que je m&#39;y aventurai. Sans nulle fiert&eacute; Ni impatience raviv&eacute;e de jamaiis entrevoir mon but tant convoit&eacute; Ni m&ecirc;me aucune fin-je n&#39;avais pas cet espoir fou. IV Car apr&egrave;s avoir sillon&eacute; le vasre monde,en entier Et cherch&eacute; en vain toutes ces longues ann&eacute;es,qu&#39;&eacute;tail-il advenu De ma qu&ecirc;te,de ma foi d&eacute;clinantes,ces fant&ocirc;mes abattus, N&#39;eussent pu porter le poids de cet espoir trop vif,plein de t&eacute;m&eacute;rit&eacute; Et c&#39;est &agrave; peine si je sus r&eacute;mrimer le bond enchant&eacute; Que fit mon c&oelig;ur,sentant la d&eacute;faite venue. V Et lorsque le malade approchant du tr&eacute;pas Sent comencer et finir Les larmes de peine,et qu&#39;adieu aux amis il doit dire Il entend l&#39;un supplier l&#39;autre de partir,retenr son souffle las, Plus librement dehos (&laquo; puisque tout esr achev&eacute;,que la fin est l&agrave; Et que le coup port&eacute;,aucun chagrin ne viendra adoucir &raquo;) VI Quand d&#39;aucuns d&eacute;battent,cherchant si place ils trouveront Entre les tombes moussues,pour celle de ce vaillant Et si pour porter sa d&eacute;pouille il est jour plus cl&eacute;ment Et si,ayant soin des banni&egrave;res,des &eacute;charpes et des tristes chansons L&#39;homme toujours entend tout et une seule soif berce son c&oelig;ur si bon Celle de ne pas faillir et trahir un amour si tendre,en demeurant. VII Ainsi,depuis si longtemps,j&#39;endurais cette qu&ecirc;te insens&eacute;e Et voyais mon &eacute;chec chant&eacute; dans po&egrave;mes et proph&eacute;ties Tant de fois,parmi la troupe,de ceux qui ont choisit cet exil inou&iuml;, Ces chevaliers qui &agrave; la Tour adress&egrave;rent leurs pas et leurs r&ecirc;ves &eacute;th&eacute;r&eacute;s Qu&#39;&eacute;chouer comme eux me paraissait galvaud&eacute; Mais certain-car qui pourrait lutter contre ce doute assassin: et sij&#39;&eacute;tais honni? VIII Et muet comme le d&eacute;sespoir qui m&#39;&eacute;treignait,je me d&eacute;tournai De cet odieux estropi&eacute;,je quittai son chemin Pour porter mes pas dans celui qu&#39;il vantait. Car ce jour sans fin M&#39;avait &eacute;t&eacute; bien lugubre,et avant que de voir le soir tomber Et le clore,je souffris le regard &eacute;carlate et mauvais Qui ensanglante la plaine,d&#39;un mavabre et malin. IX Qu&#39;on m&#39;entende! &Agrave; peine m&#39;&eacute;tais-je promis le c&oelig;ur loyal &Agrave; la plaine,au bout d&#39;un pas ou deux Alors que je me retournai pour lancer un regard d&#39;adieu Sur la route bien s&ucirc;re qui m&#39;avait men&eacute; en ce songe sans &eacute;gal Elle avait disparu;plus rien d&#39;autre que les plaines griss et &eacute;tales &Agrave; perte de vue:je ne pus que poursuivre,car quoi faire en ces lieux? X Aussi je marchai. Je ne crois pas avoir jamais entrevu de mes yeux Nature plus affam&eacute;e et ignoble ,rien n&#39; y prosp&eacute;rait gu&egrave;re Pas une fleur-comment r&ecirc;ver d&#39;une c&eacute;dri&egrave;re! Tandis que l&#39;euphorbe et la chienlit,comme la loi le veut Se propageaient &agrave; l&#39;envi,si bien qu&#39;au c&oelig;ur ainsi un peu De bardane &eacute;gar&eacute;e e&ucirc;t &eacute;t&eacute; une heureuse surprise,et bien l&eacute;g&egrave;re XI Point! P&eacute;nurie,langueur et grimace, Bien &eacute;trange &eacute;tait le lot de cette affreuse terre. &laquo; Vois ou femre les yeux &raquo;,disait M&egrave;re Nature,de son air Maussade: &laquo; Rien ne veut fleurir,je ne puis m&ecirc;me saiver la face: C&#39;est le Jugement Dernier qui de ses flammes lavera cette place Qui en calcinera les mottes de mes prisonniers rompra les fers. &raquo; XII Et si un chardon tout &eacute;plum&eacute; poussait l&agrave; par hasard, Se dressant au-dessus du lot,c&#39;&eacute;tait d&eacute;capit&eacute;, car l&#39;agrostide &eacute;tait jalouse ici. Qui avait creus&eacute; ces trous et ces crevasses dans les orties Et les feuilles bistr&eacute;es et r&ecirc;ches de la patience,qui avait tout r&eacute;duit en friche chaotique,tuant tout espoir De verdure? Une brute,&agrave; n&#39;en point douter,&agrave; l&#39;&acirc;me noire Soufflant toute vie comme une chandelle, telle une b&ecirc;te sans merci. XIII Quant &agrave; l&#39;herbe,elle poussait il est vrai aussi maigre que son pelage Frapp&eacute; de l&egrave;pre;des brins &eacute;pars per&ccedil;aient la boue Qui paraissait p&eacute;trie de sang par-dessous Une rosse aveugle,dont chaqe os saillait comme apr&egrave;s le carnage Se tenait en stupeur,frapp&eacute;e par un mirage, Chass&eacute;e du haras du Diable m&ecirc;me &agrave; grand renfort de coups! XIV Vivant? L&#39;anial &agrave; mes yeux pouvait avoir p&eacute;ri sans un pleur D&eacute;charn&eacute;,la carcasse saignant,et d&#39;un spectre ayant l&#39;air Il gardait les yeux clos sous une immonde crini&egrave;re Alliance incongrue du ridicule et de pareille douleur Jamais je ne vis brute auss digne d&#39;&ecirc;tre frapp&eacute;e de malheur Il fallait bien qu&#39;il f&ucirc;t mal&eacute;fique pour m&eacute;riter tel salaire. XV Je fermai les yeux et les ouvris sur mon c&oelig;ur Comme un homme commandant le vin avant d&#39;aller guerroyer J&#39;appelai de mes v&oelig;ux une rasade de visions plus heureuse du pass&eacute; Afin de retrouver l&#39;espoir de jouer mon r&ocirc;le en vainqueur. Penser d&#39;abord,et puis combattre tout l&#39;art du soldat,sa valeur, Car le go&ucirc;t furtif des temps anciens gu&eacute;rit de tout,vrai! XVI Pas cela! Je ne pus d&eacute;tacher mon regard incertain De la face rougie de Cuthbert,sous les boucles d&#39;or Cher compagnon,qui jadis f&acirc;ch&eacute; dans un ultime effort, Glissa,je le sentis,son beau bras sous le mien Car ainsi il &eacute;tait,tout sourrire,m&ecirc;me quand p&eacute;rit le Bien Et avec lui mon c&oelig;ur &agrave; peine &eacute;veill&eacute;,dans le souffle du cor. XVII Et donc,l&#39;&acirc;me de l&#39;honneur-le voici debout l&agrave;,si beau Aussi franc que dix ans plus t&ocirc;t,alors jeune chevalier, Qu&#39;un hommer loyal v&icirc;nt le d&eacute;fier (dit-il) il saurait l&#39;affronter Dans les bonnes r&egrave;gles -mais voil&agrave; que glisse la sc&egrave;ne- pouah! Quel bourreau A clou&eacute; sur son sein un vil parchemin? Et ses propres compa- gnons de fourreau De le lire. Pauvre tra&icirc;tre,jouet des crachats et des quolibets! XVIII Plut&ocirc;t ce pr&eacute;sent qu&#39;un pass&eacute; qui s&#39;offre tel: Me voil&agrave; de retour sur ma route assombrie! Aucun son,nulle vision aussi loin que l&#39;&oelig;il s&#39;enqu&icirc;t, Un hibou ou une chauve-souris,la nuit m&#39;enverra-t-elle? Implorais-je;quand soudain sur la terre plane et lugubre une image nouvelle Arr&ecirc;ta mes pens&eacute;es et le cours j&#39;en perdis. XIX En travers de ma route,soudain,une rivi&egrave;re, Tel le serpent surgit par surprise Mais point de marr&eacute;e paresseuse et douce,dans les t&eacute;n&egrave;bres grises. Celle-l&agrave; &eacute;cumait et e&ucirc;t pu satisfaire Le d&eacute;mon venu y baigner son sabot rougeoyant-&agrave; voir l&#39;ardente col&egrave;re, Des ses remours noirs &eacute;clabouss&eacute;s d&#39;&eacute;caillures et de mousse,o&ugrave; l&#39;on s&#39;enlise. XX Si insignifiante,et pourtant si venimeuse,sur ses berges aust&egrave;res De bas aulnes rabougris venaient s&#39;agenouiller pr&egrave;s de l&#39;eau agit&eacute;e Et saules d&eacute;tremp&eacute;s les jetant t&ecirc;te baiss&eacute;e En n mouvement de muet d&eacute;sespoir,foule suicidaire: Et le courant qui les torturait ainsi, nullement &eacute;mu par leur calvaire Suivait sa route,pas un instant perturb&eacute;. XXI Et tandis que je passais &agrave; gu&eacute;-par tous les saints, comme jecraignais De poser pied sur la joue de quelque cadavre ou moribond &Agrave; chaque pas,ou de sentir la lance de laquelle je sondais les fonds Pr&eacute;venant les &eacute;cueils,prisonier de sa chevelure ou de sa barbe serr&eacute;e Un rat d&#39;eau sns doute,que de mon b&acirc;ton je r&eacute;veillai Mais Die! Combien son cri rappelait le hurlement d&#39;un nourrisson. XXII Et je fus trop heureux de gagner la berge oppos&eacute;e Le pays parraissait plus cl&eacute;ment. Vain pr&eacute;sage! Qui &eacute;taient les combattants,quelle guerre menaient-ils, quel en &eacute;tait le visage Quel pi&eacute;tinement sauvage &eacute;tait venu &eacute;craser le sol d&eacute;tremp&eacute; En un frais clapotis?Crapauds en leur cuve empoisonn&eacute;e Ou chats sauvages dans ler rougeoyante cage- XXIII Ainsi paraissaient les traces d&#39;un antique combat en ce d&eacute;cor sauvage Qui les confiniat l&agrave;,quand toute la plaine s&#39;offrait &agrave; eux? Nulle trace de pas ne menait &agrave; ce miaulement v&eacute;n&eacute;neux Aucune ne s&#39;en &eacute;loignait. Immonde saumure &agrave; l&#39;ouvrage Leur cerveau,nul doute, comme le Turc son gal&eacute;rien, qu&#39;il a fait esclave Appelle son divertissement,Chr&eacute;tiens contre Juifs, en un combat odieux. XXIV Et plus que cela-&agrave; un furlong-si pr&egrave;s,juste l&agrave;,vraiment! &Agrave; quel funeste usage ce moteur,cette roue &eacute;taient-ils r&eacute;serv&eacute;s? Ou plut&ocirc;t ce frein-cett herse faite pour tourner, Pour rouler et filer les cadavres comme la soie, avec l&#39;air insouciant De l&#39;outil du Tophet,laiss&eacute; sur terre comme par &eacute;garement Ou pour aff&ucirc;ter ces dents rouill&eacute;es d&#39;acier. XXV Puis apparut une lande pi&eacute;tin&eacute;e,jadis un bois &eacute;trange, Puis mar&eacute;cage semblait-il,et enfin simple terre d&eacute;sol&eacute;e Et st&eacute;rile (l&#39;idiot y trouvera une raison de se gausser &Agrave; cr&eacute;er une chose,puis &agrave; la g&acirc;ter, jusqu&#39;&agrave; ce que d&#39;humeur il change Et le voil&agrave; reparti!);en un quart d&#39;arpent,sombre m&eacute;lange De marais,d&#39;argile et de d&eacute;combres, et de d&eacute;solation am&egrave;re et d&eacute;peupl&eacute;e. XXVI D&#39;imprudentes taches,d&#39;un gris sinistre color&eacute;es Des aplats o&ugrave; le sol ras,maigre pitance Laissait place &agrave; la mousse,pareille &agrave; des furoncles, abjectes substances Puis surgit un ch&ecirc;ne paralys&eacute;,en son sein une profonde fissure creus&eacute;e Telle une bouche distordue,fendue,d&eacute;chir&eacute;e Suffoquant,aspirant la mort,et mourant dans une ultime transe. XXVII Et toujours aussi loin de la fin! Rien d&#39;autre &agrave; l&#39;horizon que le cr&eacute;puscule, rien qui vienne l&#39;&oelig;il rassurer Ou le pas guider! &Agrave; cette pens&eacute;e, Je vis un grand corbeau,ami du c&oelig;ur d&#39;Apollyon,</p>\r\n', '2018-12-11', 1),
-(6, 54, '2018-09-27', 'assets/site/img/articles/Lighthouse.jpg', 'un titre ?', '<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n', '2018-09-10', 1),
+(1, 54, '2018-10-11', 'assets/site/img/articles/Lighthouse.jpg', 'le titre', '<p>Je pensais,il a menti en chaque mot, L&#39;hideux infirme,de son &oelig;il qu&#39;il disait voil&eacute; par le songe</p>\r\n\r\n<p>De biais contemplait l&#39;effet de ses mensonges Sur moi,et sa bouche,incapable de masquer les cahots</p>\r\n\r\n<p>De sa liesse,qui secouait et tordait son corps bot</p>\r\n\r\n<p>Devant l&#39;agonie de la victime que la mort ronge.</p>\r\n\r\n<p>Quel autre dessin e&ucirc;t pu animer ce menteur diabolique?</p>\r\n\r\n<p>De son b&acirc;ton dress&eacute; tel un attrape-foudre furieux Il leurre,menace, et s&eacute;duit le curieux Qui demande son chemin. Et ce rire satanique Graverait je n&#39;en dout l&#39;&eacute;pitaphe v&eacute;ridique Relatant ma venue en ces maudits lieux. III Si fort de ses conseils je devais me d&eacute;tourner De ma route pour m&#39;engager dans le sinistre chemin,o&ugrave;, Comme chacun le sait,se cache la Tour Noire, c&#39;est pourtant sans remous, Et dicuke,que je m&#39;y aventurai. Sans nulle fiert&eacute; Ni impatience raviv&eacute;e de jamaiis entrevoir mon but tant convoit&eacute; Ni m&ecirc;me aucune fin-je n&#39;avais pas cet espoir fou. IV Car apr&egrave;s avoir sillon&eacute; le vasre monde,en entier Et cherch&eacute; en vain toutes ces longues ann&eacute;es,qu&#39;&eacute;tail-il advenu De ma qu&ecirc;te,de ma foi d&eacute;clinantes,ces fant&ocirc;mes abattus, N&#39;eussent pu porter le poids de cet espoir trop vif,plein de t&eacute;m&eacute;rit&eacute; Et c&#39;est &agrave; peine si je sus r&eacute;mrimer le bond enchant&eacute; Que fit mon c&oelig;ur,sentant la d&eacute;faite venue. V Et lorsque le malade approchant du tr&eacute;pas Sent comencer et finir Les larmes de peine,et qu&#39;adieu aux amis il doit dire Il entend l&#39;un supplier l&#39;autre de partir,retenr son souffle las, Plus librement dehos (&laquo; puisque tout esr achev&eacute;,que la fin est l&agrave; Et que le coup port&eacute;,aucun chagrin ne viendra adoucir &raquo;) VI Quand d&#39;aucuns d&eacute;battent,cherchant si place ils trouveront Entre les tombes moussues,pour celle de ce vaillant Et si pour porter sa d&eacute;pouille il est jour plus cl&eacute;ment Et si,ayant soin des banni&egrave;res,des &eacute;charpes et des tristes chansons L&#39;homme toujours entend tout et une seule soif berce son c&oelig;ur si bon Celle de ne pas faillir et trahir un amour si tendre,en demeurant. VII Ainsi,depuis si longtemps,j&#39;endurais cette qu&ecirc;te insens&eacute;e Et voyais mon &eacute;chec chant&eacute; dans po&egrave;mes et proph&eacute;ties Tant de fois,parmi la troupe,de ceux qui ont choisit cet exil inou&iuml;, Ces chevaliers qui &agrave; la Tour adress&egrave;rent leurs pas et leurs r&ecirc;ves &eacute;th&eacute;r&eacute;s Qu&#39;&eacute;chouer comme eux me paraissait galvaud&eacute; Mais certain-car qui pourrait lutter contre ce doute assassin: et sij&#39;&eacute;tais honni? VIII Et muet comme le d&eacute;sespoir qui m&#39;&eacute;treignait,je me d&eacute;tournai De cet odieux estropi&eacute;,je quittai son chemin Pour porter mes pas dans celui qu&#39;il vantait. Car ce jour sans fin M&#39;avait &eacute;t&eacute; bien lugubre,et avant que de voir le soir tomber Et le clore,je souffris le regard &eacute;carlate et mauvais Qui ensanglante la plaine,d&#39;un mavabre et malin. IX Qu&#39;on m&#39;entende! &Agrave; peine m&#39;&eacute;tais-je promis le c&oelig;ur loyal &Agrave; la plaine,au bout d&#39;un pas ou deux Alors que je me retournai pour lancer un regard d&#39;adieu Sur la route bien s&ucirc;re qui m&#39;avait men&eacute; en ce songe sans &eacute;gal Elle avait disparu;plus rien d&#39;autre que les plaines griss et &eacute;tales &Agrave; perte de vue:je ne pus que poursuivre,car quoi faire en ces lieux? X Aussi je marchai. Je ne crois pas avoir jamais entrevu de mes yeux Nature plus affam&eacute;e et ignoble ,rien n&#39; y prosp&eacute;rait gu&egrave;re Pas une fleur-comment r&ecirc;ver d&#39;une c&eacute;dri&egrave;re! Tandis que l&#39;euphorbe et la chienlit,comme la loi le veut Se propageaient &agrave; l&#39;envi,si bien qu&#39;au c&oelig;ur ainsi un peu De bardane &eacute;gar&eacute;e e&ucirc;t &eacute;t&eacute; une heureuse surprise,et bien l&eacute;g&egrave;re XI Point! P&eacute;nurie,langueur et grimace, Bien &eacute;trange &eacute;tait le lot de cette affreuse terre. &laquo; Vois ou femre les yeux &raquo;,disait M&egrave;re Nature,de son air Maussade: &laquo; Rien ne veut fleurir,je ne puis m&ecirc;me saiver la face: C&#39;est le Jugement Dernier qui de ses flammes lavera cette place Qui en calcinera les mottes de mes prisonniers rompra les fers. &raquo; XII Et si un chardon tout &eacute;plum&eacute; poussait l&agrave; par hasard, Se dressant au-dessus du lot,c&#39;&eacute;tait d&eacute;capit&eacute;, car l&#39;agrostide &eacute;tait jalouse ici. Qui avait creus&eacute; ces trous et ces crevasses dans les orties Et les feuilles bistr&eacute;es et r&ecirc;ches de la patience,qui avait tout r&eacute;duit en friche chaotique,tuant tout espoir De verdure? Une brute,&agrave; n&#39;en point douter,&agrave; l&#39;&acirc;me noire Soufflant toute vie comme une chandelle, telle une b&ecirc;te sans merci. XIII Quant &agrave; l&#39;herbe,elle poussait il est vrai aussi maigre que son pelage Frapp&eacute; de l&egrave;pre;des brins &eacute;pars per&ccedil;aient la boue Qui paraissait p&eacute;trie de sang par-dessous Une rosse aveugle,dont chaqe os saillait comme apr&egrave;s le carnage Se tenait en stupeur,frapp&eacute;e par un mirage, Chass&eacute;e du haras du Diable m&ecirc;me &agrave; grand renfort de coups! XIV Vivant? L&#39;anial &agrave; mes yeux pouvait avoir p&eacute;ri sans un pleur D&eacute;charn&eacute;,la carcasse saignant,et d&#39;un spectre ayant l&#39;air Il gardait les yeux clos sous une immonde crini&egrave;re Alliance incongrue du ridicule et de pareille douleur Jamais je ne vis brute auss digne d&#39;&ecirc;tre frapp&eacute;e de malheur Il fallait bien qu&#39;il f&ucirc;t mal&eacute;fique pour m&eacute;riter tel salaire. XV Je fermai les yeux et les ouvris sur mon c&oelig;ur Comme un homme commandant le vin avant d&#39;aller guerroyer J&#39;appelai de mes v&oelig;ux une rasade de visions plus heureuse du pass&eacute; Afin de retrouver l&#39;espoir de jouer mon r&ocirc;le en vainqueur. Penser d&#39;abord,et puis combattre tout l&#39;art du soldat,sa valeur, Car le go&ucirc;t furtif des temps anciens gu&eacute;rit de tout,vrai! XVI Pas cela! Je ne pus d&eacute;tacher mon regard incertain De la face rougie de Cuthbert,sous les boucles d&#39;or Cher compagnon,qui jadis f&acirc;ch&eacute; dans un ultime effort, Glissa,je le sentis,son beau bras sous le mien Car ainsi il &eacute;tait,tout sourrire,m&ecirc;me quand p&eacute;rit le Bien Et avec lui mon c&oelig;ur &agrave; peine &eacute;veill&eacute;,dans le souffle du cor. XVII Et donc,l&#39;&acirc;me de l&#39;honneur-le voici debout l&agrave;,si beau Aussi franc que dix ans plus t&ocirc;t,alors jeune chevalier, Qu&#39;un hommer loyal v&icirc;nt le d&eacute;fier (dit-il) il saurait l&#39;affronter Dans les bonnes r&egrave;gles -mais voil&agrave; que glisse la sc&egrave;ne- pouah! Quel bourreau A clou&eacute; sur son sein un vil parchemin? Et ses propres compa- gnons de fourreau De le lire. Pauvre tra&icirc;tre,jouet des crachats et des quolibets! XVIII Plut&ocirc;t ce pr&eacute;sent qu&#39;un pass&eacute; qui s&#39;offre tel: Me voil&agrave; de retour sur ma route assombrie! Aucun son,nulle vision aussi loin que l&#39;&oelig;il s&#39;enqu&icirc;t, Un hibou ou une chauve-souris,la nuit m&#39;enverra-t-elle? Implorais-je;quand soudain sur la terre plane et lugubre une image nouvelle Arr&ecirc;ta mes pens&eacute;es et le cours j&#39;en perdis. XIX En travers de ma route,soudain,une rivi&egrave;re, Tel le serpent surgit par surprise Mais point de marr&eacute;e paresseuse et douce,dans les t&eacute;n&egrave;bres grises. Celle-l&agrave; &eacute;cumait et e&ucirc;t pu satisfaire Le d&eacute;mon venu y baigner son sabot rougeoyant-&agrave; voir l&#39;ardente col&egrave;re, Des ses remours noirs &eacute;clabouss&eacute;s d&#39;&eacute;caillures et de mousse,o&ugrave; l&#39;on s&#39;enlise. XX Si insignifiante,et pourtant si venimeuse,sur ses berges aust&egrave;res De bas aulnes rabougris venaient s&#39;agenouiller pr&egrave;s de l&#39;eau agit&eacute;e Et saules d&eacute;tremp&eacute;s les jetant t&ecirc;te baiss&eacute;e En n mouvement de muet d&eacute;sespoir,foule suicidaire: Et le courant qui les torturait ainsi, nullement &eacute;mu par leur calvaire Suivait sa route,pas un instant perturb&eacute;. XXI Et tandis que je passais &agrave; gu&eacute;-par tous les saints, comme jecraignais De poser pied sur la joue de quelque cadavre ou moribond &Agrave; chaque pas,ou de sentir la lance de laquelle je sondais les fonds Pr&eacute;venant les &eacute;cueils,prisonier de sa chevelure ou de sa barbe serr&eacute;e Un rat d&#39;eau sns doute,que de mon b&acirc;ton je r&eacute;veillai Mais Die! Combien son cri rappelait le hurlement d&#39;un nourrisson. XXII Et je fus trop heureux de gagner la berge oppos&eacute;e Le pays parraissait plus cl&eacute;ment. Vain pr&eacute;sage! Qui &eacute;taient les combattants,quelle guerre menaient-ils, quel en &eacute;tait le visage Quel pi&eacute;tinement sauvage &eacute;tait venu &eacute;craser le sol d&eacute;tremp&eacute; En un frais clapotis?Crapauds en leur cuve empoisonn&eacute;e Ou chats sauvages dans ler rougeoyante cage- XXIII Ainsi paraissaient les traces d&#39;un antique combat en ce d&eacute;cor sauvage Qui les confiniat l&agrave;,quand toute la plaine s&#39;offrait &agrave; eux? Nulle trace de pas ne menait &agrave; ce miaulement v&eacute;n&eacute;neux Aucune ne s&#39;en &eacute;loignait. Immonde saumure &agrave; l&#39;ouvrage Leur cerveau,nul doute, comme le Turc son gal&eacute;rien, qu&#39;il a fait esclave Appelle son divertissement,Chr&eacute;tiens contre Juifs, en un combat odieux. XXIV Et plus que cela-&agrave; un furlong-si pr&egrave;s,juste l&agrave;,vraiment! &Agrave; quel funeste usage ce moteur,cette roue &eacute;taient-ils r&eacute;serv&eacute;s? Ou plut&ocirc;t ce frein-cett herse faite pour tourner, Pour rouler et filer les cadavres comme la soie, avec l&#39;air insouciant De l&#39;outil du Tophet,laiss&eacute; sur terre comme par &eacute;garement Ou pour aff&ucirc;ter ces dents rouill&eacute;es d&#39;acier. XXV Puis apparut une lande pi&eacute;tin&eacute;e,jadis un bois &eacute;trange, Puis mar&eacute;cage semblait-il,et enfin simple terre d&eacute;sol&eacute;e Et st&eacute;rile (l&#39;idiot y trouvera une raison de se gausser &Agrave; cr&eacute;er une chose,puis &agrave; la g&acirc;ter, jusqu&#39;&agrave; ce que d&#39;humeur il change Et le voil&agrave; reparti!);en un quart d&#39;arpent,sombre m&eacute;lange De marais,d&#39;argile et de d&eacute;combres, et de d&eacute;solation am&egrave;re et d&eacute;peupl&eacute;e. XXVI D&#39;imprudentes taches,d&#39;un gris sinistre color&eacute;es Des aplats o&ugrave; le sol ras,maigre pitance Laissait place &agrave; la mousse,pareille &agrave; des furoncles, abjectes substances Puis surgit un ch&ecirc;ne paralys&eacute;,en son sein une profonde fissure creus&eacute;e Telle une bouche distordue,fendue,d&eacute;chir&eacute;e Suffoquant,aspirant la mort,et mourant dans une ultime transe. XXVII Et toujours aussi loin de la fin! Rien d&#39;autre &agrave; l&#39;horizon que le cr&eacute;puscule, rien qui vienne l&#39;&oelig;il rassurer Ou le pas guider! &Agrave; cette pens&eacute;e, Je vis un grand corbeau,ami du c&oelig;ur d&#39;Apollyon,</p>\r\n', '2018-12-11', 1),
+(6, 54, '2018-10-29', 'assets/site/img/articles/Lighthouse.jpg', 'un titre ?', '<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n\r\n<p>lorem ipsum.............................................................</p>\r\n\r\n<p>..............................................................................................</p>\r\n\r\n<p>.............................................................................................</p>\r\n\r\n<p>etc etc et bla bla...............................................................</p>\r\n', '2019-01-29', 1),
 (8, 56, '2018-09-28', 'assets/site/img/articles/Hydrangeas.jpg', 'bon on voit ça', '<p>En l&#39;an 2100, la Terre, &eacute;touff&eacute;e par une population grandissante, envoie onze immenses&nbsp;<a href="https://fr.wikipedia.org/wiki/Vaisseau_g%C3%A9n%C3%A9rationnel">vaisseaux g&eacute;n&eacute;rationnels</a>&nbsp;pour coloniser l&#39;espace.</p>\r\n\r\n<p>Trois si&egrave;cles plus tard, ils sont d&eacute;couverts par les Ildirans, un ancien peuple ma&icirc;trisant le&nbsp;<a href="https://fr.wikipedia.org/wiki/Vitesse_supraluminique_dans_la_science-fiction">voyage spatial supra-luminique</a>.</p>\r\n\r\n<p>Les extraterrestres bienveillants offrent aux humains cette technologie, permettant la colonisation rapide de tout le bras spiral.</p>\r\n\r\n<p>Apr&egrave;s la d&eacute;couverte d&#39;une arme cr&eacute;&eacute;e par une civilisation &eacute;teinte, les Klikiss, les humains enflamment une g&eacute;ante gazeuse, Oncier, sans se douter qu&#39;ils r&eacute;veillent par l&agrave; une ancienne guerre d&rsquo;ampleur galactique et tac</p>\r\n', NULL, 1);
 
 -- --------------------------------------------------------
@@ -301,7 +301,7 @@ CREATE TABLE `home` (
 --
 
 INSERT INTO `home` (`id_home`, `id_pages`, `intro`, `photo1`, `path1`, `title1`, `p1`, `type1`, `assos_id1`, `photo2`, `path2`, `title2`, `p2`, `type2`, `assos_id2`, `photo3`, `path3`, `title3`, `p3`, `type3`, `assos_id3`, `photo4`, `path4`, `title4`, `p4`, `type4`, `assos_id4`, `photo5`, `path5`, `title5`, `p5`, `type5`, `assos_id5`) VALUES
-(1, 1, '<p>Afin que le site ai de la gueule on a claqu&eacute; un carroussel de photo sur la page d&#39;acceuil !<br />\r\nY&#39;a plus qu&#39;&agrave; cliquer sur la photo qui t&#39;inter&egrave;sse et t&#39;arrive sur la page qui va bien.<br />\r\nC&#39;est pas beau la vie ? et l&agrave;</p>\r\n', 'assets/site/img/background/elus.jpg', 'pages/elus/', 'un test de modif du carroussel2', 'et bim ça marche!!! enfin je crois', 1, 3, 'assets/site/img/articles/semimolle.JPG', 'pages/lesactus/#le-titre', '2eme photo', '', 0, 1, 'assets/site/img/articles/Hydrangeas.jpg', 'pages/testdepagearticle/#bon-on-voit-ça', 'Point sur les travaux du pont de Courrières', 'C\'est fini!!', 0, 8, '', '', '', '', NULL, NULL, '', '', '', '', NULL, NULL);
+(1, 1, '<p>Afin que le site ai de la gueule on a claqu&eacute; un carroussel de photo sur la page d&#39;acceuil !<br />\r\nY&#39;a plus qu&#39;&agrave; cliquer sur la photo qui t&#39;inter&egrave;sse et t&#39;arrive sur la page qui va bien.<br />\r\nC&#39;est pas beau la vie ? et l&agrave;</p>\r\n', 'assets/site/img/background/elus.jpg', 'pages/elus/', 'un test de modif du carroussel2', 'et bim ça marche!!! enfin je crois', 1, 3, 'assets/site/img/articles/Lighthouse.jpg', 'pages/lesactus/#le-titre', '2eme photo', '', 0, 1, 'assets/site/img/articles/Hydrangeas.jpg', 'pages/testdepagearticle/#bon-on-voit-ça', 'Point sur les travaux du pont de Courrières', 'C\'est fini!!', 0, 8, '', '', '', '', NULL, NULL, '', '', '', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -324,9 +324,8 @@ CREATE TABLE `menu` (
 
 INSERT INTO `menu` (`id_menu`, `nom`, `ordre`, `visible`, `path`, `couleur`) VALUES
 (5, 'Ma démocratie', 3, 1, 'pages/elus/', '#006666'),
-(2, 'Vos Services', 5, 0, '', '#663399'),
 (4, 'Mon portail famille', 4, 1, '', '#FF33CC'),
-(3, 'Mes temps libres', 2, 1, '', '#FF0000'),
+(3, 'Mes temps libres', 2, 1, '', '#6699FF'),
 (1, 'Ma ville', 1, 1, '', '#CC9933'),
 (6, 'Nous contacter', 6, 0, '', '#330033');
 
@@ -354,7 +353,7 @@ INSERT INTO `pages` (`id_pages`, `nom`, `titre`, `soustitre`, `background`, `typ
 (2, 'urbanisme-et-logement', 'Urbanisme et logement', '', 'assets/site/img/background/Urbanisme-logement-plan.jpg', 'text'),
 (3, 'elus', 'Vos Elus', '', 'assets/site/img/background/elus.jpg', 'bulle'),
 (4, 'accueil', 'L\'Accueil', '', 'assets/site/img/background/mairie.jpg', 'bulle'),
-(5, 'arretes-municipaux', 'Les arrêtés municipaux', '', 'assets/site/img/background/Arrêtés-municipaux.jpg', 'arretes-municipaux'),
+(5, 'arretes-municipaux', 'Les arrêtés municipaux', '', 'assets/site/img/background/Arrêtés-municipaux.jpg', 'formulaire'),
 (6, 'deliberations', 'Comptes-rendus du conseil municipal', '', 'assets/site/img/background/Délibérations-du-conseil-municipal.jpg', 'deliberations'),
 (7, 'environnement', 'Environnement', '', 'assets/site/img/background/Environnement.jpg', 'text'),
 (8, 'histoire', 'L\'histoire locale', '', 'assets/site/img/background/Histoire-locale.jpg', 'text'),
@@ -366,7 +365,7 @@ INSERT INTO `pages` (`id_pages`, `nom`, `titre`, `soustitre`, `background`, `typ
 (56, 'testdepagearticle', 'bla', 'lmjgdfgjdfljg', 'assets/site/img/background/Desert.jpg', 'article'),
 (58, 'test-de-sans', 'bla', '', 'assets/site/img/background/Hydrangeas.jpg', 'sans'),
 (61, 'sport', 'bla', '', 'assets/site/img/background/IMG_0799.JPG', 'carroussel'),
-(74, 'test-de-doc-2', 'bla', 'lmjgdfgjdfljg', 'assets/site/img/background/haaa.JPG', 'document');
+(91, 'test-de-form', 'bla', '', 'assets/site/img/background/Chrysanthemum.jpg', 'formulaire');
 
 -- --------------------------------------------------------
 
@@ -433,28 +432,18 @@ CREATE TABLE `sousmenu` (
 --
 
 INSERT INTO `sousmenu` (`id_sousmenu`, `nom`, `menu`, `ordre`, `visible`, `path`, `no3level`) VALUES
-(1, 'Accueil de la mairie', 'Ma ville', 1, 1, 'pages/accueil/', 1),
-(2, 'Démocratie Locale', 'Votre Mairie', 2, 1, '', 0),
-(3, 'Vivre à Oignies', 'Votre Mairie', 3, 1, '', 0),
-(5, 'Les services techniques', 'Ma ville', 2, 1, '', 1),
-(6, 'La police municipale', 'Mes temps libres', 1, 1, '', 1),
-(7, 'Scolaire et périscolaire', 'Ma ville', 4, 1, '', 1),
-(8, 'Social et santé', 'Ma ville', 5, 1, '', 0),
-(9, 'Culture', 'Ma ville', 3, 1, '', 0),
-(10, 'Le journal Municipal', 'Actualités', 1, 0, '', 1),
-(11, 'Les actus de la ville', 'Actualités', 3, 1, 'pages/lesactus/', 1),
-(12, 'la ville se modernise (nouvelle page Facebook)', 'Actualités', 2, 0, '', 1),
-(13, 'Abonnement newsletter', 'Votre Mairie', 4, 1, '', 1),
-(14, 'Vie associative', 'Vie locale', 1, 1, 'pages/testouillebull/', 0),
-(15, 'Vie économique', 'Vie locale', 1, 1, '', 0),
-(16, 'Transport en commun et scolaires', 'Infos pratiques', 2, 0, '', 1),
-(17, 'Collecte des déchets', 'Infos pratiques', 4, 0, '', 1),
-(18, 'location de salle 2', 'Votre Mairie', 1, 0, '', 1),
-(19, 'En cas d\'urgence...', 'Infos pratiques', 3, 0, '', 1),
-(20, 'Sécurité, secours et santé', 'Infos pratiques', 5, 1, '', 0),
-(4, 'Etat civil', 'Ma ville', 0, 1, '', 1),
-(34, 'essai 2', 'Infos pratiques', 6, 0, '', 0),
-(35, 'Roussel', 'Actualités', 4, 0, '', 1);
+(1, 'Vos démarches', 'Ma ville', 0, 1, 'pages/accueil/', 0),
+(5, 'Mes associations', 'Mes temps libres', 2, 1, '', 0),
+(6, 'Mes commerces', 'Mes temps libres', 1, 1, '', 0),
+(40, 'Les compte-rendus', 'Ma démocratie', 2, 1, '', 1),
+(9, 'Culture', 'Mes temps libres', 3, 1, '', 0),
+(39, 'Le Conseil Municipal', 'Ma démocratie', 1, 1, 'pages/elus/', 1),
+(4, 'Cadre de vie', 'Ma ville', 4, 1, '', 0),
+(45, 'Développement urbain', 'Ma ville', 2, 1, '', 0),
+(42, 'Les quartiers', 'Ma démocratie', 4, 1, '', 1),
+(38, 'Mes festivités', 'Mes temps libres', 4, 1, '', 0),
+(41, 'Le comité citoyen', 'Ma démocratie', 3, 1, '', 0),
+(44, 'Ville propre', 'Ma ville', 1, 1, '', 0);
 
 -- --------------------------------------------------------
 
@@ -522,25 +511,46 @@ INSERT INTO `third_level` (`id_third`, `nom`, `menu`, `sousmenu`, `ordre`, `visi
 (1, 'Vos Elus', 'Votre Mairie', 'Démocratie Locale', 1, 0, ''),
 (2, 'Les arrêtés municipaux', 'Votre Mairie', 'Démocratie Locale', 2, 1, 'pages/arretes-municipaux/'),
 (3, 'Les délibérations du conseil municipal', 'Votre Mairie', 'Démocratie Locale', 3, 1, 'pages/deliberations/'),
-(5, 'La maison d\'acceuil et d\'aide à l\'insertion (MAI)', 'Ma ville', 'Social et santé', 2, 0, ''),
-(6, 'La Roseraie foyer de personnes agées', 'Ma ville', 'Social et santé', 3, 1, ''),
-(7, 'Le béguinage Camille Delabre', 'Ma ville', 'Social et santé', 4, 1, ''),
-(8, 'Les locaux de quartier', 'Ma ville', 'Social et santé', 5, 1, ''),
+(51, 'Participer', 'Ma démocratie', 'Le comité citoyen', 3, 1, ''),
+(52, 'Carnaval', 'Mes temps libres', 'Mes festivités', 1, 1, ''),
+(53, 'Noël Magique', 'Mes temps libres', 'Mes festivités', 2, 1, ''),
+(54, '14 juillet', 'Mes temps libres', 'Mes festivités', 3, 0, ''),
 (9, 'Histoire locale', 'Votre Mairie', 'Vivre à Oignies', 3, 1, 'pages/histoire/'),
 (10, 'Environnement', 'Votre Mairie', 'Vivre à Oignies', 1, 1, 'pages/environnement/'),
 (11, 'Urbanisme et logement', 'Votre Mairie', 'Vivre à Oignies', 2, 1, 'pages/urbanisme-et-logement/'),
-(12, 'Le centre Mozart (école de musique)', 'Ma ville', 'Culture', 4, 1, ''),
-(13, 'La bibliothèque municipale', 'Ma ville', 'Culture', 3, 1, ''),
-(14, 'Le centre Denis Papin', 'Ma ville', 'Culture', 1, 1, 'pages/test-de-doc-2/'),
-(15, 'Le Métaphone', 'Ma ville', 'Culture', 2, 0, ''),
-(16, 'Associations culturelles', 'Vie locale', 'Vie associative', 2, 0, ''),
-(17, 'Associations sportives', 'Vie locale', 'Vie associative', 1, 1, 'pages/sport/'),
-(18, 'Associations loisirs et autres', 'Vie locale', 'Vie associative', 3, 1, ''),
-(19, 'Les commerçants', 'Vie locale', 'Vie économique', 2, 0, ''),
-(20, 'Professions médicales et paramédicales', 'Vie locale', 'Vie économique', 1, 0, ''),
-(21, 'L\'opération tranquilité vacances', 'Infos pratiques', 'Sécurité, secours et santé', 1, 1, ''),
-(22, 'Le centre des Hautois', 'Infos pratiques', 'essai 2', 1, 0, ''),
-(4, 'Le centre social d\'action communale (CCAS)', 'Ma ville', 'Social et santé', 1, 1, '');
+(57, 'Loisir', 'Mes temps libres', 'Mes associations', 3, 1, ''),
+(58, 'Agences immobilières', 'Mes temps libres', 'Mes commerces', 1, 1, ''),
+(75, 'Mes élections : s’inscrire sur des listes électorales', 'Ma ville', 'Vos démarches', 2, 1, ''),
+(74, 'Etat civil : service-public', 'Ma ville', 'Vos démarches', 1, 1, ''),
+(73, 'Commerces : le FISAC', 'Ma ville', 'Cadre de vie', 4, 1, ''),
+(72, 'Commerces : implanter son activité', 'Ma ville', 'Cadre de vie', 3, 1, ''),
+(71, 'infrastructures associatives', 'Ma ville', 'Cadre de vie', 2, 1, ''),
+(49, 'Qu\'est-ce que c\'est', 'Ma démocratie', 'Le comité citoyen', 1, 1, ''),
+(50, 'Les projets', 'Ma démocratie', 'Le comité citoyen', 2, 1, ''),
+(70, 'Ma mairie : infrastructures municipales, services municipaux', 'Ma ville', 'Cadre de vie', 1, 1, ''),
+(59, 'Auto Ecoles', 'Mes temps libres', 'Mes commerces', 2, 1, ''),
+(55, 'Créer son association à Oignies', 'Mes temps libres', 'Mes associations', 1, 1, ''),
+(56, 'Sportives', 'Mes temps libres', 'Mes associations', 2, 1, ''),
+(60, 'Bar - Brasseries - Restaurants', 'Mes temps libres', 'Mes commerces', 3, 1, ''),
+(61, 'Boucheries - Charcuteries', 'Mes temps libres', 'Mes commerces', 4, 1, ''),
+(62, 'Boulangeries - Pâtisseries', 'Mes temps libres', 'Mes commerces', 5, 1, ''),
+(63, 'Chauffagistes', 'Mes temps libres', 'Mes commerces', 6, 1, ''),
+(64, 'Coiffeurs - Centres esthétiques', 'Mes temps libres', 'Mes commerces', 7, 1, ''),
+(65, 'Décoration', 'Mes temps libres', 'Mes commerces', 8, 1, ''),
+(66, 'Epiceries -Supermarchés', 'Mes temps libres', 'Mes commerces', 9, 1, ''),
+(67, 'Fleuristes', 'Mes temps libres', 'Mes commerces', 10, 1, ''),
+(68, 'Garage - Mécanique', 'Mes temps libres', 'Mes commerces', 11, 1, ''),
+(69, 'Laveries - Pressing', 'Mes temps libres', 'Mes commerces', 12, 1, ''),
+(76, 'Collecte des déchets', 'Ma ville', 'Ville propre', 1, 1, ''),
+(77, 'Stop déchets', 'Ma ville', 'Ville propre', 2, 1, ''),
+(78, 'Encombrants', 'Ma ville', 'Ville propre', 3, 1, ''),
+(79, 'Le mobilier urbain', 'Ma ville', 'Ville propre', 4, 1, ''),
+(80, 'Service urbanisme', 'Ma ville', 'Développement urbain', 1, 1, ''),
+(81, 'Permis de construire', 'Ma ville', 'Développement urbain', 2, 1, ''),
+(82, 'PLU (Plan local d\'Urbanisme)', 'Ma ville', 'Développement urbain', 3, 1, ''),
+(83, '9-9Bis', 'Mes temps libres', 'Culture', 1, 1, ''),
+(84, 'Ecole de musique', 'Mes temps libres', 'Culture', 2, 1, ''),
+(85, 'Bibliothèque', 'Mes temps libres', 'Culture', 3, 1, '');
 
 -- --------------------------------------------------------
 
@@ -573,30 +583,6 @@ INSERT INTO `travaux` (`id_travaux`, `adresse`, `latitude`, `longitude`, `date_e
 (7, '\'rue lamendin\'', 50.4664, 2.99146, '0000-00-00', '\'Lundi 13 Août\'', '\'Vendredi 31 Août (selon aléas)\'', '\'Goupe Colas\'', '\'La mairie\'', '"<a href=\'https://www.facebook.com/GroupeColas/\' onclick=\'window.open(this.href); return false;\'> facebook Colas</a>"', '\'Pour faciliter l’exécution des travaux, la circulation et le stationnement seront interdits sur le parking de 7h00 à 18h00. \''),
 (8, '\'mairie\'', 50.4685, 2.9918, '0000-00-00', '\'25 septembre 2018\'', '\'30 septembre 2018\'', '\'moi\'', '\'test\'', '\'0300020508\'', '\'bla bla bla \''),
 (9, '\'18 rue ferdinand pantigny\'', 50.4651, 2.99197, '0000-00-00', '\'Lundi 13 Août\'', '\'Vendredi 31 Août (selon aléas)\'', '\'Goupe Colas\'', '\'test\'', '\'0300020508\'', '\'pour voir\'');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `user`
---
-
-CREATE TABLE `user` (
-  `id_user` int(10) NOT NULL,
-  `nom` varchar(100) NOT NULL,
-  `prenom` varchar(100) NOT NULL,
-  `password` varchar(256) NOT NULL,
-  `date_enregistrement` datetime NOT NULL,
-  `photo` varchar(256) NOT NULL,
-  `type` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Contenu de la table `user`
---
-
-INSERT INTO `user` (`id_user`, `nom`, `prenom`, `password`, `date_enregistrement`, `photo`, `type`) VALUES
-(4, 'test', 'test', '8e09afecaf94f5dd2fb2ea8f902c9cb05315b0ecbbd760906ee3ecfdffd42230770a8fe427f1db37fe5f47682d760b5e2d453e5e032d5e1c7544bdc39f08ae392OWMvKGBEVz5VQqx52Bg7dCBKsi68OWR9ah+B3wYUlA=', '2018-10-04 10:34:50', 'assets/cms/user/haaa.JPG', 'Administrateur'),
-(5, 'Roussel', 'Loic', '8d13ed19967f722ad1ad303c01c6f54c72a5b8559bcefbe16e97ae3b81f12d2cd33a76c0c32f78854dd79c717aac4c21518d7e7fda46eae32c53d72f7ab3716bj0OyJOlcy2SbflrM1coaflg6kIQM3njipXPKBHvsmq4=', '2018-10-05 16:03:48', 'assets/cms/user/IMG_20180926_095006.jpg', 'Administrateur');
 
 --
 -- Index pour les tables exportées
@@ -713,12 +699,6 @@ ALTER TABLE `travaux`
   ADD PRIMARY KEY (`id_travaux`);
 
 --
--- Index pour la table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
-
---
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -776,7 +756,7 @@ ALTER TABLE `menu`
 -- AUTO_INCREMENT pour la table `pages`
 --
 ALTER TABLE `pages`
-  MODIFY `id_pages` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id_pages` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
 --
 -- AUTO_INCREMENT pour la table `rapide`
 --
@@ -791,7 +771,7 @@ ALTER TABLE `sans`
 -- AUTO_INCREMENT pour la table `sousmenu`
 --
 ALTER TABLE `sousmenu`
-  MODIFY `id_sousmenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_sousmenu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 --
 -- AUTO_INCREMENT pour la table `text`
 --
@@ -801,17 +781,12 @@ ALTER TABLE `text`
 -- AUTO_INCREMENT pour la table `third_level`
 --
 ALTER TABLE `third_level`
-  MODIFY `id_third` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_third` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 --
 -- AUTO_INCREMENT pour la table `travaux`
 --
 ALTER TABLE `travaux`
   MODIFY `id_travaux` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
---
--- AUTO_INCREMENT pour la table `user`
---
-ALTER TABLE `user`
-  MODIFY `id_user` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
