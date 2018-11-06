@@ -60,7 +60,7 @@ class Form_model extends CI_Model {
                 for($deb; $deb <= $n; $deb++){
                     $str1 = "ALTER TABLE formulaire ADD type".$deb." VARCHAR(100)";
                     $this->db->query($str1);
-                    $str2 = "ALTER TABLE formulaire ADD champ".$deb." VARCHAR(256)";
+                    $str2 = "ALTER TABLE formulaire ADD champ".$deb." TEXT";
                     $this->db->query($str2);
                     $str3 = "ALTER TABLE formulaire ADD ob".$deb." BOOLEAN";
                     $this->db->query($str3);
