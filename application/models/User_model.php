@@ -4,8 +4,7 @@ class User_model extends CI_Model {
         //constructeur charge la classe permettant l'interrogation de la base de données
         public function __construct()
         {
-                $this->load->database();
-                $this->load->library('encryption');
+                $this->load->database();                
                 $this->load->library('session');
                 
         }
@@ -67,7 +66,7 @@ class User_model extends CI_Model {
              }
             $mail = $this->input->post('mail');
             $type = $this->input->post('selectUser'); 
-            $hash = $this->encryption->encrypt($mdp);
+            $hash = password_hash($mdp,PASSWORD_DEFAULT);
             $array = ['nom' => $nom, 'prenom' => $prenom, 'password' => $hash,'photo'=> $photo,'type' => $type, 'mail' => $mail];
             $this->db->set('date_enregistrement','NOW()',false);
             $this->db->insert('user',$array);
@@ -84,8 +83,9 @@ class User_model extends CI_Model {
                 $nom = $this->input->post('nomUser');
                 $prenom = $this->input->post('prenomUser');
                 $mail = $this->input->post('mail');
-                $type = $this->input->post('selectUser'); 
-                $hash = $this->encryption->encrypt($this->input->post('mdpUser'));
+                $type = $this->input->post('selectUser');
+                $mdp =  $this->input->post('mdpUser');
+                $hash = password_hash($mdp,PASSWORD_DEFAULT);
                 $select = $this->input->post('radioU');
                 if($select == 'Non'){
                      //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
@@ -132,8 +132,9 @@ class User_model extends CI_Model {
             if($verif){
                 return false;
             }else{
-                /*$hash = $this->encryption->decrypt($result['password']);
-                if($hash == $mdp){*/
+                $hash = $result['password'];
+                $mdp_verfification = password_verify($mdp, $hash);
+                if($mdp_verfification){
                     if($bool){
                         $this->session->set_userdata('__ci_last_regenerate',time());
                         $this->session->set_userdata('logged_in',TRUE);
@@ -142,9 +143,9 @@ class User_model extends CI_Model {
                     $this->session->set_userdata($dataUser);
                     }
                     return true;
-                /*}else{
+                }else{
                     return false;
-                }*/            
+                }            
             }
         }
 
@@ -155,7 +156,7 @@ class User_model extends CI_Model {
             $message = "<h1>Bonjour ".$user['prenom']." ".$user['nom']."</h1><br><br><br> Suite à votre demande de réinitialisation de mot de passe nous vous conseillons de modifier celui-ci après vous
             être cconnecter.<br><br><br> Votre nouveau mot de passe est :<br><br><br><h3>".$mdp;"</h3><br><br><br<br>Passez une bonne journée.";
 
-            $user['password'] = $this->encryption->encrypt($mdp);
+            $user['password'] = password_hash($mdp,PASSWORD_DEFAULT);
             $this->db->replace('user',$user);
            
             $this->load->library('email');

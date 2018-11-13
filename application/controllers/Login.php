@@ -11,7 +11,7 @@ class Login extends CI_Controller
         
     }
 
-    //construit la page d'Acceuil
+    //construit la page de log
     public function index()
     {   
         $data['user'] = $this->session->userdata('username');

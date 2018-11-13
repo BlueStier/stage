@@ -93,19 +93,7 @@ class Pages extends CI_Controller {
                 }              
                 $page = 'formulaire';
                   
-        }
-
-        
-        
-        if($page == 'arretes-municipaux'){
-                $this->load->model('ArretesMunicipaux_model');
-                $data['arretes'] = $this->ArretesMunicipaux_model->get_arretes();
-                $page = 'arretes-municipaux';  
-        }
-        if($page == 'deliberations'){
-                $this->load->model('Deliberations_model');
-                $data['deliberations'] = $this->Deliberations_model->get_deliberations();
-        }
+        }    
        
         if ( ! file_exists(APPPATH.'views/pages/'.$page.'.php'))
         {
@@ -113,9 +101,9 @@ class Pages extends CI_Controller {
                 show_404();
         }
 
-        $this->load->view('header/index2',$data);
+        $this->load->view('templates/header',$data);
         $this->load->view('pages/'.$page,$data);
-        $this->load->view('templates/footer2');
+        $this->load->view('templates/footer');
         
 }
 
