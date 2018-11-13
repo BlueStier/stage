@@ -52,9 +52,10 @@
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Adresse mail :</label>
-                  <div class="col-sm-10">
-                  <input type="email" class="form-control" name="mail" placeholder="Adresse mail @oignies.fr" required>
+                  <div class="col-sm-4">
+                  <input type="text" class="form-control" name="mail" placeholder="ex: nom.prenom" required>
                   </div>
+                  <div class="col-sm-2">@oignies.fr</div>
                 </div>
 
 </div>

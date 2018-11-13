@@ -62,12 +62,13 @@
                 <option>Modérateur</option>                
                 </select>
                 </div>
-                </div>
+                </div>                
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Adresse mail :</label>
-                  <div class="col-sm-10">
-                  <input type="email" class="form-control" name="mail" value="<?php echo $user_by_id['mail']; ?>" required>
+                  <div class="col-sm-4">
+                  <input type="text" class="form-control" name="mail" value="<?php echo substr($user_by_id['mail'],0,-11); ?>" required>
                   </div>
+                  <div class="col-sm-2">@oignies.fr</div>
                 </div>
 </div>
 </div>

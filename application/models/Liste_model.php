@@ -65,7 +65,11 @@ class Liste_model extends CI_Model {
 
             for($i = 1; $i <= $nb_item; $i++){
                 $array["titreitem".$i] = $this->input->post($nb_liste."titreitem".$i);
-                $array["mailitem".$i] = $this->input->post($nb_liste."mailitem".$i);                
+                $mailitem = $this->input->post($nb_liste."mailitem".$i);
+                if(!empty($mailitem)){
+                    $array["mailitem".$i] = $this->input->post($nb_liste."mailitem".$i). "@oignies.fr";
+                }else{
+                $array["mailitem".$i] = "";}                
             }
              
             //et on l'injecte en BDD                     

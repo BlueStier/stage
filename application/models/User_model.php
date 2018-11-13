@@ -64,7 +64,7 @@ class User_model extends CI_Model {
                      $photo = 'assets/cms/user/'.$data['upload_data']['orig_name'];                                        
                      
              }
-            $mail = $this->input->post('mail');
+            $mail = $this->input->post('mail').'@oignies.fr';
             $type = $this->input->post('selectUser'); 
             $hash = password_hash($mdp,PASSWORD_DEFAULT);
             $array = ['nom' => $nom, 'prenom' => $prenom, 'password' => $hash,'photo'=> $photo,'type' => $type, 'mail' => $mail];
@@ -82,7 +82,7 @@ class User_model extends CI_Model {
             $user = User_model::get_user($id);         
                 $nom = $this->input->post('nomUser');
                 $prenom = $this->input->post('prenomUser');
-                $mail = $this->input->post('mail');
+                $mail = $this->input->post('mail').'@oignies.fr';
                 $type = $this->input->post('selectUser');
                 $mdp =  $this->input->post('mdpUser');
                 $hash = password_hash($mdp,PASSWORD_DEFAULT);

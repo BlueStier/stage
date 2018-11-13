@@ -271,15 +271,15 @@ function nom(nb) {
             adrMail.appendChild(text_mail);
 
             var divcol2 = document.createElement('div');
-            divcol2.setAttribute('class', 'col-sm-3');
+            divcol2.setAttribute('class', 'col-sm-2');
 
             var inputMail = document.createElement('input');
             inputMail.setAttribute('class', 'form-control');
             inputMail.setAttribute('name', numero + 'mailitem1');
-            inputMail.setAttribute('placeholder', 'facultatif@oignies.fr');
-
+            inputMail.setAttribute('placeholder', 'service.facultatif');
+            var text_mail_dest = document.createTextNode("@oignies.fr");            
             divcol2.appendChild(inputMail);
-
+            
 
             //les élément de la div formgroup sont créés on assemble
             formgroup.appendChild(nb_item_by_liste);
@@ -287,6 +287,7 @@ function nom(nb) {
             formgroup.appendChild(divcol1);
             formgroup.appendChild(adrMail);
             formgroup.appendChild(divcol2);
+            formgroup.appendChild(text_mail_dest);
 
             //construction de la div final
             liste.appendChild(span);
@@ -413,13 +414,13 @@ function liste(n) {
     adrMail.appendChild(text_mail);
 
     var divcol2 = document.createElement('div');
-    divcol2.setAttribute('class', 'col-sm-3');
+    divcol2.setAttribute('class', 'col-sm-2');
 
     var inputMail = document.createElement('input');
     inputMail.setAttribute('class', 'form-control');
     inputMail.setAttribute('name', n + 'mailitem' + idform);
-    inputMail.setAttribute('placeholder', 'facultatif@oignies.fr');
-
+    inputMail.setAttribute('placeholder', 'service.facultatif');
+    var text_mail_dest = document.createTextNode("@oignies.fr   ");
     divcol2.appendChild(inputMail);
 
     var butSup = document.createElement('a');
@@ -434,6 +435,7 @@ function liste(n) {
     formgroup.appendChild(divcol1);
     formgroup.appendChild(adrMail);
     formgroup.appendChild(divcol2);
+    formgroup.appendChild(text_mail_dest);
     formgroup.appendChild(butSup);
 
     //construction de la div final

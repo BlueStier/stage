@@ -856,6 +856,8 @@ class Cms extends CI_Controller
         $data['id_user'] = $this->session->userdata('id');
         $data['mail'] = $this->session->userdata('mail');
         $data['user_by_id'] = $this->User_model->get_user($id);
+        $this->load->model('Articles_model');
+        $data['alerte'] = $this->Articles_model->findAlert();
         $this->load->view('cms/header',$data);
         $this->load->view('cms/left_menu',$data);
         $this->load->view('cms/updateUser',$data);
