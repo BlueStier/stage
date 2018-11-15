@@ -29,7 +29,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'bulle'){
                 $this->load->model('Bulles_model');
                 $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-                $page = 'bulle2';  
+                $page = 'bulle';  
         }
         if($pagestab['type'] == 'text'){
                 $this->load->model('Text_model');
@@ -44,7 +44,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'home'){
                 $this->load->model('Home_model');
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-                $page = 'home2';  
+                $page = 'home';  
         }
         if($pagestab['type'] == 'carroussel'){
                 $this->load->model('Carroussel_model');
@@ -70,7 +70,7 @@ class Pages extends CI_Controller {
                 foreach($data['folder']as $f):
                     $data['file'][$f] =  $this->Document_model->read_all_files($pathname.'/'.$f);
                 endforeach;
-                $page = 'document2';          
+                $page = 'document';          
         } 
         if($pagestab['type'] == 'formulaire'){
                 $this->load->model('Form_model');

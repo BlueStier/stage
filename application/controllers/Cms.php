@@ -147,6 +147,16 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
             
         }
+        if($id == 13){
+            $this->load->model('Bddcit_model');
+            $data['nb'] = 13;
+            $data['citoyen'] = $this->Bddcit_model->get_cit();                                                      
+            $this->load->view('cms/header',$data);
+            $this->load->view('cms/left_menu',$data);
+            $this->load->view('cms/citoyen',$data);
+            $this->load->view('cms/footer');
+            
+        }
     }
 
     //appel la fonction du model de suppression 

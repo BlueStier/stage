@@ -17,56 +17,44 @@ for($i = 1;$i<=5;$i++){
 endforeach;
 $size = sizeof($tab);
 ?>
-<div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-      <?php echo $intro ?>
-      </div>
-      </div>
-<div class="row justify-content-center">
-<div class="col-lg-6 col-sm-12 ">
-      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">  
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <?php /*on affiche le nombre de slide*/ 
+			
+<div class="row">
+	<div class="col">
+		<div class="text-center" >
+			<?php echo $intro; ?>
+		</div>
+	</div>
+</div>
+
+		<br>
+		<div class="home">
+		<!-- Hero Slider -->
+		<div class="hero_slider_container">
+			<div class="hero_slider owl-carousel">
+				<?php  /*on affiche le nombre de slide*/ 
     for($a = 1; $a < $size; $a++){?>
-    <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $a; ?>"></li>
-    <?php } ?>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <a href="<?php echo base_url().$tab['slide1']['path']; ?>"><img class="d-block w-100" src="<?php echo base_url().$tab['slide1']['photo']; ?>" alt="First slide"></a>
-      <div class="carousel-caption d-none d-md-block">
-      <h5><?php echo $tab['slide1']['title']; ?></h5>
-      <p><?php echo $tab['slide1']['p']; ?></p>
-  </div>
-    </div>
-    <?php /*on affiche les autres slides*/ 
-    for($b = 2; $b <= $size; $b++){?>
-    <div class="carousel-item">
-        <a href="<?php echo base_url().$tab['slide'.$b]['path']; ?>"><img class="d-block w-100" src="<?php echo base_url().$tab['slide'.$b]['photo']; ?>" alt="First slide"></a>
-        <div class="carousel-caption d-none d-md-block">
-        <h5><?php echo $tab['slide'.$b]['title']; ?></h5>
-        <p><?php echo $tab['slide'.$b]['p']; ?></p>
-  </div>
-    </div>
-    <?php } ?>   
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div> 
-</div>
-</div>
-</div>
-<br>
-  
-   
-  
-    
- 
+				
+				<!-- Hero Slide -->
+				<div class="hero_slide">
+					<div class="hero_slide_background" style="background-image:url(<?php echo base_url().$tab['slide'.$a]['photo']; ?>)"></div>
+					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
+						<div class="hero_slide_content text-center">
+						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
+							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['title']; ?></h1>
+							<h2 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['p']; ?></h2>
+						</a>
+						</div>
+					</div>
+				</div>
+	<?php } ?>		
+			</div>
+
+			<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
+			<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
+		</div>
+
+	</div>
+
+
+
+	

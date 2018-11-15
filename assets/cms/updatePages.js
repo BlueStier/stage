@@ -195,7 +195,8 @@ function nom(nb) {
             var inputMail = document.createElement('input');
             inputMail.setAttribute('class', 'form-control');
             inputMail.setAttribute('name', numero + 'mailitem1');
-            inputMail.setAttribute('placeholder', 'facultatif@oignies.fr');
+            inputMail.setAttribute('placeholder', 'service.facultatif');
+            var text_mail_dest = document.createTextNode("@oignies.fr");
 
             divcol2.appendChild(inputMail);
 
@@ -206,6 +207,7 @@ function nom(nb) {
             formgroup.appendChild(divcol1);
             formgroup.appendChild(adrMail);
             formgroup.appendChild(divcol2);
+            formgroup.appendChild(text_mail_dest);
 
             //construction de la div final
             liste.appendChild(span);

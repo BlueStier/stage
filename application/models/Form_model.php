@@ -169,7 +169,7 @@ class Form_model extends CI_Model {
              for($i = 1; $i <= $nb_champ; $i++){
                  $array["type".$i] = $this->input->post("input".$i);
                  if($array["type".$i] == 'liste'){
-                     //si le champ est der type liste on insert la liste dans la table correspondant
+                     //si le champ est du type liste on insert la liste dans la table correspondant
                      //et on récupère l'id  
                      $this->load->model('Liste_model');
                      $array["champ".$i] = $this->Liste_model->create($id,$i);                     

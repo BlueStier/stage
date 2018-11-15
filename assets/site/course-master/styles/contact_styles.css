@@ -184,6 +184,10 @@ section
 	position: relative;
 	box-sizing: border-box;
 }
+.row:after
+{
+display:inline-block;
+}
 .clear
 {
 	clear: both;

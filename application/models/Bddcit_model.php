@@ -12,8 +12,16 @@ class Bddcit_model extends CI_Model {
         public function get_cit($array = FALSE, $id = FALSE){
             /*si il n'y a pas 'array en paramètres ou d'id on retourne la totalité
             de la table*/ 
-            if($array === FALSE && $id === FALSE){
-                return $this->bdd->get('citoyen')->result_array();
+            if($array === FALSE && $id === FALSE){                
+                $array = $this->bdd->get('citoyen')->result_array();
+                $taille_de_array = sizeof($array);
+                for($h = 0; $h < $taille_de_array; $h++){
+                    $array[$h]['nom'] = $this->encryption->decrypt($array[$h]['nom']);
+                    $array[$h]['prenom'] = $this->encryption->decrypt($array[$h]['prenom']);
+                    $array[$h]['adresse'] = $this->encryption->decrypt($array[$h]['adresse']);
+                    $array[$h]['email'] = $this->encryption->decrypt($array[$h]['email']);
+                }
+                return $array;
             }
             /*si un tableau est en paramètre on recherche en fonction du tableau*/
             if($array != FALSE && !empty($array)){
