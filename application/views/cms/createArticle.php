@@ -80,7 +80,7 @@
    
     <div class="box-footer">
       <a class="btn btn-default"
-           href="<?php echo base_url()?>/cms/1">Annuler</a> <button class="btn btn-info pull-right"
+           href="<?php echo base_url()?>cms/1">Annuler</a> <button class="btn btn-info pull-right"
            type="submit">Enregistrer</button>
     </div>
   </div><!-- /.box-footer -->

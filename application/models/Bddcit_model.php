@@ -27,10 +27,10 @@ class Bddcit_model extends CI_Model {
             if($array != FALSE && !empty($array)){
                 $str ='SELECT * from citoyen where ';
                 if(isset($array['nom'])&& !empty($array['nom'])){
-                    $str.= "nom='"./*$this->encryption->encrypt(*/$array['nom']."'";
+                    $str.= "nom='".$array['nom']."'";
                 }
                 if(isset($array['prenom'])&& !empty($array['prenom'])){
-                    $str.= " prenom='"./*$this->encryption->encrypt(*/$array['prenom']."'";
+                    $str.= " or prenom='".$array['prenom']."'";
                 }
                 
                 return $this->bdd->query($str)->row_array();
@@ -40,24 +40,66 @@ class Bddcit_model extends CI_Model {
             }
 
         }
+
+        public function get_message($id = FALSE){
+            if( $id === FALSE){
+                return $this->bdd->get('message')->result_array();
+            }else{
+                return $this->bdd->get_where('message', array('id_citoyen' => $id))->row_array();
+            }
+        }
+
+        public function get_cit_avec_messages(){
+            $array_des_citoyens = Bddcit_model::get_cit();           
+            $array_de_sortie = [];
+            foreach($array_des_citoyens as $citoyen):
+                $array_message = Bddcit_model::get_message($citoyen['id_citoyen']);
+                $size_of_message = sizeof($array_message);
+                if($size_of_message > 0){
+                    $array_complete = [
+                        'id_citoyen'=> $citoyen['id_citoyen'],
+                        'nom'=> $citoyen['nom'],
+                        'prenom' => $citoyen['prenom'],
+                        'adresse' => $citoyen['adresse'],
+                        'tel' => $citoyen['tel'],
+                        'email' => $citoyen['email'],
+                        'date' => $citoyen['date'],
+                        'message' => $this->encryption->decrypt($array_message['message']),
+                        'mail_dest' => $this->encryption->decrypt($array_message['mail_dest']),
+                        'service' => $this->encryption->decrypt($array_message['service']),
+                        'file' => $this->encryption->decrypt($array_message['file']),
+                        'envoi' => $array_message['envoi'],
+                    ];
+                    $array_de_sortie[] = $array_complete;
+                }
+            endforeach; 
+            
+            return $array_de_sortie;   
+        }
+
         public function create($array){
             //récupération des données et cryptage
+            $nom = $this->encryption->encrypt($array['nom']);
+            $prenom = $this->encryption->encrypt($array['prenom']);
             $cit = [
-                'nom' => $this->encryption->encrypt($array['nom']),
-                'prenom' => $this->encryption->encrypt($array['prenom']),
+                'nom' => $nom,
+                'prenom' => $prenom,
                 'date' => $array['date'],
                 'adresse' => $this->encryption->encrypt($array['adresse']),
                 'email' => $this->encryption->encrypt($array['mail_cit']),
             ];
-
+            $this->bdd->insert('citoyen',$cit);
+            $citoyen_id_a_recup = Bddcit_model::get_cit($cit);            
             $message = [
+                'id_citoyen' => $citoyen_id_a_recup['id_citoyen'],
                 'message' => $this->encryption->encrypt($array['message']),
                 'mail_dest' => $this->encryption->encrypt($array['mail_dest']),
                 'service' => $this->encryption->encrypt($array['liste']),
                 'file' => $this->encryption->encrypt($array['file']),
                 
             ];
-            $this->bdd->insert('citoyen',$cit);
+            
+            
             $this->bdd->set('envoi','NOW()',FALSE);
             $this->bdd->insert('message',$message);
             

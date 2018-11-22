@@ -150,7 +150,8 @@ class Cms extends CI_Controller
         if($id == 13){
             $this->load->model('Bddcit_model');
             $data['nb'] = 13;
-            $data['citoyen'] = $this->Bddcit_model->get_cit();                                                      
+            //extraction de la base de données des citoyens avec mise en corélation des messages
+            $data['citoyen'] = $this->Bddcit_model->get_cit_avec_messages();                                                      
             $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/citoyen',$data);

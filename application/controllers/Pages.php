@@ -209,7 +209,7 @@ class Pages extends CI_Controller {
                 
                $this->load->model('Bddcit_model'); 
                $this->Bddcit_model->create($array);           
-               Pages::send_mail($array);              
+               //Pages::send_mail($array);              
                Pages::view($this->input->post('page'), TRUE);
 }
 
