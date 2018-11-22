@@ -104,4 +104,9 @@ class Bddcit_model extends CI_Model {
             $this->bdd->insert('message',$message);
             
         }
+
+        public function delete($id){
+            $this->bdd->delete('message',array('id_citoyen' => $id));
+            $this->bdd->delete('citoyen',array('id_citoyen' => $id));
+        }
 }

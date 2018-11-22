@@ -95,6 +95,7 @@ $route['cms/updateUser/(:num)'] = 'cms/updateUser/$1';
 $route['cms/validupUser/(:num)'] = 'cms/validupUser/$1';
 $route['cms/createUser'] = 'cms/createUser';
 $route['cms/deleteUser'] = 'cms/deleteUser';
+$route['cms/deleteCitoyen'] = 'cms/deleteCitoyen';
 $route['cms/destroy'] = 'cms/destroy';
 $route['cms/dodo'] = 'cms/dodo';
 $route['cms/(:any)'] = 'cms/view/$1';

@@ -9,7 +9,7 @@
         <li><i class="fa fa-table "></i> BDD citoyenne</li>
     </ol>      
     </section>
-    <div class="box-body">
+    <div class="box-body">    
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
@@ -31,7 +31,7 @@
                   <?php
     foreach($citoyen as $a=>$c):
       ?><tr>
-      <td><input type='checkbox' onClick='visible_les_boutons();' id='citoyen<?php echo $a;?>'/></td>
+      <td><input type='checkbox' onClick='visible_les_boutons();' id='citoyen<?php echo $a;?>' name="check[]" value="<?php echo $c['id_citoyen'];?>"/></td>
       <td><?php echo $c['nom']; ?></td>
       <td><?php echo $c['prenom']; ?></td>
       <td><?php echo $c['date']; ?></td>
@@ -80,9 +80,9 @@
     ?>
     <div class="box-footer">
       <button id='supprimer' class="btn btn-danger"
-      data-toggle="modal" data-target="#modal-danger" disabled = "true">Supprimer</button> <button id='excel' class="btn btn-info pull-right"
+      data-toggle="modal" data-target="#modal-danger" disabled = "true" onclick="recup_tab_a_sup();">Supprimer</button> <button id='excel' class="btn btn-info pull-right"
            type="submit" disabled = "disabled">Créer un fichier Excel</button>
-    </div>
+    </div>    
 </div>
 <!-- Modal pour la suppression d'un user -->
 <div class="modal modal-danger fade" id="modal-danger">
@@ -95,14 +95,16 @@
               </div>
               <div class="modal-body">
                 <p><i class="fa  fa-warning"></i> La suppression sera définitive </p>
-                <p>Confirmez-vous le suppression ? </p>
+                <p>Confirmez-vous la suppression ? </p>
               </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
-                <?php echo validation_errors(); 
+              <div class="modal-footer" >
+              <?php echo validation_errors(); 
                       echo form_open('cms/deleteCitoyen/');?>
-                      <input type="hidden" name="liste_a_supprimer" id="liste_a_supprimer" value=''/>
+                      <div id='modal-footer'>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab();'>Annuler</button>                
+                <input type="hidden"  id="taille_liste" name='taille_liste' value='0'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
+                </div>
                 </form>
               </div>
             </div>
@@ -126,19 +128,6 @@
        immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>
 </div>
-<script>
-  $(function () {
-    $('#example1').DataTable()
-    $('#example2').DataTable({
-      'paging'      : true,
-      'lengthChange': false,
-      'searching'   : false,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true,
-    })
-  })
-  </script>
   <script>
   var nb_checkbox = <?php echo sizeof($citoyen); ?>;
   function voir_message(id){
@@ -160,4 +149,31 @@
     var excel_ou_pas = (document.getElementById('excel').disabled == true) ? false : true;
     document.getElementById('excel').disabled = excel_ou_pas;
   }
+
+  function recup_tab_a_sup(){
+    var modal = document.getElementById("modal-footer");
+    var taille_liste = document.getElementById("taille_liste").value;    
+    for(s = 0; s < nb_checkbox; s++ ){
+      if(document.getElementById("citoyen"+s).checked == true){
+        var input = document.createElement("input");
+        input.setAttribute('type', 'hidden');
+        input.setAttribute('id', taille_liste);
+        input.setAttribute('name', 'liste_a_supprimer_'+taille_liste);
+        input.setAttribute('value', document.getElementById("citoyen"+s).value);
+        modal.appendChild(input);
+        taille_liste++;
+      }
+    }
+    document.getElementById("taille_liste").value = taille_liste; 
+  }
+
+  function vider_le_tab(){
+    var taille_liste = document.getElementById("taille_liste").value;
+    var modal = document.getElementById("modal-footer");
+    for(r = 0; r < taille_liste; r++){      
+      modal.removeChild(document.getElementById(r));
+    }
+    taille_liste = 0;
+  }
+  
 </script>

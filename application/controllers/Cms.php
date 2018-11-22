@@ -919,4 +919,17 @@ class Cms extends CI_Controller
         $this->User_model->delete($id_user);
         Cms::view(8);
     }
+
+    //fonction de suppression des citoyens de la bdd
+    public function deleteCitoyen(){
+        $this->load->model('Bddcit_model');
+        $taille = $this->input->post('taille_liste');
+        echo $taille;        
+        for($e = 0; $e < $taille; $e++){
+            $citoyen_a_sup = $this->input->post('liste_a_supprimer_'.$e);
+            $this->Bddcit_model->delete($citoyen_a_sup);
+        }
+        CMS::view(13);
+
+    }
 }
