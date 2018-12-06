@@ -151,7 +151,8 @@ class Cms extends CI_Controller
             $this->load->model('Bddcit_model');
             $data['nb'] = 13;
             //extraction de la base de données des citoyens avec mise en corélation des messages
-            $data['citoyen'] = $this->Bddcit_model->get_cit_avec_messages();                                                      
+            $data['citoyen'] = $this->Bddcit_model->get_cit_avec_messages();
+            $data['type_contact'] = $this->Bddcit_model->get_type_contact();                                                      
             $this->load->view('cms/header',$data);
             $this->load->view('cms/left_menu',$data);
             $this->load->view('cms/citoyen',$data);
@@ -921,15 +922,21 @@ class Cms extends CI_Controller
     }
 
     //fonction de suppression des citoyens de la bdd
-    public function deleteCitoyen(){
+    public function deleteCitoyen($id_table){
         $this->load->model('Bddcit_model');
-        $taille = $this->input->post('taille_liste');
-        echo $taille;        
+        $taille = $this->input->post('taille_liste'.$id_table);              
         for($e = 0; $e < $taille; $e++){
-            $citoyen_a_sup = $this->input->post('liste_a_supprimer_'.$e);
+            $citoyen_a_sup = $this->input->post($id_table.'liste_a_supprimer_'.$e);            
             $this->Bddcit_model->delete($citoyen_a_sup);
         }
         CMS::view(13);
 
+    }
+
+    //fonction pour fichier excel
+    public function excelCitoyen($id_table){
+        $array = $this->input->post($id_table.'check[]');
+        $this->load->model('Bddcit_model');
+        $this->Bddcit_model->excel($array,$id_table);
     }
 }

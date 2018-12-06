@@ -9,8 +9,18 @@
         <li><i class="fa fa-table "></i> BDD citoyenne</li>
     </ol>      
     </section>
-    <div class="box-body">    
-              <table id="example1" class="table table-bordered table-striped">
+    <?php   
+       //affiche tous les pays
+foreach($type_contact as $t=>$page): 
+  echo validation_errors(); 
+  echo form_open('cms/excelCitoyen/'.$t);?>
+    <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Page du contact : <?php echo $page['type_contact']; ?></h3>              
+            </div>
+            </div>
+    <div class="box-body table-responsive">    
+              <table class=" display table table-bordered table-striped">
                 <thead>
                 <tr>
                 <th>Selectionner</th>
@@ -29,9 +39,12 @@
                 <tbody>
                   
                   <?php
-    foreach($citoyen as $a=>$c):
+                  $nb_de_cit_dans_cette_table = 0;
+    foreach($citoyen as $a=>$c):            
+      if($c['type_contact']==$page['type_contact']){              
+        
       ?><tr>
-      <td><input type='checkbox' onClick='visible_les_boutons();' id='citoyen<?php echo $a;?>' name="check[]" value="<?php echo $c['id_citoyen'];?>"/></td>
+      <td><input type='checkbox' onClick='visible_les_boutons(<?php echo $t;?>);' id='<?php echo $t;?>citoyen<?php echo $nb_de_cit_dans_cette_table;?>' name="<?php echo $t;?>check[]" value="<?php echo $c['id_citoyen'];?>"/></td>
       <td><?php echo $c['nom']; ?></td>
       <td><?php echo $c['prenom']; ?></td>
       <td><?php echo $c['date']; ?></td>
@@ -43,15 +56,16 @@
       <td><?php echo $c['file']; ?></td>
       <td><input type='button' onClick='voir_message("<?php echo $c['id_citoyen']; ?>");' value='Voir' class='btn btn-default'/></td>
       </tr>
-      <?php
+      <?php 
+      $nb_de_cit_dans_cette_table++;}
     endforeach; ?>
 
 
 </tbody>
 <tfoot>
                 <tr>
-                <th><button id="tout_selectionner" class='btn btn-primary' onClick='select(true);'>Tout selectionner</button>
-                <button id="tout_deselectionner" class='btn btn-primary' onClick='select(false);' style="display : none">Tout déselectionner</button></th>
+                <th><a id="tout_selectionner<?php echo $t; ?>" class='btn btn-primary' onClick='select(true,<?php echo $t; ?>,<?php echo $nb_de_cit_dans_cette_table; ?>);'>Tout selectionner</a>
+                <a id="tout_deselectionner<?php echo $t; ?>" class='btn btn-primary' onClick='select(false,<?php echo $t; ?>,<?php echo $nb_de_cit_dans_cette_table; ?>);' style="display : none">Tout déselectionner</a></th>
                   <th>Nom</th>
                   <th>Prénom</th>
                   <th>Date de naissance</th>
@@ -64,28 +78,36 @@
                   <th>Voir le message</th>
                 </tr>
                 </tfoot> 
-</table> 
+</table>
+<input type='hidden' id='nb_ligne<?php echo $t; ?>' value='<?php echo $nb_de_cit_dans_cette_table; ?>'/> 
 </div>
 <?php
+$nb_de_cit_dans_cette_table = 0;
     foreach($citoyen as $cit):
+      if($cit['type_contact']==$page['type_contact']){
       ?> <div id='<?php echo $cit['id_citoyen'];?>' style="display : none">
        <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Message de <?php echo $cit['nom']." ".$cit['prenom']." du : ".$cit['envoi'];?> :</h3>              
             </div>
             </div>
-      <?php echo $cit['message'];?>
+      <?php if($cit['message']==''){
+        echo '<strong>PAS DE MESSAGE</strong>';
+        }else{
+          echo $cit['message'];
+          }?>
       </div>
-      <?php endforeach;
+      <?php } endforeach;
     ?>
     <div class="box-footer">
-      <button id='supprimer' class="btn btn-danger"
-      data-toggle="modal" data-target="#modal-danger" disabled = "true" onclick="recup_tab_a_sup();">Supprimer</button> <button id='excel' class="btn btn-info pull-right"
+      <button id='supprimer<?php echo $t; ?>' class="btn btn-danger"
+      data-toggle="modal" data-target="#modal-danger<?php echo $t; ?>" disabled = "true" onclick="recup_tab_a_sup(<?php echo $t; ?>);">Supprimer</button> 
+      <button id='excel<?php echo $t; ?>' class="btn btn-info pull-right"
            type="submit" disabled = "disabled">Créer un fichier Excel</button>
-    </div>    
-</div>
-<!-- Modal pour la suppression d'un user -->
-<div class="modal modal-danger fade" id="modal-danger">
+           </form>
+    </div>
+    <!-- Modal pour la suppression d'un user -->
+<div class="modal modal-danger fade" id="modal-danger<?php echo $t; ?>">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -99,10 +121,10 @@
               </div>
               <div class="modal-footer" >
               <?php echo validation_errors(); 
-                      echo form_open('cms/deleteCitoyen/');?>
-                      <div id='modal-footer'>
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab();'>Annuler</button>                
-                <input type="hidden"  id="taille_liste" name='taille_liste' value='0'/>
+                      echo form_open('cms/deleteCitoyen/'.$t);?>
+                      <div id='modal-footer<?php echo $t; ?>'>
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab(<?php echo $t; ?>);'>Annuler</button>                
+                <input type="hidde"  id="taille_liste<?php echo $t; ?>" name='taille_liste<?php echo $t; ?>' value='0'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </div>
                 </form>
@@ -112,6 +134,9 @@
           </div>
           <!-- /.modal-dialog -->        
           </div>
+    <?php endforeach; ?>    
+</div>
+
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -128,46 +153,57 @@
        immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>
 </div>
-  <script>
-  var nb_checkbox = <?php echo sizeof($citoyen); ?>;
+  <script>  
   function voir_message(id){
     var id_a_modif =  (document.getElementById(id).style.display == "block") ? "none" : "block";  
     document.getElementById(id).style.display = id_a_modif;
   }
   
-  function select(boolean){ 
-      for(h = 0; h < nb_checkbox; h++ ){        
-        (boolean) ? document.getElementById("citoyen"+h).checked = true : document.getElementById("citoyen"+h).checked = false;
+  function select(boolean,id,nb_de_cit){
+      for(h = 0; h < nb_de_cit; h++ ){        
+        (boolean) ? document.getElementById(id+"citoyen"+h).checked = true : document.getElementById(id+"citoyen"+h).checked = false;
       } 
-      (boolean) ? document.getElementById('tout_selectionner').style.display = 'none' : document.getElementById('tout_selectionner').style.display = 'block';    
-      (boolean) ? document.getElementById('tout_deselectionner').style.display = 'block' : document.getElementById('tout_deselectionner').style.display = 'none'; 
-      visible_les_boutons();
+      (boolean) ? document.getElementById('tout_selectionner'+id).style.display = 'none' : document.getElementById('tout_selectionner'+id).style.display = 'block';    
+      (boolean) ? document.getElementById('tout_deselectionner'+id).style.display = 'block' : document.getElementById('tout_deselectionner'+id).style.display = 'none'; 
+      visible_les_boutons(id);
   }
-  function visible_les_boutons(){    
-    var supprimer_ou_pas = (document.getElementById('supprimer').disabled == true) ? false : true;
-    document.getElementById('supprimer').disabled = supprimer_ou_pas;
-    var excel_ou_pas = (document.getElementById('excel').disabled == true) ? false : true;
-    document.getElementById('excel').disabled = excel_ou_pas;
+  function visible_les_boutons(id){
+    nb_de_cit = parseInt(document.getElementById('nb_ligne'+id).value);
+    var nb_de_cases_cochées = 0;       
+    for(h = 0; h < nb_de_cit; h++ ){
+      if(document.getElementById(id+"citoyen"+h).checked == true){
+        ++nb_de_cases_cochées;        
+      }        
+    }
+    if(nb_de_cases_cochées > 0){
+      document.getElementById('supprimer'+id).disabled = false ;
+      document.getElementById('excel'+id).disabled = false;      
+    }else{
+      document.getElementById('supprimer'+id).disabled = true ;
+      document.getElementById('excel'+id).disabled = true;  
+    }   
+    
   }
 
-  function recup_tab_a_sup(){
-    var modal = document.getElementById("modal-footer");
-    var taille_liste = document.getElementById("taille_liste").value;    
+  function recup_tab_a_sup(id_de_la_table){
+    var nb_checkbox = parseInt(document.getElementById('nb_ligne'+id_de_la_table).value);
+    var modal = document.getElementById("modal-footer"+id_de_la_table);
+    var taille_liste = document.getElementById("taille_liste"+id_de_la_table).value;    
     for(s = 0; s < nb_checkbox; s++ ){
-      if(document.getElementById("citoyen"+s).checked == true){
+      if(document.getElementById(id_de_la_table+"citoyen"+s).checked == true){
         var input = document.createElement("input");
-        input.setAttribute('type', 'hidden');
+        input.setAttribute('type', 'hidde');
         input.setAttribute('id', taille_liste);
-        input.setAttribute('name', 'liste_a_supprimer_'+taille_liste);
-        input.setAttribute('value', document.getElementById("citoyen"+s).value);
+        input.setAttribute('name', id_de_la_table+'liste_a_supprimer_'+taille_liste);
+        input.setAttribute('value', document.getElementById(id_de_la_table+"citoyen"+s).value);
         modal.appendChild(input);
         taille_liste++;
       }
     }
-    document.getElementById("taille_liste").value = taille_liste; 
+    document.getElementById("taille_liste"+id_de_la_table).value = taille_liste; 
   }
 
-  function vider_le_tab(){
+  function vider_le_tab(id_de_la_table){
     var taille_liste = document.getElementById("taille_liste").value;
     var modal = document.getElementById("modal-footer");
     for(r = 0; r < taille_liste; r++){      

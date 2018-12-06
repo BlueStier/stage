@@ -98,7 +98,7 @@ class Form_model extends CI_Model {
             for($i = 1; $i <= $nb_champ; $i++){
                 $array["type".$i] = $this->input->post("input".$i);
                 if($array["type".$i] == 'liste'){
-                    //si le champ est der type liste on insert la liste dans la table correspondant
+                    //si le champ est du type liste on insert la liste dans la table correspondant
                     //et on récupère l'id  
                     $this->load->model('Liste_model');
                     $array["champ".$i] = $this->Liste_model->create($id_pages,$i);
@@ -167,7 +167,23 @@ class Form_model extends CI_Model {
              $array['intro'] = $this->input->post("intro_form");
  
              for($i = 1; $i <= $nb_champ; $i++){
-                 $array["type".$i] = $this->input->post("input".$i);
+                 //si le champ en bdd est du type liste
+                 if($array["type".$i] == 'liste'){
+                     //on vérifie que le nouveau champ est de type liste aussi
+                     $Est_ce_une_liste = $this->input->post("input".$i);
+                     if($Est_ce_une_liste == 'liste'){
+                        //si le nouveau champ est du type liste on update la liste dans la table correspondant
+                        //et on récupère  
+                        $this->load->model('Liste_model');
+                        $this->Liste_model->update($array["champ".$i],$i);
+                 }else{
+                     //sinon on supprime la liste de la bdd et on récupére le nouveau type de champ
+                     $this->load->model('Liste_model');
+                     $this->Liste_model->delete($id);
+                     $array["champ".$i] = $this->input->post("champ".$i);
+                 }
+                }else{
+                 $array["type".$i] = $this->input->post("input".$i);                 
                  if($array["type".$i] == 'liste'){
                      //si le champ est du type liste on insert la liste dans la table correspondant
                      //et on récupère l'id  
@@ -176,6 +192,7 @@ class Form_model extends CI_Model {
                  }else{
                  $array["champ".$i] = $this->input->post("champ".$i);                
                  }
+                }
                  //défini si le champ est obligatoire ou pas
                  if($this->input->post("ch".$i)!== NULL){
                      $array["ob".$i] = TRUE;

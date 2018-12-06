@@ -111,6 +111,9 @@ class Pages extends CI_Controller {
                 $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = '';
                 $service = 0;
                 $this->load->model('Form_model');
+                $this->load->model('Pages_model');
+                $tab_page = $this->Pages_model->get_page_by_id($id);
+                $type_contact = $tab_page[0]['nom']; 
                 $this->load->model('Liste_model');
                 $recup = $this->Form_model->get_form($id);
                 $mail_dest = $recup['mail_dest1'].', ';
@@ -204,7 +207,8 @@ class Pages extends CI_Controller {
                        'mail_dest' => $mail_dest,
                        'liste'=> $liste,
                        'service' => $service,
-                       'file' => $file,                       
+                       'file' => $file,
+                       'type_contact'=>$type_contact,                       
                ];
                 
                $this->load->model('Bddcit_model'); 

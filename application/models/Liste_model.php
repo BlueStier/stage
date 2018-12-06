@@ -95,4 +95,42 @@ class Liste_model extends CI_Model {
             $this->db->replace('liste',$liste);
         }
 
+        public function update($id,$nb_liste){
+            //sort les données de la bdd
+            $liste_a_update = Liste_Model::get_liste($id);
+            //on récupère le nombre de champ à mettre dans le formulaire
+            $nb_item = $this->input->post('nbitembyliste'.$nb_liste);
+            echo $nb_item;
+
+            //la table formulaire contient combien de colonne pour enregistrer les champs?
+            $query = $this->db->query("SELECT COUNT(*) AS 'nb_item' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'liste' and COLUMN_NAME like 'titreitem%'")->row_array();
+            
+            $nb_table = $query['nb_item'];
+            //si la table est plus petite que le nb de champ  insérer on la modifie
+            if($nb_item > $nb_table){
+                $deb = $nb_table + 1;
+                for($deb; $deb <= $nb_item; $deb++){
+                    $str1 = "ALTER TABLE liste ADD titreitem".$deb." VARCHAR(100)";
+                    $this->db->query($str1);
+                    $str2 = "ALTER TABLE liste ADD mailitem".$deb." VARCHAR(256)";
+                    $this->db->query($str2);                    
+                }
+                
+            }
+            $liste_a_update["nom_champ"] = $this->input->post("champ".$nb_liste);
+            //la table est prête on remet les info dans l'array à remplacer
+            for($i = 1; $i <= $nb_item; $i++){
+                $liste_a_update["titreitem".$i] = $this->input->post($nb_liste."titreitem".$i);
+                $mailitem = $this->input->post($nb_liste."mailitem".$i);
+                if(!empty($mailitem)){
+                    $liste_a_update["mailitem".$i] = $this->input->post($nb_liste."mailitem".$i). "@oignies.fr";
+                }else{
+            $liste_a_update["mailitem".$i] = "";
+            }                
+            } 
+            var_dump($liste_a_update);           
+            $this->db->replace('liste',$liste_a_update);
+
+        }
+
 }

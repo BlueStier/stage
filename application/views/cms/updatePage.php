@@ -830,7 +830,7 @@ $year = date('Y');
                     <?php echo $intro; ?>                                            
                     </textarea>
                     </div>
-                    <input type="hidde" name='nbform2' id='nbform' value="<?php echo $nb_champ; ?>"/>
+                    <input type="hidden" name='nbform2' id='nbform' value="<?php echo $nb_champ; ?>"/>
             <div class="box box-info">            
             <div class="box-header with-border">
               <h3 class="box-title">Champs présents dans le formulaire :</h3><br><br>
@@ -848,7 +848,7 @@ $year = date('Y');
                         <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>" <?php if($form['ob'.$i]){echo 'checked';}?>>
                         </div>
                         <label class="col-sm-2 control-label">nom du champ :</label>
-                        <input required="required" placeholder="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                        <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
                         <div class="col-sm-1 "></div>
                         <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
                         <div class="col-sm-1 "></div>
@@ -962,9 +962,9 @@ $year = date('Y');
                         <div id="liste<?php echo $i; ?>" style="border-style: double;" class="col-sm-10">
                         <span>Propiétés de la liste :  </span>                        
                         <a class="btn btn-info pull-right" onclick="liste(<?php echo $i; ?>)">Ajouter un item</a>
+                        <input id="nbitembyliste<?php echo $i; ?>" name="nbitembyliste<?php echo $i; ?>" value="<?php echo $nb_item; ?>" type="hidden">
                         <?php for( $a = 1; $a <= $nb_item; $a++){?>
                         <div class="form-group" id='<?php echo $i; ?>item<?php echo $a; ?>'>
-                        <input id="nbitembyliste<?php echo $i; ?>" name="nbitembyliste<?php echo $i; ?>" value="<?php echo $nb_item; ?>" type="hidden">
                         <label class="col-sm-2 control-label">Titre de l'item </label>
                         <div class="col-sm-3">
                         <input class="form-control" name="<?php echo $i; ?>titreitem<?php echo $a; ?>" value="<?php echo $liste['titreitem'.$a] ?>">
@@ -974,7 +974,7 @@ $year = date('Y');
                         <input class="form-control" name="<?php echo $i; ?>mailitem<?php echo $a; ?>" value="<?php echo $liste['mailitem'.$a] ?>">
                         </div>
                         <?php if($a > 1){ ?>
-                        <a class="btn btn-warning" href="<?php echo base_url()?>cms/supItem/<?php echo $a."/". $liste['id_liste']."/".$id_page?>">Supprimer l'item</a>
+                        <a class="btn btn-warning" href="<?php echo base_url()?>cms/supItem/<?php echo $a."/". $liste['id_liste']."/".$id_page?>" id="<?php echo $i.'butsup'.$a;?>">Supprimer l'item</a>
                         <?php } ?>
                         </div>                        
                         <?php } ?>
@@ -1000,7 +1000,7 @@ $year = date('Y');
                 <div class="box box-info">
             <div class="box-header with-border" id='destinataire' >
               <h3 class="box-title">Transmettre le formulaire : </h3>
-              <input type="hidde" id='nbmail' name='nbmail' value='<?php echo $nb_mail; ?>'/>
+              <input type="hidden" id='nbmail' name='nbmail' value='<?php echo $nb_mail; ?>'/>
                             <a onClick="ajoutmail();" class="btn btn-info pull-right">Ajouter une adresse mail</a><br><br><br>
                 <?php for($b = 1; $b <= $nb_mail; $b++){?>
                 <div class="form-group" id="grpmail<?php echo $b; ?>">

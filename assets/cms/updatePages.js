@@ -300,10 +300,12 @@ function supthis() {
 
 }
 
-
+var nb_item_en_base = parseInt(document.getElementById('nbitembyliste' + n).value);
 function liste(n) {
     var old_form = parseInt(document.getElementById('nbitembyliste' + n).value);
-    var idform = parseInt(document.getElementById('nbitembyliste' + n).value) + 1;;
+    var idform = parseInt(document.getElementById('nbitembyliste' + n).value) + 1;
+    alert(old_form);
+    alert(idform);    
 
     //div du form-group
     var formgroup = document.createElement('div');
@@ -356,10 +358,9 @@ function liste(n) {
     //construction de la div final
     var listeToUpdate = document.getElementById('liste' + n);
     listeToUpdate.appendChild(formgroup);
-    if (idform > 2) {
+    if (old_form > nb_item_en_base) {
         document.getElementById(n + 'butsup' + old_form).style.display = 'none';
     }
-
     document.getElementById('nbitembyliste' + n).value = idform;
 
 }

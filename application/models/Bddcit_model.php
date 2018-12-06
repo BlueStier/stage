@@ -1,4 +1,7 @@
 <?php
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+
 class Bddcit_model extends CI_Model {
         private $bdd;
         //constructeur charge la classe permettant l'interrogation de la base de données
@@ -20,6 +23,8 @@ class Bddcit_model extends CI_Model {
                     $array[$h]['prenom'] = $this->encryption->decrypt($array[$h]['prenom']);
                     $array[$h]['adresse'] = $this->encryption->decrypt($array[$h]['adresse']);
                     $array[$h]['email'] = $this->encryption->decrypt($array[$h]['email']);
+                    $array[$h]['tel'] = $this->encryption->decrypt($array[$h]['tel']);
+                    $array[$h]['type_contact'] = $array[$h]['type_contact'];
                 }
                 return $array;
             }
@@ -36,7 +41,17 @@ class Bddcit_model extends CI_Model {
                 return $this->bdd->query($str)->row_array();
             }
             if($id != FALSE){
-                return $this->bdd->get_where('citoyen', array('id_citoyen' => $id))->row_array();
+                $return = [];
+                $result = $this->bdd->get_where('citoyen', array('id_citoyen' => $id))->row_array();
+                $return['id_citoyen'] = $result['id_citoyen'];
+                $return['nom'] = $this->encryption->decrypt($result['nom']);
+                $return['prenom'] = $this->encryption->decrypt($result['prenom']);
+                $return['adresse'] = $this->encryption->decrypt($result['adresse']);
+                $return['email'] = $this->encryption->decrypt($result['email']);
+                $return['tel'] = $this->encryption->decrypt($result['tel']);
+                $return['type_contact'] = $result['type_contact'];
+                $return['date'] = $result['date']; 
+                return $return;
             }
 
         }
@@ -49,7 +64,8 @@ class Bddcit_model extends CI_Model {
             }
         }
 
-        public function get_cit_avec_messages(){
+        public function get_cit_avec_messages($id = false){
+            if( $id === FALSE){
             $array_des_citoyens = Bddcit_model::get_cit();           
             $array_de_sortie = [];
             foreach($array_des_citoyens as $citoyen):
@@ -69,12 +85,40 @@ class Bddcit_model extends CI_Model {
                         'service' => $this->encryption->decrypt($array_message['service']),
                         'file' => $this->encryption->decrypt($array_message['file']),
                         'envoi' => $array_message['envoi'],
+                        'type_contact'=>$citoyen['type_contact'],
                     ];
                     $array_de_sortie[] = $array_complete;
                 }
             endforeach; 
             
-            return $array_de_sortie;   
+            return $array_de_sortie;
+        }else{
+            $array_de_sortie = [];
+            $citoyen = Bddcit_model::get_cit(false,$id);
+            $array_message = Bddcit_model::get_message($id);
+            $array_de_sortie = [
+                'id_citoyen'=> $citoyen['id_citoyen'],
+                'nom'=> $citoyen['nom'],
+                'prenom' => $citoyen['prenom'],
+                'adresse' => $citoyen['adresse'],
+                'tel' => $citoyen['tel'],
+                'email' => $citoyen['email'],
+                'date' => $citoyen['date'],
+                'message' => $this->encryption->decrypt($array_message['message']),
+                'mail_dest' => $this->encryption->decrypt($array_message['mail_dest']),
+                'service' => $this->encryption->decrypt($array_message['service']),
+                'file' => $this->encryption->decrypt($array_message['file']),
+                'envoi' => $array_message['envoi'],
+                'type_contact'=>$citoyen['type_contact'],
+            ];
+            return $array_de_sortie;
+        }   
+        }
+
+        public function get_type_contact(){
+            $this->bdd->select('type_contact');
+            $this->bdd->distinct();
+            return $this->bdd->get('citoyen')->result_array();
         }
 
         public function create($array){
@@ -87,6 +131,8 @@ class Bddcit_model extends CI_Model {
                 'date' => $array['date'],
                 'adresse' => $this->encryption->encrypt($array['adresse']),
                 'email' => $this->encryption->encrypt($array['mail_cit']),
+                'tel'=> $this->encryption->encrypt($array['tel']),
+                'type_contact'=>$array['type_contact'],
             ];
             $this->bdd->insert('citoyen',$cit);
             $citoyen_id_a_recup = Bddcit_model::get_cit($cit);            
@@ -108,5 +154,31 @@ class Bddcit_model extends CI_Model {
         public function delete($id){
             $this->bdd->delete('message',array('id_citoyen' => $id));
             $this->bdd->delete('citoyen',array('id_citoyen' => $id));
+        }
+
+        public function excel($array,$id_table){
+            var_dump($array);            
+            $type_contact = Bddcit_model::get_type_contact();
+            $nom_du_fichier = $type_contact[$id_table]['type_contact']."-".date("m-d-y");
+            $excel_a_creer = [];
+            
+            foreach($array as $a):
+                $excel_a_creer[] = Bddcit_model::get_cit_avec_messages($a[0]);
+            endforeach;            
+var_dump($excel_a_creer);
+        /*$spreadsheet = new Spreadsheet();
+        $sheet = $spreadsheet->getActiveSheet();
+        $sheet->setCellValue('A1', 'Hello World !');
+        
+        $writer = new Xlsx($spreadsheet);
+ 
+        $filename = 'name-of-the-generated-file';
+ 
+        header('Content-Type: application/vnd.ms-excel');
+        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
+        header('Cache-Control: max-age=0');
+        
+        $writer->save('php://output'); // download file*/
+       
         }
 }

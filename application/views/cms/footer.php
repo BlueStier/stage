@@ -40,9 +40,10 @@
 <script src="<?php echo base_url();?>/assets/cms/dist/js/adminlte.min.js"></script>
 
 <script>
-//fonction de pagination et de recherche dans une table
+///fonction de pagination et de recherche dans une table
+
   $(function () {
-    $('#example1').DataTable({
+    $('table.display').DataTable({
       "language": {
 	"sProcessing":     "Traitement en cours...",
 	"sSearch":         "Rechercher&nbsp;:",
@@ -70,7 +71,8 @@
          		0: "Aucune ligne séléctionnée",
         		1: "1 ligne séléctionnée"
         	}  
-	}
+	},
+	"responsive": true,
 }
     })    
   })
