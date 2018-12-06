@@ -934,9 +934,14 @@ class Cms extends CI_Controller
     }
 
     //fonction pour fichier excel
-    public function excelCitoyen($id_table){
+    public function excelCitoyen($id_table){    
         $array = $this->input->post($id_table.'check[]');
         $this->load->model('Bddcit_model');
         $this->Bddcit_model->excel($array,$id_table);
+    }
+
+    public function excel_total(){
+        $this->load->model('Bddcit_model');
+        $this->Bddcit_model->excel_total();
     }
 }

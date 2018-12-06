@@ -156,29 +156,75 @@ class Bddcit_model extends CI_Model {
             $this->bdd->delete('citoyen',array('id_citoyen' => $id));
         }
 
-        public function excel($array,$id_table){
-            var_dump($array);            
+        public function excel($array,$id_table){          
             $type_contact = Bddcit_model::get_type_contact();
             $nom_du_fichier = $type_contact[$id_table]['type_contact']."-".date("m-d-y");
             $excel_a_creer = [];
+            $excel_a_creer[] = ['ID','Nom','Prénom','Adresse','Téléphone','Email','Date de naissance','Message','Mail destinataire'
+            ,'service','fichier',"Date d'envoi",'page de contact'];            
+            foreach($array as $a):                
+                $recup = Bddcit_model::get_cit_avec_messages($a);
+                $excel_a_creer[] = [
+                    $recup['id_citoyen'],
+                    $recup['nom'],
+                    $recup['prenom'],
+                    $recup['adresse'],
+                    $recup['tel'],
+                    $recup['email'],
+                    $recup['date'],
+                    $recup['message'],
+                    $recup['mail_dest'],
+                    $recup['service'],
+                    $recup['file'],
+                    $recup['envoi'],
+                    $recup['type_contact'],
+                ];
+            endforeach;          
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->fromArray($excel_a_creer);
+            $writer = new Xlsx($spreadsheet);   
             
-            foreach($array as $a):
-                $excel_a_creer[] = Bddcit_model::get_cit_avec_messages($a[0]);
-            endforeach;            
-var_dump($excel_a_creer);
-        /*$spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->setCellValue('A1', 'Hello World !');
-        
-        $writer = new Xlsx($spreadsheet);
- 
-        $filename = 'name-of-the-generated-file';
- 
-        header('Content-Type: application/vnd.ms-excel');
-        header('Content-Disposition: attachment;filename="'. $filename .'.xlsx"'); 
-        header('Cache-Control: max-age=0');
-        
-        $writer->save('php://output'); // download file*/
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="'. $nom_du_fichier .'.xlsx"'); 
+            header('Cache-Control: max-age=0');
+            
+            $writer->save('php://output'); // download file 
        
+        }
+
+        public function excel_total(){
+            $nom_du_fichier = 'informations_globales'."-".date("m-d-y");
+            $donnees = Bddcit_model::get_cit_avec_messages();
+            $excel_a_creer = [];
+            $excel_a_creer[] = ['ID','Nom','Prénom','Adresse','Téléphone','Email','Date de naissance','Message','Mail destinataire'
+            ,'service','fichier',"Date d'envoi",'page de contact'];
+            foreach($donnees as $recup):
+                $excel_a_creer[] = [
+                    $recup['id_citoyen'],
+                    $recup['nom'],
+                    $recup['prenom'],
+                    $recup['adresse'],
+                    $recup['tel'],
+                    $recup['email'],
+                    $recup['date'],
+                    $recup['message'],
+                    $recup['mail_dest'],
+                    $recup['service'],
+                    $recup['file'],
+                    $recup['envoi'],
+                    $recup['type_contact'],
+                ];
+            endforeach;
+            $spreadsheet = new Spreadsheet();
+            $sheet = $spreadsheet->getActiveSheet();
+            $sheet->fromArray($excel_a_creer);
+            $writer = new Xlsx($spreadsheet);   
+            
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="'. $nom_du_fichier .'.xlsx"'); 
+            header('Cache-Control: max-age=0');
+            
+            $writer->save('php://output'); // download file 
         }
 }

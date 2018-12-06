@@ -67,6 +67,7 @@ $route['cms/supChamp/(:any)/(:num)'] = 'cms/supChamp/$1/$2';
 $route['cms/supMail/(:any)/(:num)'] = 'cms/supMail/$1/$2';
 $route['cms/supItem/(:any)/(:num)/(:num)'] = 'cms/supItem/$1/$2/$3';
 $route['cms/validatePage'] = 'cms/validatePage/';
+$route['cms/excel_total'] = 'cms/excel_total/';
 $route['cms/updatePage/(:any)'] = 'cms/updatePage/$1';
 $route['cms/validUpPage/(:any)'] = 'cms/validUpPage/$1';
 $route['cms/createPages'] = 'cms/createPages/';

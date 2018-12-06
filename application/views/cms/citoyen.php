@@ -99,12 +99,12 @@ $nb_de_cit_dans_cette_table = 0;
       </div>
       <?php } endforeach;
     ?>
-    <div class="box-footer">
-      <button id='supprimer<?php echo $t; ?>' class="btn btn-danger"
-      data-toggle="modal" data-target="#modal-danger<?php echo $t; ?>" disabled = "true" onclick="recup_tab_a_sup(<?php echo $t; ?>);">Supprimer</button> 
-      <button id='excel<?php echo $t; ?>' class="btn btn-info pull-right"
+    <div class="box-footer">       
+      <button id='excel<?php echo $t; ?>' class="btn btn-info "
            type="submit" disabled = "disabled">Créer un fichier Excel</button>
            </form>
+           <input type="button" id='supprimer<?php echo $t; ?>' class="btn btn-danger pull-right"
+      data-toggle="modal" data-target="#modal-danger<?php echo $t; ?>" onclick="recup_tab_a_sup(<?php echo $t; ?>);" value='Supprimer' disabled = "disabled"/>
     </div>
     <!-- Modal pour la suppression d'un user -->
 <div class="modal modal-danger fade" id="modal-danger<?php echo $t; ?>">
@@ -124,7 +124,7 @@ $nb_de_cit_dans_cette_table = 0;
                       echo form_open('cms/deleteCitoyen/'.$t);?>
                       <div id='modal-footer<?php echo $t; ?>'>
                 <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab(<?php echo $t; ?>);'>Annuler</button>                
-                <input type="hidde"  id="taille_liste<?php echo $t; ?>" name='taille_liste<?php echo $t; ?>' value='0'/>
+                <input type="hidden"  id="taille_liste<?php echo $t; ?>" name='taille_liste<?php echo $t; ?>' value='0'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </div>
                 </form>
@@ -134,9 +134,14 @@ $nb_de_cit_dans_cette_table = 0;
           </div>
           <!-- /.modal-dialog -->        
           </div>
-    <?php endforeach; ?>    
+    <?php endforeach; ?>
+    <div class='row'>                              
+                <a href="<?php echo base_url();?>cms/excel_total/" class="col-md-12 btn btn-warning">Créer un fichier excel de toutes les informations des citoyens</a>                                
+                </div>    
 </div>
+      
 
+    
   <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -192,7 +197,7 @@ $nb_de_cit_dans_cette_table = 0;
     for(s = 0; s < nb_checkbox; s++ ){
       if(document.getElementById(id_de_la_table+"citoyen"+s).checked == true){
         var input = document.createElement("input");
-        input.setAttribute('type', 'hidde');
+        input.setAttribute('type', 'hidden');
         input.setAttribute('id', taille_liste);
         input.setAttribute('name', id_de_la_table+'liste_a_supprimer_'+taille_liste);
         input.setAttribute('value', document.getElementById(id_de_la_table+"citoyen"+s).value);
@@ -204,8 +209,8 @@ $nb_de_cit_dans_cette_table = 0;
   }
 
   function vider_le_tab(id_de_la_table){
-    var taille_liste = document.getElementById("taille_liste").value;
-    var modal = document.getElementById("modal-footer");
+    var taille_liste = document.getElementById("taille_liste"+id_de_la_table).value;
+    var modal = document.getElementById("modal-footer"+id_de_la_table);
     for(r = 0; r < taille_liste; r++){      
       modal.removeChild(document.getElementById(r));
     }
