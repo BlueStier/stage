@@ -18,10 +18,10 @@ function invisible(txt) {
 }
 
 
-function choix() {
+function choix() {    
     var x = document.getElementById("select").selectedIndex;
     var y = document.getElementById("select").options;
-    var choix = y[x].text;
+    var choix = y[x].text;  
 
     switch (choix) {
         case "text":
@@ -107,6 +107,18 @@ function choix() {
             break;
     }
 
+}
+
+function formulaire(){
+    document.getElementById("text").style.display = 'none';
+    document.getElementById("carroussel").style.display = 'none';
+    document.getElementById("bulle").style.display = 'none';
+    document.getElementById("sans").style.display = 'none';
+    document.getElementById("article").style.display = 'none';
+    document.getElementById("formulaire").style.display = 'block';
+    document.getElementById("document").style.display = 'none';
+    document.getElementById("table").style.display = 'block';
+    document.getElementById('enregistrer').setAttribute('onClick', 'verifmail();')
 }
 function addElement() {
     //pour le nombre de paragraphe d'une page type text 

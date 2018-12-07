@@ -1,7 +1,19 @@
  <!-- Content Wrapper. Contains page content -->
  <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <?php if($nb == 8){ ?>
+      <section class="content-header">
+      <h2>
+        Formulaires
+      </h2>
+      <ol class="breadcrumb">
+        <li><i class="fa fa-envelope text-blue"></i> Formulaires</li>
+        <li class="active ">Voir tous</li>        
+      </ol>       
+    </section>
+           <?php }
+            else{ ?>
+             <section class="content-header">
       <h2>
         Pages
         <small>Gestion des pages</small>
@@ -12,13 +24,116 @@
         <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createPages/"><i class="fa fa-plus"></i> Creer une nouvelle page</a></li>
       </ol>       
     </section>
+              <?php } ?>
+    
     <div class="row">
-    <?php
+    <?php if( $nb == 8 ){
+      foreach($page_item as $page):
+        //on n'affiche que les formulaires 
+        $eject = strcmp($page['type'],'formulaire'); 
+        if($eject == 0){      
+      ?>
+          <div class="col-md-3">
+                <div class="box box-default collapsed-box box-solid">
+                  <div class="box-header with-border">
+                    <div class="row justify-content-md-center">
+                    <div class='col-md-4'>
+                    <?php echo validation_errors(); 
+                      echo form_open('cms/updatePage/'.$page['id_pages']);?>                              
+                    <button type="submit" class="btn btn-success" title="Modifier"><i class="fa fa-pencil"></i></button>
+                    </div></form> 
+                    <div class='col-md-4'>            
+                    <button type="submit" class="btn btn-danger" data-toggle="modal" data-target="#modal-danger<?php echo $page["id_pages"]?>" title="Supprimer"><i class="fa fa-trash"></i></button>              
+                    </div>
+                    <div class='col-md-4'>
+                      <button type="button" class="btn btn-primary" title="Voir les liens vers les menus" onclick="unvisutable();" data-widget="collapse"><i class="fa fa-link"></i>
+                      </button>
+                    </div>
+                    </div><br>             
+                    <h5><?php echo "Page : '".$page['nom']."' du type : '".$page['type']."'" ?></h5>              
+                    <!-- /.box-tools -->
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                  <?php
+                  //pour chaque menu de la bdd
+                  foreach($header_item as $header):
+                    $compar_menu = strcmp($header['path'],'pages/'.$page['nom'].'/');
+                    if($compar_menu == 0){
+                      echo validation_errors(); 
+                      echo form_open('cms/cutLink/1/'.$nb);?>
+                      <input type="hidden" name="cut" value='<?php echo $header['id_menu'] ?>'/>                 
+                    <button type="submit" class="btn btn-box-tool" title="Couper le lien"><i class="fa fa-unlink"></i></button>         
+                    <?php echo $header['nom']."<br></form>";
+                    }
+                  endforeach;
+                   //pour chaque sousmenu de la bdd
+                   foreach($sub_item as $sub):
+                    $compar_smenu = strcmp($sub['path'],'pages/'.$page['nom'].'/');
+                    if($compar_smenu == 0){
+                      echo validation_errors(); 
+                      echo form_open('cms/cutLink/2');?>
+                      <input type="hidden" name="cut" value='<?php echo $sub['id_sousmenu'] ?>'/>               
+                    <button type="submit" class="btn btn-box-tool" title="Couper le lien"><i class="fa fa-unlink"></i></button>         
+                    <?php echo $sub['nom']."<br></form>";
+                    }
+                  endforeach;
+                   //pour chaque 3ème niveau de la bdd
+                   foreach($third_item as $thi):
+                    $compar_3menu = strcmp($thi['path'],'pages/'.$page['nom'].'/');
+                    if($compar_3menu == 0){
+                      echo validation_errors(); 
+                      echo form_open('cms/cutLink/3');?>
+                      <input type="hidden" name="cut" value='<?php echo $thi['id_third'] ?>'/>                             
+                    <button type="submit" class="btn btn-box-tool" title="Couper le lien"><i class="fa fa-unlink"></i></button>         
+                    <?php echo $thi['nom']."<br></form>";
+                    }
+                  endforeach;      
+                    ?>
+                    <button type="button" class="btn btn-box-tool" onclick="visutable('<?php echo $page['nom'] ?>');" ondblclick="unvisutable();" title="Lier"><i class="fa fa-link"></i></button>
+                    Lier
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+              </div>        
+               <!-- Modal pour la suppression d'une page -->
+               <div class="modal modal-danger fade" id="modal-danger<?php echo $page["id_pages"]?>">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title">Suppression</h4>
+                    </div>
+                    <div class="modal-body">
+                      <p><i class="fa  fa-warning"></i> La suppression de '<?php echo $page['nom'] ?>' sera définitive </p>
+                      <p>Confirmez-vous le suppression ? </p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-outline pull-left" data-dismiss="modal">Annuler</button>
+                      <?php echo validation_errors(); 
+                            echo form_open('cms/deletePage/');?>
+                            <input type="hidden" name="id_pages" value='<?php echo $page["id_pages"] ?>'/>
+                      <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
+                      </form>
+                    </div>
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->        
+                </div>  
+              
+                <?php }
+          endforeach;
+
+    }else{
 //pour chaque page de la bdd
 foreach($page_item as $page):
-  //on n'affiche pas la page home
+  //on n'affiche pas la page home ni formulaire
   $eject = strcmp($page['type'],'home');
-  if($eject != 0){      
+  $eject2 = strcmp($page['type'],'formulaire'); 
+  if($eject != 0 && $eject2 != 0){      
 ?>
     <div class="col-md-3">
           <div class="box box-default collapsed-box box-solid">
@@ -113,12 +228,17 @@ foreach($page_item as $page):
         
           <?php }
     endforeach;
+  }
     ?> 
     </div>
     <div id="table">
     <?php
+    if($nb == 8){
+      echo validation_errors();
+      echo form_open_multipart('cms/updateLink/1/'.$nb);
+    }else{
               echo validation_errors();
-              echo form_open_multipart('cms/updateLink/1');?>
+              echo form_open_multipart('cms/updateLink/1');}?>
                    <!-- table des menus -->
               <!-- box-header --> 
               <div class="box">

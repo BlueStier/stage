@@ -3,7 +3,12 @@
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
+            <?php if($nb == 7){ ?>
+              <h3 class="box-title">Créer un formulaire :</h3>
+           <?php }
+            else{ ?>
               <h3 class="box-title">Créer une page :</h3>
+              <?php } ?>
             </div>
 </div>
 <!-- Pour tous type de pages définition de la photo de background, titre et soustitre (facultatif) -->
@@ -13,21 +18,26 @@
              echo validation_errors();
                   echo form_open_multipart('cms/validatePage');?>
                 <div class="form-group">
-                  <label class="col-sm-2 control-label">Nom de la page</label>
+                <?php if($nb == 7){ ?>
+                  <label class="col-sm-2 control-label">Nom du formulaire</label>
+           <?php }
+            else{ ?>
+              <label class="col-sm-2 control-label">Nom de la page</label>
+              <?php } ?>                  
                   <div class="col-sm-10">
-                  <input class="form-control" name="nomPage" placeholder="Entrez le nom de la page" required>
+                  <input class="form-control" name="nomPage" placeholder="Entrez le nom" required>
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">Titre</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='titrePage' placeholder="Entrez le titre de la page" required>
+                  <input class="form-control" name='titrePage' placeholder="Entrez le titre " required>
                   </div>
                   </div>
                   <div class="form-group">
                   <label  class="col-sm-2 control-label">Sous-titre</label>
                   <div class="col-sm-10">
-                  <input class="form-control" name='soustitrePage' placeholder="Entrez le sous-titre de la page (facultatif)">
+                  <input class="form-control" name='soustitrePage' placeholder="Entrez le sous-titre (facultatif)">
                   </div>
                 </div>
                 <div class="form-group">
@@ -36,6 +46,7 @@
                   <input type="file" name="backgroundImg" id="exampleInputFile" value='Choisissez une image'>
                 </div>
                 </div>
+                <?php if($nb != 7){ ?>
                 <!-- Choix du type de page à créer -->               
                 <div class="form-group">
                 <label class="col-sm-2 control-label">Choisissez un type de page :</label>
@@ -59,6 +70,9 @@
                 </select>                
                 </div>                
                 </div>
+              <?php }else{ ?>
+<input type="hidden" name='selectType' value='formulaire'/>
+<?php } ?>
                 <!-- Div pour création d'un page de type text -->
                 <div id='text'>
                 <div class="form-group">
@@ -956,5 +970,7 @@
 
 
 <!-- ./wrapper -->
-
 <script src="<?php echo base_url();?>/assets/cms/createPages.js"></script>
+<?php if($nb == 7){
+  echo "<script>document.body.onload = formulaire();</script>";
+}?>

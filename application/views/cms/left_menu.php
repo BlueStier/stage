@@ -25,7 +25,7 @@
           </a>
           <ul class="treeview-menu">
             <li id='1'class="active"><a href="<?php echo base_url()?>cms/1"><i class="fa fa-circle-o text-red"></i> Menus</a></li>
-            <li id='2'><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o text-red"></i> Menu rapide</a></li>
+            <li id='2'><a href="<?php echo base_url()?>cms/2"><i class="fa fa-circle-o text-red"></i> Personnaes</a></li>
             <li id='3'><a href="<?php echo base_url()?>cms/3"><i class="fa fa-circle-o text-red"></i> Home page</a></li>
             <li id='4'><a href="<?php echo base_url()?>cms/4"><i class="fa fa-circle-o text-red"></i> Pages</a></li>
           </ul>         
@@ -49,14 +49,14 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-envelope text-blue"></i>
-            <span>Contact</span>
+            <span>Formulaires</span>
             <span class="pull-right-container">
             <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-blue"></i> Créer une page de contact</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o text-blue"></i> Voir tous</a></li>
+            <li id='7' class="active"><a href="<?php echo base_url()?>cms/7"><i class="fa fa-circle-o text-blue"></i> Créer un formulaire</a></li>
+            <li id='8' ><a href="<?php echo base_url()?>cms/8"><i class="fa fa-circle-o text-blue"></i> Voir tous</a></li>
         </ul>
         </li>
         <?php } ?>        
@@ -69,8 +69,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o text-red"></i> Créer un point d'intéret</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o text-red"></i> Voir tous</a></li>            
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o text-red"></i> Consultvox</a></li>            
           </ul>
         </li>       
         <li class="header">Gestion des utilisateurs</li>

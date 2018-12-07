@@ -101,14 +101,14 @@ class Pages extends CI_Controller {
                 show_404();
         }
 
-        $this->load->view('templates/header',$data);
-        $this->load->view('pages/'.$page,$data);
-        $this->load->view('templates/footer');
+        $this->load->view('templates/header2',$data);
+        //$this->load->view('pages/'.$page,$data);
+        $this->load->view('templates/footer2');
         
 }
 
         public function form($id){
-                $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = '';
+                $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = $tel = '';
                 $service = 0;
                 $this->load->model('Form_model');
                 $this->load->model('Pages_model');
@@ -137,6 +137,10 @@ class Pages extends CI_Controller {
                                 case"email" :
                                 $e = $this->input->post('email');
                                 $email = $this->security->xss_clean($e);                                
+                                break;
+                                case"tel" :
+                                $t = $this->input->post('tel');
+                                $tel= $this->security->xss_clean($t);                                
                                 break;
                                 case"area" :
                                 $m = $this->input->post('area');
@@ -200,6 +204,7 @@ class Pages extends CI_Controller {
                        'nom' => $nom,
                        'prenom' => $prenom,
                        'adresse' => $adresse,
+                       'tel'=>$tel,
                        'date' => $date,
                        'nb' => $nombre,
                        'message' => $message,
