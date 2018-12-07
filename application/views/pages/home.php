@@ -18,41 +18,65 @@ endforeach;
 $size = sizeof($tab);
 ?>
 			
-<div class="row">
-	<div class="col">
-		<div class="text-center" >
+<div id="Content">
+	<div class="content_wrapper clearfix">
+			<!-- .sections_group -->
+			<div class="sections_group">
+				<div class="section pad0" >
+					<div class="section_wrapper clearfix">
+						<div class="items_group clearfix">
+						<div class="be-row"> 
+							<div class="column one column_column" style="background-color : white; text-align : center">		
 			<?php echo $intro; ?>
 		</div>
-	</div>
-</div>
-
-		<br>
-		<div class="home">
-		<!-- Hero Slider -->
-		<div class="hero_slider_container">
-			<div class="hero_slider owl-carousel">
-				<?php  /*on affiche le nombre de slide*/ 
-    for($a = 1; $a < $size; $a++){?>
-				
-				<!-- Hero Slide -->
-				<div class="hero_slide">
-					<div class="hero_slide_background" style="background-image:url(<?php echo base_url().$tab['slide'.$a]['photo']; ?>)"></div>
-					<div class="hero_slide_container d-flex flex-column align-items-center justify-content-center">
-						<div class="hero_slide_content text-center">
-						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
-							<h1 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['title']; ?></h1>
-							<h2 data-animation-in="fadeInUp" data-animation-out="animate-out fadeOut"><?php echo $tab['slide'.$a]['p']; ?></h2>
-						</a>
-						</div>
-					</div>
-				</div>
-	<?php } ?>		
-			</div>
-
-			<div class="hero_slider_left hero_slider_nav trans_200"><span class="trans_200">prev</span></div>
-			<div class="hero_slider_right hero_slider_nav trans_200"><span class="trans_200">next</span></div>
 		</div>
-
+		</div>
+		</div>
+		</div>
+		</div>
+		</div>
+</div>
+<div id="mfn-rev-slider">
+		<div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullscreen-container pd0">
+		<!-- START REVOLUTION SLIDER 4.6.9 fullscreen mode -->
+			<div id="rev_slider_4_1" class="rev_slider fullscreenbanner dnone">
+				<ul>
+				<?php  /*on affiche le nombre de slide*/ 
+    for($a = 1; $a <= $size; $a++){?>	
+					<!-- SLIDE  -->
+					<li data-transition="notransition" data-slotamount="1" data-masterspeed="100"  data-saveperformance="off" >
+						<!-- MAIN IMAGE -->
+						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+						
+						<!-- LAYER  -->
+						<div class="tp-caption tp-fade" 
+							data-x="100" 
+							data-y="300"  
+							data-speed="300" 
+							data-start="1100" 
+							data-easing="Power3.easeInOut" 
+							data-elementdelay="0" 
+							data-endelementdelay="0" 
+							data-end="5700" 
+							data-endspeed="300" 
+							>
+							<div style="background-color : white; text-align : center">
+							<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>"></a>
+							<h1><?php echo $tab['slide'.$a]['title']; ?></h1>
+							<h2><?php echo $tab['slide'.$a]['p']; ?></h2>  
+						</div>
+						</div>
+					</li>
+					<?php } ?>				
+				</ul>
+				<div class="tp-bannertimer tp-bottom" ></div>	
+			</div>
+			
+		</div>
+		<!-- END REVOLUTION SLIDER -->
+		
+		<br>
+	
 	</div>
 
 

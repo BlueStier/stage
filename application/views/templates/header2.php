@@ -57,8 +57,14 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 .page-id-10756 #Footer { display:none;}
 .page-id-10772 #Content { padding-top:0 !important;}
 #Top_bar.is-sticky #logo img { max-height:40px; width:auto !important;}
+html { 
+  background: url(<?php echo $background;?>) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 </style>
-
 
 <!--[if lt IE 9]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -68,7 +74,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 </head>
 
 <!-- body -->
-<body class="page page-child parent-pageid-4311 page-template-default template-slider  color-custom layout-boxed sticky-header">
+<body class="home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg">
 <!-- #Wrapper -->
 <div id="Wrapper">
 
@@ -82,7 +88,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 			<div class="column one">
 				<!-- .logo -->
 				<div class="logo">
-					<h1><a id="logo" href="index.html" title="Cake"><img class="scale-with-grid" src="<?php echo base_url();?>assets/site/img/logo2.png" alt="Cake"/></a></h1>
+					<h1><a id="logo" href="index.html" title="Cake"><img class="scale-with-grid" src="<?php echo base_url();?>assets/site/img/logo2_retina.jpg" alt="Cake"/></a></h1>
 				</div>
 				<!-- .menu_wrapper -->
 				<div class="menu_wrapper">					
@@ -139,31 +145,16 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 					<a class="responsive-menu-toggle" href="#"><i class='icon-menu'></i></a>
 				</div>
 			</div>
-		</div>       
-	</div>
-
-	<div id="mfn-rev-slider">
-		<div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container">
-			<!-- START REVOLUTION SLIDER 4.6.9 fullwidth mode -->
-			<div id="rev_slider_1_1" class="rev_slider fullwidthabanner">
-				<ul>
-					<!-- SLIDE  -->
-					<li data-transition="notransition" data-slotamount="7" data-masterspeed="100" data-delay="6000" data-saveperformance="off">
-					<!-- MAIN IMAGE -->
-					<img src="<?php echo $background;?>" alt="home_slide_1" data-bgposition="center top" data-bgfit="cover" data-bgrepeat="no-repeat">
-                    <div class="tp-caption tp-fade tp-resizeme" 
-						 	data-x="0" 
-						 	data-y="473"  
-							data-speed="1" 
-							data-start="0">
-oignies
-                    <a href='#' class='tp-button red small'>See offer</a>
-                    </div>
-                    </li>					
-				</ul>
-				
-			</div>
-		</div>
-		<!-- END REVOLUTION SLIDER -->
+		</div>        
+        </div>      
+        <div class="be-row">      
+        <div class="column one-third column_column"></div>  
+    <div class="column one-third column_column" style="background-color : white; text-align : center"><h1 ><?php echo $title; ?></h1>
+			<br>			
+			<h4><?php echo $subtitle; ?></h4>	</div>  
+    <div class="column one-third column_column"></div> 
+        	
+		</div>       	
+	</div>		
 	</div>
 	</header>

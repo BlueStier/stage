@@ -102,7 +102,7 @@ class Pages extends CI_Controller {
         }
 
         $this->load->view('templates/header2',$data);
-        //$this->load->view('pages/'.$page,$data);
+        $this->load->view('pages/'.$page,$data);
         $this->load->view('templates/footer2');
         
 }
