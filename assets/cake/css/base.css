@@ -209,7 +209,7 @@
 		margin-bottom: 0;
 	}
 		
-	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], textarea, select {
+	input[type="text"], input[type="password"], input[type="email"], input[type="tel"], textarea, select  {
 		padding: 11px 10px;
 		outline: none;
 		margin: 0;
@@ -226,14 +226,32 @@
 		-moz-box-sizing: border-box;
 		box-sizing: border-box;
 	}
+	label  {
+		padding: 11px 10px;
+		outline: none;
+		margin: 0;
+		width: 230px;
+		max-width: 100%;
+		display: block;
+		margin-bottom: 20px;
+		font-size: 14px;
+		border-width: 1px;
+		border-style: solid;
+		border-color : rgb(156, 154, 154);
+		-webkit-border-radius: 12px;
+		border-radius: 12px;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
 
-	input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus {}
+	input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, textarea:focus, label:focus {}
 		
 	textarea {
 		min-height: 60px;
 	}
 	
-	label, legend {
+	legend {
 		display: block;
 		font-size: 110%;
 	}

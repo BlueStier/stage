@@ -29,7 +29,9 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'bulle'){
                 $this->load->model('Bulles_model');
                 $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-                $page = 'bulle';  
+                $data['css'] = 'page page-child page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';                
+
+                $page = 'portfolio';  
         }
         if($pagestab['type'] == 'text'){
                 $this->load->model('Text_model');
@@ -44,6 +46,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'home'){
                 $this->load->model('Home_model');
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
+                $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
                 $page = 'home';  
         }
         if($pagestab['type'] == 'carroussel'){
@@ -51,14 +54,15 @@ class Pages extends CI_Controller {
                 $data['car_item'] = $this->Carroussel_model->get_car($pagestab['id_pages']);
                 $data['photo_item'] = $this->Carroussel_model-> read_all_files($data['car_item'][0]['path']);
                 $data['path'] = $data['car_item'][0]['path'];
-                $page = 'carroussel';  
+                $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';                $page = 'carrousel2';  
         }
         if($pagestab['type'] == 'article'){
                 $this->load->model('Articles_model');
                 $recup = $this->Articles_model->get_article($pagestab['id_pages'],TRUE);
                 $id = $recup[0]['id_articlespage'];
                 $data['intro']=$recup[0]['text'];
-                $data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);                
+                $data['article_item'] = $this->Articles_model->get_article_by_page($id,FALSE);
+                $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';                
                 $page = 'article';  
         }
         if($pagestab['type'] == 'document'){
@@ -76,6 +80,7 @@ class Pages extends CI_Controller {
                 $this->load->model('Form_model');
                 $this->load->model('Liste_model');
                 $recup = $this->Form_model->get_form($pagestab['id_pages']);
+                $data['css'] = 'page page-id-165 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';
                 if($str != FALSE){
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
         }
@@ -101,9 +106,9 @@ class Pages extends CI_Controller {
                 show_404();
         }
 
-        $this->load->view('templates/header2',$data);
-        $this->load->view('pages/'.$page,$data);
-        $this->load->view('templates/footer2');
+        $this->load->view('templates/header',$data); 
+        $this->load->view('pages/'.$page,$data);        
+        $this->load->view('templates/footer');
         
 }
 

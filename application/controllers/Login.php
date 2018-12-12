@@ -67,7 +67,7 @@ class Login extends CI_Controller
                 $this->load->model('User_model');
                 $verify = $this->User_model->verify($nom, $prenom, $mdp, false);
                 if ($verify) {
-                    header('Location:' . base_url() . 'cms/1');
+                    header('Location:' . base_url() . 'cms');
                 } else {
                     $data['error'] = ['error' => 'Nom, prénom ou mot de passe incorrect'];
                     $this->load->view('log/login', $data);

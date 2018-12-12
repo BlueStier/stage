@@ -1,131 +1,208 @@
-	<!-- Footer -->
+<!-- #Footer -->
+<footer id="Footer" class="clearfix">
 
-	<footer class="footer">
-		<div class="container">
-			
-
-			<!-- Footer Content -->
-
-			<div class="footer_content">
-				<div class="row">
-
-					<!-- Footer Column - About -->
-					<div class="col-lg-3 footer_col">
-
-						<!-- Logo -->
-						<div class="logo_container">
-							<div class="logo">
-								<img src="<?php echo base_url();?>/assets/site/course-master/images/logo2.png" alt="">
-								<span>Oignies</span>
-							</div>
-						</div>
-
-						<p class="footer_about_text">In aliquam, augue a gravida rutrum, ante nisl fermentum nulla, vitae tempor nisl ligula vel nunc. Proin quis mi malesuada, finibus tortor fermentum, tempor lacus.</p>
-
-					</div>
-
-					<!-- Footer Column - Menu -->
-
-					<div class="col-lg-3 footer_col">
-						<div class="footer_column_title">Menu</div>
-						<div class="footer_column_content">
-							<ul>
-								<li class="footer_list_item"><a href="index.html">Ma ville</a></li>
-								<li class="footer_list_item"><a href="#">Mes temps libres</a></li>
-								<li class="footer_list_item"><a href="courses.html">Ma démocratie</a></li>
-								<li class="footer_list_item"><a href="news.html">Mon portail famille</a></li>
-								<li class="footer_list_item"><a href="#">Contact</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- Footer Column - Usefull Links -->
-
-					<div class="col-lg-3 footer_col">
-						<div class="footer_column_title">Usefull Links</div>
-						<div class="footer_column_content">
-							<ul>
-								<li class="footer_list_item"><a href="#">Testimonials</a></li>
-								<li class="footer_list_item"><a href="#">FAQ</a></li>
-								<li class="footer_list_item"><a href="#">Community</a></li>
-								<li class="footer_list_item"><a href="#">Campus Pictures</a></li>
-								<li class="footer_list_item"><a href="#">Tuitions</a></li>
-							</ul>
-						</div>
-					</div>
-
-					<!-- Footer Column - Contact -->
-
-					<div class="col-lg-3 footer_col">
-						<div class="footer_column_title">Contact</div>
-						<div class="footer_column_content">
-							<ul>
-								<li class="footer_contact_item">									
-									<div class="footer_contact_icon">
-										<img src="<?php echo base_url();?>/assets/site/course-master/images/placeholder.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div>								
-									Mairie de Oignies<br>
-									Place de la IVème République<br>
-									62590 Oignies
-								</li>
-								<li class="footer_contact_item">
-									<div class="footer_contact_icon">
-										<img src="<?php echo base_url();?>/assets/site/course-master/images/smartphone.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div>
-									Tel : 03 21 74 80 50<br>
-									&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp Fax : 03 21 37 32 59
-								</li>
-								<li class="footer_contact_item">
-									<div class="footer_contact_icon">
-										<img src="<?php echo base_url();?>/assets/site/course-master/images/envelope.svg" alt="https://www.flaticon.com/authors/lucy-g">
-									</div class="footer_contact_item"><a href="">Nous envoyer un mail</a>
-								</li>
-							</ul>
-						</div>
-					</div>
-
-				</div>
-			</div>
-
-			<!-- Footer Copyright -->
-
-			<div class="footer_bar d-flex flex-column flex-sm-row align-items-center">
-				<div class="footer_copyright">
-					<span><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Ce Template est fait avec <i class="fa fa-heart" aria-hidden="true"></i> par <a href="https://colorlib.com" target="_blank">Colorlib</a> | Site réalisé par Loïc "BlueStier" Roussel
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></span>
-				</div>
-				<div class="footer_social ml-sm-auto">
-					<ul class="menu_social">
-						<li class="menu_social_item"><a href="#"><i class="fab fa-pinterest"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-instagram"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-						<li class="menu_social_item"><a href="#"><i class="fab fa-twitter"></i></a></li>
-					</ul>
-				</div>
-			</div>
-
-		</div>
-	</footer>
-
+<div class="footer_action">
+    <div class="container">
+        <div class="column one column_column">
+            <aside id="text-2" class="widget widget_text">
+            <h2>Contact</h2>
+ 
+            </aside>
+        </div>
+    </div>
 </div>
 
-<script src="<?php echo base_url();?>/assets/site/course-master/js/jquery-3.2.1.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/styles/bootstrap4/popper.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/styles/bootstrap4/bootstrap.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/greensock/TweenMax.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/greensock/TimelineMax.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/scrollmagic/ScrollMagic.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/greensock/animation.gsap.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/greensock/ScrollToPlugin.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/scrollTo/jquery.scrollTo.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCIwF204lFZg1y4kPSIhKaHEXMLYxxuMhA"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/easing/easing.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/js/contact_custom.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/js/custom.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/plugins/progressbar/progressbar.min.js"></script>
-<script src="<?php echo base_url();?>/assets/site/course-master/js/elements_custom.js"></script>
+<div class="widgets_wrapper">
+    <div class="container">      
+        <div class="column one">
+        <aside id="text-5" class="widget widget_text">
+            <h4>Adresse :</h4>
+            <div class="textwidget">                
+                <p>Mairie de Oignies<br>
+                Place de la IVème République<br>
+				62590 Oignies<br>
+                Tel : 03 21 74 80 50<br>
+                Fax : 03 21 37 32 59<br>  
+                </p>                
+            </div>
+            </aside>
+        </div>
+ 
+  
+    </div>
+</div>
+
+<div class="footer_copy">
+    <div class="container">
+        <div class="column one">
+            <a id="back_to_top" href="#"><i class="icon-up-open-big"></i></a>
+            <!-- Copyrights -->
+            <div class="copyright">
+                 &copy; 2018 BlueStier. All Rights Reserved. 
+            </div>
+            <!-- Social -->
+            <div class="social">
+                <ul>
+                    <li class="facebook"><a target="_blank" href="#" title="Facebook"><i class="icon-facebook"></i></a></li>
+                    <li class="twitter"><a target="_blank" href="#" title="Twitter"><i class="icon-twitter"></i></a></li>
+    </ul>
+            </div>
+        </div>
+    </div>
+</div>
+</footer>
+</div>
+
+
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/rs-plugin/js/jquery.themepunch.tools.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
+
+<script>
+//<![CDATA[
+jQuery(window).load(function(){
+var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl = jQuery("#logo img");var retinaLogoW = retinaEl.width();var retinaLogoH = retinaEl.height();retinaEl.attr("src","<?php echo base_url();?>/assets/site/course-master/images/logo2.jpg").width(retinaLogoW).height(retinaLogoH)}});
+//]]>
+</script>
+	
+
+
+
+<script type="text/javascript">
+
+	/******************************************
+		-	PREPARE PLACEHOLDER FOR SLIDER	-
+	******************************************/
+	
+
+	var setREVStartSize = function() {
+		var	tpopt = new Object();
+			tpopt.startwidth = 1200;
+			tpopt.startheight = 720;
+			tpopt.container = jQuery('#rev_slider_4_1');
+			tpopt.fullScreen = "on";
+			tpopt.forceFullWidth="on";
+
+		tpopt.container.closest(".rev_slider_wrapper").css({height:tpopt.container.height()});tpopt.width=parseInt(tpopt.container.width(),0);tpopt.height=parseInt(tpopt.container.height(),0);tpopt.bw=tpopt.width/tpopt.startwidth;tpopt.bh=tpopt.height/tpopt.startheight;if(tpopt.bh>tpopt.bw)tpopt.bh=tpopt.bw;if(tpopt.bh<tpopt.bw)tpopt.bw=tpopt.bh;if(tpopt.bw<tpopt.bh)tpopt.bh=tpopt.bw;if(tpopt.bh>1){tpopt.bw=1;tpopt.bh=1}if(tpopt.bw>1){tpopt.bw=1;tpopt.bh=1}tpopt.height=Math.round(tpopt.startheight*(tpopt.width/tpopt.startwidth));if(tpopt.height>tpopt.startheight&&tpopt.autoHeight!="on")tpopt.height=tpopt.startheight;if(tpopt.fullScreen=="on"){tpopt.height=tpopt.bw*tpopt.startheight;var cow=tpopt.container.parent().width();var coh=jQuery(window).height();if(tpopt.fullScreenOffsetContainer!=undefined){try{var offcontainers=tpopt.fullScreenOffsetContainer.split(",");jQuery.each(offcontainers,function(e,t){coh=coh-jQuery(t).outerHeight(true);if(coh<tpopt.minFullScreenHeight)coh=tpopt.minFullScreenHeight})}catch(e){}}tpopt.container.parent().height(coh);tpopt.container.height(coh);tpopt.container.closest(".rev_slider_wrapper").height(coh);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh);tpopt.container.css({height:"100%"});tpopt.height=coh;}else{tpopt.container.height(tpopt.height);tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height);}
+	};
+
+	/* CALL PLACEHOLDER */
+	setREVStartSize();
+
+
+	var tpj=jQuery;
+	tpj.noConflict();
+	var revapi1;
+
+	tpj(document).ready(function() {
+
+	if(tpj('#rev_slider_4_1').revolution == undefined){
+		revslider_showDoubleJqueryError('#rev_slider_4_1');
+	}else{
+	   revapi1 = tpj('#rev_slider_4_1').show().revolution(
+		{	
+									dottedOverlay:"none",
+			delay:6000,
+			startwidth:1200,
+			startheight:720,
+			hideThumbs:200,
+
+			thumbWidth:100,
+			thumbHeight:50,
+			thumbAmount:3,
+			
+									
+			simplifyAll:"off",
+
+			navigationType:"none",
+			navigationArrows:"solo",
+			navigationStyle:"round",
+
+			touchenabled:"on",
+			onHoverStop:"on",
+			nextSlideOnWindowFocus:"off",
+
+			swipe_threshold: 0.7,
+			swipe_min_touches: 1,
+			drag_block_vertical: false,
+			
+									
+									
+			keyboardNavigation:"off",
+
+			navigationHAlign:"center",
+			navigationVAlign:"bottom",
+			navigationHOffset:0,
+			navigationVOffset:20,
+
+			soloArrowLeftHalign:"left",
+			soloArrowLeftValign:"center",
+			soloArrowLeftHOffset:40,
+			soloArrowLeftVOffset:0,
+
+			soloArrowRightHalign:"right",
+			soloArrowRightValign:"center",
+			soloArrowRightHOffset:40,
+			soloArrowRightVOffset:0,
+
+			shadow:0,
+			fullWidth:"on",
+			fullScreen:"on",
+
+									spinner:"spinner0",
+									
+			stopLoop:"off",
+			stopAfterLoops:-1,
+			stopAtSlide:-1,
+
+			shuffle:"off",
+
+			autoHeight:"on",
+			forceFullWidth:"off",
+			
+			
+			hideTimerBar:"on",
+			hideThumbsOnMobile:"off",
+			hideNavDelayOnMobile:1500,
+			hideBulletsOnMobile:"off",
+			hideArrowsOnMobile:"on",
+			hideThumbsUnderResolution:0,
+
+									hideSliderAtLimit:0,
+			hideCaptionAtLimit:0,
+			hideAllCaptionAtLilmit:0,
+			startWithSlide:0					});
+
+
+
+						}
+	});	/*ready*/
+
+</script>
+
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.form.min.js'></script>
+
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/add-to-cart.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/select2/select2.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery-blockui/jquery.blockUI.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/woocommerce.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery-cookie/jquery.cookie.min.js'></script>
+
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/cart-fragments.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/core.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/widget.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/mouse.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/sortable.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/tabs.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/accordion.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/owl-carousel/owl.carousel.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.jplayer.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.plugins.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/mfn.menu.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/scripts.js'></script>
+
+
+
 </body>
 </html>
