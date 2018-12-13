@@ -117,6 +117,7 @@ $route['deliberations/(:any)'] = 'deliberations/view/$1';
 $route['deliberations'] = 'deliberations';
 $route['pages'] = 'pages/view';
 $route['pages/(:any)'] = 'pages/view/$1';
+$route['pages/acces_rapide/(:any)'] = 'pages/acces_rapide/$1';
 $route['pages/form/(:num)'] = 'pages/form/$1';
 $route['default_controller'] = 'pages/';
 $route['404_override'] = '';

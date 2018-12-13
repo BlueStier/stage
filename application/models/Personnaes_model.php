@@ -16,18 +16,44 @@ class Personnaes_model extends CI_Model
         return $this->db->get_where('personnaes', array('id_personnae' => $id))->row_array();
     }
 
-    public function create($nom, $tab_des_pages)
+    public function create($nom, $tab_des_pages, $background)
     {
         $taille = sizeof($tab_des_pages);
         personnaes_model::augNbCol($taille);
 
         $array_a_enregistré = [];
         $array_a_enregistré['nom'] = $nom;
+        $array_a_enregistré['background'] = $background;
         for ($i = 0; $i < $taille; $i++) {
             $array_a_enregistré['id_page' . $i] = $tab_des_pages[$i];
         }
         //et on l'injecte en BDD
         $this->db->insert('personnaes', $array_a_enregistré);
+
+    }
+
+    public function update($id, $nom, $tab_des_pages, $background = FALSE)
+    {        
+        $taille = sizeof($tab_des_pages);
+        personnaes_model::augNbCol($taille);
+
+        $array_a_enregistré = personnaes_model::get_personnaes($id);
+        $nb_id_page = personnaes_model::nbId();
+        //supprime tous les id du tableau
+        for ($i = 0; $i < $nb_id_page; $i++) {
+                $array_a_enregistré['id_page' . $i] = null;
+            }
+        $array_a_enregistré['nom'] = $nom;
+        for ($i = 0; $i < $taille; $i++) {
+            $array_a_enregistré['id_page' . $i] = $tab_des_pages[$i];
+        }
+        if($background === FALSE){
+        //et on l'injecte en BDD
+        $this->db->replace('personnaes', $array_a_enregistré);
+        }else{
+            $array_a_enregistré['background'] = $background;
+            $this->db->replace('personnaes', $array_a_enregistré);  
+        }
 
     }
 

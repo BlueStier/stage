@@ -227,7 +227,7 @@ class Cms extends CI_Controller
             $this->Articles_model->visibleOrNot($id);
             header('Location:' . base_url() . 'cms/6');
         }
-        if($type == 5){
+        if ($type == 5) {
             $this->load->model('Personnaes_model');
             $id = $this->input->post('id');
             $this->Personnaes_model->visibleOrNot($id);
@@ -661,7 +661,6 @@ class Cms extends CI_Controller
         Cms::updateLink(2);
     }
 
-
     //appel la page createPersonnae
     public function createPersonnae()
     {
@@ -675,46 +674,79 @@ class Cms extends CI_Controller
         $data['alerte'] = $this->Articles_model->findAlert();
         $this->load->model('Pages_model');
         $data['page_item'] = $this->Pages_model->get_page();
-        $data['nb'] = 2;      
+        $data['nb'] = 2;
         $this->load->view('cms/header', $data);
         $this->load->view('cms/left_menu', $data);
         $this->load->view('cms/createPersonnae', $data);
         $this->load->view('cms/footer');
     }
 
-        //fonction permettant d'enregistrer une personnae
-        public function validatePersonnae()
-        {
-            //on définie les critères obligatoires
-            $this->form_validation->set_rules("nomPersonnae", '"Nom de la personnae"', 'required');
-    
-            if ($this->form_validation->run() == false) {
+    //fonction permettant d'enregistrer une personnae
+    public function validatePersonnae()
+    {
+        //on définie les critères obligatoires
+        $this->form_validation->set_rules("nomPersonnae", '"Nom de la personnae"', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_userdata('__ci_last_regenerate', time());
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
+            $this->load->model('Pages_model');
+            $data['page_item'] = $this->Pages_model->get_page();
+            $data['nb'] = 2;
+            $this->load->view('cms/header', $data);
+            $this->load->view('cms/left_menu', $data);
+            $this->load->view('cms/createPersonnae', $data);
+            $this->load->view('cms/footer');
+
+        } else {
+            //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
+            $config['upload_path'] = "./assets/site/img/background/";
+            $config['allowed_types'] = 'gif|jpg|png|jpeg';
+            $config['max_size'] = 10000000;
+            $config['max_width'] = 10000;
+            $config['max_height'] = 10000;
+            $config['overwrite'] = true;
+
+            //upload la photo vers le serveur
+            $this->load->library('upload', $config);
+            if (!$this->upload->do_upload('backgroundImg')) {
+                //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
+                $data['error'] = array('error' => $this->upload->display_errors());
                 $this->session->set_userdata('__ci_last_regenerate', time());
-        $data['user'] = $this->session->userdata('username');
-        $data['id_user'] = $this->session->userdata('id');
-        $data['mail'] = $this->session->userdata('mail');
-        $data['photouser'] = $this->session->userdata('photo');
-        $data['typeuser'] = $this->session->userdata('type');
-        $this->load->model('Articles_model');
-        $data['alerte'] = $this->Articles_model->findAlert();
-        $this->load->model('Pages_model');
-        $data['page_item'] = $this->Pages_model->get_page();
-        $data['nb'] = 2;      
-        $this->load->view('cms/header', $data);
-        $this->load->view('cms/left_menu', $data);
-        $this->load->view('cms/createPersonnae', $data);
-        $this->load->view('cms/footer');
+                $data['user'] = $this->session->userdata('username');
+                $data['id_user'] = $this->session->userdata('id');
+                $data['mail'] = $this->session->userdata('mail');
+                $data['photouser'] = $this->session->userdata('photo');
+                $data['typeuser'] = $this->session->userdata('type');
+                $this->load->model('Articles_model');
+                $data['alerte'] = $this->Articles_model->findAlert();
+                $this->load->model('Pages_model');
+                $data['page_item'] = $this->Pages_model->get_page();
+                $data['nb'] = 2;
+                $this->load->view('cms/header', $data);
+                $this->load->view('cms/left_menu', $data);
+                $this->load->view('cms/createPersonnae', $data);
+                $this->load->view('cms/footer');
 
             } else {
+                $data = array('upload_data' => $this->upload->data());
+                $background = 'assets/site/img/background/' . $data['upload_data']['orig_name'];
                 $nom = $this->input->post("nomPersonnae");
-                $tab_des_pages =  $this->input->post("Personnae_check[]");
+                $tab_des_pages = $this->input->post("Personnae_check[]");
                 $this->load->model('Personnaes_model');
-                $this->Personnaes_model->create($nom, $tab_des_pages);
+                $this->Personnaes_model->create($nom, $tab_des_pages, $background);
                 header('Location:' . base_url() . 'cms/2');
             }
         }
+    }
 
-           //appel la fonction du model de suppression
+    //appel la fonction du model de suppression
     public function deletePersonnae($i)
     {
         $this->load->model('Personnaes_model');
@@ -722,7 +754,8 @@ class Cms extends CI_Controller
         header('Location:' . base_url() . 'cms/2');
     }
 
-    public function updatePersonnae($id){
+    public function updatePersonnae($id)
+    {
         $this->session->set_userdata('__ci_last_regenerate', time());
         $data['user'] = $this->session->userdata('username');
         $data['id_user'] = $this->session->userdata('id');
@@ -743,35 +776,77 @@ class Cms extends CI_Controller
         $this->load->view('cms/footer');
     }
 
-    public function validUpPersonnae($id){
-     //on définie les critères obligatoires
-     $this->form_validation->set_rules("nomPersonnae", '"Nom de la personnae"', 'required');
-    
-     if ($this->form_validation->run() == false) {
-         $this->session->set_userdata('__ci_last_regenerate', time());
- $data['user'] = $this->session->userdata('username');
- $data['id_user'] = $this->session->userdata('id');
- $data['mail'] = $this->session->userdata('mail');
- $data['photouser'] = $this->session->userdata('photo');
- $data['typeuser'] = $this->session->userdata('type');
- $this->load->model('Articles_model');
- $data['alerte'] = $this->Articles_model->findAlert();
- $this->load->model('Pages_model');
- $data['page_item'] = $this->Pages_model->get_page();
- $data['nb'] = 2;      
- $this->load->view('cms/header', $data);
- $this->load->view('cms/left_menu', $data);
- $this->load->view('cms/createPersonnae', $data);
- $this->load->view('cms/footer');
+    public function validUpPersonnae($id)
+    {
+        //on définie les critères obligatoires
+        $this->form_validation->set_rules("nomPersonnae", '"Nom de la personnae"', 'required');
 
-     } else {
-         $nom = $this->input->post("nomPersonnae");
-         $tab_des_pages =  $this->input->post("Personnae_check[]");
-         $this->load->model('Personnaes_model');
-         $this->Personnaes_model->update($id, $nom, $tab_des_pages);
-         header('Location:' . base_url() . 'cms/2');
-     }
- }
+        if ($this->form_validation->run() == false) {
+            $this->session->set_userdata('__ci_last_regenerate', time());
+            $data['user'] = $this->session->userdata('username');
+            $data['id_user'] = $this->session->userdata('id');
+            $data['mail'] = $this->session->userdata('mail');
+            $data['photouser'] = $this->session->userdata('photo');
+            $data['typeuser'] = $this->session->userdata('type');
+            $this->load->model('Articles_model');
+            $data['alerte'] = $this->Articles_model->findAlert();
+            $this->load->model('Pages_model');
+            $data['page_item'] = $this->Pages_model->get_page();
+            $data['nb'] = 2;
+            $this->load->view('cms/header', $data);
+            $this->load->view('cms/left_menu', $data);
+            $this->load->view('cms/createPersonnae', $data);
+            $this->load->view('cms/footer');
+
+        } else {
+            $sel = $this->input->post("radioP");
+            $select = strcmp($sel, "Non");
+            if ($select == 0) {
+                //récupère et copie la photo choisie, définie les caractéristique de celle-ci et le chemin d'upload
+                $config['upload_path'] = "./assets/site/img/background/";
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = 10000000;
+                $config['max_width'] = 10000;
+                $config['max_height'] = 10000;
+                $config['overwrite'] = true;
+
+                //upload la photo vers le serveur
+                $this->load->library('upload', $config);
+                if (!$this->upload->do_upload('back2')) {$data['error'] = array('error' => $this->upload->display_errors());
+                    $this->session->set_userdata('__ci_last_regenerate', time());
+                    $data['user'] = $this->session->userdata('username');
+                    $data['id_user'] = $this->session->userdata('id');
+                    $data['mail'] = $this->session->userdata('mail');
+                    $data['photouser'] = $this->session->userdata('photo');
+                    $data['typeuser'] = $this->session->userdata('type');
+                    $this->load->model('Articles_model');
+                    $data['alerte'] = $this->Articles_model->findAlert();
+                    $this->load->model('Pages_model');
+                    $data['page_item'] = $this->Pages_model->get_page();
+                    $data['nb'] = 2;
+                    $this->load->view('cms/header', $data);
+                    $this->load->view('cms/left_menu', $data);
+                    $this->load->view('cms/updatePersonnae', $data);
+                    $this->load->view('cms/footer');
+
+                } else {
+                    $data = array('upload_data' => $this->upload->data());
+                    $background = 'assets/site/img/background/' . $data['upload_data']['orig_name'];
+                    $nom = $this->input->post("nomPersonnae");
+                    $tab_des_pages = $this->input->post("Personnae_check[]");
+                    $this->load->model('Personnaes_model');
+                    $this->Personnaes_model->update($id, $nom, $tab_des_pages, $background);
+                    header('Location:' . base_url() . 'cms/2');
+                }
+            } else {
+                $nom = $this->input->post("nomPersonnae");
+                $tab_des_pages = $this->input->post("Personnae_check[]");
+                $this->load->model('Personnaes_model');
+                $this->Personnaes_model->update($id, $nom, $tab_des_pages, false);
+                header('Location:' . base_url() . 'cms/2');
+            }
+        }
+    }
 
     public function supBulle($n, $id_a_modif)
     {
@@ -834,10 +909,10 @@ class Cms extends CI_Controller
         $this->load->model('Pages_model');
         $this->form_validation->set_rules('cut', 'Lien à couper', 'required');
         $this->Header_model->cutLink($type);
-        if($nb == 8){
-            header('Location:' . base_url() . 'cms/8');   
-        }else{
-        header('Location:' . base_url() . 'cms/4');
+        if ($nb == 8) {
+            header('Location:' . base_url() . 'cms/8');
+        } else {
+            header('Location:' . base_url() . 'cms/4');
         }
     }
 
@@ -861,10 +936,10 @@ class Cms extends CI_Controller
         if ($sizeof3menu > 0) {
             $this->Header_model->updateMenuByPage($array3Menu, 3);
         }
-        if($redirect == 8){
-            header('Location:' . base_url() . 'cms/8');   
-        }else{
-        header('Location:' . base_url() . 'cms/4');
+        if ($redirect == 8) {
+            header('Location:' . base_url() . 'cms/8');
+        } else {
+            header('Location:' . base_url() . 'cms/4');
         }
     }
 

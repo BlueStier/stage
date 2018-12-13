@@ -16,6 +16,25 @@
                   <input class="form-control" name="nomPersonnae" value="<?php echo $personnae['nom']; ?>" required>
                   </div>
                   </div>
+                  <div class="form-group">
+                <label class="col-sm-2 control-label">Concerver cette photo ?</label>
+                <img class='col-sm-6' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;" src='<?php echo base_url().$personnae['background'] ?>'/>
+                <div class="col-sm-2">
+                <input type="radio" name='radioP' onClick='visibleP(true);' value="Non" >Non     
+                </div>
+                <div class="col-sm-2">
+                <input type="radio" name='radioP' onClick='visibleP(false);' value="Oui"checked>Oui     
+                </div>                                
+                </div>
+        <div id="choixPhoto" class="form-group">
+          <label class="col-sm-2 control-label">Choisir une autre image</label>
+          <div class="col-sm-10">
+            <input id="exampleInputFile"
+                 name="back2"
+                 type="file"
+                 value='Choisissez une image'>
+          </div>
+        </div>
                     <div class="box box-info">
                     <div class="box-header with-border" >
                     <h3 class="box-title">Sélectionnez les pages à lier </h3>
@@ -73,3 +92,9 @@
     <strong>Copyright &copy; 2018-BlueStier</strong> All rights
     reserved.
   </footer>
+  <script>
+  document.getElementById("choixPhoto").style.display = 'none';
+  function visibleP(choix) {
+    (choix ? document.getElementById('choixPhoto').style.display = 'block' : document.getElementById('choixPhoto').style.display = 'none');
+}
+  </script>

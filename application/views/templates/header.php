@@ -156,8 +156,41 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 				<h1 class="title"><?php echo $title; ?></h1>
 				<h4><?php echo $subtitle; ?></h4>				
 			</div>
-			<div class="column one-third column_column"></div>
+			<div class="column one-third column_column"></div>			
 		</div>
+		<?php if(isset($personnaes_item)){ ?>
+		<div class="container textcenter personnae_large">
+		<div id="Content">
+		<div class="content_wrapper clearfix">
+			<!-- .sections_group -->
+			<div class="sections_group">
+				<div class="section pad1" >
+					<div class="section_wrapper clearfix">
+						<div class="items_group clearfix">
+						<?php 
+		foreach($personnaes_item as $personnaes):			
+		if($personnaes['visible']){ ?>
+		<div class="column one-third column_column">		
+			<a class="button button_blue button_large textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().'pages/acces_rapide/'.$personnaes['id_personnae'];?>" style="width:130px"><?php echo $personnaes['nom']; ?></a>
+			</div>
+<?php }		
+			endforeach;?>							
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				
+				<div class="container textcenter personnae_mini">
+				<div class="column one-third column_column"></div>
+				<div class="column one-third column_column">
+				<a class=" button button_blue button_large textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/ echo base_url().'pages/acces_rapide/-1'?>" >Accès rapide</a>
+				</div>
+				<div class="column one-third column_column"></div>	
+				</div>
+				<?php } ?>	
 	</div>      	
 	</div>		
 	</div>

@@ -55,7 +55,7 @@
                 <?php foreach($type_item as $type):
                 $selected = strcmp($type['type'],'sans');
                 $eject = strcmp($type['type'],'home');
-                if($eject != 0){
+                if($eject != 0 && $type['type'] != ''){
                 if($selected == 0 ){
                   ?>
                   <option selected><?php echo $type['type']?></option>

@@ -16,6 +16,12 @@
                   <input class="form-control" name="nomPersonnae" placeholder="Entrez le nom" required>
                   </div>
                   </div>
+                  <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir une image </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="backgroundImg" id="exampleInputFile" value='Choisissez une image'>
+                </div>
+                </div>
                     <div class="box box-info">
                     <div class="box-header with-border" >
                     <h3 class="box-title">Sélectionnez les pages à lier </h3>

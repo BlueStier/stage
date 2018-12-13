@@ -4,7 +4,7 @@ class Pages extends CI_Controller {
         {
             parent::__construct();
             $this->load->model('Header_model');
-            $this->load->model('Rapide_model');
+            $this->load->model('Personnaes_model');
             $this->load->model('Pages_model');
             $this->load->helper('url_helper','security_helper');
             $this->load->library('form_validation');
@@ -18,8 +18,7 @@ class Pages extends CI_Controller {
         //récupère les infos pour le header (menu, sousmenu...)
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
-        $data['third_item'] = $this->Header_model->get_thirdmenu();
-        $data['rapide_item'] = $this->Rapide_model->get_rapide();
+        $data['third_item'] = $this->Header_model->get_thirdmenu(); 
         $pagestab = $this->Pages_model->get_page($page);
         $data['background']= base_url().$pagestab['background'];
         $data['title'] = $pagestab['titre'];
@@ -29,8 +28,7 @@ class Pages extends CI_Controller {
         if($pagestab['type'] == 'bulle'){
                 $this->load->model('Bulles_model');
                 $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-                $data['css'] = 'page page-child page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';                
-
+                $data['css'] = 'page page-child page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';
                 $page = 'portfolio';  
         }
         if($pagestab['type'] == 'text'){
@@ -45,6 +43,7 @@ class Pages extends CI_Controller {
         }
         if($pagestab['type'] == 'home'){
                 $this->load->model('Home_model');
+                $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
                 $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
                 $page = 'home';  
@@ -279,5 +278,46 @@ public function send_mail($array){
         }
         $this->email->send();
         
+}
+
+public function acces_rapide($id ){
+        if($id == -1){
+                $data['header_item'] = $this->Header_model->get_menu();
+                $data['sub_item'] = $this->Header_model->get_sousmenu();
+                $data['third_item'] = $this->Header_model->get_thirdmenu();
+                $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
+                $pagestab = $this->Pages_model->get_page('acces_rapide_page');
+                $data['background']= base_url().$pagestab['background'];
+                $data['title'] = $pagestab['titre'];
+                $data['subtitle'] = "";
+                $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+                $this->load->view('templates/header',$data); 
+                $this->load->view('pages/acces_rapide',$data);        
+                $this->load->view('templates/footer');
+        }else{
+        $person = $this->Personnaes_model->get_personnaes($id);
+        $array_des_pages = [];
+        $nb_id_des_pages = $this->Personnaes_model->nbId();
+        for($a = 0; $a < $nb_id_des_pages; $a++){
+                if($person['id_page'.$a] != NULL){
+                        $result = $this->Pages_model->get_page_by_id($person['id_page'.$a]);
+                        $array_des_pages[] = $result[0];
+                }
+        }
+        $data['page_item'] = $array_des_pages;
+         //récupère les infos pour le header (menu, sousmenu...)
+         $data['header_item'] = $this->Header_model->get_menu();
+         $data['sub_item'] = $this->Header_model->get_sousmenu();
+         $data['third_item'] = $this->Header_model->get_thirdmenu();
+         $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
+         $pagestab = $this->Pages_model->get_page('acces_rapide_page');
+         $data['background']= base_url().$pagestab['background'];
+         $data['title'] = $pagestab['titre'];
+         $data['subtitle'] = $person['nom'];
+         $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+         $this->load->view('templates/header',$data); 
+         $this->load->view('pages/acces_rapide_page',$data);        
+         $this->load->view('templates/footer');
+}
 }
 }
