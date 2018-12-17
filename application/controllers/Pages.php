@@ -3,6 +3,7 @@ class Pages extends CI_Controller {
         public function __construct()
         {
             parent::__construct();
+            $this->load->model('Autocomplete_model');
             $this->load->model('Header_model');
             $this->load->model('Personnaes_model');
             $this->load->model('Pages_model');
@@ -16,6 +17,7 @@ class Pages extends CI_Controller {
         //construit la page demandée 
         public function view($page, $str = FALSE){       
         //récupère les infos pour le header (menu, sousmenu...)
+        $data['autocomplete'] = $this->Autocomplete_model->get();
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu(); 
@@ -45,7 +47,7 @@ class Pages extends CI_Controller {
                 $this->load->model('Home_model');
                 $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
                 $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-                $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+                $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
                 $page = 'home';  
         }
         if($pagestab['type'] == 'carroussel'){
@@ -107,7 +109,7 @@ class Pages extends CI_Controller {
 
         $this->load->view('templates/header',$data); 
         $this->load->view('pages/'.$page,$data);        
-        $this->load->view('templates/footer');
+        $this->load->view('templates/footer',$data);
         
 }
 

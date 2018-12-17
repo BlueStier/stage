@@ -50,6 +50,7 @@ class User_model extends CI_Model {
              $this->load->library('upload', $config);
              if(! $this->upload->do_upload('photoUser'))
              {
+                 var_dump($this->upload->display_errors());
                  //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
                      $data['error'] = array('error'=> $this->upload->display_errors());
                      $data['nb'] = 7;                                                      
@@ -60,6 +61,7 @@ class User_model extends CI_Model {
              }
              else
              {   
+                 echo 'icic';
                      $data = array('upload_data'=>$this->upload->data());
                      $photo = 'assets/cms/user/'.$data['upload_data']['orig_name'];                                        
                      

@@ -180,7 +180,6 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 	});	/*ready*/
 
 </script>
-
 <script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.form.min.js'></script>
 
 <script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/add-to-cart.min.js'></script>
@@ -201,7 +200,44 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 <script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.plugins.js'></script>
 <script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/mfn.menu.js'></script>
 <script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/scripts.js'></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+jQuery(document).ready(function(){
+	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
+    item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
+    return $("<li></li>")
+            .data("item.autocomplete", item)
+            .append("<a>" + item.label + "</a>")
+            .appendTo(ul);
+};	
+  var autocomplete = <?php echo $autocomplete ?>;
+  $( "#search" ).autocomplete({
+    source: function(request, response ){
+      var expression_reguliere;
+      var liste_autocomplete_triee;
+      var mots_recherches;
+ 
+      liste_autocomplete_triee = autocomplete.slice();
+      mots_recherches = request.term.split(" ");
+      mots_recherches = mots_recherches.filter(function(n){ return n != "" });
+ 
+      for (i = 0; i < mots_recherches.length; i++) {
+        for(var j in autocomplete){
+	  expression_reguliere = new RegExp(mots_recherches[i]);
+	  if(!expression_reguliere.test(liste_autocomplete_triee[j])){
+            delete liste_autocomplete_triee[j];
+	  }
+        }
+      }
+      
+      liste_autocomplete_triee = liste_autocomplete_triee.filter(function(a){return typeof a !== 'undefined';})
+      response(liste_autocomplete_triee);
+   }
+  });
+});
 
+</script>
 
 
 </body>

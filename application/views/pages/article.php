@@ -18,7 +18,7 @@
 										<div class="question">
 											<h5><span class="icon"><i class="icon-right-open"></i></span><?php echo $article['titre']?></h5>
 											<div class="answer">
-                                                <img src="<?php echo base_url().$article['photo']?>" alt="" style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:160px;">
+                                                <img src="<?php echo base_url().$article['photo']?>" alt="" style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:200px;">
                                                 <h6><?php echo $article['jour']?></h6>
                                                 <?php echo $article['text']?>
 											</div>

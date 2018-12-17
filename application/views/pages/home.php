@@ -44,7 +44,7 @@ $size = sizeof($tab);
 				<?php  /*on affiche le nombre de slide*/ 
     for($a = 1; $a <= $size; $a++){?>	
 					<!-- SLIDE  -->
-					<li data-transition="notransition" data-slotamount="1" data-masterspeed="100"  data-saveperformance="off" >
+					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off" >
 						<!-- MAIN IMAGE -->
 						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 						
