@@ -173,4 +173,10 @@ class Carroussel_model extends CI_Model {
                 }
 
         }
+
+        public function search($recherche){
+                $this->db->like('text',$recherche,'both');
+                $this->db->or_like('text2',$recherche,'both');
+                return $this->db->get('carroussel')->result_array();
+        }
 }

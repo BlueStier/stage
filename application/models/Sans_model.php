@@ -35,4 +35,9 @@ class Sans_model extends CI_Model {
 
         }
 
+        public function search($recherche){
+                $this->db->like('pg1',$recherche,'both');
+                return $this->db->get('sans')->result_array();
+        }
+
 }

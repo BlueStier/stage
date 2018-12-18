@@ -353,4 +353,18 @@ class Articles_model extends CI_Model
         }
     }
 
+    public function search($recherche){
+        $tab_des_pages = [];       
+        $this->db->like('text',$recherche,'both');
+        $this->db->or_like('titre',$recherche,'both');
+        $query = $this->db->get('articles');
+        $articles = $query->result_array();
+        
+        $this->load->model('Pages_model');
+        foreach($articles as $a){
+            $tab_des_pages[] = $this->Pages_model->get_page_by_id($a['id_articlespage']);
+        }
+        return $tab_des_pages;
+    }
+
 }

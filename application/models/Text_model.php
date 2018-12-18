@@ -60,4 +60,29 @@ class Text_model extends CI_Model {
 
         }
 
+        public function search($recherche){
+                $this->db->like('t1',$recherche,'both');
+                $this->db->or_like('pg1',$recherche,'both');
+                $this->db->or_like('t2',$recherche,'both');
+                $this->db->or_like('pg2',$recherche,'both');
+                $this->db->or_like('t3',$recherche,'both');
+                $this->db->or_like('pg3',$recherche,'both');
+                $this->db->or_like('t4',$recherche,'both');
+                $this->db->or_like('pg4',$recherche,'both');
+                $this->db->or_like('t5',$recherche,'both');
+                $this->db->or_like('pg5',$recherche,'both');
+                $this->db->or_like('t6',$recherche,'both');
+                $this->db->or_like('pg6',$recherche,'both');
+                $this->db->or_like('t7',$recherche,'both');
+                $this->db->or_like('pg7',$recherche,'both');
+                $this->db->or_like('t8',$recherche,'both');
+                $this->db->or_like('pg8',$recherche,'both');
+                $this->db->or_like('t9',$recherche,'both');
+                $this->db->or_like('pg9',$recherche,'both');
+                $this->db->or_like('t10',$recherche,'both');
+                $this->db->or_like('pg10',$recherche,'both');                
+                $query = $this->db->get('text');
+                return $query->result_array(); 
+            }
+
 }

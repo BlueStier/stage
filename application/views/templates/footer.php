@@ -208,7 +208,7 @@ jQuery(document).ready(function(){
     item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
     return $("<li></li>")
             .data("item.autocomplete", item)
-            .append("<a>" + item.label + "</a>")
+            .append( "<a onClick='get_focus()'>"+item.label+"</a>" )
             .appendTo(ul);
 };	
   var autocomplete = <?php echo $autocomplete ?>;
@@ -237,6 +237,13 @@ jQuery(document).ready(function(){
   });
 });
 
+function get_focus(){
+	setTimeout(function() {
+		var searchform = document.getElementById('icon_search');
+	searchform.click();
+}, 100);
+	
+}
 </script>
 
 

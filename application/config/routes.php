@@ -115,6 +115,7 @@ $route['ArretesMunicipaux'] = 'ArretesMunicipaux';
 $route['deliberations/create'] = 'deliberations/create';
 $route['deliberations/(:any)'] = 'deliberations/view/$1';
 $route['deliberations'] = 'deliberations';
+$route['pages/search'] = 'pages/search';
 $route['pages'] = 'pages/view';
 $route['pages/(:any)'] = 'pages/view/$1';
 $route['pages/acces_rapide/(:any)'] = 'pages/acces_rapide/$1';
