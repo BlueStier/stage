@@ -289,6 +289,7 @@ class Pages extends CI_Controller
     public function acces_rapide($id)
     {
         if ($id == -1) {
+            $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
@@ -300,7 +301,7 @@ class Pages extends CI_Controller
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         } else {
             $person = $this->Personnaes_model->get_personnaes($id);
             $array_des_pages = [];
@@ -311,6 +312,7 @@ class Pages extends CI_Controller
                     $array_des_pages[] = $result[0];
                 }
             }
+            $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
             //récupère les infos pour le header (menu, sousmenu...)
             $data['header_item'] = $this->Header_model->get_menu();
@@ -324,47 +326,80 @@ class Pages extends CI_Controller
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide_page', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
         }
     }
 
-    public function search(){
-            //creation du tableau des id_pages à afficher
-            $tab_id_page = []; 
-            //création du tableau de resultat
-            $result = [];
-            $recherche_avant_clean = $this->input->post("search");
-            $recherche = $this->security->xss_clean($recherche_avant_clean);
+    public function search()
+    {
+        //creation du tableau des id_pages à afficher
+        $tab_id_page = [];
+        //création du tableau de resultat
+        $result = [];
+        $recherche_avant_clean = $this->input->post("search");
+        $recherche = $this->security->xss_clean($recherche_avant_clean);
 
-            //on charge les modèles
-            $this->load->model('Articles_model');
-            $this->load->model('Bulles_model');
-            $this->load->model('Carroussel_model');
-            $this->load->model('Document_model');
-            $this->load->model('Sans_model');
-            $this->load->model('Text_model');
+        //on charge les modèles
+        $this->load->model('Articles_model');
+        $this->load->model('Bulles_model');
+        $this->load->model('Carroussel_model');
+        $this->load->model('Document_model');
+        $this->load->model('Sans_model');
+        $this->load->model('Text_model');
 
-            //on effectue la recherche
-            $result_articles = $this->Articles_model->search($recherche);            
-            $result[] = $this->Bulles_model->search($recherche);
-            $result[] = $this->Carroussel_model->search($recherche);
-            $result[] = $this->Document_model->search($recherche);
-            $result[] = $this->Sans_model->search($recherche);
-            $result[] = $this->Text_model->search($recherche);
-            $recherche_pour_page = str_replace(' ','-',$recherche);
-            $result_pages = $this->Pages_model->get_page($recherche_pour_page);
-            var_dump($result);
-            foreach($result as $r){
-                    if(!empty($r)){
-                            $size_array = sizeof($r);
-                            for($i = 0; $i < $size_array; $i++){
-                                    if(! in_array($r[$i]['id_pages'],$tab_id_page)){
-                                        $tab_id_page[] = $r[$i]['id_pages'];
-                                    }        
-                            }
+        //on effectue la recherche
+        $result_articles = $this->Articles_model->search($recherche);
+        $result[] = $this->Bulles_model->search($recherche);
+        $result[] = $this->Carroussel_model->search($recherche);
+        $result[] = $this->Document_model->search($recherche);
+        $result[] = $this->Sans_model->search($recherche);
+        $result[] = $this->Text_model->search($recherche);
+        $recherche_pour_page = str_replace(' ', '-', $recherche);
+        $result_pages = $this->Pages_model->get_page($recherche_pour_page);
+       
+        foreach ($result as $r) {
+            if (!empty($r)) {
+                $size_array = sizeof($r);
+                for ($i = 0; $i < $size_array; $i++) {
+                    if (!in_array($r[$i]['id_pages'], $tab_id_page)) {
+                        $tab_id_page[] = $r[$i]['id_pages'];
                     }
+                }
             }
-            
-            var_dump($tab_id_page);
+        }
+        foreach ($result_articles as $r) {
+            if (!empty($r)) {
+                $size_array = sizeof($r);
+                for ($i = 0; $i < $size_array; $i++) {
+                    if (!in_array($r[$i]['id_pages'], $tab_id_page)) {
+                        $tab_id_page[] = $r[$i]['id_pages'];
+                    }
+                }
+            }
+        }
+        if (!empty($result_pages)) {
+            $tab_id_page[] = $result_pages['id_pages'];
+        }
+
+        $data['pages_item'] = [];
+        foreach($tab_id_page as $tab){
+                $array = $this->Pages_model->get_page_by_id($tab);
+                $data['pages_item'][] = $array[0];
+        }
+
+        $data['autocomplete'] = $this->Autocomplete_model->get();
+        //récupère les infos pour le header (menu, sousmenu...)
+        $data['header_item'] = $this->Header_model->get_menu();
+        $data['sub_item'] = $this->Header_model->get_sousmenu();
+        $data['third_item'] = $this->Header_model->get_thirdmenu();
+        $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
+        $pagestab = $this->Pages_model->get_page('recherche');
+        $data['background'] = base_url() . $pagestab['background'];
+        $data['title'] = $pagestab['titre'];
+        $data['subtitle'] = '';
+        $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/recherche', $data);
+        $this->load->view('templates/footer', $data);
     }
 }
