@@ -339,6 +339,9 @@ class Pages extends CI_Controller
         $recherche_avant_clean = $this->input->post("search");
         $recherche = $this->security->xss_clean($recherche_avant_clean);
 
+        //on met la recherhce dans la table pour future autocompletion
+        $this->Autocomplete_model->create_word($recherche);
+
         //on charge les modèles
         $this->load->model('Articles_model');
         $this->load->model('Bulles_model');

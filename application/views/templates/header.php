@@ -84,8 +84,9 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height : 400px;
+  height : 400px;s
 }
+
 </style>
 
 <!--[if lt IE 9]>
@@ -118,8 +119,8 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 					<?php  $attributes = array( 'id' => 'searchform');
                                     echo form_open_multipart('pages/search', $attributes);
 					?>
-						<a class="icon_search icon" id="icon_search" href="#"><i class="icon-search-line"></i></a>
-						<a class="icon_close icon" id='icon_close' href="#"><i class="icon-cancel"></i></a>
+						<a class="icon_search icon" href="#"><i class="icon-search-line"></i></a>
+						<a class="icon_close icon"  href="#"><i class="icon-cancel"></i></a>
 						<input type="text" class="field" name="search" id="search" placeholder="Rechercher"/>
 						<input type="submit" class="submit" value="" />
 					</form>

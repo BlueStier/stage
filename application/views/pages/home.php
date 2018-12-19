@@ -44,14 +44,16 @@ $size = sizeof($tab);
 				<?php  /*on affiche le nombre de slide*/ 
     for($a = 1; $a <= $size; $a++){?>	
 					<!-- SLIDE  -->
+					
 					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off" >
 						<!-- MAIN IMAGE -->
-						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 						
+						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
+						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
 						<!-- LAYER  -->
 						<div class="tp-caption tp-fade" 
-							data-x="100" 
-							data-y="300"  
+							data-x="center" 
+							data-y="bottom"  
 							data-speed="300" 
 							data-start="1100" 
 							data-easing="Power3.easeInOut" 
@@ -61,12 +63,14 @@ $size = sizeof($tab);
 							data-endspeed="300" 
 							>
 							<div style="background-color : white; text-align : center">
-							<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>"></a>
+							
 							<h1><?php echo $tab['slide'.$a]['title']; ?></h1>
 							<h2><?php echo $tab['slide'.$a]['p']; ?></h2>  
 						</div>
 						</div>
+						</a>
 					</li>
+					
 					<?php } ?>				
 				</ul>
 				<div class="tp-bannertimer tp-bottom" ></div>	

@@ -213,6 +213,7 @@ jQuery(document).ready(function(){
 };	
   var autocomplete = <?php echo $autocomplete ?>;
   $( "#search" ).autocomplete({
+	minLength: 3,
     source: function(request, response ){
       var expression_reguliere;
       var liste_autocomplete_triee;
@@ -229,8 +230,8 @@ jQuery(document).ready(function(){
             delete liste_autocomplete_triee[j];
 	  }
         }
-      }
-      
+      }      
+	  
       liste_autocomplete_triee = liste_autocomplete_triee.filter(function(a){return typeof a !== 'undefined';})
       response(liste_autocomplete_triee);
    }
@@ -239,7 +240,7 @@ jQuery(document).ready(function(){
 
 function get_focus(){
 	setTimeout(function() {
-		var searchform = document.getElementById('icon_search');
+		var searchform = document.getElementsByClassName('icon_search icon')[0];
 	searchform.click();
 }, 100);
 	

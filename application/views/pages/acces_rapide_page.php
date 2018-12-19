@@ -12,10 +12,10 @@
 							</div>
                             <?php foreach($page_item as $page): ?>
 							<div class="column one-third column_article_box">
-								<div class="article_box">
-									<a class="has_hover" href="<?php echo base_url().'pages/'.$page['nom']; ?>">
-									<div class="photo_mask">
-										<img class="scale-with-grid"  src="<?php echo base_url().$page['background']; ?>" alt="Mauris placerat eleifend leo"/>
+								<div class="article_box" style = "width : 100%">
+									<a class="has_hover" style = "width : 100%" href="<?php echo base_url().'pages/'.$page['nom']; ?>">
+									<div class="photo_mask" style = "width : 100%">
+										<img class="scale-with-grid" style = "width : 100%" src="<?php echo base_url().$page['background']; ?>" alt="Mauris placerat eleifend leo"/>
 										<div class="mask">
 										</div>
 										<span class="button_image more"><i class="icon-link"></i></span>
