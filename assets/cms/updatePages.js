@@ -49,7 +49,7 @@ function addYear(bool) {
     }
 }
 
-//var nbBu = parseInt(document.getElementById("nbBu").value, 10);
+var nbBu = parseInt(document.getElementById("nbBu").value, 10);
 var initialb = nbBu;
 var Pbu = nbBu + 1;
 

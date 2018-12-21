@@ -33,17 +33,19 @@ class Pages extends CI_Controller
         if ($pagestab['type'] == 'bulle') {
             $this->load->model('Bulles_model');
             $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-            $data['css'] = 'page page-child page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
             $page = 'portfolio';
         }
         if ($pagestab['type'] == 'text') {
             $this->load->model('Text_model');
             $data['text_item'] = $this->Text_model->get_text($pagestab['id_pages']);
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
             $page = 'text';
         }
         if ($pagestab['type'] == 'sans') {
             $this->load->model('Sans_model');
             $data['text_item'] = $this->Sans_model->get_sans($pagestab['id_pages']);
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
             $page = 'text';
         }
         if ($pagestab['type'] == 'home') {
@@ -85,7 +87,7 @@ class Pages extends CI_Controller
             $this->load->model('Form_model');
             $this->load->model('Liste_model');
             $recup = $this->Form_model->get_form($pagestab['id_pages']);
-            $data['css'] = 'page page-id-165 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
             if ($str != false) {
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
             }

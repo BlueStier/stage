@@ -79,8 +79,7 @@ $size = sizeof($tab);
 		</div>
 		<!-- END REVOLUTION SLIDER -->
 		
-		<br>
-	
+		<br>	
 	</div>
 
 

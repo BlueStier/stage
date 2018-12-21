@@ -32,7 +32,8 @@ class Carroussel_model extends CI_Model {
             //injection des données en bdd
             $données = ['id_pages'=> $id_pages,
                         'text' => $this->input->post('textcar'),
-                        'path' =>  $pathname 
+                        'path' =>  $pathname,
+                        'text2' => $this->input->post('textsupfac'), 
             ];
                 $this->db->insert('carroussel',$données);
 
@@ -157,6 +158,7 @@ class Carroussel_model extends CI_Model {
                 $car = Carroussel_model::get_car($id);
                 $car[0]['path'] = $pathname;
                 $car[0]['text'] = $this->input->post('textcar');
+                $car[0]['text2'] = $this->input->post('textsupfac');
                 $this->db->replace('carroussel',$car[0]);
 
                 $pathname2 = './'.$pathname;

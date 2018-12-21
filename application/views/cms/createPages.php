@@ -249,6 +249,13 @@
                   <input type="file" name="car1[]" id="exampleInputFile" value='Choisissez des images' multiple='multiple'>
                 </div>
                 </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Texte (facultatif) </label>
+                  <div class="col-sm-10">
+                  <textarea id="editor" name="textsupfac" class="ckeditor" rows="10" cols="80">                                            
+                    </textarea>
+                  </div>
+                </div>
                 </div>
                 <!-- fin Div carroussel -->
                  <!-- Div pour création d'un page du type document -->

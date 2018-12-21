@@ -119,6 +119,7 @@ $year = date('Y');
                  //récupération des infos
                  foreach($car_item as $car):
                   $intro = $car['text'];
+                  $text = $car['text2'];
                   $path = $car['path'].'/';
                   $path0 = $car['path'];                  
                  endforeach;
@@ -131,6 +132,14 @@ $year = date('Y');
                   <div class="col-sm-10">
                   <textarea id="editor" name="textcar" class="ckeditor" rows="10" cols="80">
                     <?php echo $intro; ?>                                            
+                    </textarea>
+                  </div>
+                </div>
+                <div class="form-group">
+                <label class="col-sm-2 control-label">Texte (facultatif) </label>
+                  <div class="col-sm-10">
+                  <textarea id="editor" name="textsupfac" class="ckeditor" rows="10" cols="80">
+                  <?php echo $text; ?>                                             
                     </textarea>
                   </div>
                 </div>

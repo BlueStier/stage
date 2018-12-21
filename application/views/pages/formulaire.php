@@ -88,22 +88,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<!-- .four-columns - sidebar -->
-			
-			<div class="four columns">
-				<div class="widget-area clearfix">
-					<aside id="widget_mfn_menu-2" class="widget widget_mfn_menu">
-                    <h3>Recherches associées</h3>
-					<ul class="menu">
-						<li class="page_item page-item-116 current_page_item"><a href="accordion.html">Accordion &#038; FAQ</a></li>
-						<li class="page_item page-item-10453"><a href="article-box.html">Article box</a></li>
-						<li class="page_item page-item-38"><a href="blockquote.html">Blockquote</a></li>
-						<li class="page_item page-item-10456"><a href="blog.html">Blog</a></li>
-					</ul>
-					</aside>
-				</div>
-			</div>
+			</div>		
 		</div>
     </div>
     <script>

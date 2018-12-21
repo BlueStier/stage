@@ -149,9 +149,11 @@ foreach ($header_item as $header):
                 foreach ($third_item as $thi):
                     //on vérifie que le 3eme niveau doit être affiché et qu'il correspond au sousmenu parent
                     $compare2 = strcmp($thi['sousmenu'], $sub['nom']);
-                    if ($thi['visible'] && ($compare2 == 0)) {?>
+                    if ($thi['visible'] && ($compare2 == 0)) {
+						$chemin = base_url().$thi['path'];
+						?>
 
-			                              <li class="menu-item "><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $thi['path']; ?>"><span><?php echo $thi['nom']; ?></span></a></li>
+			                              <li class="menu-item "><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo $chemin;?>"><span><?php echo $thi['nom'] ?></span></a></li>
 					<?php }
                 endforeach;?>
 		                            </ul>
