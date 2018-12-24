@@ -23,8 +23,10 @@
 										<div class="question">
 											<h5 class='textcenter'><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trt'.$i]; ?></h5>
 											<div class="answer">
+											<?php if($bulle['photo'.$i] != ''){?>
                                                 <img src="<?php echo base_url().$bulle['photo'.$i]; ?>" alt="" style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;">
-                                                <h6><?php echo $bulle['soustitre']; ?></h6>
+											<?php } ?>    
+												<h6><?php echo $bulle['soustitre']; ?></h6>
                                                 <?php echo $bulle['tx'.$i]; ?>
 											</div>
                                         </div>
@@ -34,7 +36,7 @@
                     <div class="question">
                   <h5 class='textcenter'><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trtsup']; ?></h5>
                   <div class="answer">                      
-                      <h6><?php echo $bulle['sup'];?></h6>
+                      <?php echo $bulle['sup'];?>
                   </div>
               </div>
 <?php         

@@ -423,13 +423,26 @@ class Cms extends CI_Controller
                 $this->load->view('cms/left_menu', $data);
                 $this->load->view('cms/createPages', $data);
                 $this->load->view('cms/footer');
-            } else { //on charge les models nécessaires
+            } else {
+                
+                //on charge les models nécessaires
                 $this->load->model('Pages_model');
                 //on envoie les info vers Pages_model pour création dans la table de la bdd
                 $data = array('upload_data' => $this->upload->data());
                 $nom = 'assets/site/img/background/' . $data['upload_data']['orig_name'];
+
+                $this->upload->set_upload_path("./assets/site/ressources/");
+                $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf|docx');
+                if (!$this->upload->do_upload('doc_a_telecharger')) {
+                    $path_doc = 'hs';
+                    $intro_doc ='hs';
+                } else {
+                    $data = array('upload_data' => $this->upload->data());
+                    $path_doc = 'assets/site/ressources/' . $data['upload_data']['orig_name'];
+                    $intro_doc = $this->input->post('intro_doc');
+                }
                 $type = $this->input->post('selectType');
-                $this->Pages_model->validatePage($nom, $type);
+                $this->Pages_model->validatePage($nom, $type,$path_doc,$intro_doc);
 
                 //on vérifie le type de page à enregistrer
                 switch ($type) {

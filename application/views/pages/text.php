@@ -14,16 +14,14 @@
           if(empty($text['t'.$a])){
             ?>
             <div class="text-center">
-        <p><?php echo $text['pg'.$a];?></p><br><br></div>
+        <?php echo $text['pg'.$a];?></div>
             <?php 
           }else{
             ?>
-            <div class="text-center">
-            <h3><?php echo $text['t'.$a];?></h3>
-          </div><br>
-          <div class="text-left">
-            <p><?php echo $text['pg'.$a];?><br></p>
-          </div><br>
+            <div class="textcenter">
+            <h4><?php echo $text['t'.$a];?></h4>
+          </div><br>         
+            <?php echo $text['pg'.$a];?>          
           <br>
     <?php }
       $a++;}

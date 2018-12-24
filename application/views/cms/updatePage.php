@@ -7,6 +7,8 @@ $st_page = $p['soustitre'];
 $back = $p['background'];
 $type_page = $p['type'];
 $path = 'pages/'.$p['nom'].'/';
+$path_doc = $p['path_doc'];
+$intro_doc = $p['intro_doc'];
 endforeach;
 $year = date('Y');
 ?>
@@ -648,7 +650,7 @@ $year = date('Y');
                 <select name ="selectyear2" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if(in_array($e,$folder)){?>                
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -688,7 +690,7 @@ $year = date('Y');
                 <select name ="selectyear4" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if(in_array($e,$folder)){?>                
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -708,7 +710,7 @@ $year = date('Y');
                 <select name ="selectyear5" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if(in_array($e,$folder)){?>                
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -728,7 +730,7 @@ $year = date('Y');
                 <select name ="selectyear6" class="form-control select2" >
                 <?php 
                   for($e = 2000; $e <= 2050; $e++){
-                    if(in_array($e,$folder)){?>                
+                    if(!in_array($e,$folder)){?>                
                     <option><?php echo $e; ?></option>
                   <?php } } ?>
                 </select>
@@ -748,7 +750,7 @@ $year = date('Y');
                 <select name ="selectyear7" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if(in_array($e,$folder)){?>                
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -768,7 +770,7 @@ $year = date('Y');
                 <select name ="selectyear8" class="form-control select2" >
                 <?php 
                   for($e = 2000; $e <= 2050; $e++){
-                    if(in_array($e,$folder)){?>                
+                    if(!in_array($e,$folder)){?>                
                     <option><?php echo $e; ?></option>
                   <?php } } ?>
                 </select>
@@ -788,7 +790,7 @@ $year = date('Y');
                 <select name ="selectyear9" class="form-control select2" >
                 <?php 
                  for($e = 2000; $e <= 2050; $e++){
-                  if(in_array($e,$folder)){?>                
+                  if(!in_array($e,$folder)){?>                
                   <option><?php echo $e; ?></option>
                 <?php } } ?>
                 </select>
@@ -808,7 +810,7 @@ $year = date('Y');
                 <select name ="selectyear10" class="form-control select2" >
                 <?php 
                   for($e = 2000; $e <= 2050; $e++){
-                    if(in_array($e,$folder)){?>                
+                    if(!in_array($e,$folder)){?>                
                     <option><?php echo $e; ?></option>
                   <?php } } ?>
                 </select>
@@ -1130,8 +1132,26 @@ $year = date('Y');
         </div>
         <!-- /.col -->    
         </div>   
-              
-
+             <?php if($path_doc != ''){ ?> 
+              <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title">Joindre un (ou des) document(s)</h3>              
+              Cette section permet aux utilisateurs de télécharger un document en lien avec la page          
+              </div>
+              </div>
+              <div class="form-group">
+                  <label  class="col-sm-2 control-label">Texte d'intro du document</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='intro_doc' value ="<?php echo $intro_doc; ?>"/>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir un document </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>
+                </div>
+                               
+<?php }?> 
                <!-- /.box-body -->
                <div class="box-footer">
                 <a class="btn btn-default" href="<?php echo base_url()?>cms/4">Annuler</a>

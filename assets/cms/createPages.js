@@ -72,8 +72,8 @@ function choix() {
             document.getElementById("document").style.display = 'none';
             document.getElementById("article").style.display = 'block';
             document.getElementById("table").style.display = 'block';
-            document.getElementById("formulaire").style.display = 'none';
-            break;
+            document.getElementById("formulaire").style.display = 'none';           
+            break;       
         case "document":
             document.getElementById("text").style.display = 'none';
             document.getElementById("carroussel").style.display = 'none';
@@ -83,7 +83,7 @@ function choix() {
             document.getElementById("formulaire").style.display = 'none';
             document.getElementById("moinsAn").style.display = 'none';
             document.getElementById("document").style.display = 'block';
-            document.getElementById("table").style.display = 'block';
+            document.getElementById("table").style.display = 'block';            
             break;
         case "formulaire":
             document.getElementById("text").style.display = 'none';

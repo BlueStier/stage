@@ -29,12 +29,7 @@ class Bulles_model extends CI_Model
         $nb = $this->input->post('selectbulle');
         for ($i = 1; $i <= $nb; $i++) {
             if (!$this->upload->do_upload('photo' . $i)) {
-                //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
-                $error = array('error' => $this->upload->display_errors());
-                $this->load->view('cms/header');
-                $this->load->view('cms/left_menu');
-                $this->load->view('cms/createPages', $error);
-                $this->load->view('cms/footer');
+                $photo[$i] = '';
             } else {
                 //si upload ok, on récupère le nom de la photo et on met le chemin dans l'array
                 $array = $this->upload->data();

@@ -946,7 +946,24 @@
         </div>
         <!-- /.col -->    
         </div>   
-              
+        <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title">Joindre un document</h3>              
+              Cette section permet aux utilisateurs de télécharger un document en lien avec la page          
+              </div>
+              </div>
+              <div class="form-group">
+                  <label  class="col-sm-2 control-label">Texte d'intro du document</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='intro_doc' placeholder="ex : Cliquez pour télécharger le document">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir un document </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>
+                </div>
+                </div>
 
                <!-- /.box-body -->
                <div class="box-footer">

@@ -122,7 +122,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 						<a class="icon_search icon" href="#"><i class="icon-search-line"></i></a>
 						<a class="icon_close icon"  href="#"><i class="icon-cancel"></i></a>
 						<input type="text" class="field" name="search" id="search" placeholder="Rechercher"/>
-						<input type="submit" class="submit" value="" />
+						<input type="submit" id="submit_de_recherche" class="submit" value="" />
 					</form>
 
 					<!-- #menu -->

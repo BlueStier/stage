@@ -44,14 +44,14 @@ class Pages_model extends CI_Model {
         return $this->db->get('pages')->result_array();
 }
 
-        public function validatePage($nomphoto, $type){
+        public function validatePage($nomphoto, $type, $path_doc,$intro_doc){
                 /*enregistre la page (nom, background,type...) dans la table page pour tous type*/
                 
                 $nom = $this->input->post('nomPage');
                 $nom1 = str_replace(' ','-',$nom);
                 $titre = $this->input->post('titrePage');
                 $soustitre = $this->input->post('soustitrePage');
-                $this->db->insert('pages', array('nom' => $nom1 , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type));
+                $this->db->insert('pages', array('nom' => $nom1 , 'titre' => $titre, 'soustitre' => $soustitre,'background' => $nomphoto, 'type' => $type, 'intro_doc' => $intro_doc,'path_doc'=> $path_doc));
 
                
         }
@@ -63,6 +63,10 @@ class Pages_model extends CI_Model {
                 $array = $this->db->get_where('pages', array('id_pages' => $id_page))->result_array();
                 //on supprime dans la table bulle,text ou autre la ligne correspondante
                 $this->db->delete($array[0]['type'],array('id_pages' => $id_page));
+                //on vérifie si la page contient un document téléchargeable et si oui on le supprime
+                if($array[0]['path_doc'] != ''){
+                        unlink($array[0]['path_doc']);
+                }
                 //on finit par supprimer la page dans la table pages
                 $this->db->delete('pages',array('id_pages' => $id_page));
 
@@ -147,6 +151,8 @@ class Pages_model extends CI_Model {
                 $soustitre = $this->input->post('soustitrePage');
                 $sel = $this->input->post("radioP");
                 $select = strcmp($sel,"Non");
+                $sel2 = $this->input->post("radioDocument");
+                $select2 = strcmp($sel,"Non");
 
                 //on vérifie qu'il y a un changement sur ces 3 items et on modifie
                 if(!empty($nom)){

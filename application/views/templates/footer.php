@@ -239,11 +239,8 @@ jQuery(document).ready(function(){
 });
 
 function get_focus(){
-	setTimeout(function() {
-		var searchform = document.getElementsByClassName('icon_search icon')[0];
-	searchform.click();
-}, 100);
-	
+	var submit_de_recherche = document.getElementById("submit_de_recherche");		
+	submit_de_recherche.click();	
 }
 </script>
 

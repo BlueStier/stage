@@ -81,6 +81,7 @@ class Pages extends CI_Controller
             foreach ($data['folder'] as $f):
                 $data['file'][$f] = $this->Document_model->read_all_files($pathname . '/' . $f);
             endforeach;
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
             $page = 'document';
         }
         if ($pagestab['type'] == 'formulaire') {
