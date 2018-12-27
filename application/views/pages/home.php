@@ -25,6 +25,9 @@ $size = sizeof($tab);
 				<div class="section pad0" >
 					<div class="section_wrapper clearfix">
 						<div class="items_group clearfix">
+						<div class="column one column_divider">
+								<hr />
+							</div>
 						<div class="be-row"> 
 							<div class="column one column_column" style="background-color : white; text-align : center">		
 			<?php echo $intro; ?>
@@ -62,7 +65,7 @@ $size = sizeof($tab);
 							data-end="5700" 
 							data-endspeed="300" 
 							>
-							<div style="background-color : white; text-align : center">
+							<div style="background-color : white; text-align : center; opacity : 0.75;">
 							
 							<h1><?php echo $tab['slide'.$a]['title']; ?></h1>
 							<h2><?php echo $tab['slide'.$a]['p']; ?></h2>  
@@ -79,7 +82,9 @@ $size = sizeof($tab);
 		</div>
 		<!-- END REVOLUTION SLIDER -->
 		
-		<br>	
+		<div class="column one column_divider">
+								<hr />
+							</div>	
 	</div>
 
 

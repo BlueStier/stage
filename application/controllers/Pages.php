@@ -28,6 +28,8 @@ class Pages extends CI_Controller
         $data['background'] = base_url() . $pagestab['background'];
         $data['title'] = $pagestab['titre'];
         $data['subtitle'] = $pagestab['soustitre'];
+        $data['intro_doc'] = $pagestab['intro_doc'];
+        $data['path_doc'] = $pagestab['path_doc'];
 
         //récupère les infos du type de page
         if ($pagestab['type'] == 'bulle') {
@@ -306,12 +308,12 @@ class Pages extends CI_Controller
             $this->load->view('pages/acces_rapide', $data);
             $this->load->view('templates/footer', $data);
         } else {
-            $person = $this->Personnaes_model->get_personnaes($id);
+            $person = $this->Personnaes_model->get_personnaes($id);          
             $array_des_pages = [];
-            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            $nb_id_des_pages = $this->Personnaes_model->nbId();         
             for ($a = 0; $a < $nb_id_des_pages; $a++) {
-                if ($person['id_page' . $a] != null) {
-                    $result = $this->Pages_model->get_page_by_id($person['id_page' . $a]);
+                if ($person['id_page' . $a] != null) {                   
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
                     $array_des_pages[] = $result[0];
                 }
             }

@@ -5,6 +5,7 @@ class Pages_model extends CI_Model {
         public function __construct()
         {
                 $this->load->database();
+                $this->load->model('Personnaes_model');
         }
 
         //méthode qui extrait les données de la table menu
@@ -124,6 +125,17 @@ class Pages_model extends CI_Model {
                                 $this->db->replace('third_level',$S3item);
                         endforeach;        
                 }
+                /*si la page est lier aux personnaes*/
+                $tab_des_personnaes = $this->Personnaes_model->get_personnaes();
+                $nb_id_des_pages = $this->Personnaes_model->nbId();
+                foreach($tab_des_personnaes as $pers){
+                        for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                                if($pers['id_page' .$a] == $id_page){
+                                        $pers['id_page' .$a] = NULL;   
+                                }
+                        }
+                        $this->db->replace('personnaes',$pers);
+                }                
                 //si la page est du type carroussel on supprime le dossier contenant les photos
                 if($array[0]['type'] == "carroussel"){
                         $nom = utf8_decode($array[0]['nom']);
@@ -198,7 +210,7 @@ class Pages_model extends CI_Model {
         }
 
                 $this->db->replace('pages',$page[0]);
-                //si il y a eu changement de titre et que l'article est dans le carroussel on fait le changement         
+                //si il y a eu changement de titre et que la page est dans le carroussel on fait le changement         
                 $this->load->model('Home_model');
                 $this->Home_model->ifupdateArticleOrPage(TRUE,$page[0]['id_pages']);
         }

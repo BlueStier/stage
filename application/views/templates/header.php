@@ -44,28 +44,28 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 //]]>
 </script>
 
-<link rel='stylesheet' id='contact-form-7-css'  href='<?php echo base_url(); ?>assets/cake/css/cform.css' type='text/css' media='all' />
-<link rel='stylesheet' id='tp_twitter_plugin_css-css'  href='<?php echo base_url(); ?>assets/cake/css/tp_twitter_plugin.css' type='text/css' media='screen' />
-<link rel='stylesheet' id='rs-plugin-settings-css'  href='<?php echo base_url(); ?>assets/cake/rs-plugin/css/settings.css' type='text/css' media='all' />
+<link rel='stylesheet' id='contact-form-7-css'  href='<?php echo base_url(); ?>assets/site/css/cform.css' type='text/css' media='all' />
+<link rel='stylesheet' id='tp_twitter_plugin_css-css'  href='<?php echo base_url(); ?>assets/site/css/tp_twitter_plugin.css' type='text/css' media='screen' />
+<link rel='stylesheet' id='rs-plugin-settings-css'  href='<?php echo base_url(); ?>assets/site/rs-plugin/css/settings.css' type='text/css' media='all' />
 
-<link rel='stylesheet' id='select2-css'  href='<?php echo base_url(); ?>/assets/cake/css/select.css' type='text/css' media='all' />
-<link rel='stylesheet' id='woocommerce-layout-css'  href='<?php echo base_url(); ?>assets/cake/css/woocommerce-layout.css' type='text/css' media='all' />
-<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='<?php echo base_url(); ?>assets/cake/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)' />
-<link rel='stylesheet' id='woocommerce-general-css'  href='<?php echo base_url(); ?>assets/cake/css/woocommerce.css' type='text/css' media='all' />
-<link rel='stylesheet' id='style-css'  href='<?php echo base_url(); ?>assets/cake/css/style.css' type='text/css' media='all' />
-<link rel='stylesheet' id='prettyPhoto-css'  href='<?php echo base_url(); ?>assets/cake/css/prettyPhoto.css' type='text/css' media='all' />
-<link rel='stylesheet' id='owl-carousel-css'  href='<?php echo base_url(); ?>/assets/cake/js/owl-carousel/owl.carousel.css' type='text/css' media='all' />
-<link rel='stylesheet' id='owl-theme-css'  href='<?php echo base_url(); ?>assets/cake/js/owl-carousel/owl.theme.css' type='text/css' media='all' />
-<link rel='stylesheet' id='jplayer-css'  href='<?php echo base_url(); ?>assets/cake/css/blue.monday/jplayer.blue.monday.css' type='text/css' media='all' />
-<link rel='stylesheet' id='jquery-ui-css'  href='<?php echo base_url(); ?>assets/cake/css/ui/jquery.ui.all.css' type='text/css' media='all' />
-<link rel='stylesheet' id='responsive-css'  href='<?php echo base_url(); ?>assets/cake/css/responsive.css' type='text/css' media='all' />
-<link rel='stylesheet' id='style-colors-php-css'  href='<?php echo base_url(); ?>assets/cake/css/style-colors.css' type='text/css' media='all' />
-<link rel='stylesheet' id='style-php-css'  href='<?php echo base_url(); ?>assets/cake/css/style-2.css' type='text/css' media='all' />
-<link rel='stylesheet' id='mfn-woo-css'  href='<?php echo base_url(); ?>assets/cake/css/woocommerce.css' type='text/css' media='all' />
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/cake/css/fonts/mfn-icons.css" media="all" />
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/cake/css/custom.css" media="all" />
-<link rel='stylesheet' id='images-blue-css'  href='<?php echo base_url(); ?>assets/cake/css/skins/sea/images.css' type='text/css' media='all' />
-<link rel='stylesheet' id='blue-css'  href='<?php echo base_url(); ?>assets/cake/css/skins/sea/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='select2-css'  href='<?php echo base_url(); ?>/assets/site/css/select.css' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-layout-css'  href='<?php echo base_url(); ?>assets/site/css/woocommerce-layout.css' type='text/css' media='all' />
+<link rel='stylesheet' id='woocommerce-smallscreen-css'  href='<?php echo base_url(); ?>assets/site/css/woocommerce-smallscreen.css' type='text/css' media='only screen and (max-width: 768px)' />
+<link rel='stylesheet' id='woocommerce-general-css'  href='<?php echo base_url(); ?>assets/site/css/woocommerce.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='<?php echo base_url(); ?>assets/site/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='prettyPhoto-css'  href='<?php echo base_url(); ?>assets/site/css/prettyPhoto.css' type='text/css' media='all' />
+<link rel='stylesheet' id='owl-carousel-css'  href='<?php echo base_url(); ?>/assets/site/js/owl-carousel/owl.carousel.css' type='text/css' media='all' />
+<link rel='stylesheet' id='owl-theme-css'  href='<?php echo base_url(); ?>assets/site/js/owl-carousel/owl.theme.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jplayer-css'  href='<?php echo base_url(); ?>assets/site/css/blue.monday/jplayer.blue.monday.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jquery-ui-css'  href='<?php echo base_url(); ?>assets/site/css/ui/jquery.ui.all.css' type='text/css' media='all' />
+<link rel='stylesheet' id='responsive-css'  href='<?php echo base_url(); ?>assets/site/css/responsive.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-colors-php-css'  href='<?php echo base_url(); ?>assets/site/css/style-colors.css' type='text/css' media='all' />
+<link rel='stylesheet' id='style-php-css'  href='<?php echo base_url(); ?>assets/site/css/style-2.css' type='text/css' media='all' />
+<link rel='stylesheet' id='mfn-woo-css'  href='<?php echo base_url(); ?>assets/site/css/woocommerce.css' type='text/css' media='all' />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/site/css/fonts/mfn-icons.css" media="all" />
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/site/css/custom.css" media="all" />
+<link rel='stylesheet' id='images-blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/sea/images.css' type='text/css' media='all' />
+<link rel='stylesheet' id='blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/sea/style.css' type='text/css' media='all' />
 
 
 <link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Ubuntu%3A100%2C300%2C400%2C400italic%2C700&amp;ver=4.2' type='text/css' media='all' />
@@ -198,7 +198,7 @@ endforeach;?>
 foreach ($personnaes_item as $personnaes):
         if ($personnaes['visible']) {?>
 			<div class="column one-third column_column">
-				<a class="button button_blue button_large textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $personnaes['id_personnae']; ?>" style="width:130px"><?php echo $personnaes['nom']; ?></a>
+				<a class="button button_large textcenter" style="background-color : red;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $personnaes['id_personnae']; ?>" style="width:130px"><?php echo $personnaes['nom']; ?></a>
 				</div>
 	<?php }
     endforeach;?>

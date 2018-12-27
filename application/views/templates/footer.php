@@ -54,10 +54,10 @@
 </div>
 
 
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/jquery.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/jquery-migrate.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/rs-plugin/js/jquery.themepunch.tools.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/rs-plugin/js/jquery.themepunch.tools.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/rs-plugin/js/jquery.themepunch.revolution.min.js'></script>
 
 <script>
 //<![CDATA[
@@ -180,26 +180,26 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 	});	/*ready*/
 
 </script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.form.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.form.min.js'></script>
 
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/add-to-cart.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/select2/select2.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery-blockui/jquery.blockUI.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/woocommerce.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery-cookie/jquery.cookie.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/add-to-cart.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/select2/select2.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery-blockui/jquery.blockUI.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/woocommerce.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery-cookie/jquery.cookie.min.js'></script>
 
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/frontend/cart-fragments.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/core.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/widget.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/mouse.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/sortable.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/tabs.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery/ui/accordion.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/owl-carousel/owl.carousel.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.jplayer.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/jquery.plugins.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/mfn.menu.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/cake/js/scripts.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/cart-fragments.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/core.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/widget.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/mouse.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/sortable.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/tabs.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/accordion.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/owl-carousel/owl.carousel.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.jplayer.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.plugins.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/mfn.menu.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/scripts.js'></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>

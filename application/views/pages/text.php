@@ -13,7 +13,7 @@
       while($a <= $nbOfp){
           if(empty($text['t'.$a])){
             ?>
-            <div class="text-center">
+            <div class="textcenter">
         <?php echo $text['pg'.$a];?></div>
             <?php 
           }else{
@@ -26,5 +26,10 @@
     <?php }
       $a++;}
   endforeach;
+  if($path_doc != ''){ ?>
+<a href="<?php echo base_url().$path_doc;?>" target="blank"><?php echo $intro_doc;?> </a>
+<?php
+  }
   ?>
+
   </div>
