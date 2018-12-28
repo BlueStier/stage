@@ -1139,6 +1139,8 @@ $year = date('Y');
               Cette section permet aux utilisateurs de télécharger un document en lien avec la page          
               </div>
               </div>
+              <div class="form-horizontal">
+              <div class="box-body">
               <div class="form-group">
                   <label  class="col-sm-2 control-label">Texte d'intro du document</label>
                   <div class="col-sm-10">
@@ -1146,10 +1148,24 @@ $year = date('Y');
                   </div>
                 </div>
                 <div class="form-group">
+                <label class="col-sm-2 control-label">Concerver ce document ?</label>
+                <label class='col-sm-6 control-label'><?php echo $path_doc;?></label>
+                <div class="col-sm-2">
+                <input type="radio" name='radio_doc' onClick='visible_doc(true);' value="Non" >Non     
+                </div>
+                <div class="col-sm-2">
+                <input type="radio" name='radio_doc' onClick='visible_doc(false);' value="Oui"checked>Oui     
+                </div>                                
+                </div>
+                <div class="form-group" id="choix_doc">
                   <label class="col-sm-2 control-label">Choisir un document </label>
                   <div class="col-sm-10">
                   <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>
                 </div>
+                </div>
+                </div>
+                </div>
+
                                
 <?php }?> 
                <!-- /.box-body -->

@@ -62,7 +62,7 @@
 <script>
 //<![CDATA[
 jQuery(window).load(function(){
-var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl = jQuery("#logo img");var retinaLogoW = retinaEl.width();var retinaLogoH = retinaEl.height();retinaEl.attr("src","<?php echo base_url();?>/assets/site/course-master/images/logo2.jpg").width(retinaLogoW).height(retinaLogoH)}});
+var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl = jQuery("#logo img");var retinaLogoW = retinaEl.width();var retinaLogoH = retinaEl.height();retinaEl.attr("src","<?php echo base_url();?>assets/site/img/logos/logo2.png").width(retinaLogoW).height(retinaLogoH)}});
 //]]>
 </script>
 	

@@ -9,7 +9,8 @@ class Bddcit_model extends CI_Model {
         {
                 
                 $this->load->library('encryption');
-                $this->bdd = $this->load->database('bddcit',TRUE);
+                $this->load->database();
+                $this->bdd = $this->db;
         }
 
         public function get_cit($array = FALSE, $id = FALSE){

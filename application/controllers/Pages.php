@@ -8,6 +8,7 @@ class Pages extends CI_Controller
         $this->load->model('Header_model');
         $this->load->model('Personnaes_model');
         $this->load->model('Pages_model');
+        $this->load->model('General_model');
         $this->load->helper('url_helper', 'security_helper');
         $this->load->library('form_validation');
     }
@@ -20,6 +21,7 @@ class Pages extends CI_Controller
     public function view($page, $str = false)
     {
         //récupère les infos pour le header (menu, sousmenu...)
+        $data['gen'] = $this->General_model->get();
         $data['autocomplete'] = $this->Autocomplete_model->get();
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
@@ -35,26 +37,26 @@ class Pages extends CI_Controller
         if ($pagestab['type'] == 'bulle') {
             $this->load->model('Bulles_model');
             $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'portfolio';
         }
         if ($pagestab['type'] == 'text') {
             $this->load->model('Text_model');
             $data['text_item'] = $this->Text_model->get_text($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'text';
         }
         if ($pagestab['type'] == 'sans') {
             $this->load->model('Sans_model');
             $data['text_item'] = $this->Sans_model->get_sans($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'text';
         }
         if ($pagestab['type'] == 'home') {
             $this->load->model('Home_model');
             $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
             $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'home';
         }
         if ($pagestab['type'] == 'carroussel') {
@@ -62,7 +64,7 @@ class Pages extends CI_Controller
             $data['car_item'] = $this->Carroussel_model->get_car($pagestab['id_pages']);
             $data['photo_item'] = $this->Carroussel_model->read_all_files($data['car_item'][0]['path']);
             $data['path'] = $data['car_item'][0]['path'];
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'carrousel2';
         }
         if ($pagestab['type'] == 'article') {
@@ -71,7 +73,7 @@ class Pages extends CI_Controller
             $id = $recup[0]['id_articlespage'];
             $data['intro'] = $recup[0]['text'];
             $data['article_item'] = $this->Articles_model->get_article_by_page($id, false);
-            $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'article';
         }
         if ($pagestab['type'] == 'document') {
@@ -83,14 +85,14 @@ class Pages extends CI_Controller
             foreach ($data['folder'] as $f):
                 $data['file'][$f] = $this->Document_model->read_all_files($pathname . '/' . $f);
             endforeach;
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $page = 'document';
         }
         if ($pagestab['type'] == 'formulaire') {
             $this->load->model('Form_model');
             $this->load->model('Liste_model');
             $recup = $this->Form_model->get_form($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg ';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width'.$data['gen']['entete'];
             if ($str != false) {
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
             }
@@ -270,17 +272,19 @@ class Pages extends CI_Controller
 
         //initialisation de la librairie
         $this->load->library('email');
-        $config['protocol'] = '';
-        $config['smtp_host'] = '';
-        $config['smtp_port'] = '';
-        $config['smtp_user'] = 'lroussel2703@gmail.com';
+        $this->load->library('email');
+        $config['protocol'] = 'SMTP';
+        $config['smtp_host'] = 'ssl0.ovh.net';
+        $config['smtp_port'] = '465';
+        $config['smtp_user'] = 'ne-pas-repondre@bluestier.fr';
         $config['smtp_pass'] = 'Boubidou1';
         $config['crlf'] = '\r\n';
         $config['newline'] = '\r\n';
         $config['mailtype'] = 'html';
+        $config['protocols'] = array('mail','sendmail','smtp');
 
         $this->email->initialize($config);
-        $this->email->from('lroussel2703@gmail.com', 'Votre Message');
+        $this->email->from('ne-pas-repondre@bluestier.fr', 'Votre Message');
         $this->email->to($array['mail_cit'] . ', ' . $array['mail_dest']);
         $this->email->subject('Votre message auprès de la ville de Oignies');
         $this->email->message($message);

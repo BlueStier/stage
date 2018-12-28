@@ -103,6 +103,7 @@ $route['cms/createUser'] = 'cms/createUser';
 $route['cms/deleteUser'] = 'cms/deleteUser';
 $route['cms/deleteCitoyen'] = 'cms/deleteCitoyen';
 $route['cms/destroy'] = 'cms/destroy';
+$route['cms/general'] = 'cms/general';
 $route['cms/dodo'] = 'cms/dodo';
 $route['cms/(:any)'] = 'cms/view/$1';
 $route['cms'] = 'cms';

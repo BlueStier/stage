@@ -163,8 +163,8 @@ class Pages_model extends CI_Model {
                 $soustitre = $this->input->post('soustitrePage');
                 $sel = $this->input->post("radioP");
                 $select = strcmp($sel,"Non");
-                $sel2 = $this->input->post("radioDocument");
-                $select2 = strcmp($sel,"Non");
+                $sel2 = $this->input->post("radio_doc");               
+                $select2 = strcmp($sel2,"Non");
 
                 //on vérifie qu'il y a un changement sur ces 3 items et on modifie
                 if(!empty($nom)){
@@ -207,6 +207,23 @@ class Pages_model extends CI_Model {
                 $nom = 'assets/site/img/background/'.$data['upload_data']['orig_name'];
                 $page[0]['background'] = $nom;                    
                 }
+        }
+        if($select2 == 0){ 
+                $this->load->library('upload');                               
+                $this->upload->set_upload_path("./assets/site/ressources/");
+                $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf|docx');
+                if (!$this->upload->do_upload('doc_a_telecharger')) {
+                    $path_doc = '';
+                    $intro_doc ='';
+                } else {
+                    $data = array('upload_data' => $this->upload->data());
+                    $path_doc = 'assets/site/ressources/' . $data['upload_data']['orig_name'];
+                    $intro_doc = $this->input->post('intro_doc');
+                }
+
+                unlink($page[0]['path_doc']);
+                $page[0]['path_doc'] = $path_doc;
+                $page[0]['intro_doc'] = $intro_doc;
         }
 
                 $this->db->replace('pages',$page[0]);

@@ -1,4 +1,5 @@
 document.getElementById("choixPhoto").style.display = 'none';
+document.getElementById("choix_doc").style.display = 'none';
 
 
 function invisible(txt) {
@@ -9,6 +10,10 @@ function invisible(txt) {
 
 function visibleP(choix) {
     (choix ? document.getElementById('choixPhoto').style.display = 'block' : document.getElementById('choixPhoto').style.display = 'none');
+}
+
+function visible_doc(choix) {
+    (choix ? document.getElementById('choix_doc').style.display = 'block' : document.getElementById('choix_doc').style.display = 'none');
 }
 
 function visibleC(choix) {

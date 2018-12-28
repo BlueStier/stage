@@ -64,8 +64,8 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 <link rel='stylesheet' id='mfn-woo-css'  href='<?php echo base_url(); ?>assets/site/css/woocommerce.css' type='text/css' media='all' />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/site/css/fonts/mfn-icons.css" media="all" />
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/site/css/custom.css" media="all" />
-<link rel='stylesheet' id='images-blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/sea/images.css' type='text/css' media='all' />
-<link rel='stylesheet' id='blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/sea/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='images-blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/<?php echo $gen['couleur']; ?>/images.css' type='text/css' media='all' />
+<link rel='stylesheet' id='blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/<?php echo $gen['couleur']; ?>/style.css' type='text/css' media='all' />
 
 
 <link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Ubuntu%3A100%2C300%2C400%2C400italic%2C700&amp;ver=4.2' type='text/css' media='all' />
@@ -111,7 +111,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 			<div class="column one">
 				<!-- .logo -->
 				<div class="logo">
-					<h1><a id="logo" href="<?php echo base_url(); ?>" title="Cake"><img class="scale-with-grid" src="<?php echo base_url(); ?>assets/site/img/logo2_retina.jpg" alt="Cake"/></a></h1>
+					<h1><a id="logo" href="<?php echo base_url(); ?>" title="Oignies"><img class="scale-with-grid" src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies"/></a></h1>
 				</div>
 				<!-- .menu_wrapper -->
 				<div class="menu_wrapper">

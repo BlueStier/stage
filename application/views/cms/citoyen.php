@@ -6,7 +6,7 @@
       Base de données de citoyens       
       </h2>
       <ol class="breadcrumb">
-        <li><i class="fa fa-table "></i> BDD citoyenne</li>
+        <li><i class="fa fa-table text-blue"></i> BDD citoyenne</li>
     </ol>      
     </section>
     <?php   

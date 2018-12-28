@@ -33,14 +33,12 @@ class Cms extends CI_Controller
             $data['typeuser'] = $this->session->userdata('type');
             $this->load->model('Articles_model');
             $data['alerte'] = $this->Articles_model->findAlert();
+            $data['nb'] = -1;
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/index', $data);
             $this->load->view('cms/footer');}
-        /*if(!isset($_SESSION)||empty($_SESSION)){
-    header('Location:'.base_url().'login');
-    }*/
-
+        
     }
 
     //construit le centre de la page en fonction de l'item sélectionné
@@ -63,6 +61,16 @@ class Cms extends CI_Controller
             $data['typeuser'] = $this->session->userdata('type');
             $this->load->model('Articles_model');
             $data['alerte'] = $this->Articles_model->findAlert();
+        }
+        if ($id == 0) {
+            $data['nb'] = 0;
+            $this->load->model('General_model');
+            $data['gen'] = $this->General_model->get();
+            $this->load->view('cms/header', $data);
+            $this->load->view('cms/left_menu', $data);
+            $this->load->view('cms/general', $data);
+            $this->load->view('cms/footer');
+
         }
         if ($id == 1) {
             $data['nb'] = 1;
@@ -168,17 +176,17 @@ class Cms extends CI_Controller
 
         }
 
-        if ($id == 11) {
-            $data['nb'] = 11;
+        if ($id == 13) {
+            $data['nb'] = 13;
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/createUser', $data);
             $this->load->view('cms/footer');
 
         }
-        if ($id == 12) {
+        if ($id == 14) {
             $this->load->model('User_model');
-            $data['nb'] = 12;
+            $data['nb'] = 14;
             $data['users'] = $this->User_model->get_user();
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
@@ -186,9 +194,9 @@ class Cms extends CI_Controller
             $this->load->view('cms/footer');
 
         }
-        if ($id == 13) {
+        if ($id == 15) {
             $this->load->model('Bddcit_model');
-            $data['nb'] = 13;
+            $data['nb'] = 15;
             //extraction de la base de données des citoyens avec mise en corélation des messages
             $data['citoyen'] = $this->Bddcit_model->get_cit_avec_messages();
             $data['type_contact'] = $this->Bddcit_model->get_type_contact();
@@ -434,8 +442,8 @@ class Cms extends CI_Controller
                 $this->upload->set_upload_path("./assets/site/ressources/");
                 $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf|docx');
                 if (!$this->upload->do_upload('doc_a_telecharger')) {
-                    $path_doc = 'hs';
-                    $intro_doc ='hs';
+                    $path_doc = '';
+                    $intro_doc ='';
                 } else {
                     $data = array('upload_data' => $this->upload->data());
                     $path_doc = 'assets/site/ressources/' . $data['upload_data']['orig_name'];
@@ -1150,6 +1158,7 @@ class Cms extends CI_Controller
             $data['user_by_id'] = $this->User_model->get_user($id);
             $this->load->model('Articles_model');
             $data['alerte'] = $this->Articles_model->findAlert();
+            $data['nb'] = 14;
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/updateUser', $data);
@@ -1171,7 +1180,7 @@ class Cms extends CI_Controller
                 $data['photouser'] = $this->session->userdata('photo');
                 $data['typeuser'] = $this->session->userdata('type');
                 $data['error'] = array('error' => 'Le mot de passe et sa confirmation sont diffférents');
-                $data['nb'] = 7;
+                $data['nb'] = 14;
                 $this->load->view('cms/header', $data);
                 $this->load->view('cms/left_menu', $data);
                 $this->load->view('cms/updateUser', $data);
@@ -1179,7 +1188,7 @@ class Cms extends CI_Controller
             }
             $this->load->model('User_model');
             $this->User_model->update($id);
-            header('Location:' . base_url() . 'cms/8');
+            header('Location:' . base_url() . 'cms/14');
         }
 
         //fonction de déconnexion
@@ -1214,7 +1223,7 @@ class Cms extends CI_Controller
                 $citoyen_a_sup = $this->input->post($id_table . 'liste_a_supprimer_' . $e);
                 $this->Bddcit_model->delete($citoyen_a_sup);
             }
-            CMS::view(13);
+            CMS::view(15);
 
         }
 
@@ -1230,5 +1239,48 @@ class Cms extends CI_Controller
     {
             $this->load->model('Bddcit_model');
             $this->Bddcit_model->excel_total();
+        }
+
+        public function general(){
+            $array = [];
+            $array['id'] = 1;
+            $couleur = $this->input->post('select_couleur');
+            switch($couleur){
+                case 'Bleu':
+                $array['couleur'] = 'blue';
+                break;
+                case 'Maron':
+                $array['couleur'] = 'brown';
+                break;
+                case 'Océan':
+                $array['couleur'] = 'sea';
+                break;
+                case 'Rose':
+                $array['couleur'] = 'pink';
+                break;
+                case 'Verte':
+                $array['couleur'] = 'green';
+                break;
+            }
+
+            $entete = $this->input->post('select_en_tete');
+            switch($entete){
+                case 'Noire pleine':
+                $array['entete'] = 'header-dark header-bg';
+                break;
+                case 'Blanche pleine':
+                $array['entete'] = 'header-white header-bg';
+                break;
+                case 'Noire transparente':
+                $array['entete'] = 'header-dark header-alpha';
+                break;
+                case 'Blanche transparente':
+                $array['entete'] = 'header-white header-alpha';
+                break;               
+            }
+
+            $this->load->model('General_model');
+            $this->General_model->update($array);
+            Cms::index();
         }
     }
