@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="<?php echo base_url();?>/assets/cms/bower_components/bootstrap-daterangepicker/daterangepicker.css">
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="<?php echo base_url();?>/assets/cms/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- bootstrap slider -->
+  <link rel="stylesheet" href="<?php echo base_url();?>/assets/cms/plugins/bootstrap-slider/slider.css">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -34,7 +36,7 @@
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
-  <link href="<?php echo base_url();?>/assets/site/img/logos/logo2.jpg" rel="icon" type="image/jpg">
+  <link rel="shortcut icon" href="<?php echo base_url(); ?>assets/site/img/logos/logo2.ico" type="image/x-icon" />
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   <meta http-equiv='refresh' content="900; URL=<?php echo base_url().'cms/dodo'?> ">

@@ -54,9 +54,9 @@ $size = sizeof($tab);
 						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
 						<!-- LAYER  -->
-						<div class="tp-caption tp-fade" 
+						<div class="tp-caption tp-fade"						 
 							data-x="center" 
-							data-y="bottom"  
+							data-y="center"							
 							data-speed="300" 
 							data-start="1100" 
 							data-easing="Power3.easeInOut" 
@@ -65,10 +65,10 @@ $size = sizeof($tab);
 							data-end="5700" 
 							data-endspeed="300" 
 							>
-							<div style="background-color : white; text-align : center; opacity : 0.75;">
+							<div style="background-color : white; text-align : center;" >
 							
-							<h1><?php echo $tab['slide'.$a]['title']; ?></h1>
-							<h2><?php echo $tab['slide'.$a]['p']; ?></h2>  
+							<h3><?php echo $tab['slide'.$a]['title']; ?></h3>
+							<h5><?php echo $tab['slide'.$a]['p']; ?></h5> 
 						</div>
 						</div>
 						</a>

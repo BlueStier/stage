@@ -26,7 +26,7 @@
 											<?php if($bulle['photo'.$i] != ''){?>
                                                 <img src="<?php echo base_url().$bulle['photo'.$i]; ?>" alt="" style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;">
 											<?php } ?>    
-												<h6><?php echo $bulle['soustitre']; ?></h6>
+												<h6 id='b<?php echo $i; ?>'><?php echo $bulle['soustitre']; ?></h6>
                                                 <?php echo $bulle['tx'.$i]; ?>
 											</div>
                                         </div>

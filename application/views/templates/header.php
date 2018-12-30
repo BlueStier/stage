@@ -69,6 +69,8 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 
 
 <link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Ubuntu%3A100%2C300%2C400%2C400italic%2C700&amp;ver=4.2' type='text/css' media='all' />
+<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Montserrat' type='text/css' media='all' />
+<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Oswald' type='text/css' media='all' />
 
 <style>
 .page-id-3716 h2 { word-wrap: break-word; }
@@ -84,7 +86,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height : 400px;s
+  height : 400px;
 }
 
 </style>
@@ -179,7 +181,7 @@ endforeach;?>
 								<hr />
 							</div>
 		<div class="column one-third column_column"></div>
-			<div class="column one-third column_column textcenter" style="background-color : white;">
+			<div class="column one-third column_column textcenter" style="background-color : <?php echo $gen['couleur_titre'];?>;">
 				<h1 class="title"><?php echo $title; ?></h1>
 				<h4><?php echo $subtitle; ?></h4>
 			</div>
@@ -198,7 +200,7 @@ endforeach;?>
 foreach ($personnaes_item as $personnaes):
         if ($personnaes['visible']) {?>
 			<div class="column one-third column_column">
-				<a class="button button_large textcenter" style="background-color : red;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $personnaes['id_personnae']; ?>" style="width:130px"><?php echo $personnaes['nom']; ?></a>
+				<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>;" font-family= "Montserrat;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $personnaes['id_personnae']; ?>" style="width:130px"><strong><?php echo $personnaes['nom']; ?></strong></a>
 				</div>
 	<?php }
     endforeach;?>
@@ -213,7 +215,7 @@ foreach ($personnaes_item as $personnaes):
 				<div class="container textcenter personnae_mini">
 				<div class="column one-third column_column"></div>
 				<div class="column one-third column_column">
-				<a class=" button button_blue button_large textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/-1' ?>" >Accès rapide</a>
+				<a class=" button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/-1' ?>" >Accès rapide</a>
 				</div>
 				<div class="column one-third column_column"></div>
 				</div>

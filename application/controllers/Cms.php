@@ -679,7 +679,9 @@ class Cms extends CI_Controller
         endforeach;
 
         //on remet les chemins dans les menus sélectionnés
+        Cms::updateLink(1);
         Cms::updateLink(2);
+        Cms::updateLink(3);
     }
 
     //appel la page createPersonnae
@@ -1245,6 +1247,17 @@ class Cms extends CI_Controller
             $array = [];
             $array['id'] = 1;
             $couleur = $this->input->post('select_couleur');
+            $array['rouge_titre'] = $this->input->post('rouge_titre');
+            $array['vert_titre'] = $this->input->post('vert_titre');
+            $array['bleu_titre'] = $this->input->post('bleu_titre');
+            $array['opacity_titre'] = $this->input->post('opacity_titre');
+            $array['couleur_titre'] = $this->input->post('couleur_titre');
+            $array['rouge_per'] = $this->input->post('rouge_per');
+            $array['vert_per'] = $this->input->post('vert_per');
+            $array['bleu_per'] = $this->input->post('bleu_per');
+            $array['opacity_per'] = $this->input->post('opacity_per');
+            $array['couleur_per'] = $this->input->post('couleur_per');
+
             switch($couleur){
                 case 'Bleu':
                 $array['couleur'] = 'blue';
@@ -1278,9 +1291,8 @@ class Cms extends CI_Controller
                 $array['entete'] = 'header-white header-alpha';
                 break;               
             }
-
             $this->load->model('General_model');
             $this->General_model->update($array);
-            Cms::index();
+            header('Location:' . base_url() . 'cms');
         }
     }

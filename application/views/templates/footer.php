@@ -102,6 +102,16 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 	}else{
 	   revapi1 = tpj('#rev_slider_4_1').show().revolution(
 		{	
+			responsiveLevels: [1240, 1024, 778, 480],
+ 
+ /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+ gridwidth:[1240, 1024, 778, 480],
+
+ /* [DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+ gridheight:[400, 768, 960, 720],
+
+ /*[DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
+    visibilityLevels:[1240, 1024, 778, 480],
 									dottedOverlay:"none",
 			delay:6000,
 			startwidth:1200,
