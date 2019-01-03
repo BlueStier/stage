@@ -191,6 +191,46 @@ a.button_image, span.button_image { display: block; width: 55px; height: 55px; l
 	.header-dark #Top_bar a:hover#header_action_button:after { background: #fff; }
 	.header-dark #Top_bar a:hover#header_action_button { color: #222; }
 
+/* Header grey - .header-grey*/
+
+	/* Menu */
+	.header-grey #Header .menu > li > a { color: #fff; }
+	.header-grey #Header .menu > li ul li a { color: rgb(107, 106, 106); }
+	.header-grey #Header .menu > li ul { background: #cec7c7; border-color: #333333; }
+	.header-grey #Header .menu li ul li ul { background: #a09898; }
+	.header-alpha.header-grey #Header .menu > li.current-menu-item > a,
+	.header-alpha.header-grey #Header .menu > li.current_page_item > a,
+	.header-alpha.header-grey #Header .menu > li.current-menu-ancestor > a,
+	.header-alpha.header-grey #Header .menu > li.current_page_ancestor > a,
+	.header-alpha.header-grey #Header .menu > li > a:hover,
+	.header-alpha.header-grey #Header .menu > li.hover > a { color: #fff; }
+	.header-alpha.header-grey #Header .menu > li ul li a:hover { color: #fff; }
+	.header-alpha.header-grey #Header .menu > li > a:after { background: #fff; }
+	
+	/* Top_bar background */
+	.header-grey #Top_bar { background: #cec7c7; }
+	
+	/* Header cart */
+	.header-grey #Top_bar a#header_cart { color: #fff; }
+	.header-grey #Top_bar a#header_cart, 
+	.header-grey #Top_bar a#header_cart:after, 
+	.header-grey #Top_bar a#header_cart em:after { border-color: #fff; }
+	.header-grey #Top_bar a:hover#header_cart { color: #a09898; }
+	.header-dgreyark #Top_bar a:hover#header_cart,
+	.header-grey #Top_bar a:hover#header_cart:after { background: #fff; }
+	
+	/* Search */
+	.header-grey #Top_bar #searchform input[type="text"] { border-color: #fff; }
+	.header-grey #Top_bar #searchform a.icon,
+	.header-grey #Top_bar #searchform.focus input[type="text"] { color: #fff; }
+	
+	/* Hire us */
+	.header-grey #Top_bar a#header_action_button { color: #fff; }
+	.header-grey #Top_bar a#header_action_button,
+	.header-grey #Top_bar a#header_action_button:after { border-color: #fff; }
+	.header-grey #Top_bar a:hover#header_action_button,
+	.header-grey #Top_bar a:hover#header_action_button:after { background: #fff; }
+	.header-grey #Top_bar a:hover#header_action_button { color: #a09898; }
 
 /* #Top_bar
 ================================================== */

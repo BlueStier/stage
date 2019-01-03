@@ -77,6 +77,12 @@
 										<p></p>
 									</form>
 								</div>
+								<p>
+								Les informations recueillies dans
+								le présent formulaire ont pour objet le traitement et le suivi de votre demande.<br>
+								<a href="<?php echo base_url() ?>/pages/donnees-personnelles-formulaire-contact/"> En savoir plus sur la gestion de vos données et vos
+droits </a> 
+								</p>
 							</div>
 						</div>
 					</div>

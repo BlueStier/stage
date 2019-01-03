@@ -92,7 +92,7 @@ class Pages extends CI_Controller
             $this->load->model('Form_model');
             $this->load->model('Liste_model');
             $recup = $this->Form_model->get_form($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width'.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             if ($str != false) {
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
             }
@@ -298,6 +298,7 @@ class Pages extends CI_Controller
     public function acces_rapide($id)
     {
         if ($id == -1) {
+            $data['gen'] = $this->General_model->get();
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
@@ -307,7 +308,7 @@ class Pages extends CI_Controller
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = "";
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide', $data);
             $this->load->view('templates/footer', $data);
@@ -321,6 +322,7 @@ class Pages extends CI_Controller
                     $array_des_pages[] = $result[0];
                 }
             }
+            $data['gen'] = $this->General_model->get();
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
             //récupère les infos pour le header (menu, sousmenu...)
@@ -332,7 +334,7 @@ class Pages extends CI_Controller
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = $person['nom'];
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide_page', $data);
             $this->load->view('templates/footer', $data);
@@ -399,6 +401,8 @@ class Pages extends CI_Controller
                 $data['pages_item'][] = $array[0];
         }
 
+        $data['search'] = $recherche;
+        $data['gen'] = $this->General_model->get();
         $data['autocomplete'] = $this->Autocomplete_model->get();
         //récupère les infos pour le header (menu, sousmenu...)
         $data['header_item'] = $this->Header_model->get_menu();

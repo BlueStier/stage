@@ -5,22 +5,23 @@
     /* ---------------------------------------------------------------------------
 	 * Sticky header
 	 * --------------------------------------------------------------------------- */
-    var mfn_header_height = $('#Top_bar').innerHeight();
+	var mfn_header_height = $('#Top_bar').innerHeight();
+	var coulor = "rgb(173,173,173)";//document.getElementById('couleur').value + ' !important';
 	function mfn_sticky(){
 		if( $('body').hasClass('sticky-header') ){	
 			var start_y = mfn_header_height;
 			var window_y = $(window).scrollTop();
 	
-			if( window_y > start_y ){
+			if( window_y > start_y ){								
 				if( ! ($('#Top_bar').hasClass('is-sticky'))) {
 					$('.header_placeholder').css('margin-top', mfn_header_height);
 					$('#Top_bar')
-						.addClass('is-sticky')
-						.css('top',-60)
+						.addClass('is-sticky')						
+						.css('top' , -60)													
 						.animate({
 							'top': $('#wpadminbar').innerHeight()
-						},300);
-				}
+						},300);										
+				}				
 			}
 			else {
 				if($('#Top_bar').hasClass('is-sticky')) {

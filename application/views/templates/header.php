@@ -68,9 +68,8 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 <link rel='stylesheet' id='blue-css'  href='<?php echo base_url(); ?>assets/site/css/skins/<?php echo $gen['couleur']; ?>/style.css' type='text/css' media='all' />
 
 
-<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Ubuntu%3A100%2C300%2C400%2C400italic%2C700&amp;ver=4.2' type='text/css' media='all' />
-<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Montserrat' type='text/css' media='all' />
-<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Oswald' type='text/css' media='all' />
+<link rel='stylesheet' id='Ubuntu-css'  href='http://fonts.googleapis.com/css?family=Ubuntu%3A100%2C300%2C400%2C400italic%2C700&amp;ver=4.2%7CMonserrat%7COswald%7CTitillium+Web' type='text/css' media='all' />
+
 
 <style>
 .page-id-3716 h2 { word-wrap: break-word; }
@@ -104,11 +103,11 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 <div id="Wrapper">
 
 	<!-- #Header -->
-	<header id="Header">
+	<header id="Header" >
 	<!-- .header_placeholder 4sticky  -->
-	<div class="header_placeholder">
-	</div>
-	<div id="Top_bar">
+	<div class="header_placeholder" >
+	</div>	
+	<div id="Top_bar" style="background-color : <?php echo $gen['couleur_titre'];?>;">
 		<div class="container">
 			<div class="column one">
 				<!-- .logo -->
@@ -121,14 +120,14 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 					<?php  $attributes = array( 'id' => 'searchform');
                                     echo form_open_multipart('pages/search', $attributes);
 					?>
-						<a class="icon_search icon" href="#"><i class="icon-search-line"></i></a>
+						<a class="icon_search icon" href="#"><h1><i class="icon-search-line"></i></h1></a>
 						<a class="icon_close icon"  href="#"><i class="icon-cancel"></i></a>
 						<input type="text" class="field" name="search" id="search" placeholder="Rechercher"/>
 						<input type="submit" id="submit_de_recherche" class="submit" value="" />
 					</form>
 
 					<!-- #menu -->
-					<nav id="menu" class="menu-main-menu-container">
+					<nav id="menu" class="menu-main-menu-container" >
 					<ul id="menu-main-menu" class="menu">
                     <?php
 //pour chaque menu de la bdd
@@ -136,7 +135,7 @@ foreach ($header_item as $header):
     //vérifie si le menu doit être affiché
     if ($header['visible']) {
         ?>
-							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children"><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span><?php /* affiche le nom du menu */echo $header['nom'] ?></span></a>
+							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children"><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span ><?php /* affiche le nom du menu */echo $header['nom'] ?></span></a>
 	                        <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 	                        <?php
     foreach ($sub_item as $sub):
@@ -145,7 +144,7 @@ foreach ($header_item as $header):
             if ($sub['visible'] && ($compare == 0)) {
                 ?>
 
-									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>"><a class="mfn-megamenu-title" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5><?php echo $sub['nom']; ?></h5></span></a>
+									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>" ><a class="mfn-megamenu-title textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5 style="color : white;" ><strong><?php echo $sub['nom']; ?></strong></h5></span></a>
 		                            <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 		                            <?php //pour chaque sous menu de 3eme niveau :
                 foreach ($third_item as $thi):
@@ -155,7 +154,7 @@ foreach ($header_item as $header):
 						$chemin = base_url().$thi['path'];
 						?>
 
-			                              <li class="menu-item "><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo $chemin;?>"><span><?php echo $thi['nom'] ?></span></a></li>
+			                              <li class="menu-item textcenter"><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo $chemin;?>"><span><?php echo $thi['nom'] ?></span></a></li>
 					<?php }
                 endforeach;?>
 		                            </ul>
@@ -182,11 +181,11 @@ endforeach;?>
 							</div>
 		<div class="column one-third column_column"></div>
 			<div class="column one-third column_column textcenter" style="background-color : <?php echo $gen['couleur_titre'];?>;">
-				<h1 class="title"><?php echo $title; ?></h1>
+			<h1 class="title"><?php echo $title; ?></h1>
 				<h4><?php echo $subtitle; ?></h4>
 			</div>
 			<div class="column one-third column_column"></div>
-		</div>
+		</div>		
 		<?php if (isset($personnaes_item)) {?>
 		<div class="container textcenter personnae_large">
 		<div id="Content">
@@ -197,13 +196,27 @@ endforeach;?>
 					<div class="section_wrapper clearfix">
 						<div class="items_group clearfix">
 						<?php
-foreach ($personnaes_item as $personnaes):
-        if ($personnaes['visible']) {?>
-			<div class="column one-third column_column">
-				<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>;" font-family= "Montserrat;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $personnaes['id_personnae']; ?>" style="width:130px"><strong><?php echo $personnaes['nom']; ?></strong></a>
-				</div>
-	<?php }
-    endforeach;?>
+						$size_tab = [];
+						foreach ($personnaes_item as $personnaes):
+							if ($personnaes['visible']) {
+								$size_tab[] =  $personnaes;
+							}
+						endforeach;
+						$taille = sizeof($size_tab);
+						$modulo = $taille % 2;
+						if ($modulo == 1){
+							for($i = 0; $i < 3 ; $i++){?>
+								<div class="column one-third column_column">
+									<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+									</div>
+						<?php }
+						for($i = 3; $i < $taille ; $i++){?>
+							<div class="column one-second column_column">
+								<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+								</div>
+					<?php }
+						} ?>
+
 				</div>
 				</div>
 				</div>

@@ -9,6 +9,14 @@
                     <div class="column one column_divider">
 								<hr />
 							</div>
+							<div class="column one column_column textcenter">
+								<h1>Résultat pour la recherche : <?php echo $search; ?></h1>
+							</div>
+							<?php if(empty($pages_item)){ ?>
+<div class="column one column_column textcenter">
+<h3> Désolé, nous n'avons pas trouvé de correspondance avec les critères de recherches.</h3>
+</div>
+<?php }else{ ?>
 						<div class="column one column_blog">
 							<div class="blog_wrapper isotope_wrapper masonry">                            
 								<div class="posts_group isotope">
@@ -47,6 +55,7 @@
 								</div>
 							</div>
 						</div>
+							<?php } ?>
 					</div>
 				</div>
 			</div>

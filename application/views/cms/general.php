@@ -81,7 +81,7 @@ switch($gen['couleur']){
                 </div>
                 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Couleur du cadre de titre</h3>              
+              <h3 class="box-title">Couleur du menu et du cadre de titre</h3>              
             </div>
             </div>
             <div class="form-horizontal">
