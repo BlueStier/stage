@@ -34,15 +34,24 @@ class Autocomplete_model extends CI_Model
         return $this->db->get_where('autocomplete', array('nom' => 'black_list'))->row_array();
     }
 
+    public function white_list()
+    {
+        return $this->db->get_where('autocomplete', array('nom' => 'words'))->row_array();
+    }
+
+    public function nombre_de_mot()
+    {
+        //la table autocomplete contient combien de colonne pour enregistrer les mots?
+        $query = $this->db->query("SELECT COUNT(*) AS 'nb_mot' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'autocomplete' and COLUMN_NAME like 'mot%'")->row_array();
+
+        return $query['nb_mot'];
+    }
+
     public function create_black_liste($mot)
     {
         $words = Autocomplete_model::black_list();
         if (!in_array($mot, $words)) {
-            //la table autocomplete contient combien de colonne pour enregistrer les mots?
-            $query = $this->db->query("SELECT COUNT(*) AS 'nb_mot' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'autocomplete' and COLUMN_NAME like 'mot%'")->row_array();
-
-            $nb_mot = $query['nb_mot'];
-
+            $nb_mot = Autocomplete_model::nombre_de_mot();
             for ($i = 0; $i < $nb_mot; $i++) {
                 if ($words['mot' . $i] == null) {
                     $words['mot' . $i] = $mot;
@@ -78,6 +87,36 @@ class Autocomplete_model extends CI_Model
                 }
                 $this->db->replace('autocomplete', $words);
             }
+        }
+    }
+
+    public function barre_de_recherche($white_list, $supprimer, $nombre){       
+        $black = Autocomplete_model::black_list();
+        $white = Autocomplete_model::white_list();
+        if($white_list == 'true' ){           
+            //le mot est dans la liste blanche
+            if($supprimer == 'true'){                
+                //on doit le supprimer
+                $white['mot'.$nombre] = null;
+            }else{                
+                //on doit le mettre dans la black liste
+                Autocomplete_model::create_black_liste($white['mot'.$nombre]);               
+                $white['mot'.$nombre] = null;
+            }
+            $this->db->replace('autocomplete', $white);
+        }else{
+            //le mot est dans la black liste 
+            if($supprimer == 'true'){
+                //on doit le supprimer
+                $black['mot'.$nombre] = null;
+                $this->db->replace('autocomplete', $black);
+            }else{
+            //on doit le mettre dans la liste blanche
+            $mot_a_mettre_dans_la_liste_blanche = $black['mot'.$nombre];
+            $black['mot'.$nombre] = null;
+            $this->db->replace('autocomplete', $black);            
+            Autocomplete_model::create_word($mot_a_mettre_dans_la_liste_blanche);
+            }            
         }
     }
 }

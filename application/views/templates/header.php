@@ -15,9 +15,6 @@ foreach ($header_item as $header):
     }
 endforeach;
 ?>
-
-
-
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
@@ -107,7 +104,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 	<!-- .header_placeholder 4sticky  -->
 	<div class="header_placeholder" >
 	</div>	
-	<div id="Top_bar" style="background-color : <?php echo $gen['couleur_titre'];?>;">
+	<div id="Top_bar" style="background-color : <?php echo $gen['couleur_menu'];?>;">
 		<div class="container">
 			<div class="column one">
 				<!-- .logo -->
@@ -116,6 +113,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 				</div>
 				<!-- .menu_wrapper -->
 				<div class="menu_wrapper">
+				<?php if ($type_de_page != 'home'){ ?>					
 					<!-- #searchform -->
 					<?php  $attributes = array( 'id' => 'searchform');
                                     echo form_open_multipart('pages/search', $attributes);
@@ -125,7 +123,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 						<input type="text" class="field" name="search" id="search" placeholder="Rechercher"/>
 						<input type="submit" id="submit_de_recherche" class="submit" value="" />
 					</form>
-
+				<?php } ?>
 					<!-- #menu -->
 					<nav id="menu" class="menu-main-menu-container" >
 					<ul id="menu-main-menu" class="menu">
@@ -176,15 +174,40 @@ endforeach;?>
 		</div>
 		<div id="Subheader" >
 		<div class="container">
+			<?php if ($type_de_page != 'home'){ ?>
 		<div class="column one column_divider">
 								<hr />
 							</div>
+							<?php ?>
 		<div class="column one-third column_column"></div>
 			<div class="column one-third column_column textcenter" style="background-color : <?php echo $gen['couleur_titre'];?>;">
 			<h1 class="title"><?php echo $title; ?></h1>
 				<h4><?php echo $subtitle; ?></h4>
 			</div>
 			<div class="column one-third column_column"></div>
+			<?php }else{ ?>
+				<div class="column one column_divider">
+								<hr />								
+							</div>
+							<div class="column one column_divider">
+								<hr />								
+							</div>
+							<div class="column one column_divider">
+								<hr />								
+							</div>
+							<?php  $attributes = array( 'id' => 'searchform');
+                                    echo form_open_multipart('pages/search', $attributes);
+					?>											
+							<div class="wrap_search">										
+   <div class="search_new">	   
+      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ; background: <?php echo $gen['couleur_per'];?>;">
+      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_per'];?>;">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>   
+</div>
+			</form>
+			<?php } ?>
 		</div>		
 		<?php if (isset($personnaes_item)) {?>
 		<div class="container textcenter personnae_large">

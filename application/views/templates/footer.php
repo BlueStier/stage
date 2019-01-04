@@ -1,34 +1,47 @@
 <!-- #Footer -->
 <footer id="Footer" class="clearfix">
-
-<div class="footer_action">
-    <div class="container">
-        <div class="column one column_column">
-            <aside id="text-2" class="widget widget_text">
-            <h2>Contact</h2>
- 
-            </aside>
-        </div>
-    </div>
-</div>
-
 <div class="widgets_wrapper">
     <div class="container">      
-        <div class="column one">
+        <div class="column one-fourth">
         <aside id="text-5" class="widget widget_text">
-            <h4>Adresse :</h4>
-            <div class="textwidget">                
+			<div class="textwidget"> 
+				<img src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies" class="textcenter"/>                           
                 <p>Mairie de Oignies<br>
                 Place de la IVème République<br>
-				62590 Oignies<br>
-                Tel : 03 21 74 80 50<br>
+				62590 Oignies<br>                
                 Fax : 03 21 37 32 59<br>  
-                </p>                
-            </div>
+                </p>           
+			</div>
+			</aside>
+</div>
+			<div class="column one-fourth">
+        <aside id="text-5" class="widget widget_text">
+			<div class="textwidget">
+				<a href="tel:0321373259" >				                          
+			<img src="<?php echo base_url(); ?>assets\site\images\icone_tel.png" alt="Oignies" class="textcenter"/></a>
+			<p>Appeler l'accueil<br>
+			03 21 37 32 59</p>
+			</div>
             </aside>
-        </div>
- 
-  
+		</div>
+		<div class="column one-fourth">
+        <aside id="text-5" class="widget widget_text">
+			<div class="textwidget">
+				<a href="mailto:service.communication@oignies.fr" >				                          
+			<img src="<?php echo base_url(); ?>assets\site\images\icone_email.png" alt="Oignies" class="textcenter"/></a>
+			<p>Envoyer un email<br>			
+			</div>
+            </aside>
+		</div>
+		<div class="column one-fourth">
+        <aside id="text-5" class="widget widget_text">
+			<div class="textwidget">
+				<a href="<?php echo base_url(); ?>pages/Nous-contacter/" >				                          
+			<img src="<?php echo base_url(); ?>assets\site\images\icone_signaler_un_probleme.png" alt="Oignies" class="textcenter"/></a>
+			<p>Signaler un problème<br>			
+			</div>
+            </aside>
+        </div>  
     </div>
 </div>
 
@@ -38,13 +51,13 @@
             <a id="back_to_top" href="#"><i class="icon-up-open-big"></i></a>
             <!-- Copyrights -->
             <div class="copyright">
-                 &copy; 2018 BlueStier. All Rights Reserved. 
+                 &copy; 2019 BlueStier. All Rights Reserved. 
             </div>
             <!-- Social -->
             <div class="social">
                 <ul>
-                    <li class="facebook"><a target="_blank" href="#" title="Facebook"><i class="icon-facebook"></i></a></li>
-                    <li class="twitter"><a target="_blank" href="#" title="Twitter"><i class="icon-twitter"></i></a></li>
+                    <li class="facebook"><a target="_blank" href="https://fr-fr.facebook.com/VilleDeOignies/" title="Facebook"><i class="icon-facebook"></i></a></li>
+                    <li class="twitter"><a target="_blank" href="https://twitter.com/villedeoignies?lang=fr" title="Twitter"><i class="icon-twitter"></i></a></li>
     </ul>
             </div>
         </div>
@@ -112,7 +125,8 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 
  /*[DESKTOP, LAPTOP, TABLET, SMARTPHONE] */
     visibilityLevels:[1240, 1024, 778, 480],
-									dottedOverlay:"none",
+			
+			dottedOverlay:"none",
 			delay:6000,
 			startwidth:1200,
 			startheight:720,
@@ -125,7 +139,7 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 									
 			simplifyAll:"off",
 
-			navigationType:"none",
+			navigationType:"bullet",
 			navigationArrows:"solo",
 			navigationStyle:"round",
 
@@ -218,7 +232,7 @@ jQuery(document).ready(function(){
     item.label = item.label.replace(new RegExp("(?![^&;]+;)(?!<[^<>]*)(" + $.ui.autocomplete.escapeRegex(this.term) + ")(?![^<>]*>)(?![^&;]+;)", "gi"), "<strong>$1</strong>");
     return $("<li></li>")
             .data("item.autocomplete", item)
-            .append( "<a onClick='get_focus()'>"+item.label+"</a>" )
+            .append( "<a id='recherche_a_effectuer' onClick='get_focus()'>"+item.label+"</a>" )
             .appendTo(ul);
 };	
   var autocomplete = <?php echo $autocomplete ?>;
@@ -247,11 +261,17 @@ jQuery(document).ready(function(){
    }
   });
 });
-
+<?php if ($type_de_page != 'home'){ ?>
 function get_focus(){
 	var submit_de_recherche = document.getElementById("submit_de_recherche");		
 	submit_de_recherche.click();	
 }
+<?php } else { ?>
+	function get_focus(){
+	var recherche = document.getElementById("recherche_a_effectuer").value;		
+	document.getElementById("search").value = recherche;	
+}
+<?php } ?>
 </script>
 
 

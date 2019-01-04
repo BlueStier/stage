@@ -2,7 +2,6 @@
 $tab =[];
 foreach($home_item as $home):
 $intro = $home['intro'];
-
 for($i = 1;$i<=5;$i++){
     if(!empty($home['photo'.$i])){
     $tab['slide'.$i] = [
@@ -37,9 +36,7 @@ $size = sizeof($tab);
 		</div>
 		</div>
 		</div>
-		</div>
-</div>
-<div id="mfn-rev-slider">
+		<div id="mfn-rev-slider">
 		<div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullscreen-container pd0">
 		<!-- START REVOLUTION SLIDER 4.6.9 fullscreen mode -->
 			<div id="rev_slider_4_1" class="rev_slider fullscreenbanner dnone">
@@ -48,7 +45,7 @@ $size = sizeof($tab);
     for($a = 1; $a <= $size; $a++){?>	
 					<!-- SLIDE  -->
 					
-					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off" >
+					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off">
 						<!-- MAIN IMAGE -->
 						
 						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
@@ -65,10 +62,11 @@ $size = sizeof($tab);
 							data-end="5700" 
 							data-endspeed="300" 
 							>
-							<div style="background-color : white; text-align : center;" >
-							
+							<div style= "width : 950px; background-color : transparent;">
+							<div style=" text-align : center;" >							
 							<h3><?php echo $tab['slide'.$a]['title']; ?></h3>
 							<h5><?php echo $tab['slide'.$a]['p']; ?></h5> 
+						</div>
 						</div>
 						</div>
 						</a>
@@ -84,8 +82,20 @@ $size = sizeof($tab);
 		
 		<div class="column one column_divider">
 								<hr />
-							</div>	
+							</div>
+							<?php if($consult){ ?>
+								<div class="column one column_column textcenter">
+								<?php echo $consultvox['intro']; ?>
+								<div class="column one column_divider">
+								<hr />
+							</div>
+								<?php echo $consultvox['balise']; ?>
+							</div>
+							<?php } ?>	
 	</div>
+		</div>		
+</div>
+
 
 
 

@@ -24,7 +24,8 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='-1'class="active"><a href="<?php echo base_url()?>cms" ><i class="fa fa-circle-o text-green"></i> Voir le site</a></li>
+            <li id='-1'><a href="<?php echo base_url()?>cms" ><i class="fa fa-circle-o text-green"></i> Voir le site</a></li>
+            <li id='-2'><a href="<?php echo base_url()?>cms/-1" ><i class="fa fa-circle-o text-green"></i> Barre de recherche</a></li>
            </ul>
            </li>
         <li class="header">Gestion du site</li>
@@ -130,7 +131,7 @@
     for(var i=1;i<6;i++){
       document.getElementById(i).className = '';
     }
-    if(nb == -1){
+    if(nb <= -1){
       document.getElementById('a0').className = 'active treeview menu-open';
       document.getElementById('a1').className = 'treeview';
       document.getElementById('a2').className = 'treeview ';

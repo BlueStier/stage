@@ -95,8 +95,21 @@ droits </a> 
 					</div>
 				</div>
 			</div>		
+			<div class="column one column_divider">
+								<hr />
+							</div>
+							<?php if($consult){ ?>
+								<div class="column one column_column textcenter">
+								<?php echo $consultvox['intro']; ?>
+								<div class="column one column_divider">
+								<hr />
+							</div>
+								<?php echo $consultvox['balise']; ?>
+							</div>
+							<?php } ?>		
 		</div>
-    </div>
+	</div>
+
     <script>
 function confselectfile(val){	
 	document.getElementById('label_file').innerHTML = "fichier sélectionné :" + val;	

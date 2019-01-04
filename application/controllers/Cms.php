@@ -62,6 +62,18 @@ class Cms extends CI_Controller
             $this->load->model('Articles_model');
             $data['alerte'] = $this->Articles_model->findAlert();
         }
+        if ($id == -1) {
+            $data['nb'] = -2;
+            $this->load->model('Autocomplete_model');
+            $data['black_list'] = $this->Autocomplete_model->black_list();
+            $data['white_list'] = $this->Autocomplete_model->white_list();
+            $data['nombre_de_mot'] = $this->Autocomplete_model->nombre_de_mot();
+            $this->load->view('cms/header', $data);
+            $this->load->view('cms/left_menu', $data);
+            $this->load->view('cms/recherche', $data);
+            $this->load->view('cms/footer');
+
+        }
         if ($id == 0) {
             $data['nb'] = 0;
             $this->load->model('General_model');
@@ -172,6 +184,18 @@ class Cms extends CI_Controller
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/pages', $data);
+            $this->load->view('cms/footer');
+
+        }
+        if ($id == 9) {
+            $data['nb'] = 9;
+            $this->load->model('Pages_model');
+            $this->load->model('Consultvox_model');
+            $data['consultvox'] = $this->Consultvox_model->get();            
+            $data['page_item'] = $this->Pages_model->get_page();
+            $this->load->view('cms/header', $data);
+            $this->load->view('cms/left_menu', $data);
+            $this->load->view('cms/consultvox', $data);
             $this->load->view('cms/footer');
 
         }
@@ -1252,11 +1276,24 @@ class Cms extends CI_Controller
             $array['bleu_titre'] = $this->input->post('bleu_titre');
             $array['opacity_titre'] = $this->input->post('opacity_titre');
             $array['couleur_titre'] = $this->input->post('couleur_titre');
+
             $array['rouge_per'] = $this->input->post('rouge_per');
             $array['vert_per'] = $this->input->post('vert_per');
             $array['bleu_per'] = $this->input->post('bleu_per');
             $array['opacity_per'] = $this->input->post('opacity_per');
             $array['couleur_per'] = $this->input->post('couleur_per');
+
+            $array['rouge_menu'] = $this->input->post('rouge_menu');
+            $array['vert_menu'] = $this->input->post('vert_menu');
+            $array['bleu_menu'] = $this->input->post('bleu_menu');
+            $array['opacity_menu'] = $this->input->post('opacity_menu');
+            $array['couleur_menu'] = $this->input->post('couleur_menu');
+
+            $array['rouge_cadre'] = $this->input->post('rouge_cadre');
+            $array['vert_cadre'] = $this->input->post('vert_cadre');
+            $array['bleu_cadre'] = $this->input->post('bleu_cadre');
+            $array['opacity_cadre'] = $this->input->post('opacity_cadre');
+            $array['couleur_cadre'] = $this->input->post('couleur_cadre');
 
             switch($couleur){
                 case 'Bleu':
@@ -1294,5 +1331,41 @@ class Cms extends CI_Controller
             $this->load->model('General_model');
             $this->General_model->update($array);
             header('Location:' . base_url() . 'cms');
+        }
+
+        public function consultvox(){
+            $texte_intro = $this->input->post('intro_consultvox');
+            $balise = $this->input->post('balise_consultvox');
+            $page = $this->input->post('page[]');            
+            $this->load->model('Consultvox_model');
+            $this->Consultvox_model->update($texte_intro, $balise);
+            $this->load->model('Pages_model');
+            $this->Pages_model->update_consultvox($page);
+            header('Location:' . base_url() . 'cms');
+        }
+
+        public function barre_de_recherche($white_list, $supprimer, $nombre){
+            $this->load->model('Autocomplete_model');         
+            $this->Autocomplete_model->barre_de_recherche($white_list, $supprimer, $nombre);        
+            header('Location:' . base_url() . 'cms/-1');
+        }
+
+        public function enregistre_mot($true){
+            $this->load->model('Autocomplete_model');           
+                //on doit créer un mot
+                if($true == 1){                    
+                    //on doit enregistrer le mot dans la liste blanche
+                    $mot = $this->input->post('mot_white');
+                    if($mot != NULL && $mot != ''){
+                    $this->Autocomplete_model->create_word($mot);
+                    } 
+                }else{
+                   //on doit enregistrer le mot dans la black liste 
+                   $mot = $this->input->post('mot_black');
+                   if($mot != NULL && $mot != ''){
+                   $this->Autocomplete_model->create_black_liste($mot);
+                }
+            } 
+            header('Location:' . base_url() . 'cms/-1');
         }
     }

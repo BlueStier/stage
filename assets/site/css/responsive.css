@@ -70,7 +70,7 @@ body {
 	
 	
 	/* #Header.is-sticky */
-	#Top_bar.is-sticky { position:fixed; width:100%; left:0; top:-60px; height:60px; z-index:701; background:<?php echo $gen['couleur_titre']; ?> !important; opacity:.97; filter: alpha(opacity = 97);
+	#Top_bar.is-sticky { position:fixed; width:100%; left:0; top:-60px; height:60px; z-index:701; background:<?php echo $gen['couleur_menu']; ?> !important; opacity:.97; filter: alpha(opacity = 97);
 		-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 		   -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
 		        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.1);
@@ -83,7 +83,7 @@ body {
 	#Top_bar.is-sticky #header_cart { margin-top:17px;}
 	#Top_bar.is-sticky #header_action_button { margin-top:15px;}
 
-	.header-dark #Top_bar.is-sticky { background:<?php echo $gen['couleur_titre']; ?> !important;}
+	.header-dark #Top_bar.is-sticky { background:<?php echo $gen['couleur_menu']; ?> !important;}
 	.header-alpha .header_placeholder { margin-top:0 !important;}
 
 	.personnae_large{ display:block !important; }

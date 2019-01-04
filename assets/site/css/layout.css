@@ -248,7 +248,7 @@ a.button_image, span.button_image { display: block; width: 55px; height: 55px; l
 #Top_bar .menu_wrapper { float: right; position: relative; z-index: 201;}
 
 /* Menu */
-#Top_bar #menu { float: right; display:block; margin: 33px 0 0 0; }
+#Top_bar #menu { float: right; display:block; margin: 33px 0 0 0; background:<?php echo $gen['couleur_menu']; ?> !important; }
 #Top_bar a.responsive-menu-toggle { display: none; }
 
 /* Search */

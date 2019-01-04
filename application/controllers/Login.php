@@ -41,7 +41,7 @@ class Login extends CI_Controller
                 $mdp = $this->input->post('pwd');
                 $verify = $this->User_model->verify($user['nom'], $user['prenom'], $mdp, true);
                 if ($verify) {
-                    header('Location:' . base_url() . 'cms/1');
+                    header('Location:' . base_url() . 'cms');
                 } else {
                     $data['user'] = $this->session->userdata('username');
                     $data['photouser'] = $this->session->userdata('photo');

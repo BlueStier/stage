@@ -10,7 +10,7 @@
 								<hr />
 							</div>
 							<div class="column one column_column textcenter">
-								<h1>Résultat pour la recherche : <?php echo $search; ?></h1>
+								<h1>Pages trouvées contenant : <?php echo $search; ?></h1>
 							</div>
 							<?php if(empty($pages_item)){ ?>
 <div class="column one column_column textcenter">
@@ -57,5 +57,25 @@
 						</div>
 							<?php } ?>
 					</div>
+					<div class="section the_content">
+					<div class="section_wrapper">
+						<div class="the_content_wrapper">
+						</div>
+					</div>
 				</div>
 			</div>
+			<div class="column one column_divider">
+								<hr />
+							</div>
+							<?php if($consult){ ?>
+								<div class="column one column_column textcenter">
+								<?php echo $consultvox['intro']; ?>
+								<div class="column one column_divider">
+								<hr />
+							</div>
+								<?php echo $consultvox['balise']; ?>
+							</div>
+							<?php } ?>		
+		</div>
+	</div>
+

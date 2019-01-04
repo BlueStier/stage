@@ -30,7 +30,8 @@
 									</a>
 								</div>
                             </div>
-<?php endforeach; ?>						
+<?php endforeach; ?>
+					
 						</div>
 					</div>
 				</div>
@@ -39,8 +40,21 @@
 						<div class="the_content_wrapper">
 						</div>
 					</div>
-				</div>
+				</div>				
 			</div>
 			<!-- .four-columns - sidebar -->
+			<div class="column one column_divider">
+								<hr />
+							</div>
+							<?php if($consult){ ?>
+								<div class="column one column_column textcenter">
+								<?php echo $consultvox['intro']; ?>
+								<div class="column one column_divider">
+								<hr />
+							</div>
+								<?php echo $consultvox['balise']; ?>
+							</div>
+							<?php } ?>
 		</div>
 	</div>
+	

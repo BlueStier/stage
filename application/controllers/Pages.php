@@ -9,6 +9,7 @@ class Pages extends CI_Controller
         $this->load->model('Personnaes_model');
         $this->load->model('Pages_model');
         $this->load->model('General_model');
+        $this->load->model('Consultvox_model');
         $this->load->helper('url_helper', 'security_helper');
         $this->load->library('form_validation');
     }
@@ -22,6 +23,7 @@ class Pages extends CI_Controller
     {
         //récupère les infos pour le header (menu, sousmenu...)
         $data['gen'] = $this->General_model->get();
+        $data['consultvox'] = $this->Consultvox_model->get();
         $data['autocomplete'] = $this->Autocomplete_model->get();
         $data['header_item'] = $this->Header_model->get_menu();
         $data['sub_item'] = $this->Header_model->get_sousmenu();
@@ -32,6 +34,8 @@ class Pages extends CI_Controller
         $data['subtitle'] = $pagestab['soustitre'];
         $data['intro_doc'] = $pagestab['intro_doc'];
         $data['path_doc'] = $pagestab['path_doc'];
+        $data['consult'] = $pagestab['consultvox'];
+        $data['type_de_page'] = $pagestab['type'];
 
         //récupère les infos du type de page
         if ($pagestab['type'] == 'bulle') {
@@ -298,17 +302,20 @@ class Pages extends CI_Controller
     public function acces_rapide($id)
     {
         if ($id == -1) {
+            $data['consult'] = $pagestab['consultvox'];
             $data['gen'] = $this->General_model->get();
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
             $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
+            $data['type_de_page'] = $pagestab['type'];
             $pagestab = $this->Pages_model->get_page('acces_rapide_page');
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = "";
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['consultvox'] = $this->Consultvox_model->get();
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide', $data);
             $this->load->view('templates/footer', $data);
@@ -322,6 +329,7 @@ class Pages extends CI_Controller
                     $array_des_pages[] = $result[0];
                 }
             }
+            
             $data['gen'] = $this->General_model->get();
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
@@ -334,7 +342,10 @@ class Pages extends CI_Controller
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = $person['nom'];
+            $data['type_de_page'] = $pagestab['type'];
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['consult'] = $pagestab['consultvox'];
+            $data['consultvox'] = $this->Consultvox_model->get();
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide_page', $data);
             $this->load->view('templates/footer', $data);
@@ -409,10 +420,13 @@ class Pages extends CI_Controller
         $data['sub_item'] = $this->Header_model->get_sousmenu();
         $data['third_item'] = $this->Header_model->get_thirdmenu();
         $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
+        $data['type_de_page'] = '';
         $pagestab = $this->Pages_model->get_page('recherche');
         $data['background'] = base_url() . $pagestab['background'];
         $data['title'] = $pagestab['titre'];
         $data['subtitle'] = '';
+        $data['consultvox'] = $this->Consultvox_model->get();
+        $data['consult'] = $pagestab['consultvox'];
         $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
         $this->load->view('templates/header', $data);
         $this->load->view('pages/recherche', $data);

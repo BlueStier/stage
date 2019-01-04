@@ -50,7 +50,7 @@ switch($gen['couleur']){
       <div class="box-body">
       <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Couleur et style du menu</h3>              
+              <h3 class="box-title">Couleur et style général</h3>              
             </div>
             </div>
         <?php if(isset($error)){echo $error['error'];};
@@ -81,7 +81,33 @@ switch($gen['couleur']){
                 </div>
                 <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Couleur du menu et du cadre de titre</h3>              
+              <h3 class="box-title">Couleur du menu</h3>              
+            </div>
+            </div>
+            <div class="form-horizontal">
+            <div class="form-group">
+            <div class="col-sm-1 "></div>
+                <div class="col-sm-2 " id='carre1' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;height:200px; background-color: <?php echo $gen['couleur_titre']; ?>;"></div>
+                <div class="col-sm-9 ">
+                <label class=" control-label" style="color:red;">Rouge &nbsp&nbsp&nbsp<span id="rouge_menu"><?php echo $gen['rouge_menu']; ?></span></label>
+                <input id='sliderR1' type='range' min="0" max="255" step="1" onChange="modif_menu()" value="<?php echo $gen['rouge_menu']; ?>"/>
+                <label class=" control-label" style="color:green;">Vert &nbsp&nbsp&nbsp<span id="vert_menu" ><?php echo $gen['vert_menu']; ?></span></label>
+                <input id='sliderV1' type='range' min="0" max="255" step="1" onChange="modif_menu()" value="<?php echo $gen['vert_menu']; ?>"/>
+                <label class=" control-label" style="color:blue;">Bleu &nbsp&nbsp&nbsp<span id="bleu_menu" ><?php echo $gen['bleu_menu']; ?></span></label>
+                <input id='sliderB1' type='range' min="0" max="255" step="1" onChange="modif_menu()" value='<?php echo $gen['bleu_menu']; ?>'/>
+                <label class=" control-label" >Opacité &nbsp&nbsp&nbsp<span id="opacity_menu"><?php echo $gen['opacity_menu']; ?></span></label>
+                <input id='sliderO1' type='range' min="0" max="1" step="0.05" onChange="modif_menu()" value="<?php echo $gen['opacity_menu']; ?>"/>
+                <input type="hidden" id="r_menu" name="rouge_menu" value="<?php echo $gen['rouge_menu']; ?>"/>
+                <input type="hidden" id="v_menu" name="vert_menu" value="<?php echo $gen['vert_menu']; ?>"/>
+                <input type="hidden" id="b_menu" name="bleu_menu" value="<?php echo $gen['bleu_menu']; ?>"/>
+                <input type="hidden" id="o_menu" name="opacity_menu" value="<?php echo $gen['opacity_menu']; ?>"/>
+                <input type="hidden" id="couleur_menu" name="couleur_menu" value="<?php echo $gen['couleur_menu']; ?>"/>
+                </div>
+                </div>
+                </div>
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Couleur du cadre de titre</h3>              
             </div>
             </div>
             <div class="form-horizontal">
@@ -96,12 +122,38 @@ switch($gen['couleur']){
                 <label class=" control-label" style="color:blue;">Bleu &nbsp&nbsp&nbsp<span id="bleu_titre" ><?php echo $gen['bleu_titre']; ?></span></label>
                 <input id='sliderB' type='range' min="0" max="255" step="1" onChange="modif_titre()" value='<?php echo $gen['bleu_titre']; ?>'/>
                 <label class=" control-label" >Opacité &nbsp&nbsp&nbsp<span id="opacity_titre"><?php echo $gen['opacity_titre']; ?></span></label>
-                <input id='sliderO' type='range' min="0" max="1" step="0.1" onChange="modif_titre()" value="<?php echo $gen['opacity_titre']; ?>"/>
+                <input id='sliderO' type='range' min="0" max="1" step="0.05" onChange="modif_titre()" value="<?php echo $gen['opacity_titre']; ?>"/>
                 <input type="hidden" id="r_titre" name="rouge_titre" value="<?php echo $gen['rouge_titre']; ?>"/>
                 <input type="hidden" id="v_titre" name="vert_titre" value="<?php echo $gen['vert_titre']; ?>"/>
                 <input type="hidden" id="b_titre" name="bleu_titre" value="<?php echo $gen['bleu_titre']; ?>"/>
                 <input type="hidden" id="o_titre" name="opacity_titre" value="<?php echo $gen['opacity_titre']; ?>"/>
                 <input type="hidden" id="couleur_titre" name="couleur_titre" value="<?php echo $gen['couleur_titre']; ?>"/>
+                </div>
+                </div>
+                </div>
+                <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Couleur du cadre de la barre de recherche</h3>              
+            </div>
+            </div>
+            <div class="form-horizontal">
+            <div class="form-group">
+            <div class="col-sm-1 "></div>
+                <div class="col-sm-2 " id='carre3' style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;height:200px; background-color: <?php echo $gen['couleur_cadre']; ?>;"></div>
+                <div class="col-sm-9 ">
+                <label class=" control-label" style="color:red;">Rouge &nbsp&nbsp&nbsp<span id="rouge_cadre"><?php echo $gen['rouge_cadre']; ?></span></label>
+                <input id='sliderR3' type='range' min="0" max="255" step="1" onChange="modif_cadre()" value="<?php echo $gen['rouge_cadre']; ?>"/>
+                <label class=" control-label" style="color:green;">Vert &nbsp&nbsp&nbsp<span id="vert_cadre" ><?php echo $gen['vert_cadre']; ?></span></label>
+                <input id='sliderV3' type='range' min="0" max="255" step="1" onChange="modif_cadre()" value="<?php echo $gen['vert_cadre']; ?>"/>
+                <label class=" control-label" style="color:blue;">Bleu &nbsp&nbsp&nbsp<span id="bleu_cadre" ><?php echo $gen['bleu_cadre']; ?></span></label>
+                <input id='sliderB3' type='range' min="0" max="255" step="1" onChange="modif_cadre()" value='<?php echo $gen['bleu_cadre']; ?>'/>
+                <label class=" control-label" >Opacité &nbsp&nbsp&nbsp<span id="opacity_cadre"><?php echo $gen['opacity_titre']; ?></span></label>
+                <input id='sliderO3' type='range' min="0" max="1" step="0.05" onChange="modif_cadre()" value="<?php echo $gen['opacity_cadre']; ?>"/>
+                <input type="hidden" id="r_cadre" name="rouge_cadre" value="<?php echo $gen['rouge_cadre']; ?>"/>
+                <input type="hidden" id="v_cadre" name="vert_cadre" value="<?php echo $gen['vert_cadre']; ?>"/>
+                <input type="hidden" id="b_cadre" name="bleu_cadre" value="<?php echo $gen['bleu_cadre']; ?>"/>
+                <input type="hidden" id="o_cadre" name="opacity_cadre" value="<?php echo $gen['opacity_cadre']; ?>"/>
+                <input type="hidden" id="couleur_cadre" name="couleur_cadre" value="<?php echo $gen['couleur_cadre']; ?>"/>
                 </div>
                 </div>
                 </div>
@@ -122,7 +174,7 @@ switch($gen['couleur']){
                 <label class=" control-label" style="color:blue;">Bleu &nbsp&nbsp&nbsp<span id="bleu_per" ><?php echo $gen['bleu_per']; ?></span></label>
                 <input id='sliderB2' type='range' min="0" max="255" step="1" onChange="modif_per()" value='<?php echo $gen['bleu_per']; ?>'/>
                 <label class=" control-label" >Opacité &nbsp&nbsp&nbsp<span id="opacity_per"><?php echo $gen['opacity_per']; ?></span></label>
-                <input id='sliderO2' type='range' min="0" max="1" step="0.1" onChange="modif_per()" value="<?php echo $gen['opacity_per']; ?>"/>
+                <input id='sliderO2' type='range' min="0" max="1" step="0.05" onChange="modif_per()" value="<?php echo $gen['opacity_per']; ?>"/>
                 <input type="hidden" id="r_per" name="rouge_per" value="<?php echo $gen['rouge_per']; ?>"/>
                 <input type="hidden" id="v_per" name="vert_per" value="<?php echo $gen['vert_per']; ?>"/>
                 <input type="hidden" id="b_per" name="bleu_per" value="<?php echo $gen['bleu_per']; ?>"/>
@@ -152,6 +204,25 @@ switch($gen['couleur']){
        document.getElementById("select_couleur").selectedIndex = "<?php echo $select_couleur; ?>";
       document.getElementById("select_en_tete").selectedIndex = "<?php echo $select_entete; ?>";
 
+        function modif_cadre(){
+        var rouge = document.getElementById('sliderR3').value;
+        var vert = document.getElementById('sliderV3').value;
+        var bleu = document.getElementById('sliderB3').value;
+        var opacity = document.getElementById('sliderO3').value;
+        var couleur = document.getElementById('couleur_cadre');
+        var rgba = 'rgba(' + rouge + ',' +  vert + ',' + bleu + ',' + opacity + ')';
+        couleur.value = rgba;
+        document.getElementById('carre3').style.background = rgba;
+        document.getElementById('rouge_cadre').innerHTML = rouge;
+        document.getElementById('vert_cadre').innerHTML = vert;
+        document.getElementById('bleu_cadre').innerHTML = bleu;
+        document.getElementById('opacity_cadre').innerHTML = opacity;
+        document.getElementById('r_cadre').value = rouge;
+        document.getElementById('v_cadre').value = vert;
+        document.getElementById('b_cadre').value = bleu;
+        document.getElementById('o_cadre').value = opacity;
+      }
+
       function modif_titre(){
         var rouge = document.getElementById('sliderR').value;
         var vert = document.getElementById('sliderV').value;
@@ -169,6 +240,25 @@ switch($gen['couleur']){
         document.getElementById('v_titre').value = vert;
         document.getElementById('b_titre').value = bleu;
         document.getElementById('o_titre').value = opacity;
+      }
+
+   function modif_menu(){
+        var rouge = document.getElementById('sliderR1').value;
+        var vert = document.getElementById('sliderV1').value;
+        var bleu = document.getElementById('sliderB1').value;
+        var opacity = document.getElementById('sliderO1').value;
+        var couleur = document.getElementById('couleur_menu');
+        var rgba = 'rgba(' + rouge + ',' +  vert + ',' + bleu + ',' + opacity + ')';
+        couleur.value = rgba;
+        document.getElementById('carre1').style.background = rgba;
+        document.getElementById('rouge_menu').innerHTML = rouge;
+        document.getElementById('vert_menu').innerHTML = vert;
+        document.getElementById('bleu_menu').innerHTML = bleu;
+        document.getElementById('opacity_menu').innerHTML = opacity;
+        document.getElementById('r_menu').value = rouge;
+        document.getElementById('v_menu').value = vert;
+        document.getElementById('b_menu').value = bleu;
+        document.getElementById('o_menu').value = opacity;
       }
 
        function modif_per(){

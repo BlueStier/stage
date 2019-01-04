@@ -231,4 +231,12 @@ class Pages_model extends CI_Model {
                 $this->load->model('Home_model');
                 $this->Home_model->ifupdateArticleOrPage(TRUE,$page[0]['id_pages']);
         }
+
+        public function update_consultvox($page){
+                foreach($page as $p){
+                        $page_to_change = Pages_model::get_page($p);
+                        $page_to_change['consultvox'] = true;
+                        $this->db->replace('pages',$page_to_change);
+                }
+        }
 }
