@@ -14,6 +14,7 @@
             </div>
             <div class='row'>
         <?php foreach($users as $u):
+        if($u['nom'] != 'roussel' && $u['prenom'] != 'loic'){
           if($u['id_user'] != $id_user){?>
         <div class="col-md-4">
           <!-- Widget: user widget style 1 -->
@@ -63,7 +64,8 @@
           </div>
           <!-- /.modal-dialog -->        
           </div>          
-         <?php } endforeach; ?> 
+         <?php }
+        } endforeach; ?> 
          </div>            
 </div>
 <!-- /.content-wrapper -->

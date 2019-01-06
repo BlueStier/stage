@@ -12,6 +12,8 @@ class Pages extends CI_Controller
         $this->load->model('Consultvox_model');
         $this->load->helper('url_helper', 'security_helper');
         $this->load->library('form_validation');
+        $this->load->library('session');
+        $this->load->helper('captcha');
     }
 
     public function index()
@@ -23,6 +25,7 @@ class Pages extends CI_Controller
     {
         //récupère les infos pour le header (menu, sousmenu...)
         $data['gen'] = $this->General_model->get();
+        $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
         $data['consultvox'] = $this->Consultvox_model->get();
         $data['autocomplete'] = $this->Autocomplete_model->get();
         $data['header_item'] = $this->Header_model->get_menu();
@@ -379,6 +382,7 @@ class Pages extends CI_Controller
         $result[] = $this->Document_model->search($recherche);
         $result[] = $this->Sans_model->search($recherche);
         $result[] = $this->Text_model->search($recherche);
+        $result[] = $this->Pages_model->search($recherche);
         $recherche_pour_page = str_replace(' ', '-', $recherche);
         $result_pages = $this->Pages_model->get_page($recherche_pour_page);
        
@@ -403,14 +407,19 @@ class Pages extends CI_Controller
             }
         }
         if (!empty($result_pages)) {
+            if (!in_array($result_pages['id_pages'], $tab_id_page)) {
             $tab_id_page[] = $result_pages['id_pages'];
+            }
         }
 
         $data['pages_item'] = [];
+        
         foreach($tab_id_page as $tab){
                 $array = $this->Pages_model->get_page_by_id($tab);
+                if(!empty($array)){
                 $data['pages_item'][] = $array[0];
         }
+    }
 
         $data['search'] = $recherche;
         $data['gen'] = $this->General_model->get();

@@ -1237,7 +1237,7 @@ class Cms extends CI_Controller
             $id_user = $this->input->post('id_user');
             $this->load->model('User_model');
             $this->User_model->delete($id_user);
-            Cms::view(8);
+            Cms::view(14);
         }
 
         //fonction de suppression des citoyens de la bdd
@@ -1340,6 +1340,8 @@ class Cms extends CI_Controller
             $this->load->model('Consultvox_model');
             $this->Consultvox_model->update($texte_intro, $balise);
             $this->load->model('Pages_model');
+            //on désactive tous les liens dans les pages pour consultvox
+            $this->Pages_model->consultvox_off();
             $this->Pages_model->update_consultvox($page);
             header('Location:' . base_url() . 'cms');
         }

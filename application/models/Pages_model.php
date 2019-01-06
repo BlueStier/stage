@@ -157,6 +157,26 @@ class Pages_model extends CI_Model {
                 //extraction des données de la bdd
                 $page = Pages_model::get_page_by_id($id);
 
+                if($page[0]['path_doc']==''){
+                        $this->load->library('upload');                               
+                        $this->upload->set_upload_path("./assets/site/ressources/");
+                        $this->upload->set_allowed_types('gif|jpg|png|jpeg|pdf|docx');
+                        if (!$this->upload->do_upload('doc_a_telecharger')) {
+                            $path_doc = '';
+                            $intro_doc ='';
+                        } else {
+                            $data = array('upload_data' => $this->upload->data());
+                            $path_doc = 'assets/site/ressources/' . $data['upload_data']['orig_name'];
+                            $intro_doc = $this->input->post('intro_doc');
+                        }       
+                        if(empty($path_doc)){
+                                $page[0]['path_doc'] = '';
+                        }else{
+                        $page[0]['path_doc'] = $path_doc;
+                        }
+                        $page[0]['intro_doc'] = $intro_doc;                   
+                } 
+
                 $nom = $this->input->post('nomPage1');
                 $nom1 = str_replace(' ','-',$nom);
                 $titre = $this->input->post('titrePage');
@@ -238,5 +258,20 @@ class Pages_model extends CI_Model {
                         $page_to_change['consultvox'] = true;
                         $this->db->replace('pages',$page_to_change);
                 }
+        }
+
+        public function consultvox_off(){
+                $page = Pages_model::get_page();
+                foreach($page as $p){                        
+                        $p['consultvox'] = false;
+                        $this->db->replace('pages',$p);
+                }
+        }
+
+        public function search($recherche){
+                $this->db->like('titre',$recherche,'both');
+                $this->db->or_like('soustitre',$recherche,'both');
+                $query = $this->db->get('pages');
+                return $query->result_array(); 
         }
 }

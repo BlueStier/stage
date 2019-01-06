@@ -62,7 +62,7 @@
                 <tbody>
                     <?php foreach($page_item as $page): ?>
                     <tr>
-                    <td><input type='checkbox' name="page[]" value="<?php /* affiche le nom du menu */ echo $page['nom'] ?>"/><?php /* affiche le nom du menu */ echo "  ".$page['nom'] ?></td>
+                    <td><input type='checkbox' name="page[]" value="<?php /* affiche le nom du menu */ echo $page['nom'] ?>" <?php if($page['consultvox']){ echo "checked";}?>/><?php /* affiche le nom du menu */ echo "  ".$page['nom'] ?></td>
                     <td><?php echo $page['nom']; ?></td>
       </tr>
 <?php endforeach; ?>

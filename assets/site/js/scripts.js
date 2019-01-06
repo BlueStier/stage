@@ -5,8 +5,7 @@
     /* ---------------------------------------------------------------------------
 	 * Sticky header
 	 * --------------------------------------------------------------------------- */
-	var mfn_header_height = $('#Top_bar').innerHeight();
-	var coulor = "rgb(173,173,173)";//document.getElementById('couleur').value + ' !important';
+	var mfn_header_height = $('#Top_bar').innerHeight();	
 	function mfn_sticky(){
 		if( $('body').hasClass('sticky-header') ){	
 			var start_y = mfn_header_height;
@@ -20,7 +19,8 @@
 						.css('top' , -60)													
 						.animate({
 							'top': $('#wpadminbar').innerHeight()
-						},300);										
+						},300);
+															
 				}				
 			}
 			else {
@@ -29,6 +29,7 @@
 					$('#Top_bar')
 						.removeClass('is-sticky')
 						.css('top', 0);
+						
 				}	
 			}
 		}
@@ -43,9 +44,8 @@
 		/* ---------------------------------------------------------------------------
 		 * Content sliders
 		 * --------------------------------------------------------------------------- */
-		mfnSliderPortfolio();
-		
-		
+		mfnSliderPortfolio();	
+				
 		/* ---------------------------------------------------------------------------
 		 * Testimonials
 		 * --------------------------------------------------------------------------- */

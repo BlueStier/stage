@@ -27,7 +27,13 @@
       $a++;}
   endforeach;
   if($path_doc != ''){ ?>
+  <div class="column one column_divider">
+								<hr />								
+							</div>
 <a href="<?php echo base_url().$path_doc;?>" target="blank"><?php echo $intro_doc;?> </a>
+<div class="column one column_divider">
+								<hr />								
+							</div>
 <?php
   }
   ?>

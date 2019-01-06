@@ -14,6 +14,11 @@ foreach ($header_item as $header):
         $size[$header['nom']] = $size_pour_ce_menu;
     }
 endforeach;
+if($black_or_white){
+	$couleur_font = 'black';
+}else{
+	$couleur_font = 'white';
+} 
 ?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
@@ -102,7 +107,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 	<!-- #Header -->
 	<header id="Header" >
 	<!-- .header_placeholder 4sticky  -->
-	<div class="header_placeholder" >
+	<div class="header_placeholder">
 	</div>	
 	<div id="Top_bar" style="background-color : <?php echo $gen['couleur_menu'];?>;">
 		<div class="container">
@@ -112,18 +117,8 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 					<h1><a id="logo" href="<?php echo base_url(); ?>" title="Oignies"><img class="scale-with-grid" src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies"/></a></h1>
 				</div>
 				<!-- .menu_wrapper -->
-				<div class="menu_wrapper">
-				<?php if ($type_de_page != 'home'){ ?>					
-					<!-- #searchform -->
-					<?php  $attributes = array( 'id' => 'searchform');
-                                    echo form_open_multipart('pages/search', $attributes);
-					?>
-						<a class="icon_search icon" href="#"><h1><i class="icon-search-line"></i></h1></a>
-						<a class="icon_close icon"  href="#"><i class="icon-cancel"></i></a>
-						<input type="text" class="field" name="search" id="search" placeholder="Rechercher"/>
-						<input type="submit" id="submit_de_recherche" class="submit" value="" />
-					</form>
-				<?php } ?>
+				<div class="menu_wrapper">		
+														
 					<!-- #menu -->
 					<nav id="menu" class="menu-main-menu-container" >
 					<ul id="menu-main-menu" class="menu">
@@ -133,7 +128,7 @@ foreach ($header_item as $header):
     //vérifie si le menu doit être affiché
     if ($header['visible']) {
         ?>
-							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children"><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span ><?php /* affiche le nom du menu */echo $header['nom'] ?></span></a>
+							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children" ><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span ><?php /* affiche le nom du menu */echo $header['nom'] ?></span></a>
 	                        <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 	                        <?php
     foreach ($sub_item as $sub):
@@ -142,7 +137,7 @@ foreach ($header_item as $header):
             if ($sub['visible'] && ($compare == 0)) {
                 ?>
 
-									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>" ><a class="mfn-megamenu-title textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5 style="color : white;" ><strong><?php echo $sub['nom']; ?></strong></h5></span></a>
+									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>" ><a class="mfn-megamenu-title textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5 style="color : <?php echo $couleur_font; ?>;" ><strong><?php echo $sub['nom']; ?></strong></h5></span></a>
 		                            <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 		                            <?php //pour chaque sous menu de 3eme niveau :
                 foreach ($third_item as $thi):
@@ -200,8 +195,8 @@ endforeach;?>
 					?>											
 							<div class="wrap_search">										
    <div class="search_new">	   
-      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ; background: <?php echo $gen['couleur_per'];?>;">
-      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_per'];?>;">
+      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ">
+      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
         <i class="fa fa-search"></i>
      </button>
    </div>   
@@ -255,7 +250,33 @@ endforeach;?>
 				</div>
 				<div class="column one-third column_column"></div>
 				</div>
-				<?php }?>
+				<?php }else{?>
+					<div class="container">
+					<div id="Content">
+					<div class="column one column_divider">
+								<hr />								
+							</div>
+							<div class="column one column_divider">
+								<hr />								
+							</div>
+							<div class="column one column_divider">
+								<hr />								
+							</div>
+							<?php  $attributes = array( 'id' => 'searchform');
+                                    echo form_open_multipart('pages/search', $attributes);
+					?>											
+							<div class="wrap_search">										
+   <div class="search_new">	   
+      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ">
+      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>   
+</div>
+			</form>
+			</div>
+	</div>
+					<?php } ?>
 	</div>
 	</div>
 	</div>

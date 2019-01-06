@@ -82,7 +82,7 @@
             <li id='9'><a href="<?php echo base_url()?>cms/9"><i class="fa fa-circle-o text-red"></i> Consultvox</a></li>            
           </ul>
         </li>
-        <li id="a5" class="treeview">
+       <!-- <li id="a5" class="treeview">
           <a href="#">
             <i class="fa fa-comments text-yellow"></i>
             <span>Forums</span>
@@ -91,11 +91,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li id='10'><a href="<?php echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Créer un forum</a></li>
-            <li id='11'><a href="<?php echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Voir tous</a></li>
-            <li id='12'><a href="<?php echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Commentaires</a></li>            
+            <li id='10'><a href="<?php //echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Créer un forum</a></li>
+            <li id='11'><a href="<?php //echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Voir tous</a></li>
+            <li id='12'><a href="<?php //echo base_url()?>cms/10"><i class="fa fa-circle-o text-yellow"></i> Commentaires</a></li>            
           </ul>
-        </li>       
+        </li> -->       
         <li class="header">Gestion des utilisateurs</li>
         <li id="a6" class="treeview">
           <a href="#">

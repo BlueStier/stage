@@ -51,7 +51,7 @@
             <a id="back_to_top" href="#"><i class="icon-up-open-big"></i></a>
             <!-- Copyrights -->
             <div class="copyright">
-                 &copy; 2019 BlueStier. All Rights Reserved. 
+                 &copy; 2019 BlueStier. All Rights Reserved.<br><a href="<?php echo base_url(); ?>pages/mentions-legales/">Mentions légales</a> 
             </div>
             <!-- Social -->
             <div class="social">
@@ -204,28 +204,34 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 	});	/*ready*/
 
 </script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.form.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery.form.min.js'></script>
 
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/add-to-cart.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/select2/select2.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery-blockui/jquery.blockUI.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/woocommerce.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery-cookie/jquery.cookie.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/frontend/add-to-cart.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/select2/select2.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery-blockui/jquery.blockUI.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/frontend/woocommerce.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery-cookie/jquery.cookie.min.js'></script>
 
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/frontend/cart-fragments.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/core.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/widget.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/mouse.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/sortable.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/tabs.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery/ui/accordion.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/owl-carousel/owl.carousel.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.jplayer.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/jquery.plugins.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/mfn.menu.js'></script>
-<script type='text/javascript' src='<?php echo base_url();?>/assets/site/js/scripts.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/frontend/cart-fragments.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/core.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/widget.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/mouse.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/sortable.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/tabs.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery/ui/accordion.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/owl-carousel/owl.carousel.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery.jplayer.min.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery.plugins.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/mfn.menu.js'></script>
+<script type='text/javascript' src='<?php echo base_url();?>assets/site/js/scripts.js'></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="<?php echo base_url();?>assets/site/js/cookiechoices/cookiechoices.js"></script>
+<script>document.addEventListener
+('DOMContentLoaded', function(event) { cookieChoices.showCookieConsentBar 
+('Ce site utilise des cookies pour vous offrir le meilleur service. En poursuivant votre navigation, vous acceptez l\’utilisation des cookies.',
+'J\'accepte', 'Ensavoir plus', '<?php echo base_url(); ?>pages/mentions-legales/#coockie'); });
+</script>
 <script>
 jQuery(document).ready(function(){
 	$.ui.autocomplete.prototype._renderItem = function (ul, item) {
@@ -235,7 +241,7 @@ jQuery(document).ready(function(){
             .append( "<a id='recherche_a_effectuer' onClick='get_focus()'>"+item.label+"</a>" )
             .appendTo(ul);
 };	
-  var autocomplete = <?php echo $autocomplete ?>;
+  var autocomplete = <?php echo $autocomplete ?>;  
   $( "#search" ).autocomplete({
 	minLength: 3,
     source: function(request, response ){
@@ -259,21 +265,15 @@ jQuery(document).ready(function(){
       liste_autocomplete_triee = liste_autocomplete_triee.filter(function(a){return typeof a !== 'undefined';})
       response(liste_autocomplete_triee);
    }
-  });
+  }); 
 });
-<?php if ($type_de_page != 'home'){ ?>
-function get_focus(){
-	var submit_de_recherche = document.getElementById("submit_de_recherche");		
-	submit_de_recherche.click();	
-}
-<?php } else { ?>
-	function get_focus(){
+
+
+function get_focus(){	
 	var recherche = document.getElementById("recherche_a_effectuer").value;		
 	document.getElementById("search").value = recherche;	
 }
-<?php } ?>
+
 </script>
-
-
 </body>
 </html>

@@ -1157,7 +1157,14 @@ $year = date('Y');
                 <input type="radio" name='radio_doc' onClick='visible_doc(false);' value="Oui"checked>Oui     
                 </div>                                
                 </div>
+                <div >
                 <div class="form-group" id="choix_doc">
+                  <label  class="col-sm-2 control-label">Texte d'intro du document</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='intro_doc' value="<?php echo $intro_doc;?>">
+                  </div>
+                </div>
+                <div class="form-group" >
                   <label class="col-sm-2 control-label">Choisir un document </label>
                   <div class="col-sm-10">
                   <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>
@@ -1165,9 +1172,32 @@ $year = date('Y');
                 </div>
                 </div>
                 </div>
-
+                </div>
                                
-<?php }?> 
+<?php }else{ ?>
+  <div class="box box-info">
+            <div class="box-header with-border" >
+              <h3 class="box-title">Joindre un (ou des) document(s)</h3>              
+              Cette section permet aux utilisateurs de télécharger un document en lien avec la page          
+              </div>
+              </div>
+              <div class="form-horizontal">
+              <div class="box-body">
+              <div class="form-group">
+                  <label  class="col-sm-2 control-label">Texte d'intro du document</label>
+                  <div class="col-sm-10">
+                  <input class="form-control" name='intro_doc' placeholder="ex : Cliquez pour télécharger le document"/>
+                  </div>
+                </div>
+              <div class="form-group">
+                  <label class="col-sm-2 control-label">Choisir un document </label>
+                  <div class="col-sm-10">
+                  <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>
+                </div>
+                </div>
+                </div>
+                </div>
+  <?php } ?> 
                <!-- /.box-body -->
                <div class="box-footer">
                 <a class="btn btn-default" href="<?php echo base_url()?>cms/4">Annuler</a>
