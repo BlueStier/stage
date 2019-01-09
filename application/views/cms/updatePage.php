@@ -1157,14 +1157,8 @@ $year = date('Y');
                 <input type="radio" name='radio_doc' onClick='visible_doc(false);' value="Oui"checked>Oui     
                 </div>                                
                 </div>
-                <div >
+                <div >                
                 <div class="form-group" id="choix_doc">
-                  <label  class="col-sm-2 control-label">Texte d'intro du document</label>
-                  <div class="col-sm-10">
-                  <input class="form-control" name='intro_doc' value="<?php echo $intro_doc;?>">
-                  </div>
-                </div>
-                <div class="form-group" >
                   <label class="col-sm-2 control-label">Choisir un document </label>
                   <div class="col-sm-10">
                   <input type="file" name="doc_a_telecharger" id="exampleInputFile" value='Choisissez un document'>

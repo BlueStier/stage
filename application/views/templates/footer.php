@@ -2,19 +2,17 @@
 <footer id="Footer" class="clearfix">
 <div class="widgets_wrapper">
     <div class="container">      
-        <div class="column one-fourth">
+        <div class="column one-fourth ">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget"> 
-				<img src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies" class="textcenter"/>                           
-                <p>Mairie de Oignies<br>
-                Place de la IVème République<br>
-				62590 Oignies<br>                
-                Fax : 03 21 37 32 59<br>  
-                </p>           
+			<img src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies" class="textcenter" width="15px"/>                           
+			<p>Place de la IVème République 62590 Oignies</p>                 
+            <p><img src="<?php echo base_url(); ?>assets\site\images\icone_fax.png" alt="Oignies" class="textcenter" width="20px"/> 03 21 37 32 59</p>  
+			<p><a href="tel:0321373250" ><img src="<?php echo base_url(); ?>assets\site\images\icone_tel.png" alt="Oignies" class="textcenter icone" width="30px"/>03 21 37 32 50</p></a>              
 			</div>
 			</aside>
 </div>
-			<div class="column one-fourth">
+			<div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget">
 				<a href="tel:0321373259" >				                          
@@ -24,7 +22,7 @@
 			</div>
             </aside>
 		</div>
-		<div class="column one-fourth">
+		<div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget">
 				<a href="mailto:service.communication@oignies.fr" >				                          
@@ -33,12 +31,12 @@
 			</div>
             </aside>
 		</div>
-		<div class="column one-fourth">
+		<div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
-			<div class="textwidget">
+			<div class="textwidget" >
 				<a href="<?php echo base_url(); ?>pages/Nous-contacter/" >				                          
 			<img src="<?php echo base_url(); ?>assets\site\images\icone_signaler_un_probleme.png" alt="Oignies" class="textcenter"/></a>
-			<p>Signaler un problème<br>			
+			<p >Signaler un problème<br>			
 			</div>
             </aside>
         </div>  
@@ -94,7 +92,7 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 			tpopt.startwidth = 1200;
 			tpopt.startheight = 720;
 			tpopt.container = jQuery('#rev_slider_4_1');
-			tpopt.fullScreen = "on";
+			tpopt.fullScreen = "off";
 			tpopt.forceFullWidth="on";
 
 		tpopt.container.closest(".rev_slider_wrapper").css({height:tpopt.container.height()});tpopt.width=parseInt(tpopt.container.width(),0);tpopt.height=parseInt(tpopt.container.height(),0);tpopt.bw=tpopt.width/tpopt.startwidth;tpopt.bh=tpopt.height/tpopt.startheight;if(tpopt.bh>tpopt.bw)tpopt.bh=tpopt.bw;if(tpopt.bh<tpopt.bw)tpopt.bw=tpopt.bh;if(tpopt.bw<tpopt.bh)tpopt.bh=tpopt.bw;if(tpopt.bh>1){tpopt.bw=1;tpopt.bh=1}if(tpopt.bw>1){tpopt.bw=1;tpopt.bh=1}tpopt.height=Math.round(tpopt.startheight*(tpopt.width/tpopt.startwidth));if(tpopt.height>tpopt.startheight&&tpopt.autoHeight!="on")tpopt.height=tpopt.startheight;if(tpopt.fullScreen=="on"){tpopt.height=tpopt.bw*tpopt.startheight;var cow=tpopt.container.parent().width();var coh=jQuery(window).height();if(tpopt.fullScreenOffsetContainer!=undefined){try{var offcontainers=tpopt.fullScreenOffsetContainer.split(",");jQuery.each(offcontainers,function(e,t){coh=coh-jQuery(t).outerHeight(true);if(coh<tpopt.minFullScreenHeight)coh=tpopt.minFullScreenHeight})}catch(e){}}tpopt.container.parent().height(coh);tpopt.container.height(coh);tpopt.container.closest(".rev_slider_wrapper").height(coh);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh);tpopt.container.css({height:"100%"});tpopt.height=coh;}else{tpopt.container.height(tpopt.height);tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height);tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height);}
@@ -228,7 +226,7 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<?php echo base_url();?>assets/site/js/cookiechoices/cookiechoices.js"></script>
 <script>document.addEventListener
-('DOMContentLoaded', function(event) { cookieChoices.showCookieConsentBar 
+('DOMContentLoaded', function(event) { cookieChoices.showCookieConsentDialog 
 ('Ce site utilise des cookies pour vous offrir le meilleur service. En poursuivant votre navigation, vous acceptez l\’utilisation des cookies.',
 'J\'accepte', 'Ensavoir plus', '<?php echo base_url(); ?>pages/mentions-legales/#coockie'); });
 </script>

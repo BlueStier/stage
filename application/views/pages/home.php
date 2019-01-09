@@ -47,9 +47,9 @@ $size = sizeof($tab);
 					
 					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off">
 						<!-- MAIN IMAGE -->
-						
-						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
+						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center fixed" data-bgrepeat="no-repeat">
+						
 						<!-- LAYER  -->
 						<div class="tp-caption tp-fade"						 
 							data-x="center" 
@@ -61,13 +61,9 @@ $size = sizeof($tab);
 							data-endelementdelay="0" 
 							data-end="5700" 
 							data-endspeed="300" 
-							>
-							<div style= "width : 950px; background-color : transparent;">
-							<div style=" text-align : center;" >							
+							>														
 							<h3><?php echo $tab['slide'.$a]['title']; ?></h3>
-							<h5><?php echo $tab['slide'.$a]['p']; ?></h5> 
-						</div>
-						</div>
+							<h5><?php echo $tab['slide'.$a]['p']; ?></h5> 						
 						</div>
 						</a>
 					</li>

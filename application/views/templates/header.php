@@ -87,7 +87,7 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  height : 400px;
+  height : 450px;
 }
 
 </style>
@@ -195,13 +195,13 @@ endforeach;?>
 					?>											
 							<div class="wrap_search">										
    <div class="search_new">	   
-      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ">
-      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
+      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" >
+      <button type="submit" id="submit_de_recherche" class="searchButton2" >
         <i class="fa fa-search"></i>
-     </button>
+     </button>     
    </div>   
 </div>
-			</form>
+</form>
 			<?php } ?>
 		</div>		
 		<?php if (isset($personnaes_item)) {?>
@@ -225,12 +225,12 @@ endforeach;?>
 						if ($modulo == 1){
 							for($i = 0; $i < 3 ; $i++){?>
 								<div class="column one-third column_column">
-									<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+									<a class="button button_large button_perso textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
 									</div>
 						<?php }
 						for($i = 3; $i < $taille ; $i++){?>
 							<div class="column one-second column_column">
-								<a class="button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+								<a class="button button_large button_perso textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
 								</div>
 					<?php }
 						} ?>
@@ -268,11 +268,14 @@ endforeach;?>
 							<div class="wrap_search">										
    <div class="search_new">	   
       <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ">
-      <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
+	  </div>
+	  <div class="hover">
+	  <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
         <i class="fa fa-search"></i>
      </button>
-   </div>   
-</div>
+   </div> 
+   </div>  
+
 			</form>
 			</div>
 	</div>

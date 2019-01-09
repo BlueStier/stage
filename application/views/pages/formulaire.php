@@ -69,20 +69,22 @@
                                         <?php break;
                                             		}
                                                 } ?>									
-										
+											<p>
+								Les informations recueillies dans
+								le présent formulaire ont pour objet le traitement et le suivi de votre demande.<br>
+								<a href="<?php echo base_url() ?>/pages/donnees-personnelles-formulaire-contact/"> En savoir plus sur la gestion de vos données et vos
+droits </a><br>
+ <input type="checkbox" required/>J’ai pris connaissance des informations relatives à la
+confidentialité de mes données personnelles.
+								</p>
+								
                                             <input type ='hidden' name='page' value="<?php echo $page; ?>"/>
 											<button type="submit" value='Envoyer' class="wpcf7-form-control wpcf7-submit">Envoyer</button>
                                             </form>
                                             <div id="msg" class="message"></div>
 										<p></p>
 									</form>
-								</div>
-								<p>
-								Les informations recueillies dans
-								le présent formulaire ont pour objet le traitement et le suivi de votre demande.<br>
-								<a href="<?php echo base_url() ?>/pages/donnees-personnelles-formulaire-contact/"> En savoir plus sur la gestion de vos données et vos
-droits </a> 
-								</p>
+								</div>							
 							</div>
 						</div>
 					</div>

@@ -31,6 +31,9 @@ switch($gen['couleur']){
     case 'green':
     $select_couleur = 4;
     break;
+    case 'oignies':
+    $select_couleur = 5;
+    break;
 }
 ?>
 <!-- Content Wrapper. Contains page content -->
@@ -64,7 +67,8 @@ switch($gen['couleur']){
                 <option>Maron</option>
                 <option>Océan</option>
                 <option>Rose</option>
-                <option>Verte</option>               
+                <option>Verte</option> 
+                <option>Couleurs de Oignies</option>              
                 </select>
                 </div>
                 </div>

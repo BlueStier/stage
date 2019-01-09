@@ -209,7 +209,9 @@ body {
 	#Error_404 .error_desk { width: 100%; float: none; padding-top: 20px; text-align: center; }
 	.personnae_large{ display:none !important; }
 	.personnae_mini{ display:block !important; }
-
+	.wrap_search {		
+		width: 80%;		
+	  }
 }
 
 
@@ -353,6 +355,7 @@ body {
 	.widgets_wrapper .Flickr .flickr_badge_image a img { width: 100%; height: 99px !important; }
 	
 	/* Subheader */
+	
 	#Subheader .title { text-align: center; }
 	.single-post #Subheader h1 { padding-right: 0 !important; }
 		
@@ -367,6 +370,9 @@ body {
 
 	.personnae_large{ display:none !important; }
 	.personnae_mini{ display:block !important; }
+	.wrap_search {		
+		width: 50%;		
+	  }
 }
 
 
@@ -374,8 +380,8 @@ body {
 ===================================================================================================== */
 @media only screen and (min-width: 480px) and (max-width: 767px)
 {
-    #Wrapper						{ width: 420px;}
-	
+	#Wrapper						{ width: 420px;}
+		
 	.section_wrapper,
 	.container,
 	.four.columns					{ width: 380px !important;}
@@ -392,6 +398,9 @@ body {
 	#respond .comment-form-comment textarea { width: 100%; }
 	#comments .commentlist .children { margin-left: 0px; padding-left: 30px; }
 	#respond .required { right: 15px; }
+	.wrap_search {		
+		width: 50%;		
+	  }
 }
 
 
@@ -410,6 +419,7 @@ body {
 	#respond .comment-form-comment textarea { width: 100%; }
 	#comments .commentlist .children { margin-left: 0px; padding-left: 30px; }
 	#respond .required { right: 11px; }
+	
 	
 	/* Fancy heading */
 	.fancy_heading_small_icon span.icon:before { width: 100px; right: -113px; }
@@ -436,7 +446,9 @@ body {
 	/* FLickr */
 	.Flickr .flickr_badge_image a img {width: 100%; height: 75px !important; }
 	.widgets_wrapper .Flickr .flickr_badge_image a img { width: 100%; height: 68px !important; }
-	
+	.wrap_search {		
+		width: 80%;		
+	  }
 }
 
 

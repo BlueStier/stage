@@ -21,9 +21,9 @@ $folder2 = array_reverse($folder);
 								<div class="accordion">
 									<h5 class="title textcenter" ><?php echo $text;?></h5>
 									<div class="mfn-acc accordion_wrapper open1st">
-                                    <?php foreach($folder2 as $f): ?>
-										<div class="question">
-											<h5 class='textcenter'><span class="icon"><i class="icon-right-open"></i></span><?php echo $f; ?></h5>
+                                    <?php foreach($folder2 as $i=>$f): ?>
+										<div class="question" onclick="window.location.hash='<?php echo $i ?>';">
+											<h5 class='textcenter' id="<?php echo $i ?>"><span class="icon"><i class="icon-right-open"></i></span><?php echo $f; ?></h5>
 											<div class="answer ">
                                             <?php foreach($file[$f] as $n):?>
                                             <a href="<?php echo base_url().$path.'/'.$f.'/'.$n;?>" target=_blank><?php echo $n ?></a>

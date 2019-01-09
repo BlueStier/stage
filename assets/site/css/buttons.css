@@ -1,3 +1,15 @@
+/* Button perso*/
+a.button.button_perso, a.button.button_filled.button_perso, a.tp-button.perso {
+	background-color: white !important;
+	border-color: white !important;
+	color: black !important;
+}
+a:hover.button.button_perso, a:hover.button.button_filled.button_perso, a:hover.tp-button.perso{
+	background-color: white !important;
+	border-color: white !important;
+	color: rgb(147, 19, 143) !important;
+}
+
 /* Button red */
 a.button.button_red, a.button.button_filled.button_red, a.tp-button.red {
 	background-color: #FC2A2A !important;
@@ -7,7 +19,7 @@ a.button.button_red, a.button.button_filled.button_red, a.tp-button.red {
 a:hover.button.button_red, a:hover.button.button_filled.button_red, a:hover.tp-button.red {
 	background-color: #E31212 !important;
 	border-color: #E31212 !important;
-	color: #fff !important;
+	color: rgb(147, 19, 143) !important;
 }
 
 /* Button orange */

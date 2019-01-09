@@ -305,15 +305,16 @@ class Pages extends CI_Controller
     public function acces_rapide($id)
     {
         if ($id == -1) {
+            $pagestab = $this->Pages_model->get_page('acces_rapide_page');
             $data['consult'] = $pagestab['consultvox'];
             $data['gen'] = $this->General_model->get();
+            $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
             $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
             $data['type_de_page'] = $pagestab['type'];
-            $pagestab = $this->Pages_model->get_page('acces_rapide_page');
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = "";
@@ -334,6 +335,7 @@ class Pages extends CI_Controller
             }
             
             $data['gen'] = $this->General_model->get();
+            $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
             //récupère les infos pour le header (menu, sousmenu...)
@@ -423,6 +425,7 @@ class Pages extends CI_Controller
 
         $data['search'] = $recherche;
         $data['gen'] = $this->General_model->get();
+        $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
         $data['autocomplete'] = $this->Autocomplete_model->get();
         //récupère les infos pour le header (menu, sousmenu...)
         $data['header_item'] = $this->Header_model->get_menu();
