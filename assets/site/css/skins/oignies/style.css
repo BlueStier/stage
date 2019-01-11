@@ -1,3 +1,8 @@
+/********************** Body **********************/
+         body{
+         font-family: 'Titillium Web', sans-serif;
+		font-weight: normal;
+         }
 /********************** Backgrounds **********************/
 
 	.template-slider #Header {
@@ -108,15 +113,21 @@
 	#Header .menu > li > a:hover,
 	#Header .menu > li.hover > a {
 		color: rgb(147, 19, 143);
-		font-family: "Oswald";
+		font-family: "Oswald",sans-serif;
 		font-weight: bold;
 		text-transform: uppercase;
 	}
 
-	#Header .menu > li ul li {
+        #Header .menu > li ul li {
 		color: black;
-		font-family: "Oswald";
+		font-family: "Oswald",sans-serif;
 		font-weight: normal;		
+	}
+
+        #Header .menu > li ul li ul li {
+		color: black;
+		font-family: "Oswald",sans-serif;
+		font-weight: lighter;		
 	}
 
 	#Header .menu > li ul li a:hover {
@@ -134,7 +145,27 @@
 	#Subheader ul.breadcrumbs li a,  #Subheader ul.breadcrumbs li span {
 		color: #A9A9A9;
 	}
-		
+	
+        .div_titre{
+		padding:6px 13px 5px;
+			border-radius: 3px;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+						cursor:pointer;
+			background-color: white;
+	}
+
+       .div_carroussel{
+		padding:6px 13px 5px;
+			border-radius: 3px;
+			-moz-border-radius: 3px;
+			-webkit-border-radius: 3px;
+			height:100%;
+			cursor:pointer;
+			background-color: white;
+			
+	}
+	
 /* Subheader love / comments */
 	.filters_buttons a.button {
 		border-color: #545454;

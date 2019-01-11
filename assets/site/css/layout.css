@@ -288,7 +288,7 @@ a.button_image, span.button_image { display: block; width: 55px; height: 55px; l
 
 /* #Subheader
 ================================================== */
-#Subheader { background-image: url("../images/bg_subheader.png"); background-position: top center; background-repeat: no-repeat; }
+
 .header-alpha #Subheader { padding-top: 110px; }
 #Subheader .column { margin-bottom: 25px; }
 #Subheader .title { margin: 40px 0 15px; font-weight:100; }

@@ -3,11 +3,25 @@ a.button.button_perso, a.button.button_filled.button_perso, a.tp-button.perso {
 	background-color: white !important;
 	border-color: white !important;
 	color: black !important;
+        width: 250px !important;
 }
 a:hover.button.button_perso, a:hover.button.button_filled.button_perso, a:hover.tp-button.perso{
 	background-color: white !important;
 	border-color: white !important;
 	color: rgb(147, 19, 143) !important;
+}
+a.button.button_rapide, a.button.button_filled.button_rapide, a:hover.tp-button.rapide {
+	background-color: white !important;
+	border-color: white !important;
+        color: black !important;
+        position: relative;
+left: 10px;
+	       
+}
+a:hover.button.button_rapide, a:hover.button.button_filled.button_rapide,a:hover.tp-button.rapide {
+	background-color: white !important;
+	border-color: white !important;
+	color: rgb(147, 19, 143) !important;       
 }
 
 /* Button red */
@@ -19,7 +33,7 @@ a.button.button_red, a.button.button_filled.button_red, a.tp-button.red {
 a:hover.button.button_red, a:hover.button.button_filled.button_red, a:hover.tp-button.red {
 	background-color: #E31212 !important;
 	border-color: #E31212 !important;
-	color: rgb(147, 19, 143) !important;
+	color: #fff !important;
 }
 
 /* Button orange */

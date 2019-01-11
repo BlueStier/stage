@@ -2,23 +2,25 @@
 <footer id="Footer" class="clearfix">
 <div class="widgets_wrapper">
     <div class="container">      
-        <div class="column one-fourth ">
+        <div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget"> 
-			<img src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies" class="textcenter" width="15px"/>                           
-			<p>Place de la IVème République 62590 Oignies</p>                 
-            <p><img src="<?php echo base_url(); ?>assets\site\images\icone_fax.png" alt="Oignies" class="textcenter" width="20px"/> 03 21 37 32 59</p>  
-			<p><a href="tel:0321373250" ><img src="<?php echo base_url(); ?>assets\site\images\icone_tel.png" alt="Oignies" class="textcenter icone" width="30px"/>03 21 37 32 50</p></a>              
+				<img src="<?php echo base_url(); ?>assets\site\img\logos\logo2.png" alt="Oignies" class="textcenter" style="height:53px"/>                           
+                <p>Mairie de Oignies<br>
+                Place de la IVème République<br>
+				62590 Oignies<br>                
+                Fax : 03 21 37 32 59<br>  
+                </p>           
 			</div>
 			</aside>
 </div>
 			<div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget">
-				<a href="tel:0321373259" >				                          
-			<img src="<?php echo base_url(); ?>assets\site\images\icone_tel.png" alt="Oignies" class="textcenter"/></a>
+				<a href="tel:0321748050" >				                          
+			<img src="<?php echo base_url(); ?>assets\site\images\icone_tel.png" alt="Oignies" class="textcenter" /></a>
 			<p>Appeler l'accueil<br>
-			03 21 37 32 59</p>
+			03 21 74 80 50</p>
 			</div>
             </aside>
 		</div>
@@ -34,9 +36,9 @@
 		<div class="column one-fourth textcenter">
         <aside id="text-5" class="widget widget_text">
 			<div class="textwidget" >
-				<a href="<?php echo base_url(); ?>pages/Nous-contacter/" >				                          
-			<img src="<?php echo base_url(); ?>assets\site\images\icone_signaler_un_probleme.png" alt="Oignies" class="textcenter"/></a>
-			<p >Signaler un problème<br>			
+				<a target="_blank" href="https://www.openstreetmap.org/search?query=oignies#map=17/50.46497/2.99285" >				                          
+			<img src="<?php echo base_url(); ?>assets\site\images\icone-lieu.png" alt="Oignies" class="textcenter" /></a>
+			<p >Carte de la ville<br>			
 			</div>
             </aside>
         </div>  
@@ -200,7 +202,59 @@ var retina = window.devicePixelRatio > 1 ? true : false;if(retina){var retinaEl 
 
 						}
 	});	/*ready*/
+(function() {
 
+if(!('ontouchend' in document)) return;
+var pageX, pageY, newX, newY, linked;
+
+jQuery('.rev_slider').on('touchstart', function(event) {
+
+    newX = newY = false;
+
+    var target = jQuery(event.target),
+    clas = target.attr('class');
+    event = event.originalEvent;
+
+    if(event.touches) event = event.touches[0];
+    pageX = event.pageX;
+    pageY = event.pageY;
+
+    if(target.is('a') || target.closest('a').length) linked = target;
+
+}).on('touchmove', function(event) {
+
+    event = event.originalEvent;
+    if(event.touches) event = event.touches[0];
+
+    newX = event.pageX;
+    newY = event.pageY;
+    if(Math.abs(pageX - newX) > 10) event.preventDefault();
+
+}).on('touchend', function(event) {
+
+    if(newX !== false && Math.abs(pageX - newX) > 30) {
+
+        eval('revapi' + jQuery(this).closest('.rev_slider_wrapper').attr('id').split('rev_slider_')[1].split('_')[0])[pageX > newX ? 'revnext' : 'revprev']();
+
+    }else if((linked && newY === false) || (linked && Math.abs(pageY - newY) < 10)) {
+
+        linked = linked.is('a') ? linked : linked.closest('a');
+        if(linked.length) {
+
+            if(linked.attr('target') === '_blank') {    
+                window.open(linked.attr('href'));
+            }
+            else {
+                window.location = linked.attr('href');
+            }
+
+        }
+
+    }
+
+    linked = newX = false;
+
+});})();
 </script>
 <script type='text/javascript' src='<?php echo base_url();?>assets/site/js/jquery.form.min.js'></script>
 
@@ -272,6 +326,16 @@ function get_focus(){
 	document.getElementById("search").value = recherche;	
 }
 
+</script>
+<script type="text/javascript">
+  (function(d, s, id) {
+      var js = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {return;}
+      var sdkjs = d.createElement(s); 
+      sdkjs.id = id; sdkjs.type  = 'text/javascript'; sdkjs.async = true;
+      sdkjs.src   = "https://oignies.consultvox.fr/js/sdk.js#version=1.0";
+      js.parentNode.insertBefore(sdkjs, js);
+  }(document, 'script', 'cvox-jssdk'));
 </script>
 </body>
 </html>

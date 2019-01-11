@@ -480,7 +480,7 @@ class Cms extends CI_Controller
                 switch ($type) {
                     case "text":
                         $this->load->model('Text_model');
-                        $nomPage = str_replace(' ','-', $this->input->post('nomPage'));
+$nomPage = str_replace(' ','-', $this->input->post('nomPage'));
                         $id_pages = $this->Pages_model->get_idpage($nomPage);
                         $this->Text_model->create($id_pages);
                         break;
@@ -1374,3 +1374,4 @@ class Cms extends CI_Controller
             header('Location:' . base_url() . 'cms/-1');
         }
     }
+		

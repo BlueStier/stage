@@ -154,7 +154,25 @@ website:   	http://www.themepunch.com
 									
 .tp-layer-inner-rotation			{	position: relative !important;}		
 
+.tp-caption .div_carousel{
+	padding:6px 13px 5px;
+		border-radius: 3px;
+		-moz-border-radius: 3px;
+		-webkit-border-radius: 3px;
+		height:100%;
+		cursor:pointer;
+		background-color: white;
+		opacity: 0.85;
+}
 
+
+.tp-caption a:hover {
+	text-decoration: none;
+}
+
+.tp-caption .div_carousel:hover{
+	opacity: 1;
+}
 /***********************************************
 	-	SPECIAL ALTERNATIVE IMAGE SETTINGS	-
 ***********************************************/

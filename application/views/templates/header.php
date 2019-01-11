@@ -82,12 +82,12 @@ window.mfn_slider_portfolio 	= { autoPlay:0 };
 #Top_bar.is-sticky #logo img { max-height:40px; width:auto !important;}
 
 #Subheader {
-  background: url(<?php echo $background; ?>) no-repeat center center fixed;
+  background: url(<?php echo $background; ?>) no-repeat scroll right top #000000;
+  background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
-  height : 450px;
+
 }
 
 </style>
@@ -128,8 +128,8 @@ foreach ($header_item as $header):
     //vérifie si le menu doit être affiché
     if ($header['visible']) {
         ?>
-							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children" ><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span ><?php /* affiche le nom du menu */echo $header['nom'] ?></span></a>
-	                        <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
+							<li class="menu-item  current-menu-item page_item page-item-4311 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children" ><a href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $header['path']; ?>"><span ><strong><?php /* affiche le nom du menu */echo $header['nom'] ?></strong></span></a>
+	                        <br><br><ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 	                        <?php
     foreach ($sub_item as $sub):
             $compare = strcmp($sub['menu'], $header['nom']);
@@ -137,7 +137,7 @@ foreach ($header_item as $header):
             if ($sub['visible'] && ($compare == 0)) {
                 ?>
 
-									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>" ><a class="mfn-megamenu-title textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5 style="color : <?php echo $couleur_font; ?>;" ><strong><?php echo $sub['nom']; ?></strong></h5></span></a>
+									<li class="menu-item  menu-item-has-children mfn-megamenu-cols-<?php echo $size[$header['nom']]; ?>" ><a class="mfn-megamenu-title textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . $sub['path']; ?>"><span><h5><strong><?php echo $sub['nom']; ?></strong></h5></span></a>
 		                            <ul class="sub-menu mfn-megamenu mfn-megamenu-5">
 		                            <?php //pour chaque sous menu de 3eme niveau :
                 foreach ($third_item as $thi):
@@ -175,7 +175,8 @@ endforeach;?>
 							</div>
 							<?php ?>
 		<div class="column one-third column_column"></div>
-			<div class="column one-third column_column textcenter" style="background-color : <?php echo $gen['couleur_titre'];?>;">
+			<div class="column one-third column_column textcenter div_titre" >
+
 			<h1 class="title"><?php echo $title; ?></h1>
 				<h4><?php echo $subtitle; ?></h4>
 			</div>
@@ -190,10 +191,11 @@ endforeach;?>
 							<div class="column one column_divider">
 								<hr />								
 							</div>
+<div class="column one column_column">
 							<?php  $attributes = array( 'id' => 'searchform');
                                     echo form_open_multipart('pages/search', $attributes);
 					?>											
-							<div class="wrap_search">										
+							<div class="wrap_search" id="search2">										
    <div class="search_new">	   
       <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" >
       <button type="submit" id="submit_de_recherche" class="searchButton2" >
@@ -202,8 +204,10 @@ endforeach;?>
    </div>   
 </div>
 </form>
+</div>
 			<?php } ?>
-		</div>		
+		</div>
+	
 		<?php if (isset($personnaes_item)) {?>
 		<div class="container textcenter personnae_large">
 		<div id="Content">
@@ -225,12 +229,12 @@ endforeach;?>
 						if ($modulo == 1){
 							for($i = 0; $i < 3 ; $i++){?>
 								<div class="column one-third column_column">
-									<a class="button button_large button_perso textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+									<a class="button button_large button_perso textcenter"  href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
 									</div>
 						<?php }
 						for($i = 3; $i < $taille ; $i++){?>
 							<div class="column one-second column_column">
-								<a class="button button_large button_perso textcenter" style="background-color : <?php echo $gen['couleur_per'];?>; font-family= 'Oswald', sans-serif; width:200px" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
+								<a class="button button_large button_perso textcenter" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/' . $size_tab[$i]['id_personnae']; ?>" ><strong><?php echo $size_tab[$i]['nom']; ?></strong></a>
 								</div>
 					<?php }
 						} ?>
@@ -243,12 +247,12 @@ endforeach;?>
 				</div>
 				</div>
 
-				<div class="container textcenter personnae_mini">
-				<div class="column one-third column_column"></div>
-				<div class="column one-third column_column">
-				<a class=" button button_large textcenter" style="background-color : <?php echo $gen['couleur_per'];?>;" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/-1' ?>" >Accès rapide</a>
+				<div class="container textcenter personnae_mini" >
+				
+				<div class="column one column_column">
+				<a class=" button button_large button_rapide textcenter" id="rapide" href="<?php /*construction du lien en fonction du chemin en bdd*/echo base_url() . 'pages/acces_rapide/-1' ?>" >Accès rapide</a>
 				</div>
-				<div class="column one-third column_column"></div>
+				
 				</div>
 				<?php }else{?>
 					<div class="container">
@@ -267,20 +271,15 @@ endforeach;?>
 					?>											
 							<div class="wrap_search">										
    <div class="search_new">	   
-      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; ">
-	  </div>
-	  <div class="hover">
-	  <button type="submit" id="submit_de_recherche" class="searchButton2" style="border: 3px solid <?php echo $gen['couleur_cadre'];?>; background: <?php echo $gen['couleur_cadre'];?>;">
+      <input type="text" class="searchTerm2" id="search" name="search" placeholder="Rechercher" >
+      <button type="submit" id="submit_de_recherche" class="searchButton2" >
         <i class="fa fa-search"></i>
-     </button>
-   </div> 
-   </div>  
-
-			</form>
-			</div>
-	</div>
-					<?php } ?>
+     </button>     
+   </div>   
+</div>
+</form>
+			<?php } ?>
 	</div>
 	</div>
-	</div>
+	</div></div>
 	</header>

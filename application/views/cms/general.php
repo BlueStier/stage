@@ -67,8 +67,8 @@ switch($gen['couleur']){
                 <option>Maron</option>
                 <option>Océan</option>
                 <option>Rose</option>
-                <option>Verte</option> 
-                <option>Couleurs de Oignies</option>              
+                <option>Verte</option>
+                <option>Couleurs de Oignies</option>                
                 </select>
                 </div>
                 </div>
@@ -284,4 +284,4 @@ switch($gen['couleur']){
         document.getElementById('o_per').value = opacity;
       }
   </script>    
-  
+  	

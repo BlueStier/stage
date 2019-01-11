@@ -22,8 +22,8 @@
                                                for($i = 1; $i <= 10; $i++){
                                                    if(! empty($bulle['tx'.$i])){                
                                               ?>	
-										<div class="question" onclick="ancre(<?php echo $i ?>);" >
-											<h5 class='textcenter' id="<?php echo $i ?>"><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trt'.$i]; ?></h5>
+										<div class="question" onclick="window.location.hash='<?php echo $i ?>';" id="<?php echo $i ?>">
+											<h5 class='textcenter' ><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trt'.$i]; ?></h5>
 											<div class="answer" >
 											<?php if($bulle['photo'.$i] != ''){?>
                                                 <img src="<?php echo base_url().$bulle['photo'.$i]; ?>" alt="" style="border: 1px solid #ddd;border-radius: 4px;padding: 1px;vertical-align: top;width:100px;">
@@ -35,8 +35,8 @@
                                                    <?php }
                   } 
                   if (!empty($bulle['sup'])){?>
-                    <div class="question" onclick="window.location.hash='sup';">
-                  <h5 class='textcenter' id="sup" ><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trtsup']; ?></h5>
+                    <div class="question">
+                  <h5 class='textcenter'><span class="icon"><i class="icon-right-open"></i></span><?php echo $bulle['trtsup']; ?></h5>
                   <div class="answer">                      
                       <?php echo $bulle['sup'];?>
                   </div>
@@ -82,8 +82,3 @@
 							<?php } ?>		
 		</div>
 	</div>
-	<script>
-		function ancre(id){
-			setTimeout(window.location.hash=id,1000);
-		}
-		</script>

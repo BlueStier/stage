@@ -47,11 +47,11 @@ $size = sizeof($tab);
 					
 					<li data-transition="slideleft" data-slotamount="10"  data-masterspeed="600"  data-saveperformance="off">
 						<!-- MAIN IMAGE -->
-						<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">
-						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center fixed" data-bgrepeat="no-repeat">
+						
+						<img src="<?php echo base_url().$tab['slide'.$a]['photo']; ?>"  alt=""  data-bgfit="cover" data-bgposition="center center" data-bgrepeat="no-repeat">
 						
 						<!-- LAYER  -->
-						<div class="tp-caption tp-fade"						 
+						<div class="tp-caption large_light tp-fade tp-resizeme"						 
 							data-x="center" 
 							data-y="center"							
 							data-speed="300" 
@@ -60,12 +60,16 @@ $size = sizeof($tab);
 							data-elementdelay="0" 
 							data-endelementdelay="0" 
 							data-end="5700" 
-							data-endspeed="300" 
-							>														
-							<h3><?php echo $tab['slide'.$a]['title']; ?></h3>
-							<h5><?php echo $tab['slide'.$a]['p']; ?></h5> 						
+							data-endspeed="300"							 
+							>
+							
+							<div class="div_carousel">
+							<a href="<?php echo base_url().$tab['slide'.$a]['path']; ?>">										
+							<?php echo $tab['slide'.$a]['title']; ?><br>
+							<?php echo $tab['slide'.$a]['p']; ?>				
+							</a>
+	</div>
 						</div>
-						</a>
 					</li>
 					
 					<?php } ?>				
@@ -75,19 +79,20 @@ $size = sizeof($tab);
 			
 		</div>
 		<!-- END REVOLUTION SLIDER -->
-		
+		<div class="container">
 		<div class="column one column_divider">
 								<hr />
 							</div>
 							<?php if($consult){ ?>
 								<div class="column one column_column textcenter">
-								<?php echo $consultvox['intro']; ?>
+								<h1><?php echo $consultvox['intro']; ?></h1>
 								<div class="column one column_divider">
 								<hr />
 							</div>
 								<?php echo $consultvox['balise']; ?>
 							</div>
-							<?php } ?>	
+							<?php } ?>
+</div>	
 	</div>
 		</div>		
 </div>

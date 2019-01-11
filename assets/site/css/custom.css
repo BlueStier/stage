@@ -381,14 +381,13 @@ width:16.667%;
 	height: 400px!important;	  
   }
 
- /*Resize the wrap to see the search bar change!*/
+  /*Resize the wrap to see the search bar change!*/
  .wrap_search{
-	width: 100%;
+	width: 90%;
 	position: absolute;
 	top: 50%;
-	left : 50%;
-	transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);		
+	right: 7%;
+			
   }
 
   .wrap_search .search_new {
@@ -430,7 +429,9 @@ width:16.667%;
 	display: flex;
   	justify-content: center;
 	align-items: center;	  
-	height: 10px;	
+	height: 10px;  
+        
   }   
   
-  
+
+ 

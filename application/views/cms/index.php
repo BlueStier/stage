@@ -22,7 +22,7 @@
 </h2>             
             </div>
             </div>
-    <iframe id="frame" width="1150" height="475"
+    <iframe id="frame" width="1250" height="475"
     src="<?php echo base_url(); ?>">
 </iframe>
 
@@ -58,7 +58,7 @@
         ordi.className = 'fa fa-laptop';
         break;
         case 3 :
-        frame.style.width = "1150px";
+        frame.style.width = "1250px";
         tel.className = 'fa fa-mobile';
         tablet.className = 'fa fa-tablet ';
         ordi.className = 'fa fa-laptop text-red';

@@ -27,11 +27,11 @@ class Text_model extends CI_Model {
                                 't2'=>$this->input->post('t2'),
                                 'pg2'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg2')),                               
                                 't3'=>$this->input->post('t3'),
-                                'pg3'=>str_replace('<ul> ','<ul class="list">',$this->input->post('pg3')),
+                                'pg3'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg3')),
                                 't4'=>$this->input->post('t4'),
                                 'pg4'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg4')),
                                 't5'=>$this->input->post('t5'),
-                                'pg5'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg5')),
+                                'pg5'=>str_replace('<ul> ','<ul class="list">',$this->input->post('pg5')),
                                 't6'=>$this->input->post('t6'),
                                 'pg6'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg6')),
                                 't7'=>$this->input->post('t7'),
@@ -39,11 +39,11 @@ class Text_model extends CI_Model {
                                 't8'=>$this->input->post('t8'),
                                 'pg8'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg8')),
                                 't9'=>$this->input->post('t9'),
-                                'pg9'=>str_replace('<ul> ','<ul class="list">',$this->input->post('pg9')),
+                                'pg9'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg9')),
                                 't10'=>$this->input->post('t10'),
                                 'pg10'=>str_replace('<ul>','<ul class="list">',$this->input->post('pg10')),     
                                 );
-                                      
+                                       
                 $this->db->insert('text',$données);
 
         }

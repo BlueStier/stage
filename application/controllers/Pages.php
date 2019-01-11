@@ -335,7 +335,7 @@ class Pages extends CI_Controller
             }
             
             $data['gen'] = $this->General_model->get();
-            $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
+$data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
             //récupère les infos pour le header (menu, sousmenu...)
@@ -344,7 +344,7 @@ class Pages extends CI_Controller
             $data['third_item'] = $this->Header_model->get_thirdmenu();
             $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
             $pagestab = $this->Pages_model->get_page('acces_rapide_page');
-            $data['background'] = base_url() . $pagestab['background'];
+            $data['background'] = base_url() . $person['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = $person['nom'];
             $data['type_de_page'] = $pagestab['type'];
@@ -379,15 +379,21 @@ class Pages extends CI_Controller
 
         //on effectue la recherche
         $result_articles = $this->Articles_model->search($recherche);
+        $result[] = $this->Pages_model->search($recherche);
         $result[] = $this->Bulles_model->search($recherche);
         $result[] = $this->Carroussel_model->search($recherche);
         $result[] = $this->Document_model->search($recherche);
         $result[] = $this->Sans_model->search($recherche);
         $result[] = $this->Text_model->search($recherche);
-        $result[] = $this->Pages_model->search($recherche);
         $recherche_pour_page = str_replace(' ', '-', $recherche);
         $result_pages = $this->Pages_model->get_page($recherche_pour_page);
        
+        if (!empty($result_pages)) {
+            if (!in_array($result_pages['id_pages'], $tab_id_page)) {
+            $tab_id_page[] = $result_pages['id_pages'];
+            }
+        }
+        
         foreach ($result as $r) {
             if (!empty($r)) {
                 $size_array = sizeof($r);
@@ -408,11 +414,7 @@ class Pages extends CI_Controller
                 }
             }
         }
-        if (!empty($result_pages)) {
-            if (!in_array($result_pages['id_pages'], $tab_id_page)) {
-            $tab_id_page[] = $result_pages['id_pages'];
-            }
-        }
+       
 
         $data['pages_item'] = [];
         

@@ -83,6 +83,7 @@ CKEDITOR.config.whitelist_elements = {
 	ol: 1,
 	ul: 1,
 	li: 1,
+        div: 1,
 	img: { attributes: {src:1, alt:1} },
 	a: { attributes: {href:1} }
 };
@@ -93,5 +94,6 @@ CKEDITOR.config.whitelist_elements = {
 CKEDITOR.config.whitelist_globalAttributes = {
 	id: 1,
 	'class': 1,
+'class="textcenter"': 1,
 	
 };
