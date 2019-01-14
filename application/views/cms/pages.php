@@ -107,7 +107,7 @@
                       <h4 class="modal-title">Suppression</h4>
                     </div>
                     <div class="modal-body">
-                      <p><i class="fa  fa-warning"></i> La suppression de '<?php echo $page['nom'] ?>' sera définitive </p>
+                      <p><i class="fa  fa-warning"></i> La suppression de '<?php echo $page['nom'] ?>' sera définitive<br><i class="fa fa-warning"></i>Les données contenu dans ce formulaire seront détruites </p>
                       <p>Confirmez-vous le suppression ? </p>
                     </div>
                     <div class="modal-footer">

@@ -112,9 +112,13 @@ class Pages extends CI_Controller
                 //on vérifie si on à une liste dans les champs
                 if ($recup['type' . $i] == 'liste') {
                     $data['liste'] = $this->Liste_model->get_liste($recup['champ' . $i]);
+                    $data['liste']['nom_champ'] = str_replace(' ','_',$data['liste']['nom_champ']);
                     $data['nb_item'] = $this->Liste_model->nb_item($recup['champ' . $i]);
                 }
             }
+            for ($i = 1; $i <= $data['nb_champ']; $i++) {
+                $data['form']['champ' . $i] = str_replace(' ','_',$data['form']['champ' . $i]);
+            }                     
             $page = 'formulaire';
 
         }
@@ -134,17 +138,33 @@ class Pages extends CI_Controller
     {
         $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = $tel = '';
         $service = 0;
-        $this->load->model('Form_model');
+        $g = $this->input->post('nb_champ');
+        $this->load->model('Form_model');        
         $this->load->model('Pages_model');
         $tab_page = $this->Pages_model->get_page_by_id($id);
         $type_contact = $tab_page[0]['nom'];
+        $get_column = str_replace('-','_',$tab_page[0]['nom']);
+        $nom_colonnes = $this->Form_model->get_column_name($get_column);        
         $this->load->model('Liste_model');
         $recup = $this->Form_model->get_form($id);
         $mail_dest = $recup['mail_dest1'] . ', ';
         $nb_champ = $this->Form_model->nb_champ($id);
-
+        $array = [];
         for ($i = 1; $i <= $nb_champ; $i++) {
-            switch ($recup['type' . $i]) {
+            $champ = str_replace(' ','_',$recup['champ'.$i]);
+            $rep = $this->input->post($champ);           
+            $rep_xss = $this->security->xss_clean($rep);
+            if($recup['type'.$i] != 'liste'){
+            $champ = $recup['champ'.$i];
+            $nom_col = str_replace(' ','_',$champ);
+            }else{                
+                $liste = $this->Liste_model->get_liste($g);
+                $nom_col = str_replace(' ','_',$liste['nom_champ']);
+                $rep_xss = $this->input->post($nom_col);                
+            }
+            $array[$nom_col] = $rep_xss;
+            
+           /* switch ($recup['type' . $i]) {
                 //pour chaque cas on récupère les données et on rend inoffensives les attques javascript
                 case "nom":
                     $n = $this->input->post('nom');
@@ -223,24 +243,45 @@ class Pages extends CI_Controller
             $mail_dest .= $recup['mail_dest' . $r] . ', ';
         }
 
-        $array = [
-            'nom' => $nom,
-            'prenom' => $prenom,
-            'adresse' => $adresse,
-            'tel' => $tel,
-            'date' => $date,
-            'nb' => $nombre,
-            'message' => $message,
-            'mail_cit' => $email,
-            'mail_dest' => $mail_dest,
-            'liste' => $liste,
-            'service' => $service,
-            'file' => $file,
-            'type_contact' => $type_contact,
-        ];
-
+        $array = [];
+            foreach($nom_colonnes as $col){
+                var_dump($col);
+                switch($col['COLUMN_NAME']){
+                    case 'nom':
+                    $array['nom'] = $nom;
+                    break;
+                    case "prenom" :
+                    $array['prenom'] = $prenom;
+                    break;
+                    case "adresse" :
+                    $array['adresse'] = $adresse;
+                    break;
+                    case "email" :
+                    $array['email'] = $email;
+                    break;
+                    case "tel" :
+                    $array['tel'] = $email;
+                    break;
+                    case "message" :
+                    $array['message'] = $message;
+                    break;
+                    case "nb" :
+                    $array['nb'] = $nombre;
+                    break;
+                    case "file" :
+                    $array['fichier'] = $file;
+                    break;
+                    case "date" :
+                    $array['date'] = $date;
+                    break;
+                    case "liste" :
+                    $array['choix'] = $liste;
+                    break;
+                }*/           
+            }
+           
         $this->load->model('Bddcit_model');
-        $this->Bddcit_model->create($array);
+        $this->Bddcit_model->create($array,$id,$g);
         //Pages::send_mail($array);
         Pages::view($this->input->post('page'), true);
     }

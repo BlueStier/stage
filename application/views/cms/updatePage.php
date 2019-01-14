@@ -11,7 +11,15 @@ $path_doc = $p['path_doc'];
 $intro_doc = $p['intro_doc'];
 endforeach;
 $year = date('Y');
-?>
+if($type_page == 'formulaire'){ ?>
+  <div class="content-wrapper">
+<div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Modifier le formulaire : <?php echo $nom_page; ?></h3>
+              <i class='fa fa-warning text-red'>Attention ! Tous changements dans le formulaire entraine la suppression des données !</i>
+            </div>
+</div>
+<?php }else{?>
 <div class="content-wrapper">
 <div class="box box-info">
             <div class="box-header with-border">
@@ -19,6 +27,7 @@ $year = date('Y');
               <small>   Page du type : <?php echo $type_page; ?></small>
             </div>
 </div>
+<?php } ?>
 <!-- Pour tous type de pages définition de la photo de background, titre et soustitre (facultatif) -->
 <div class="form-horizontal">
 <div class="box-body">
@@ -877,6 +886,19 @@ $year = date('Y');
                         <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
                         <div class="col-sm-1 "></div>
                   <?php break;
+                  case"tel" :?>
+                  <input type="hidden" name="input<?php echo $i; ?>" value="tel">
+                  <label class="col-sm-2 control-label">Champ PRENOM</label>
+                  <div class="col-sm-2 ">
+                  <label class="control-label">Obligatoire?</label>
+                  <input class="col-sm-2" type="checkbox" name="ch<?php echo $i; ?>"<?php if($form['ob'.$i]){echo 'checked';}?>>
+                  </div>
+                  <label class="col-sm-2 control-label">nom du champ :</label>
+                  <input required="required" value="<?php echo $form['champ'.$i]; ?>" class="col-sm-2" name="champ<?php echo $i; ?>">
+                  <div class="col-sm-1 "></div>
+                  <a class="btn btn-danger col-sm-2" href="<?php echo base_url()?>cms/supChamp/<?php echo $i."/".$id_page?>" >Supprimer ce champ</a>
+                  <div class="col-sm-1 "></div>
+            <?php break;
                         case"adresse" :?>
                         <input type="hidden" name="input<?php echo $i; ?>" value="adresse">
                         <label class="col-sm-2 control-label">Champ ADRESSE</label>
@@ -1003,7 +1025,7 @@ $year = date('Y');
               <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
               <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
               <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
-              <a class='btn btn-default' onClick="nom(10)">Checkbox</a>
+              <a class='btn btn-default' onClick="nom(10)">Téléphone</a>
               
             </div>
             <div id="form">

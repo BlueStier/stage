@@ -25,24 +25,29 @@
 									case"prenom" :
 									case"adresse" :?>						
 											<span class="wpcf7-form-control-wrap name">
-												<input type="text"  name="<?php echo $form['type'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>/>
+												<input type="text"  name="<?php echo $form['champ'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>/>
 											</span>
                                             <?php break;
                                                 case"email" :?>
                                                 	<span class="wpcf7-form-control-wrap email">
-												 <input type="email" name="<?php echo $form['type'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email" aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> />
+												 <input type="email" name="<?php echo $form['champ'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email" aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> />
                                             </span>	
-                                            <?php break;
+											<?php break;
+											 case"tel" :?>
+											 <span class="wpcf7-form-control-wrap email">
+										  <input type="tel" name="<?php echo $form['champ'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text wpcf7-email wpcf7-validates-as-email" aria-invalid="false" placeholder="0123456789" pattern="[0-9]{10}" <?php if($form['ob'.$i]){echo 'required';}?> />
+									 </span>	
+									 <?php break;
                                                 case"area" :?>
                                                 <span class="wpcf7-form-control-wrap message">
-												<textarea  name="<?php echo $form['type'.$i];?>" id="comment" cols="40" rows="6" class="wpcf7-form-control wpcf7-textarea"  aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>></textarea>
+												<textarea  name="<?php echo $form['champ'.$i];?>" id="comment" cols="40" rows="6" class="wpcf7-form-control wpcf7-textarea"  aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>></textarea>
                                             </span>
                                             <?php break;
                                             case"liste" :?>
                                             <span class="wpcf7-form-control-wrap name">
                                             <input type="hidden" name='nb_champ' value="<?php echo $form['champ'.$i];?>"/>
                                             <legend ><?php echo $liste['nom_champ']; ?></legend>
-                                            <select name="<?php echo $form['type'.$i];?>" class="wpcf7-form-control wpcf7-text">
+                                            <select name="<?php echo $liste['nom_champ'];?>" class="wpcf7-form-control wpcf7-text">
 								<?php for( $a = 1; $a <= $nb_item; $a++){?>
 								<option <?php if($a==1){echo "selected";} ?>><?php echo $liste['titreitem'.$a] ?></option>
 								<?php } ?>
@@ -51,19 +56,19 @@
                                              <?php break;
                                                  case"nb" :?>
                                   	<span class="wpcf7-form-control-wrap name">
-												<input type="text"  name="<?php echo $form['type'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>/>
+												<input type="text"  name="<?php echo $form['champ'.$i];?>" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?>/>
 											</span>
                                             <?php break;
                                             case"file" :?>
                                             	<span class="wpcf7-form-control-wrap name">
                                             <label id='label_file' for='file'  size="40" class="wpcf7-form-control wpcf7-text" aria-invalid="false" onBlur="confselectfile();" value=""><?php echo $form['champ'.$i]; ?></label>							
-                                            <input id='file' name="<?php echo $form['type'.$i];?>" onChange="confselectfile(this.value);" style='display: none;' type="file">
+                                            <input id='file' name="<?php echo $form['champ'.$i];?>" onChange="confselectfile(this.value);" style='display: none;' type="file">
                                             </span>
-                                            <?php break;
+											<?php break;											
                                             case"date" :?>
                                             <span class="wpcf7-form-control-wrap name">
                                                 <label class="wpcf7-form-control wpcf7-text"> <?php echo $form['champ'.$i]; ?>                                             																																
-                                            <input name="<?php echo $form['type'.$i];?>" type="date" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> />
+                                            <input name="<?php echo $form['champ'.$i];?>" type="date" value="" size="40" class="wpcf7-form-control wpcf7-text " aria-invalid="false" placeholder="<?php echo $form['champ'.$i]; ?>" <?php if($form['ob'.$i]){echo 'required';}?> />
                                 </label>
                                             </span>	
                                         <?php break;

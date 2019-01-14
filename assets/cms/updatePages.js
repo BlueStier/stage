@@ -222,9 +222,9 @@ function nom(nb) {
             liste.appendChild(formgroup);
             break;
         case 10:
-            hidden.setAttribute('value', 'check');
-            var t = document.createTextNode("Champ CHECKBOX");
-            input2.setAttribute('placeholder', "ex:Je m'abonne");
+            hidden.setAttribute('value', 'tel');
+            var t = document.createTextNode("Champ Téléphone");
+            input2.setAttribute('placeholder', "ex: 0123456789");
             break;
     }
 

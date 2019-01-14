@@ -222,11 +222,15 @@ class Cms extends CI_Controller
             $this->load->model('Bddcit_model');
             $data['nb'] = 15;
             //extraction de la base de données des citoyens avec mise en corélation des messages
-            $data['citoyen'] = $this->Bddcit_model->get_cit_avec_messages();
+            $data['citoyen'] = $this->Bddcit_model->get_data();
             $data['type_contact'] = $this->Bddcit_model->get_type_contact();
+            $data['column_name'] = [];
+            foreach($data['type_contact'] as $nom){
+                $data['column_name'][$nom] = $this->Bddcit_model->get_column_name($nom);
+            }                     
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
-            $this->load->view('cms/citoyen', $data);
+            $this->load->view('cms/citoyen2', $data);
             $this->load->view('cms/footer');
 
         }
@@ -516,8 +520,10 @@ $nomPage = str_replace(' ','-', $this->input->post('nomPage'));
                     case "formulaire":
                         $this->load->model('Form_model');
                         $nomPage = str_replace(' ', '-', $this->input->post('nomPage'));
+                        $nomPage2 = str_replace(' ', '_', $this->input->post('nomPage'));
                         $id_pages = $this->Pages_model->get_idpage($nomPage);
                         $this->Form_model->create($id_pages);
+                        $this->Form_model->create2($nomPage2,$id_pages);
                         break;
 
                 }
@@ -1241,24 +1247,24 @@ $nomPage = str_replace(' ','-', $this->input->post('nomPage'));
         }
 
         //fonction de suppression des citoyens de la bdd
-        public function deleteCitoyen($id_table)
+        public function deleteCitoyen($page, $id_table)
     {
             $this->load->model('Bddcit_model');
-            $taille = $this->input->post('taille_liste' . $id_table);
+            $taille = $this->input->post('taille_liste' . $id_table);            
             for ($e = 0; $e < $taille; $e++) {
                 $citoyen_a_sup = $this->input->post($id_table . 'liste_a_supprimer_' . $e);
-                $this->Bddcit_model->delete($citoyen_a_sup);
+                $this->Bddcit_model->delete($page,$citoyen_a_sup);
             }
             CMS::view(15);
 
         }
 
         //fonction pour fichier excel
-        public function excelCitoyen($id_table)
+        public function excelCitoyen($id_table, $page)
     {
             $array = $this->input->post($id_table . 'check[]');
             $this->load->model('Bddcit_model');
-            $this->Bddcit_model->excel($array, $id_table);
+            $this->Bddcit_model->excel($array, $id_table, $page);
         }
 
         public function excel_total()

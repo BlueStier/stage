@@ -823,10 +823,10 @@
             <div class="box-header with-border">
               <h3 class="box-title">Choissisez un type de champ :</h3><br><br>
               <a class='btn btn-default' onClick="nom(1)">Nom</a><a class='btn btn-default' onClick="nom(2)">Prenom</a>
-              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(4)">Date</a>
+              <a class='btn btn-default' onClick="nom(3)">Adresse</a><a class='btn btn-default' onClick="nom(10)">Téléphone</a><a class='btn btn-default' onClick="nom(4)">Date</a>
               <a class='btn btn-default' onClick="nom(9)">Liste déroulante</a><a class='btn btn-default' onClick="nom(5)">Email</a><a class='btn btn-default' onClick="nom(6)">Zone de texte</a>
               <a class='btn btn-default' onClick="nom(7)">Nombre</a><a class='btn btn-default' onClick="nom(8)">Fichier</a>
-              <a class='btn btn-default' onClick="nom(10)">Checkbox</a>
+              
               
             </div>
             <div id='form'>

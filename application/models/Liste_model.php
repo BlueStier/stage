@@ -99,8 +99,7 @@ class Liste_model extends CI_Model {
             //sort les données de la bdd
             $liste_a_update = Liste_Model::get_liste($id);
             //on récupère le nombre de champ à mettre dans le formulaire
-            $nb_item = $this->input->post('nbitembyliste'.$nb_liste);
-            echo $nb_item;
+            $nb_item = $this->input->post('nbitembyliste'.$nb_liste);         
 
             //la table formulaire contient combien de colonne pour enregistrer les champs?
             $query = $this->db->query("SELECT COUNT(*) AS 'nb_item' FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'liste' and COLUMN_NAME like 'titreitem%'")->row_array();
@@ -127,8 +126,7 @@ class Liste_model extends CI_Model {
                 }else{
             $liste_a_update["mailitem".$i] = "";
             }                
-            } 
-            var_dump($liste_a_update);           
+            }                     
             $this->db->replace('liste',$liste_a_update);
 
         }

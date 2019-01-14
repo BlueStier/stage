@@ -150,6 +150,11 @@ class Pages_model extends CI_Model {
                         $this->load->model('Document_model');           
                         $this->Document_model->delete_alldir($pathname);
                 }
+                if($array[0]['type'] == "formulaire"){
+                        $nom = $array[0]['nom'];                       
+                        $this->load->model('Form_model');           
+                        $this->Form_model->delete($nom);
+                }
                 
         }
 
