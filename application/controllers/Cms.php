@@ -449,6 +449,14 @@ class Cms extends CI_Controller
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('backgroundImg')) {
                 //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
+                $this->session->set_userdata('__ci_last_regenerate', time());
+                $data['user'] = $this->session->userdata('username');
+                $data['id_user'] = $this->session->userdata('id');
+                $data['mail'] = $this->session->userdata('mail');
+                $data['photouser'] = $this->session->userdata('photo');
+                $data['typeuser'] = $this->session->userdata('type');
+                $this->load->model('Articles_model');
+                $data['alerte'] = $this->Articles_model->findAlert();
                 $data['error'] = array('error' => $this->upload->display_errors());
                 $this->load->model('Pages_model');
                 $data['header_item'] = $this->Header_model->get_menu();
@@ -1264,7 +1272,7 @@ $nomPage = str_replace(' ','-', $this->input->post('nomPage'));
     {
             $array = $this->input->post($id_table . 'check[]');
             $this->load->model('Bddcit_model');
-            $this->Bddcit_model->excel($array, $id_table, $page);
+            $this->Bddcit_model->excel($array, $page);
         }
 
         public function excel_total()

@@ -12,7 +12,7 @@
      <!-- /.content-wrapper -->
      <?php foreach($type_contact as $t=>$page): 
  echo validation_errors(); 
- echo form_open('cms/excelCitoyen/'.$t);?>
+ echo form_open('cms/excelCitoyen/'.$t.'/'.$page);?>
     <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">Formulaire de contact : <?php echo $page; ?></h3>              
@@ -64,7 +64,7 @@
                 </tr>
                 </tfoot>                   
                      </table>
-                     <input type='hidde' id='nb_ligne<?php echo $t; ?>' value='<?php echo $nb_de_cit_dans_cette_table; ?>'/> 
+                     <input type='hidden' id='nb_ligne<?php echo $t; ?>' value='<?php echo $nb_de_cit_dans_cette_table; ?>'/> 
                      </div> 
                      <div class="box-footer">       
       <button id='excel<?php echo $t; ?>' class="btn btn-info "
@@ -103,6 +103,10 @@
           </div>
     <?php 
                 endforeach; ?>
+                <div class='row'>                              
+                <a href="<?php echo base_url();?>cms/excel_total/" class="col-md-12 btn btn-warning">Créer un fichier excel de toutes les informations des citoyens</a>                                
+                </div> 
+                </div>    
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1

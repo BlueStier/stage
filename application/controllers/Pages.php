@@ -44,26 +44,26 @@ class Pages extends CI_Controller
         if ($pagestab['type'] == 'bulle') {
             $this->load->model('Bulles_model');
             $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'portfolio';
         }
         if ($pagestab['type'] == 'text') {
             $this->load->model('Text_model');
             $data['text_item'] = $this->Text_model->get_text($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'text';
         }
         if ($pagestab['type'] == 'sans') {
             $this->load->model('Sans_model');
             $data['text_item'] = $this->Sans_model->get_sans($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'text';
         }
         if ($pagestab['type'] == 'home') {
             $this->load->model('Home_model');
             $data['personnaes_item'] = $this->Personnaes_model->get_personnaes();
             $data['home_item'] = $this->Home_model->get_home($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'home';
         }
         if ($pagestab['type'] == 'carroussel') {
@@ -71,7 +71,7 @@ class Pages extends CI_Controller
             $data['car_item'] = $this->Carroussel_model->get_car($pagestab['id_pages']);
             $data['photo_item'] = $this->Carroussel_model->read_all_files($data['car_item'][0]['path']);
             $data['path'] = $data['car_item'][0]['path'];
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'carrousel2';
         }
         if ($pagestab['type'] == 'article') {
@@ -80,7 +80,7 @@ class Pages extends CI_Controller
             $id = $recup[0]['id_articlespage'];
             $data['intro'] = $recup[0]['text'];
             $data['article_item'] = $this->Articles_model->get_article_by_page($id, false);
-            $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'article';
         }
         if ($pagestab['type'] == 'document') {
@@ -92,14 +92,14 @@ class Pages extends CI_Controller
             foreach ($data['folder'] as $f):
                 $data['file'][$f] = $this->Document_model->read_all_files($pathname . '/' . $f);
             endforeach;
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $page = 'document';
         }
         if ($pagestab['type'] == 'formulaire') {
             $this->load->model('Form_model');
             $this->load->model('Liste_model');
             $recup = $this->Form_model->get_form($pagestab['id_pages']);
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             if ($str != false) {
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
             }
@@ -112,13 +112,13 @@ class Pages extends CI_Controller
                 //on vérifie si on à une liste dans les champs
                 if ($recup['type' . $i] == 'liste') {
                     $data['liste'] = $this->Liste_model->get_liste($recup['champ' . $i]);
-                    $data['liste']['nom_champ'] = str_replace(' ','_',$data['liste']['nom_champ']);
+                    $data['liste']['nom_champ'] = str_replace(' ', '_', $data['liste']['nom_champ']);
                     $data['nb_item'] = $this->Liste_model->nb_item($recup['champ' . $i]);
                 }
             }
             for ($i = 1; $i <= $data['nb_champ']; $i++) {
-                $data['form']['champ' . $i] = str_replace(' ','_',$data['form']['champ' . $i]);
-            }                     
+                $data['form']['champ' . $i] = str_replace(' ', '_', $data['form']['champ' . $i]);
+            }
             $page = 'formulaire';
 
         }
@@ -136,187 +136,143 @@ class Pages extends CI_Controller
 
     public function form($id)
     {
-        $nom = $prenom = $adresse = $email = $message = $nombre = $liste = $date = $file = $tel = '';
-        $service = 0;
         $g = $this->input->post('nb_champ');
-        $this->load->model('Form_model');        
+        $this->load->model('Form_model');
         $this->load->model('Pages_model');
         $tab_page = $this->Pages_model->get_page_by_id($id);
         $type_contact = $tab_page[0]['nom'];
-        $get_column = str_replace('-','_',$tab_page[0]['nom']);
-        $nom_colonnes = $this->Form_model->get_column_name($get_column);        
+        $get_column = str_replace('-', '_', $tab_page[0]['nom']);
+        $nom_colonnes = $this->Form_model->get_column_name($get_column);
         $this->load->model('Liste_model');
         $recup = $this->Form_model->get_form($id);
-        $mail_dest = $recup['mail_dest1'] . ', ';
+        $mail_dest = [];
+        $mail_client = null;
         $nb_champ = $this->Form_model->nb_champ($id);
         $array = [];
+        $array['file_to_attached'] = '';
+        $array_bdd = [];
         for ($i = 1; $i <= $nb_champ; $i++) {
-            $champ = str_replace(' ','_',$recup['champ'.$i]);
-            $rep = $this->input->post($champ);           
-            $rep_xss = $this->security->xss_clean($rep);
-            if($recup['type'.$i] != 'liste'){
-            $champ = $recup['champ'.$i];
-            $nom_col = str_replace(' ','_',$champ);
-            }else{                
+            $array_champ = [];
+            if ($recup['type' . $i] == 'liste') {
                 $liste = $this->Liste_model->get_liste($g);
-                $nom_col = str_replace(' ','_',$liste['nom_champ']);
-                $rep_xss = $this->input->post($nom_col);                
-            }
-            $array[$nom_col] = $rep_xss;
-            
-           /* switch ($recup['type' . $i]) {
-                //pour chaque cas on récupère les données et on rend inoffensives les attques javascript
-                case "nom":
-                    $n = $this->input->post('nom');
-                    $nom = $this->security->xss_clean($n);
-                    break;
-                case "prenom":
-                    $p = $this->input->post('prenom');
-                    $prenom = $this->security->xss_clean($p);
-                    break;
-                case "adresse":
-                    $a = $this->input->post('adresse');
-                    $adresse = $this->security->xss_clean($a);
-                    break;
-                case "email":
-                    $e = $this->input->post('email');
-                    $email = $this->security->xss_clean($e);
-                    break;
-                case "tel":
-                    $t = $this->input->post('tel');
-                    $tel = $this->security->xss_clean($t);
-                    break;
-                case "area":
-                    $m = $this->input->post('area');
-                    $message = $this->security->xss_clean($m);
-                    break;
-                case "nb":
-                    $nb = $this->input->post('nb');
-                    $nombre = $this->security->xss_clean($nb);
-                    break;
-                case "date":
-                    $da = $this->input->post('date');
-                    $date = $this->security->xss_clean($da);
-                    break;
-                case "liste":
-                    $liste = $this->input->post('liste');
-                    $g = $this->input->post('nb_champ');
-                    $this->load->model('Liste_model');
-                    $arrayListe = $this->Liste_model->get_liste($g);
-                    $n = $this->Liste_model->nb_item($g);
-                    for ($v = 1; $v <= $n; $v++) {
-                        if ($arrayListe['titreitem' . $v] == $liste) {
-                            $mail_dest .= $arrayListe['mailitem' . $v] . ', ';
-                            $service = 1;
-                        }
-                    }
-                    break;
-                case "file":
-                    $file = $this->input->post('file');
-                    //on vérifie que le fichier n'est pas vérollé
-                    if ($this->security->xss_clean($file, true) === false) {
-                        echo "c pas bien";
+                $nom_col = str_replace(' ', '_', $liste['nom_champ']);
+                $rep_xss = $this->input->post($nom_col);
+                $array[$nom_col] = $rep_xss;
+                $array_bdd[$nom_col] = $rep_xss;
+                $array_champ[] = $nom_col;
+                $liste_mail = $this->Liste_model->get_mail_by_liste($g);
+                if ($liste_mail != false) {
+                    $mail_dest = $liste_mail;
+                }
+            } else if ($recup['type' . $i] == 'file') {
+                $champ = str_replace(' ', '_', $recup['champ' . $i]);
+                $file = $this->input->post($champ);
+                //on vérifie que le fichier n'est pas vérollé
+                if ($this->security->xss_clean($file, true) === false) {
+                    echo "c pas bien";
+                } else {
+                    $config['upload_path'] = "./ressources/doc_citoyen/";
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xls|doc|docx';
+                    $config['max_size'] = 10000000;
+                    $config['max_width'] = 10000;
+                    $config['max_height'] = 10000;
+                    $config['overwrite'] = true;
+
+                    //upload la photo vers le serveur
+                    $this->load->library('upload', $config);
+                    if ($this->upload->do_upload($champ)) {
+                        $data = array('upload_data' => $this->upload->data());
+                        $rep_xss = '/ressources/doc_citoyen/' . $data['upload_data']['orig_name'];
+                        $array[$champ] = $rep_xss;
+                        $array_bdd[$champ] = $rep_xss;
+                        $array_champ[] = $champ;
+                        $array['file_to_attached'] = $rep_xss;
                     } else {
-                        $config['upload_path'] = "./ressources/doc_citoyen/";
-                        $config['allowed_types'] = 'gif|jpg|png|jpeg|pdf|xls|doc|docx';
-                        $config['max_size'] = 10000000;
-                        $config['max_width'] = 10000;
-                        $config['max_height'] = 10000;
-                        $config['overwrite'] = false;
-
-                        //upload la photo vers le serveur
-                        $this->load->library('upload', $config);
-                        if ($this->upload->do_upload('file')) {
-                            $data = array('upload_data' => $this->upload->data());
-                            $file = '/ressources/doc_citoyen/' . $data['upload_data']['orig_name'];
-                        }
+                        $array[$champ] = '';
+                        $array_bdd[$champ]= '';
+                        $array_champ[] = $champ;
                     }
-                    break;
-            }
+                }
 
+            } else {
+                $champ = str_replace(' ', '_', $recup['champ' . $i]);
+                $rep = $this->input->post($champ);
+                $rep_xss = $this->security->xss_clean($rep);
+                $array_bdd[$champ]= $rep_xss;
+                if ($recup['type' . $i] == 'date') {
+                    $expl = explode('-', $rep_xss);
+                    $rev = array_reverse($expl);
+                    $rep_xss = implode('-', $rev);
+                }
+                $array[$champ] = $rep_xss;
+                $array_champ[] = $champ;
+            }if ($recup['type' . $i] == 'email') {
+                $champ = str_replace(' ', '_', $recup['champ' . $i]);
+                $rep = $this->input->post($champ);
+                $mail_client = $this->security->xss_clean($rep);
+
+            }
         }
 
         //on doit envoyer le mail à combien de destinataires ?
         $nb_dest = $this->Form_model->mail_dest($id);
 
-        for ($r = 2; $r <= $nb_dest; $r++) {
-            $mail_dest .= $recup['mail_dest' . $r] . ', ';
+        for ($r = 1; $r <= $nb_dest; $r++) {
+            $mail_dest[] = $recup['mail_dest' . $r];
         }
 
-        $array = [];
-            foreach($nom_colonnes as $col){
-                var_dump($col);
-                switch($col['COLUMN_NAME']){
-                    case 'nom':
-                    $array['nom'] = $nom;
-                    break;
-                    case "prenom" :
-                    $array['prenom'] = $prenom;
-                    break;
-                    case "adresse" :
-                    $array['adresse'] = $adresse;
-                    break;
-                    case "email" :
-                    $array['email'] = $email;
-                    break;
-                    case "tel" :
-                    $array['tel'] = $email;
-                    break;
-                    case "message" :
-                    $array['message'] = $message;
-                    break;
-                    case "nb" :
-                    $array['nb'] = $nombre;
-                    break;
-                    case "file" :
-                    $array['fichier'] = $file;
-                    break;
-                    case "date" :
-                    $array['date'] = $date;
-                    break;
-                    case "liste" :
-                    $array['choix'] = $liste;
-                    break;
-                }*/           
+        //var_dump($mail_dest); var_dump($array);die;
+        $champ_pour_mail = [];
+        foreach ($nom_colonnes as $nc) {
+            if ($nc['COLUMN_NAME'] != 'id_du_formulaire' && $nc['COLUMN_NAME'] != 'date_enregistrement') {
+                $champ_pour_mail[] = $nc['COLUMN_NAME'];
             }
-           
+        }
+       
         $this->load->model('Bddcit_model');
-        $this->Bddcit_model->create($array,$id,$g);
-        //Pages::send_mail($array);
+        $this->Bddcit_model->create($array_bdd,$id,$g);
+       if ($mail_client != null) {
+            Pages::send_mail($array, $champ_pour_mail, $mail_dest, $mail_client);
+        }
         Pages::view($this->input->post('page'), true);
     }
 
-    public function send_mail($array)
+    public function send_mail($array, $champ_pour_mail, $mail_dest, $mail_client)
     {
         //préparation du mail
-        $message = "<h1>Bonjour " . $array['prenom'] . " " . $array['nom'] . "</h1><br><br><br>
-        Nous avons bien reçu votre demande.";
+        $mess = '<table align="center" border="0" cellspacing="0" width="100%">
+        <tbody><tr>
+        <td></td>
+        <td width="550" style="text-align:center">
+        <img src="' . base_url() . 'assets\site\img\logos\logo2.gif" style="vertical-align:middle" alt="Logo de la ville de Oignies">
+        <h1 align="center" style="margin-top:10px;margin-bottom:30px;font-size:22px;color:rgb(147, 19, 143);font-family:"Titillium Web, sans-serif;">Confirmation de prise en <br> compte de votre demande </h1>
+        <h5>Reprise des informations que vous nous avez fournis :</h5>
+        <hr style="height:1px;background-color:rgb(147, 19, 143);border:0">
+        <br>
+        <table style="background-color:#f4f4f4;border:20px solid #f4f4f4;width:100%" cellspacing="0" cellpadding="0">
+        <tbody>
+        ';
+        foreach ($champ_pour_mail as $champ) {
+            $mess .= '<tr><td align="left"><div> <b style="color:#989898;font-family:"Titillium Web, sans-serif;">' . str_replace('_', ' ', $champ) . ' :</b></td></div><td width="20"></td> ';
+            $mess .= '<td align="left"><div><b style="font-family:"Titillium Web, sans-serif;">' . $array[$champ] . '</b></div></td></tr>';
+        }
+        $mess .= '
 
-        if ($array['liste'] != '' && $array['service'] == 1) {
-            $message .= " Celle-ci est transmise au service " . $array['liste'] . "<br>";
-        }
-
-        $message .= " Nous y répondrons le plus rapidement possible.<br><br><br>
-        Pour rappel voilà les informations que vous nous avez transmises :<br><br><br>
-        Nom : " . $array['nom'] . "<br>Prenom : " . $array['prenom'] . "<br>";
-
-        if ($array['adresse'] != '' && $array['service'] == 0) {
-            $message .= "Vous résidez au : " . $array['adresse'] . "<br>";
-        }
-        if ($array['date'] != '') {
-            $french_date = date("d-m-Y", strtotime($array['date']));
-            $message .= "Date : " . $french_date . "<br>";
-        }
-        if ($array['liste'] != '') {
-            $message .= "Vous avez choisi : " . $array['liste'] . "<br>";
-        }
-        if ($array['message'] != '') {
-            $message .= 'Votre message :<br>' . $array['message'] . "<br><br>";
-        }
-        if ($array['file'] != '') {
-            $message .= 'Vous retrouverez en pièce jointe le fichier que vous nous avez transmis.<br><br>';
-        }
-        $message .= "Nous vous remercions de nous avoir contactez.<br>Tous les agents de la commune vous souhaite une agréable journée.<br>";
+        </tbody></table>
+        <br>
+        <br>
+        <table cellspacing="0" cellpadding="0" style="width:100%;background-color:#f4f4f4">
+        <tbody><tr>
+        <b style="font-family:"Titillium Web, sans-serif;">Nous répondrons à votre demande dans les plus brefs délais.</b>
+        <br>
+        </td>
+        </tr>
+        <hr style="height:1px;background-color:rgb(147, 19, 143);border:0">
+        </tbody></table>
+        </td>
+        <td></td>
+        </tr>
+        </tbody></table>"';
 
         //initialisation de la librairie
         $this->load->library('email');
@@ -329,15 +285,19 @@ class Pages extends CI_Controller
         $config['crlf'] = '\r\n';
         $config['newline'] = '\r\n';
         $config['mailtype'] = 'html';
-        $config['protocols'] = array('mail','sendmail','smtp');
+        $config['protocols'] = array('mail', 'sendmail', 'smtp');
 
         $this->email->initialize($config);
         $this->email->from('ne-pas-repondre@bluestier.fr', 'Votre Message');
-        $this->email->to($array['mail_cit'] . ', ' . $array['mail_dest']);
+        $this->email->to($mail_client);
+        $nb_destinataires = sizeof($mail_dest);
+        for ($i = 0; $i < $nb_destinataires; $i++) {
+            $this->email->bcc($mail_dest[$i]);
+        }
         $this->email->subject('Votre message auprès de la ville de Oignies');
-        $this->email->message($message);
-        if ($array['file'] != '') {
-            $this->email->attach('.' . $array['file']);
+        $this->email->message($mess);
+        if ($array['file_to_attached'] != '') {
+            $this->email->attach('.' . $array['file_to_attached']);
         }
         $this->email->send();
 
@@ -359,24 +319,24 @@ class Pages extends CI_Controller
             $data['background'] = base_url() . $pagestab['background'];
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = "";
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $data['consultvox'] = $this->Consultvox_model->get();
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide', $data);
             $this->load->view('templates/footer', $data);
         } else {
-            $person = $this->Personnaes_model->get_personnaes($id);          
+            $person = $this->Personnaes_model->get_personnaes($id);
             $array_des_pages = [];
-            $nb_id_des_pages = $this->Personnaes_model->nbId();         
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
             for ($a = 0; $a < $nb_id_des_pages; $a++) {
-                if ($person['id_page' . $a] != null) {                   
+                if ($person['id_page' . $a] != null) {
                     $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
                     $array_des_pages[] = $result[0];
                 }
             }
-            
+
             $data['gen'] = $this->General_model->get();
-$data['black_or_white'] = strstr($data['gen']['entete'], 'white');
+            $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['autocomplete'] = $this->Autocomplete_model->get();
             $data['page_item'] = $array_des_pages;
             //récupère les infos pour le header (menu, sousmenu...)
@@ -389,7 +349,7 @@ $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['title'] = $pagestab['titre'];
             $data['subtitle'] = $person['nom'];
             $data['type_de_page'] = $pagestab['type'];
-            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width '.$data['gen']['entete'];
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
             $data['consult'] = $pagestab['consultvox'];
             $data['consultvox'] = $this->Consultvox_model->get();
             $this->load->view('templates/header', $data);
@@ -428,13 +388,13 @@ $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
         $result[] = $this->Text_model->search($recherche);
         $recherche_pour_page = str_replace(' ', '-', $recherche);
         $result_pages = $this->Pages_model->get_page($recherche_pour_page);
-       
+
         if (!empty($result_pages)) {
             if (!in_array($result_pages['id_pages'], $tab_id_page)) {
-            $tab_id_page[] = $result_pages['id_pages'];
+                $tab_id_page[] = $result_pages['id_pages'];
             }
         }
-        
+
         foreach ($result as $r) {
             if (!empty($r)) {
                 $size_array = sizeof($r);
@@ -455,16 +415,15 @@ $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
                 }
             }
         }
-       
 
         $data['pages_item'] = [];
-        
-        foreach($tab_id_page as $tab){
-                $array = $this->Pages_model->get_page_by_id($tab);
-                if(!empty($array)){
+
+        foreach ($tab_id_page as $tab) {
+            $array = $this->Pages_model->get_page_by_id($tab);
+            if (!empty($array)) {
                 $data['pages_item'][] = $array[0];
+            }
         }
-    }
 
         $data['search'] = $recherche;
         $data['gen'] = $this->General_model->get();

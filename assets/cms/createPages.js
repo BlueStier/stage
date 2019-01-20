@@ -312,7 +312,7 @@ function nom(nb) {
             hidden.setAttribute('value', 'tel');
             var t = document.createTextNode("Champ Téléphone");
             input2.setAttribute('placeholder', "ex: Votre numéro de téléphone");
-            break;
+            break;            
     }
 
     var label = document.createElement("label");

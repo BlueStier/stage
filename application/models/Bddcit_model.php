@@ -16,50 +16,7 @@ class Bddcit_model extends CI_Model
         $this->bdd = $this->db;
     }
 
-    public function get_cit($array = false, $id = false)
-    {
-        /*si il n'y a pas 'array en paramètres ou d'id on retourne la totalité
-        de la table*/
-        if ($array === false && $id === false) {
-            $array = $this->bdd->get('citoyen')->result_array();
-            $taille_de_array = sizeof($array);
-            for ($h = 0; $h < $taille_de_array; $h++) {
-                $array[$h]['nom'] = $this->encryption->decrypt($array[$h]['nom']);
-                $array[$h]['prenom'] = $this->encryption->decrypt($array[$h]['prenom']);
-                $array[$h]['adresse'] = $this->encryption->decrypt($array[$h]['adresse']);
-                $array[$h]['email'] = $this->encryption->decrypt($array[$h]['email']);
-                $array[$h]['tel'] = $this->encryption->decrypt($array[$h]['tel']);
-                $array[$h]['type_contact'] = $array[$h]['type_contact'];
-            }
-            return $array;
-        }
-        /*si un tableau est en paramètre on recherche en fonction du tableau*/
-        if ($array != false && !empty($array)) {
-            $str = 'SELECT * from citoyen where ';
-            if (isset($array['nom']) && !empty($array['nom'])) {
-                $str .= "nom='" . $array['nom'] . "'";
-            }
-            if (isset($array['prenom']) && !empty($array['prenom'])) {
-                $str .= " or prenom='" . $array['prenom'] . "'";
-            }
-
-            return $this->bdd->query($str)->row_array();
-        }
-        if ($id != false) {
-            $return = [];
-            $result = $this->bdd->get_where('citoyen', array('id_citoyen' => $id))->row_array();
-            $return['id_citoyen'] = $result['id_citoyen'];
-            $return['nom'] = $this->encryption->decrypt($result['nom']);
-            $return['prenom'] = $this->encryption->decrypt($result['prenom']);
-            $return['adresse'] = $this->encryption->decrypt($result['adresse']);
-            $return['email'] = $this->encryption->decrypt($result['email']);
-            $return['tel'] = $this->encryption->decrypt($result['tel']);
-            $return['type_contact'] = $result['type_contact'];
-            $return['date'] = $result['date'];
-            return $return;
-        }
-
-    }
+   
 
     public function get_message($id = false)
     {
@@ -70,58 +27,16 @@ class Bddcit_model extends CI_Model
         }
     }
 
-    public function get_cit_avec_messages($id = false)
-    {
+
+
+    public function get_data_for_citoyen($nom, $id = false){
         if ($id === false) {
-            $array_des_citoyens = Bddcit_model::get_cit();
-            $array_de_sortie = [];
-            foreach ($array_des_citoyens as $citoyen):
-                $array_message = Bddcit_model::get_message($citoyen['id_citoyen']);
-                $size_of_message = sizeof($array_message);
-                if ($size_of_message > 0) {
-                    $array_complete = [
-                        'id_citoyen' => $citoyen['id_citoyen'],
-                        'nom' => $citoyen['nom'],
-                        'prenom' => $citoyen['prenom'],
-                        'adresse' => $citoyen['adresse'],
-                        'tel' => $citoyen['tel'],
-                        'email' => $citoyen['email'],
-                        'date' => $citoyen['date'],
-                        'message' => $this->encryption->decrypt($array_message['message']),
-                        'mail_dest' => $this->encryption->decrypt($array_message['mail_dest']),
-                        'service' => $this->encryption->decrypt($array_message['service']),
-                        'file' => $this->encryption->decrypt($array_message['file']),
-                        'envoi' => $array_message['envoi'],
-                        'type_contact' => $citoyen['type_contact'],
-                    ];
-                    $array_de_sortie[] = $array_complete;
-                }
-            endforeach;
-
-            return $array_de_sortie;
+            return $this->bdd->get($nom)->result_array();
         } else {
-            $array_de_sortie = [];
-            $citoyen = Bddcit_model::get_cit(false, $id);
-            $array_message = Bddcit_model::get_message($id);
-            $array_de_sortie = [
-                'id_citoyen' => $citoyen['id_citoyen'],
-                'nom' => $citoyen['nom'],
-                'prenom' => $citoyen['prenom'],
-                'adresse' => $citoyen['adresse'],
-                'tel' => $citoyen['tel'],
-                'email' => $citoyen['email'],
-                'date' => $citoyen['date'],
-                'message' => $this->encryption->decrypt($array_message['message']),
-                'mail_dest' => $this->encryption->decrypt($array_message['mail_dest']),
-                'service' => $this->encryption->decrypt($array_message['service']),
-                'file' => $this->encryption->decrypt($array_message['file']),
-                'envoi' => $array_message['envoi'],
-                'type_contact' => $citoyen['type_contact'],
-            ];
-            return $array_de_sortie;
+            return $this->bdd->get_where($nom, array('id_du_formulaire' => $id))->row_array();
         }
-    }
 
+    }
     public function get_type_contact()
     {
         $query = $this->db->query("SELECT TABLE_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE COLUMN_NAME like 'id_du_formulaire'")->result_array();
@@ -164,12 +79,8 @@ class Bddcit_model extends CI_Model
         $size_nom_colonne = sizeof($nom_colonne);
         
         for($b = 0; $b < $size_array; $b++){
-            for($c = 0; $c < $size_nom_colonne; $c++){
-                if($nom_colonne[$c]['COLUMN_NAME'] != 'id_du_formulaire' &&  $nom_colonne[$c]['COLUMN_NAME'] != 'date_enregistrement'){
-                    $array[$b][$nom_colonne[$c]['COLUMN_NAME']] = $this->encryption->decrypt($array[$b][$nom_colonne[$c]['COLUMN_NAME']]);
-                }else{
-                    $array[$b][$nom_colonne[$c]['COLUMN_NAME']] = $array[$b][$nom_colonne[$c]['COLUMN_NAME']];
-                }
+            for($c = 0; $c < $size_nom_colonne; $c++){                            
+                    $array[$b][$nom_colonne[$c]['COLUMN_NAME']] = $array[$b][$nom_colonne[$c]['COLUMN_NAME']];               
             }
         }       
         return $array;
@@ -192,8 +103,9 @@ class Bddcit_model extends CI_Model
         }
         $array_size = sizeof($array);
         for ($d = 0; $d < $array_size; $d++) {
-            $array_a_enregistrer[$colonne[$d]] = $this->encryption->encrypt($array[$colonne[$d]]);
+            $array_a_enregistrer[$colonne[$d]] = $array[$colonne[$d]];
         }
+        
         $tab_page = $this->Pages_model->get_page_by_id($id);
         $nom_table = str_replace('-','_',$tab_page[0]['nom']);
         $this->bdd->set('date_enregistrement','NOW()',FALSE);
@@ -207,31 +119,22 @@ class Bddcit_model extends CI_Model
         
     }
 
-    public function excel($array, $id_table, $page)
+    public function excel($array, $page)
     {
-        $type_contact = Bddcit_model::get_type_contact();
-        $nom_du_fichier = $type_contact[$id_table]['type_contact'] . "-" . date("m-d-y");
+        $nom_colonne = Bddcit_model::get_column_name($page);        
+        $nom_du_fichier = $page . "-" . date("m-d-y");
         $excel_a_creer = [];
-        $excel_a_creer[] = ['ID', 'Nom', 'Prénom', 'Adresse', 'Téléphone', 'Email', 'Date de naissance', 'Message', 'Mail destinataire'
-            , 'service', 'fichier', "Date d'envoi", 'page de contact'];
-        foreach ($array as $a):
-            $recup = Bddcit_model::get_cit_avec_messages($a);
-            $excel_a_creer[] = [
-                $recup['id_citoyen'],
-                $recup['nom'],
-                $recup['prenom'],
-                $recup['adresse'],
-                $recup['tel'],
-                $recup['email'],
-                $recup['date'],
-                $recup['message'],
-                $recup['mail_dest'],
-                $recup['service'],
-                $recup['file'],
-                $recup['envoi'],
-                $recup['type_contact'],
-            ];
-        endforeach;
+        $nom_colonne_pour_excel = [];
+        $size_nom_colonne = sizeof($nom_colonne);
+        for($a=0; $a<$size_nom_colonne; $a++){
+            $nom_colonne_pour_excel[] = $nom_colonne[$a]['COLUMN_NAME'];
+        }
+        $excel_a_creer[] = $nom_colonne_pour_excel;
+        foreach($array as $a){
+            $excel_a_creer[] = Bddcit_model::get_data_for_citoyen($page,$a);
+        }      
+       
+        
         $spreadsheet = new Spreadsheet();
         $sheet = $spreadsheet->getActiveSheet();
         $sheet->fromArray($excel_a_creer);
@@ -247,37 +150,42 @@ class Bddcit_model extends CI_Model
 
     public function excel_total()
     {
+        $table = Bddcit_model::get_table_name();       
         $nom_du_fichier = 'informations_globales' . "-" . date("m-d-y");
-        $donnees = Bddcit_model::get_cit_avec_messages();
-        $excel_a_creer = [];
-        $excel_a_creer[] = ['ID', 'Nom', 'Prénom', 'Adresse', 'Téléphone', 'Email', 'Date de naissance', 'Message', 'Mail destinataire'
-            , 'service', 'fichier', "Date d'envoi", 'page de contact'];
-        foreach ($donnees as $recup):
-            $excel_a_creer[] = [
-                $recup['id_citoyen'],
-                $recup['nom'],
-                $recup['prenom'],
-                $recup['adresse'],
-                $recup['tel'],
-                $recup['email'],
-                $recup['date'],
-                $recup['message'],
-                $recup['mail_dest'],
-                $recup['service'],
-                $recup['file'],
-                $recup['envoi'],
-                $recup['type_contact'],
-            ];
-        endforeach;
         $spreadsheet = new Spreadsheet();
-        $sheet = $spreadsheet->getActiveSheet();
-        $sheet->fromArray($excel_a_creer);
+        foreach($table as $k=>$table_name){            
+            $data_cit = Bddcit_model::get_data_for_citoyen($table_name['TABLE_NAME']);
+            $nom_colonne = Bddcit_model::get_column_name($table_name['TABLE_NAME']);
+            $excel_a_creer = [];
+            $nom_colonne_pour_excel = [];
+            $size_nom_colonne = sizeof($nom_colonne);
+            for($a=0; $a<$size_nom_colonne; $a++){
+                $nom_colonne_pour_excel[] = $nom_colonne[$a]['COLUMN_NAME'];
+            }
+            $excel_a_creer[] = $nom_colonne_pour_excel;
+            foreach($data_cit as $cit){
+                $excel_a_creer[] = $cit;  
+            }
+            if($k == 0){
+                $sheet = $spreadsheet->getActiveSheet();
+                $sheet_title = 'table : '.$table_name['TABLE_NAME'];
+                $sheet->setTitle($table_name['TABLE_NAME']);
+                $sheet->fromArray($excel_a_creer);   
+            }else{
+                $sheet = $spreadsheet->createSheet();
+                $sheet_title = 'table : '.$table_name['TABLE_NAME'];
+                $sheet->setTitle($table_name['TABLE_NAME']);
+                $sheet->fromArray($excel_a_creer);
+            }
+           
+        }
         $writer = new Xlsx($spreadsheet);
 
         header('Content-Type: application/vnd.ms-excel');
         header('Content-Disposition: attachment;filename="' . $nom_du_fichier . '.xlsx"');
         header('Cache-Control: max-age=0');
 
-        $writer->save('php://output'); // download file
+        $writer->save('php://output'); // download file        
+       
     }
 }

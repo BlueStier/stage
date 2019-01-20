@@ -309,9 +309,7 @@ var nb_item_en_base = parseInt(document.getElementById('nbitembyliste' + n).valu
 function liste(n) {
     var old_form = parseInt(document.getElementById('nbitembyliste' + n).value);
     var idform = parseInt(document.getElementById('nbitembyliste' + n).value) + 1;
-    alert(old_form);
-    alert(idform);    
-
+    
     //div du form-group
     var formgroup = document.createElement('div');
     formgroup.setAttribute('class', 'form-group');

@@ -516,8 +516,7 @@ class Header_model extends CI_Model {
                                 break;
                         case 3://concerne un 3eme niveau
                                 $S3menu = $this->db->get_where('third_level',array('id_third' => $id))->result_array();
-                                $S3menu[0]['path'] = '';
-                                $S3menu[0]['visible'] = false;
+                                $S3menu[0]['path'] = '';                               
                                 $this->db->replace('third_level',$S3menu[0]);
                                 break;
                         default:
