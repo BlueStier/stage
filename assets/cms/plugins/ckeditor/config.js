@@ -7,6 +7,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
+	config.filebrowserBrowseUrl = '/ckfinder/ckfinder.html?type=Files';
+	config.filebrowserImageBrowseUrl = '/ckfinder/ckfinder.html?type=Images';
+	config.filebrowserImageUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images';
+	config.filebrowserUploadUrl = '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
 
 	config.pasteFromWordRemoveStyles = false;
+	config.extraPlugins = 'filebrowser' ;
+		
+	
 };

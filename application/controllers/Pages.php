@@ -80,8 +80,8 @@ class Pages extends CI_Controller
             $id = $recup[0]['id_articlespage'];
             $data['intro'] = $recup[0]['text'];
             $data['article_item'] = $this->Articles_model->get_article_by_page($id, false);
-            $data['css'] = 'page page-id-289 page-child parent-pageid-131 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
-            $page = 'article';
+            $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
+            $page = 'article2';
         }
         if ($pagestab['type'] == 'document') {
             $this->load->model('Document_model');

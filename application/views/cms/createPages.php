@@ -798,8 +798,7 @@
                 <label class="center">Veuillez tapper votre texte</label>
                   <div class="box-body pad">              
                     <textarea id="editor" name="sans" class="ckeditor" rows="100" cols="80">                                            
-                    </textarea>
-             
+                    </textarea>                  
             </div>
                 </div>
                  <!-- Div pour création d'un page d'articles -->
@@ -816,7 +815,8 @@
                  <label class="center">Veuillez tapper votre texte d'intro (facultatif)</label>
                   <div class="box-body pad">              
                     <textarea id="editor" name="intro_form" class="ckeditor" rows="100" cols="80">                                            
-                    </textarea>             
+                    </textarea>
+                    
             </div>
             <input type="hidden" name='nbform' id='nbform'/>
             <div class="box box-info">            
