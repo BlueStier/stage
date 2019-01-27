@@ -8,105 +8,72 @@
       <ol class="breadcrumb">
         <li><i class="fa fa-table text-blue"></i> BDD citoyenne</li>
     </ol>      
-    </section>
-    <?php   
-       //affiche tous les pays
-foreach($type_contact as $t=>$page): 
-  echo validation_errors(); 
-  echo form_open('cms/excelCitoyen/'.$t);?>
+    </section>   
+     <!-- /.content-wrapper -->
+     <?php foreach($type_contact as $t=>$page): 
+ echo validation_errors(); 
+ echo form_open('cms/excelCitoyen/'.$t.'/'.$page);?>
     <div class="box box-info">
             <div class="box-header with-border">
-              <h3 class="box-title">Page du contact : <?php echo $page['type_contact']; ?></h3>              
+              <h3 class="box-title">Formulaire de contact : <?php echo $page; ?></h3>              
             </div>
             </div>
-    <div class="box-body table-responsive">    
+            <div class="box-body table-responsive">    
               <table class=" display table table-bordered table-striped">
                 <thead>
                 <tr>
                 <th>Selectionner</th>
-                  <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Date de naissance</th>
-                  <th>Adresse</th>
-                  <th>Téléphone</th>
-                  <th>Mail</th>                  
-                  <th>Date d'envoi</th>                  
-                  <th>Service</th>
-                  <th>Fichier joint</th>
-                  <th>Voir le message</th>
+                <?php
+            $taille_de_la_table = sizeof($column_name[$page]);
+            for($a = 0; $a < $taille_de_la_table; $a++){
+                if($column_name[$page][$a]['COLUMN_NAME'] != 'id_du_formulaire'){
+                echo '<th>'.str_replace('_',' ',$column_name[$page][$a]['COLUMN_NAME']).'</th>';
+            }
+         } ?>                
                 </tr>
                 </thead>
-                <tbody>
-                  
-                  <?php
-                  $nb_de_cit_dans_cette_table = 0;
-    foreach($citoyen as $a=>$c):            
-      if($c['type_contact']==$page['type_contact']){              
-        
-      ?><tr>
-      <td><input type='checkbox' onClick='visible_les_boutons(<?php echo $t;?>);' id='<?php echo $t;?>citoyen<?php echo $nb_de_cit_dans_cette_table;?>' name="<?php echo $t;?>check[]" value="<?php echo $c['id_citoyen'];?>"/></td>
-      <td><?php echo $c['nom']; ?></td>
-      <td><?php echo $c['prenom']; ?></td>
-      <td><?php echo $c['date']; ?></td>
-      <td><?php echo $c['adresse']; ?></td>
-      <td><?php echo $c['tel']; ?></td>
-      <td><?php echo $c['email']; ?></td>
-      <td><?php echo $c['envoi']; ?></td>
-      <td><?php echo $c['service']; ?></td>
-      <td><?php echo $c['file']; ?></td>
-      <td><input type='button' onClick='voir_message("<?php echo $c['id_citoyen']; ?>");' value='Voir' class='btn btn-default'/></td>
-      </tr>
-      <?php 
-      $nb_de_cit_dans_cette_table++;}
-    endforeach; ?>
-
-
-</tbody>
+                <tbody>                
+                <?php
+                $nb_de_cit_dans_cette_table = 0;
+            $taille_de_la_table = sizeof($column_name[$page]);
+            $taille_de_citoyen= sizeof($citoyen[$page]);           
+            for($b = 0; $b < $taille_de_citoyen; $b++){ ?>
+<tr>
+<td><input type='checkbox' onClick='visible_les_boutons(<?php echo $t;?>);' id='<?php echo $t;?>citoyen<?php echo $nb_de_cit_dans_cette_table;?>' name="<?php echo $t;?>check[]" value="<?php echo $citoyen[$page][$b]['id_du_formulaire']; ?>"/></td>
+            <?php
+            for($a=0; $a < $taille_de_la_table; $a++){
+                if($column_name[$page][$a]['COLUMN_NAME'] != 'id_du_formulaire'){
+                    echo '<th>'.$citoyen[$page][$b][$column_name[$page][$a]['COLUMN_NAME']].'</th>';                    
+                }
+            } ?>
+            </tr>
+           <?php  $nb_de_cit_dans_cette_table++; } ?>
+                </tbody>
 <tfoot>
+                <tr>
                 <tr>
                 <th><a id="tout_selectionner<?php echo $t; ?>" class='btn btn-primary' onClick='select(true,<?php echo $t; ?>,<?php echo $nb_de_cit_dans_cette_table; ?>);'>Tout selectionner</a>
                 <a id="tout_deselectionner<?php echo $t; ?>" class='btn btn-primary' onClick='select(false,<?php echo $t; ?>,<?php echo $nb_de_cit_dans_cette_table; ?>);' style="display : none">Tout déselectionner</a></th>
-                  <th>Nom</th>
-                  <th>Prénom</th>
-                  <th>Date de naissance</th>
-                  <th>Adresse</th>
-                  <th>Téléphone</th>
-                  <th>Mail</th>                  
-                  <th>Date d'envoi</th>
-                  <th>Service</th>
-                  <th>Fichier joint</th>
-                  <th>Voir le message</th>
+                <?php
+            $taille_de_la_table = sizeof($column_name[$page]);
+            for($a=0; $a < $taille_de_la_table; $a++){
+                if($column_name[$page][$a]['COLUMN_NAME'] != 'id_du_formulaire'){
+                    echo '<th>'.str_replace('_',' ',$column_name[$page][$a]['COLUMN_NAME']).'</th>';
+                }
+             } ?>           
                 </tr>
-                </tfoot> 
-</table>
-<input type='hidden' id='nb_ligne<?php echo $t; ?>' value='<?php echo $nb_de_cit_dans_cette_table; ?>'/> 
-</div>
-<?php
-$nb_de_cit_dans_cette_table = 0;
-    foreach($citoyen as $cit):
-      if($cit['type_contact']==$page['type_contact']){
-      ?> <div id='<?php echo $cit['id_citoyen'];?>' style="display : none">
-       <div class="box box-info">
-            <div class="box-header with-border">
-              <h3 class="box-title">Message de <?php echo $cit['nom']." ".$cit['prenom']." du : ".$cit['envoi'];?> :</h3>              
-            </div>
-            </div>
-      <?php if($cit['message']==''){
-        echo '<strong>PAS DE MESSAGE</strong>';
-        }else{
-          echo $cit['message'];
-          }?>
-      </div>
-      <?php } endforeach;
-    ?>
-    <div class="box-footer">       
+                </tfoot>                   
+                     </table>
+                     <input type='hidden' id='nb_ligne<?php echo $t; ?>' value='<?php echo $nb_de_cit_dans_cette_table; ?>'/> 
+                     </div> 
+                     <div class="box-footer">       
       <button id='excel<?php echo $t; ?>' class="btn btn-info "
            type="submit" disabled = "disabled">Créer un fichier Excel</button>
            </form>
            <input type="button" id='supprimer<?php echo $t; ?>' class="btn btn-danger pull-right"
       data-toggle="modal" data-target="#modal-danger<?php echo $t; ?>" onclick="recup_tab_a_sup(<?php echo $t; ?>);" value='Supprimer' disabled = "disabled"/>
     </div>
-    <!-- Modal pour la suppression d'un user -->
+     <!-- Modal pour la suppression d'un user -->
 <div class="modal modal-danger fade" id="modal-danger<?php echo $t; ?>">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -121,9 +88,9 @@ $nb_de_cit_dans_cette_table = 0;
               </div>
               <div class="modal-footer" >
               <?php echo validation_errors(); 
-                      echo form_open('cms/deleteCitoyen/'.$t);?>
+                      echo form_open('cms/deleteCitoyen/'.$page.'/'.$t);?>
                       <div id='modal-footer<?php echo $t; ?>'>
-                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab(<?php echo $t; ?>);'>Annuler</button>                
+                <button type="button" class="btn btn-outline pull-left" data-dismiss="modal" onClick='vider_le_tab(<?php echo $page; ?>);'>Annuler</button>                
                 <input type="hidden"  id="taille_liste<?php echo $t; ?>" name='taille_liste<?php echo $t; ?>' value='0'/>
                 <button type="submit" class="btn btn-outline" >Confirmer la suppression</button>
                 </div>
@@ -134,15 +101,12 @@ $nb_de_cit_dans_cette_table = 0;
           </div>
           <!-- /.modal-dialog -->        
           </div>
-    <?php endforeach; ?>
-    <div class='row'>                              
+    <?php 
+                endforeach; ?>
+                <div class='row'>                              
                 <a href="<?php echo base_url();?>cms/excel_total/" class="col-md-12 btn btn-warning">Créer un fichier excel de toutes les informations des citoyens</a>                                
+                </div> 
                 </div>    
-</div>
-      
-
-    
-  <!-- /.content-wrapper -->
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 1
@@ -158,13 +122,8 @@ $nb_de_cit_dans_cette_table = 0;
        immediately after the control sidebar -->
 <div class="control-sidebar-bg"></div>
 </div>
-  <script>  
-  function voir_message(id){
-    var id_a_modif =  (document.getElementById(id).style.display == "block") ? "none" : "block";  
-    document.getElementById(id).style.display = id_a_modif;
-  }
-  
-  function select(boolean,id,nb_de_cit){
+<script>
+function select(boolean,id,nb_de_cit){
       for(h = 0; h < nb_de_cit; h++ ){        
         (boolean) ? document.getElementById(id+"citoyen"+h).checked = true : document.getElementById(id+"citoyen"+h).checked = false;
       } 
@@ -172,7 +131,8 @@ $nb_de_cit_dans_cette_table = 0;
       (boolean) ? document.getElementById('tout_deselectionner'+id).style.display = 'block' : document.getElementById('tout_deselectionner'+id).style.display = 'none'; 
       visible_les_boutons(id);
   }
-  function visible_les_boutons(id){
+
+ function visible_les_boutons(id){
     nb_de_cit = parseInt(document.getElementById('nb_ligne'+id).value);
     var nb_de_cases_cochées = 0;       
     for(h = 0; h < nb_de_cit; h++ ){
@@ -186,18 +146,16 @@ $nb_de_cit_dans_cette_table = 0;
     }else{
       document.getElementById('supprimer'+id).disabled = true ;
       document.getElementById('excel'+id).disabled = true;  
-    }   
-    
-  }
-
-  function recup_tab_a_sup(id_de_la_table){
+    }
+} 
+function recup_tab_a_sup(id_de_la_table){
     var nb_checkbox = parseInt(document.getElementById('nb_ligne'+id_de_la_table).value);
     var modal = document.getElementById("modal-footer"+id_de_la_table);
     var taille_liste = document.getElementById("taille_liste"+id_de_la_table).value;    
     for(s = 0; s < nb_checkbox; s++ ){
       if(document.getElementById(id_de_la_table+"citoyen"+s).checked == true){
         var input = document.createElement("input");
-        input.setAttribute('type', 'hidden');
+        input.setAttribute('type', 'hidde');
         input.setAttribute('id', taille_liste);
         input.setAttribute('name', id_de_la_table+'liste_a_supprimer_'+taille_liste);
         input.setAttribute('value', document.getElementById(id_de_la_table+"citoyen"+s).value);
@@ -215,6 +173,5 @@ $nb_de_cit_dans_cette_table = 0;
       modal.removeChild(document.getElementById(r));
     }
     taille_liste = 0;
-  }
-  
+  }   
 </script>

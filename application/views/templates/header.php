@@ -208,7 +208,7 @@ endforeach;?>
 			<?php } ?>
 		</div>
 	
-		<?php if (isset($personnaes_item)) {?>
+		<?php if (isset($personnaes_item) && $type_de_page == 'home') {?>
 		<div class="container textcenter personnae_large">
 		<div id="Content">
 		<div class="content_wrapper clearfix">

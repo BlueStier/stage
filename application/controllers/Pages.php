@@ -21,7 +21,7 @@ class Pages extends CI_Controller
         Pages::view('home');
     }
     //construit la page demandée
-    public function view($page, $str = false)
+    public function view($page, $str = false, $message_a_trans = false)
     {
         //récupère les infos pour le header (menu, sousmenu...)
         $data['gen'] = $this->General_model->get();
@@ -44,13 +44,45 @@ class Pages extends CI_Controller
         if ($pagestab['type'] == 'bulle') {
             $this->load->model('Bulles_model');
             $data['bulle_item'] = $this->Bulles_model->get_bulle($pagestab['id_pages']);
+            if($str != false){
+                $data['css'] = 'page page-id-773 page-child parent-pageid-327 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '. $data['gen']['entete'];
+                $data['sidebar'] = true;
+                $person = $this->Personnaes_model->get_personnaes($str);
+            $array_des_pages = [];
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                if ($person['id_page' . $a] != null) {
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
+                    $array_des_pages[] = $result[0];
+                }
+            }
+            $data['pers_id'] = $str;
+            $data['page_lier'] = $array_des_pages;
+            }else{
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
+            }
             $page = 'portfolio';
         }
         if ($pagestab['type'] == 'text') {
             $this->load->model('Text_model');
             $data['text_item'] = $this->Text_model->get_text($pagestab['id_pages']);
+            if($str != false){
+                $data['css'] = 'page page-id-773 page-child parent-pageid-327 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '. $data['gen']['entete'];
+                $data['sidebar'] = true;
+                $person = $this->Personnaes_model->get_personnaes($str);
+            $array_des_pages = [];
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                if ($person['id_page' . $a] != null) {
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
+                    $array_des_pages[] = $result[0];
+                }
+            }
+            $data['pers_id'] = $str;
+            $data['page_lier'] = $array_des_pages;
+            }else{
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
+            }            
             $page = 'text';
         }
         if ($pagestab['type'] == 'sans') {
@@ -71,17 +103,39 @@ class Pages extends CI_Controller
             $data['car_item'] = $this->Carroussel_model->get_car($pagestab['id_pages']);
             $data['photo_item'] = $this->Carroussel_model->read_all_files($data['car_item'][0]['path']);
             $data['path'] = $data['car_item'][0]['path'];
+            if($str != false){
+                $data['css'] = 'page page-id-773 page-child parent-pageid-327 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '. $data['gen']['entete'];
+                $data['sidebar'] = true;
+                $person = $this->Personnaes_model->get_personnaes($str);
+            $array_des_pages = [];
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                if ($person['id_page' . $a] != null) {
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
+                    $array_des_pages[] = $result[0];
+                }
+            }
+            $data['pers_id'] = $str;
+            $data['page_lier'] = $array_des_pages;
+            }else{
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
-            $page = 'carrousel2';
+            }            $page = 'carrousel';
         }
         if ($pagestab['type'] == 'article') {
-            $this->load->model('Articles_model');
-            $recup = $this->Articles_model->get_article($pagestab['id_pages'], true);
+            $data['page_en_cour'] = $page;
+            $this->load->model('Articles_model');                          
+            $recup = $this->Articles_model->get_article($pagestab['id_pages'], true);            
             $id = $recup[0]['id_articlespage'];
             $data['intro'] = $recup[0]['text'];
-            $data['article_item'] = $this->Articles_model->get_article_by_page($id, false);
+            if($str == true){
+            $data['article_item'] = $this->Articles_model->get_article_by_page($id, true);
+            $data['prise_en_compte_visible'] = false;
+            }else{
+                $data['article_item'] = $this->Articles_model->get_article_by_page($id, false);
+                $data['prise_en_compte_visible'] = true;  
+            }
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
-            $page = 'article2';
+            $page = 'article';
         }
         if ($pagestab['type'] == 'document') {
             $this->load->model('Document_model');
@@ -92,15 +146,47 @@ class Pages extends CI_Controller
             foreach ($data['folder'] as $f):
                 $data['file'][$f] = $this->Document_model->read_all_files($pathname . '/' . $f);
             endforeach;
+            if($str != false){
+                $data['css'] = 'page page-id-773 page-child parent-pageid-327 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '. $data['gen']['entete'];
+                $data['sidebar'] = true;
+                $person = $this->Personnaes_model->get_personnaes($str);
+            $array_des_pages = [];
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                if ($person['id_page' . $a] != null) {
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
+                    $array_des_pages[] = $result[0];
+                }
+            }
+            $data['pers_id'] = $str;
+            $data['page_lier'] = $array_des_pages;
+            }else{
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
+            }            
             $page = 'document';
         }
         if ($pagestab['type'] == 'formulaire') {
             $this->load->model('Form_model');
             $this->load->model('Liste_model');
             $recup = $this->Form_model->get_form($pagestab['id_pages']);
+            if($str != false){
+                $data['css'] = 'page page-id-773 page-child parent-pageid-327 page-template-default  with_aside aside_right color-custom sticky-header layout-full-width '. $data['gen']['entete'];
+                $data['sidebar'] = true;
+                $person = $this->Personnaes_model->get_personnaes($str);
+            $array_des_pages = [];
+            $nb_id_des_pages = $this->Personnaes_model->nbId();
+            for ($a = 0; $a < $nb_id_des_pages; $a++) {
+                if ($person['id_page' . $a] != null) {
+                    $result = $this->Pages_model->get_page_by_id(intval($person['id_page' . $a]));
+                    $array_des_pages[] = $result[0];
+                }
+            }
+            $data['pers_id'] = $str;
+            $data['page_lier'] = $array_des_pages;
+            }else{
             $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
-            if ($str != false) {
+            }            
+            if ($message_a_trans != false) {
                 $data['message'] = "Votre demande à bien été transmise nous vous en remercions.";
             }
             $data['page'] = $page;
@@ -134,7 +220,7 @@ class Pages extends CI_Controller
 
     }
 
-    public function form($id)
+    public function form($id , $perso_id = false)
     {
         $g = $this->input->post('nb_champ');
         $this->load->model('Form_model');
@@ -229,12 +315,15 @@ class Pages extends CI_Controller
             }
         }
        
-        $this->load->model('Bddcit_model');
+       $this->load->model('Bddcit_model');
         $this->Bddcit_model->create($array_bdd,$id,$g);
        if ($mail_client != null) {
             Pages::send_mail($array, $champ_pour_mail, $mail_dest, $mail_client);
         }
-        Pages::view($this->input->post('page'), true);
+        if($perso_id != false){
+            Pages::view($this->input->post('page'), $perso_id, true);
+        }else{
+        Pages::view($this->input->post('page'), false, true);}
     }
 
     public function send_mail($array, $champ_pour_mail, $mail_dest, $mail_client)
@@ -304,7 +393,7 @@ class Pages extends CI_Controller
     }
 
     public function acces_rapide($id)
-    {
+    {       
         if ($id == -1) {
             $pagestab = $this->Pages_model->get_page('acces_rapide_page');
             $data['consult'] = $pagestab['consultvox'];
@@ -324,7 +413,7 @@ class Pages extends CI_Controller
             $this->load->view('templates/header', $data);
             $this->load->view('pages/acces_rapide', $data);
             $this->load->view('templates/footer', $data);
-        } else {
+        } else {            
             $person = $this->Personnaes_model->get_personnaes($id);
             $array_des_pages = [];
             $nb_id_des_pages = $this->Personnaes_model->nbId();
@@ -334,7 +423,7 @@ class Pages extends CI_Controller
                     $array_des_pages[] = $result[0];
                 }
             }
-
+            $data['pers_id'] = $id;
             $data['gen'] = $this->General_model->get();
             $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
             $data['autocomplete'] = $this->Autocomplete_model->get();
@@ -441,9 +530,31 @@ class Pages extends CI_Controller
         $data['subtitle'] = '';
         $data['consultvox'] = $this->Consultvox_model->get();
         $data['consult'] = $pagestab['consultvox'];
-        $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width header-dark header-bg';
+        $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
         $this->load->view('templates/header', $data);
         $this->load->view('pages/recherche', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
+    //fonction d'affichage d'un article
+    public function article_a_voir($id){
+        $this->load->model('Articles_model');
+        $article = $this->Articles_model->get_article($id, false);
+        $data['article'] = $article[0];
+        $data['gen'] = $this->General_model->get();
+        $data['black_or_white'] = strstr($data['gen']['entete'], 'white');
+        $data['autocomplete'] = $this->Autocomplete_model->get();
+        //récupère les infos pour le header (menu, sousmenu...)
+        $data['header_item'] = $this->Header_model->get_menu();
+        $data['sub_item'] = $this->Header_model->get_sousmenu();
+        $data['third_item'] = $this->Header_model->get_thirdmenu();
+        $data['type_de_page'] = '';
+        $data['background'] = base_url() . $article[0]['photo'];
+        $data['title'] = $article[0]['titre'];
+        $data['subtitle'] = '';
+        $data['css'] = 'home page page-parent page-template-default template-slider color-custom sticky-header layout-full-width ' . $data['gen']['entete'];
+        $this->load->view('templates/header', $data);
+        $this->load->view('pages/article_by_id', $data);
         $this->load->view('templates/footer', $data);
     }
 }

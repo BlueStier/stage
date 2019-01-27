@@ -68,6 +68,21 @@
 					</div>
 				</div>
 			</div>
+			<?php if(isset($sidebar)){?>
+			<!-- .four-columns - sidebar -->
+			<div class="four columns">
+				<div class="widget-area clearfix">
+					<aside id="widget_mfn_menu-2" class="widget widget_mfn_menu">
+					<h3>Vous pourriez être intéressé par : </h3>
+					<ul class="menu">
+					<?php foreach($page_lier as $pl): 
+						if($pl['titre'] != $title){?>
+						<li class="page_item page-item-771"><a href="<?php echo base_url().'pages/'.$pl['nom'].'/'.$pers_id; ?>"><?php echo $pl['titre'];?></a></li>
+			<?php } endforeach; ?>						
+					</ul>
+					</aside>
+				</div>
+			<?php } ?>
 			<div class="column one column_divider">
 								<hr />
 							</div>
@@ -82,3 +97,4 @@
 							<?php } ?>		
 		</div>
 	</div>
+	

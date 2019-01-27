@@ -24,11 +24,12 @@
         <li><a type="button" class="btn btn-success" href="<?php echo base_url()?>cms/createPages/"><i class="fa fa-plus"></i> Creer une nouvelle page</a></li>
       </ol>       
     </section>
-              <?php } ?>
-    
-    <div class="row">
-    <?php if( $nb == 8 ){
-      foreach($page_item as $page):
+              <?php }  
+              
+    if( $nb == 8 ){ ?>
+      <div class="row">      
+      <?php foreach($page_item as $page):
+        
         //on n'affiche que les formulaires 
         $eject = strcmp($page['type'],'formulaire'); 
         if($eject == 0){      
@@ -126,10 +127,23 @@
               
                 <?php }
           endforeach;
-
+          ?>
+          </div>      
+          <?php
     }else{
+      foreach($type_item as $type):
+        if($type['type'] != 'home' && $type['type'] != 'formulaire'){ ?>
+          <div class="box box-info">
+            <div class="box-header with-border">             
+              <h3 class="box-title"> Type de la page : <?php echo $type['type']; ?> </h3>
+            </div>
+            </div>
+      <div class="row">      
+                      
+        <?php
 //pour chaque page de la bdd
 foreach($page_item as $page):
+  if($page['type']==$type['type']){
   //on n'affiche pas la page home ni formulaire
   $eject = strcmp($page['type'],'home');
   $eject2 = strcmp($page['type'],'formulaire'); 
@@ -152,7 +166,7 @@ foreach($page_item as $page):
                 </button>
               </div>
               </div><br>             
-              <h5><?php echo "Page : '".$page['nom']."' du type : '".$page['type']."'" ?></h5>              
+              <h5><?php echo "Page : '".$page['nom']."'<br> lien: ".base_url()."pages/".$page['nom']; ?></h5>              
               <!-- /.box-tools -->
             </div>
             <!-- /.box-header -->
@@ -227,10 +241,15 @@ foreach($page_item as $page):
           </div>  
         
           <?php }
+  }
     endforeach;
+    ?></div> <?php
+  }
+  endforeach;
+  
   }
     ?> 
-    </div>
+   
     <div id="table">
     <?php
     if($nb == 8){

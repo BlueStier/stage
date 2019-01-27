@@ -26,9 +26,10 @@ class Articles_model extends CI_Model
                 return $query->result_array();
             }
             $this->db->set('jour', 'NOW()', false);
-            $this->db->query("SET lc_time_names = 'fr_FR'");
+            $this->db->query("SET lc_time_names = 'fr_FR'");            
             $this->db->select('date_format(jour,"%W %d %M %Y") as jour,photo,titre,text,visible,
                                   date_format(alerte,"%W %d %M %Y") as alerte,id_articlespage,id_articles');
+                                  $this->db->order_by('jour','ASC');
             $query = $this->db->get_where('articles', array('id_articles' => $id));
             return $query->result_array();
         }
@@ -151,7 +152,7 @@ class Articles_model extends CI_Model
         $this->db->query("SET lc_time_names = 'fr_FR'");
         $this->db->select('date_format(jour,"%W %d %M %Y") as jour,photo,titre,text,visible,
                                   date_format(alerte,"%W %d %M %Y") as alerte,id_articlespage,id_articles');
-        $this->db->order_by('jour', 'desc');
+        $this->db->order_by('id_articles', 'DESC');
         if ($past) {
             $this->db->where('jour < DATE_SUB(NOW(), INTERVAL 3 MONTH)');
         } else {

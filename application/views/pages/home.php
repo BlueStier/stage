@@ -2,6 +2,7 @@
 $tab =[];
 foreach($home_item as $home):
 $intro = $home['intro'];
+$sup = $home['textsup'];
 for($i = 1;$i<=5;$i++){
     if(!empty($home['photo'.$i])){
     $tab['slide'.$i] = [
@@ -83,6 +84,9 @@ $size = sizeof($tab);
 		<div class="column one column_divider">
 								<hr />
 							</div>
+							<div class="column one column_column ">
+						<?php echo $sup;?>
+							</div>
 							<?php if($consult){ ?>
 								<div class="column one column_column textcenter">
 								<h1><?php echo $consultvox['intro']; ?></h1>
@@ -92,6 +96,7 @@ $size = sizeof($tab);
 								<?php echo $consultvox['balise']; ?>
 							</div>
 							<?php } ?>
+							
 </div>	
 	</div>
 		</div>		

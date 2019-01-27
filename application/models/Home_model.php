@@ -27,10 +27,20 @@ class Home_model extends CI_Model {
                 $home['intro'] = $intro;
                 $this->db->replace('home',$home);
         }
+        //méthode permettant d'enregistrer le changement du texte supplémentaire de la homme page en bdd
+        public function updateSupHome($textSup){
+                $res = Home_model::get_home(1);
+                $home = $res[0];
+                $home['textsup'] = $textSup;
+                $this->db->replace('home',$home);
+        }
 
         //fonction de mise à jour du texte de la photo du carroussel
         public function updateTitleAndPByLien($nb,$title,$p){
+                $res = Home_model::get_home(1);
+                $home = $res[0]; 
                 $choice = $this->input->post('type'.$nb);
+         if($choice != ''){       
         switch($choice){
                 case 1:
                 $id_pages = $this->input->post('pageselected'.$nb);
@@ -59,14 +69,14 @@ class Home_model extends CI_Model {
                 header('Location:'.base_url().'cms/3');
                 break;
                 }
-                $res = Home_model::get_home(1);
-                $home = $res[0]; 
-                $home['title'.$nb] = $title;
-                $home['p'.$nb] = $p;
                 $home['path'.$nb] = $path;
                 $home['photo'.$nb] = $photo;
                 $home['type'.$nb] = $boolean;
                 $home['assos_id'.$nb] = $assos_id;
+        }
+                
+                $home['title'.$nb] = $title;
+                $home['p'.$nb] = $p;                
                 $this->db->replace('home',$home);
         }
 

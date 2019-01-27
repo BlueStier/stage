@@ -2,6 +2,7 @@
 $nbCarroussel = 0; 
 foreach($home_item as $h):
   $intro = $h['intro'];
+  $sup = $h['textsup'];
   for($e = 1; $e <= 5; $e++){    
   if(!empty($h['photo'.$e])){
     $nbCarroussel++;
@@ -76,7 +77,7 @@ $image = $homepage['background'];
 <div class="box box-info">
             <div class="box-header with-border">
               <h3 class="box-title">La Home page permet d'afficher un titre, un soustitre (tous deux facultatifs) suivi d'un carroussel de 5 photos maximum (une au minimum).<br> En cliquant sur une photo de ce dernier, l'internaute pourra accéder à une page particulière du site.<br> Vous pouvez donc choisir 5 articles (ou pages) à lier au carroussel.
-              <br>Chaque photo peu avoir un titre et un sous-titre.</h3>              
+              <br>Chaque photo peu avoir un titre et un sous-titre. Un zone de saisie suplémentaire peut être remplie. Elle apparaîtra sous le carrousel.</h3>              
             </div>
             </div>
             <?php if(isset($error)){echo $error['error'];};
@@ -276,9 +277,32 @@ $image = $homepage['background'];
              <?php
               }
             endforeach;?>
- 
+             <div class="box box-info">
+            <div class="box-header with-border">
+              <h2 class="box-title">Texte supplèmentaire</h3>              
+            </div>
+            </div>         
+ <?php if(isset($error)){echo $error['error'];};
+             echo validation_errors();
+                  echo form_open_multipart('cms/updateSupHome');?>
+            <div class="form-horizontal">
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Texte supplèmentaire de la Home page (facultatif)</label>
+                  <div class="col-sm-10">
+                  <textarea id="editor" name='textsup' class="ckeditor" rows="10" cols="80">
+                  <?php echo $sup; ?>                                            
+                    </textarea>
+                  </div>
+                </div>
+                <div class='row'>               
+                <button type='submit' class="col-md-12 btn btn-warning">Valider le changement du texte supplèmentaire</button>                                
+                </div>
+                </form>
+                <br>
+                </div>
  </div>            
 </div>
+
 <!-- /.content-wrapper -->
 <footer class="main-footer">
     <div class="pull-right hidden-xs">

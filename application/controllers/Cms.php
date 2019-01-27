@@ -125,6 +125,7 @@ class Cms extends CI_Controller
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
             $data['page_item'] = $this->Pages_model->get_page();
+            $data['type_item'] = $this->Pages_model->get_type();
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/pages', $data);
@@ -180,7 +181,7 @@ class Cms extends CI_Controller
             $data['header_item'] = $this->Header_model->get_menu();
             $data['sub_item'] = $this->Header_model->get_sousmenu();
             $data['third_item'] = $this->Header_model->get_thirdmenu();
-            $data['page_item'] = $this->Pages_model->get_page();
+            $data['page_item'] = $this->Pages_model->get_page();            
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
             $this->load->view('cms/pages', $data);
@@ -230,7 +231,7 @@ class Cms extends CI_Controller
             }                     
             $this->load->view('cms/header', $data);
             $this->load->view('cms/left_menu', $data);
-            $this->load->view('cms/citoyen2', $data);
+            $this->load->view('cms/citoyen', $data);
             $this->load->view('cms/footer');
 
         }
@@ -419,6 +420,7 @@ class Cms extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->session->set_userdata('__ci_last_regenerate', time());
+            $data['nb'] = 4;
             $data['user'] = $this->session->userdata('username');
             $data['id_user'] = $this->session->userdata('id');
             $data['mail'] = $this->session->userdata('mail');
@@ -450,6 +452,7 @@ class Cms extends CI_Controller
             if (!$this->upload->do_upload('backgroundImg')) {
                 //si upload hs retour vers la page de création de page avec info sur l'echec du transfert
                 $this->session->set_userdata('__ci_last_regenerate', time());
+                $data['nb'] = 4;
                 $data['user'] = $this->session->userdata('username');
                 $data['id_user'] = $this->session->userdata('id');
                 $data['mail'] = $this->session->userdata('mail');
@@ -1088,6 +1091,13 @@ $nomPage = str_replace(' ','-', $this->input->post('nomPage'));
         $this->load->model('Home_model');
         $intro = $this->input->post('textintro');
         $this->Home_model->updateIntroHome($intro);
+        header('Location:' . base_url() . 'cms/3');
+    }
+    public function updateSupHome()
+    {
+        $this->load->model('Home_model');
+        $textSup = $this->input->post('textsup');       
+        $this->Home_model->updateSupHome($textSup);
         header('Location:' . base_url() . 'cms/3');
     }
 
